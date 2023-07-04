@@ -1,0 +1,20 @@
+svg {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  background: lightblue;
+  z-index: 0;
+}
+
+.canvas {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  .rectangle {
+    position: fixed;
+  }
+}
+
+
