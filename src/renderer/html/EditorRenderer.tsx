@@ -21,6 +21,11 @@ export function EditorRenderer(props: Props): JSX.Element {
                 defaultLanguage={props.editor.language}
                 defaultValue={props.editor.value}
                 width={"100%"}
+                options={{
+                    minimap: {
+                        enabled: false
+                    }
+                }}
             />
         </div>
     );
