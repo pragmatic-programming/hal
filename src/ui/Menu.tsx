@@ -2,29 +2,44 @@ import React, { CSSProperties } from "react";
 import { Position } from "../model/Position";
 import { Dimension } from "../model/Dimension";
 import { Editor } from "../model/Editor";
-import { IconButton } from "@mui/material";
-import { AddBox } from "@mui/icons-material";
+import { Box, Divider, IconButton, PaletteMode, useTheme } from "@mui/material";
+import { AddBox, Brightness4, Brightness7 } from "@mui/icons-material";
 
 interface Props {
     menuWidth: number;
     newEditor: (editor: Editor) => void;
+    setMode: (mode: PaletteMode) => void;
 }
 
 export default function Menu(props: Props): JSX.Element {
+    const theme = useTheme();
     let style: CSSProperties = {
         position: "fixed",
         top: 0,
         left: 0,
         width: props.menuWidth,
         height: "100vh",
-        backgroundColor: "#262626",
+        backgroundColor: theme.palette.background.paper,
         borderRight: "1px solid #363636"
     };
     return (
         <div style={style}>
-            <br/>
-            <center>
+            <Box sx={{width: props.menuWidth, textAlign: "center", marginTop: 2}}>
                 <IconButton
+                    size="large"
+                    onClick={
+                        () => {
+                            props.setMode(theme.palette.mode === "dark" ? "light" : "dark");
+                        }
+                    }
+                >
+                    {theme.palette.mode === "dark" ? <Brightness7/> : <Brightness4/>}
+                </IconButton>
+            </Box>
+            <Divider sx={{marginTop: 2}}/>
+            <Box sx={{width: props.menuWidth, textAlign: "center", marginTop: 2}}>
+                <IconButton
+                    size="large"
                     onClick={
                         () => {
                             props.newEditor(
@@ -38,12 +53,10 @@ export default function Menu(props: Props): JSX.Element {
                             );
                         }
                     }
-                    size="large"
-                    color="secondary"
                 >
                     <AddBox fontSize="inherit"></AddBox>
                 </IconButton>
-            </center>
+            </Box>
         </div>
     );
 }

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Canvas } from "./model/Canvas";
 import { Editor } from "./model/Editor";
 import { Dimension } from "./model/Dimension";
 import { Position } from "./model/Position";
 import { Edge } from "./model/Edge";
-import Renderer from "./renderer/Renderer";
 import { EdgeStyle } from "./model/EdgeStyle";
+import "./App.scss";
+import Menu from "./ui/Menu";
+import Main from "./ui/Main";
+import Bottom from "./ui/Bottom";
+import Theme from "./ui/Theme";
+import { PaletteMode } from "@mui/material";
 
 const canvas = new Canvas(
         [
@@ -37,8 +42,24 @@ const canvas = new Canvas(
 ;
 
 export default function App() {
+    const [canvasState, setItems] = useState<Canvas>(canvas);
+    const [mode, setMode] = useState<PaletteMode>("dark");
+    const menuWidth = 100;
     return (
-        <Renderer canvas={canvas}/>
+        <Theme mode={mode}>
+            <Main
+                menuWidth={menuWidth}
+                canvas={canvasState}
+            />
+            <Bottom
+                menuWidth={menuWidth}
+            />
+            <Menu
+                menuWidth={menuWidth}
+                newEditor={editor => setItems(canvasState.addEditor(editor))}
+                setMode={setMode}
+            />
+        </Theme>
     );
 }
 
