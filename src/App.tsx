@@ -44,19 +44,24 @@ const canvas = new Canvas(
 export default function App() {
     const [canvasState, setItems] = useState<Canvas>(canvas);
     const [mode, setMode] = useState<PaletteMode>("dark");
+    const [highlightedEditorId, setHighlightedEditorId] = useState<number | null>(null);
     const menuWidth = 100;
     return (
         <Theme mode={mode}>
             <Main
-                menuWidth={menuWidth}
                 canvas={canvasState}
+                highlightedEditorId={highlightedEditorId}
+                menuWidth={menuWidth}
+                setHighlightedEditorId={setHighlightedEditorId}
             />
             <Bottom
                 menuWidth={menuWidth}
             />
             <Menu
+                highlightedEditorId={highlightedEditorId}
                 menuWidth={menuWidth}
                 newEditor={editor => setItems(canvasState.addEditor(editor))}
+                removeEditor={editorId => setItems(canvasState.removeEditor(editorId))}
                 setMode={setMode}
             />
         </Theme>

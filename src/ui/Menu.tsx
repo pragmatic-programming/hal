@@ -3,12 +3,14 @@ import { Position } from "../model/Position";
 import { Dimension } from "../model/Dimension";
 import { Editor } from "../model/Editor";
 import { Box, Divider, IconButton, PaletteMode, useTheme } from "@mui/material";
-import { AddBox, Brightness4, Brightness7 } from "@mui/icons-material";
+import { AddBox, Brightness4, Brightness7, IndeterminateCheckBox } from "@mui/icons-material";
 
 interface Props {
     menuWidth: number;
     newEditor: (editor: Editor) => void;
+    removeEditor: (editorId: number | null) => void;
     setMode: (mode: PaletteMode) => void;
+    highlightedEditorId: number | null;
 }
 
 export default function Menu(props: Props): JSX.Element {
@@ -55,6 +57,15 @@ export default function Menu(props: Props): JSX.Element {
                     }
                 >
                     <AddBox fontSize="inherit"></AddBox>
+                </IconButton>
+            </Box>
+            <Box sx={{width: props.menuWidth, textAlign: "center", marginTop: 2}}>
+                <IconButton
+                    disabled={props.highlightedEditorId === null}
+                    size="large"
+                    onClick={() => props.removeEditor(props.highlightedEditorId)}
+                >
+                    <IndeterminateCheckBox fontSize="inherit"></IndeterminateCheckBox>
                 </IconButton>
             </Box>
         </div>

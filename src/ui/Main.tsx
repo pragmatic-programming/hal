@@ -5,8 +5,10 @@ import { Canvas } from "../model/Canvas";
 import { useTheme } from "@mui/material";
 
 interface Props {
-    menuWidth: number;
     canvas: Canvas;
+    highlightedEditorId: number | null;
+    menuWidth: number;
+    setHighlightedEditorId: (id: number) => void;
 }
 
 export default function Main(props: Props): JSX.Element {
@@ -21,8 +23,16 @@ export default function Main(props: Props): JSX.Element {
     };
     return (
         <div style={style}>
-            <HtmlRenderer leftOffset={props.menuWidth} editors={props.canvas.editors}/>
-            <SvgRenderer leftOffset={props.menuWidth} editors={props.canvas.editors}/>
+            <HtmlRenderer
+                editors={props.canvas.editors}
+                highlightedEditorId={props.highlightedEditorId}
+                leftOffset={props.menuWidth}
+                setHighlightedEditorId={props.setHighlightedEditorId}
+            />
+            <SvgRenderer
+                editors={props.canvas.editors}
+                leftOffset={props.menuWidth}
+            />
         </div>
     );
 }

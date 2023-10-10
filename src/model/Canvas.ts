@@ -6,12 +6,19 @@ export class Canvas {
     ) {
     }
 
-    addEditor(editor: Editor):Canvas {
+    addEditor(editor: Editor): Canvas {
         return new Canvas(
             [
                 ...this.editors,
                 editor
             ]
+        );
+    }
+
+    removeEditor(editorId: number | null): Canvas {
+        return new Canvas(
+            this.editors
+                .filter(editor => editor.id !== editorId)
         );
     }
 }
