@@ -10,6 +10,7 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
     "@monaco-editor/react": "^4.5.1",
+    "@mui/icons-material": "^5.14.12",
     "@mui/material": "^5.14.12",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

@@ -5,6 +5,7 @@ import { Editor } from "../../model/Editor";
 
 interface Props {
     editors: Editor[];
+    leftOffset: number;
 }
 
 export default function SvgRenderer(props: Props): JSX.Element {
@@ -18,14 +19,15 @@ export default function SvgRenderer(props: Props): JSX.Element {
                     refY="5"
                     markerWidth="4"
                     markerHeight="4"
-                    orient="auto-start-reverse">
-                    <path d="M 0 0 L 10 5 L 0 10 z"/>
+                    orient="auto-start-reverse"
+                >
+                    <path d="M 0 0 L 10 5 L 0 10 z" stroke="white" fill="white"/>
                 </marker>
             </defs>
             {
                 props.editors
                     .flatMap(editor => editor.edges)
-                    .map((edge: Edge) => <LineRenderer key={edge.key} edge={edge}/>)
+                    .map((edge: Edge) => <LineRenderer key={edge.key} edge={edge} leftOffset={props.leftOffset}/>)
             }
         </svg>
     );

@@ -1,41 +1,41 @@
 import React, { useState } from "react";
 import { Canvas } from "../model/Canvas";
 import "./Renderer.scss";
-import SvgRenderer from "./svg/SvgRenderer";
-import HtmlRenderer from "./html/HtmlRenderer";
-import { Editor } from "../model/Editor";
-import { Dimension } from "../model/Dimension";
-import { Position } from "../model/Position";
-import { Button } from "@mui/material";
+import Menu from "../ui/Menu";
+import Main from "../ui/Main";
+import { createTheme, ThemeProvider } from "@mui/material";
+import Bottom from "../ui/Bottom";
 
 interface Props {
     canvas: Canvas;
 }
 
 export default function Renderer(props: Props): JSX.Element {
-    const [items, setItems] = useState(props.canvas);
+    const [canvas, setItems] = useState(props.canvas);
+    const menuWidth = 100;
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                light: "#757ce8",
+                main: "#3f50b5",
+                dark: "#002884",
+                contrastText: "#fff",
+            },
+            secondary: {
+                light: "#ffffff",
+                main: "#ffffff",
+                dark: "#ba000d",
+                contrastText: "#000",
+            },
+        },
+    });
+
     return (
-        <div>
-            <Button
-                variant="contained"
-                onClick={() => {
-                    setItems(items.addEditor(
-                        new Editor(
-                            3,
-                            new Dimension(640, 480),
-                            new Position(0, 0),
-                            "javascript",
-                            "alert('Hello '+ x)"
-                        ),
-                    ));
-                }}
-            >
-                New Editor
-            </Button>;
-            <div>
-                <HtmlRenderer editors={items.editors}/>
-                <SvgRenderer editors={items.editors}/>
-            </div>
-        </div>
+        <ThemeProvider theme={theme}>
+            <Main menuWidth={menuWidth} canvas={canvas}></Main>
+            <Bottom menuWidth={menuWidth}></Bottom>
+            <Menu menuWidth={menuWidth} newEditor={editor => setItems(canvas.addEditor(editor))}></Menu>
+        </ThemeProvider>
     );
 }

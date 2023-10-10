@@ -4,6 +4,7 @@ import { Editor as Monaco } from "@monaco-editor/react";
 
 interface Props {
     editor: Editor;
+    leftOffset: number;
 }
 
 export function EditorRenderer(props: Props): JSX.Element {
@@ -12,7 +13,7 @@ export function EditorRenderer(props: Props): JSX.Element {
             className={"rectangle"}
             style={{
                 height: props.editor.dimension.height,
-                left: props.editor.position.x,
+                left: props.editor.position.x + props.leftOffset,
                 top: props.editor.position.y,
                 width: props.editor.dimension.width,
             }}
