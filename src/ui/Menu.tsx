@@ -13,7 +13,7 @@ interface Props {
     highlightedEditorId: number | null;
 }
 
-export default function Menu(props: Props): JSX.Element {
+export default function Menu(props: Props): React.JSX.Element {
     const theme = useTheme();
     let style: CSSProperties = {
         position: "fixed",

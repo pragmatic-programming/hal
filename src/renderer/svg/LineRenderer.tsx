@@ -7,7 +7,7 @@ interface Props {
     leftOffset: number;
 }
 
-export default function LineRenderer(props: Props): JSX.Element {
+export default function LineRenderer(props: Props): React.JSX.Element {
     function strokeDashArray(edge: Edge) {
         if (edge.style === EdgeStyle.solid) {
             return "none";

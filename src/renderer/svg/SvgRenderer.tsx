@@ -8,7 +8,7 @@ interface Props {
     leftOffset: number;
 }
 
-export default function SvgRenderer(props: Props): JSX.Element {
+export default function SvgRenderer(props: Props): React.JSX.Element {
     return (
         <svg>
             <defs>

@@ -5,7 +5,7 @@ interface Props {
     menuWidth: number;
 }
 
-export default function Bottom(props: Props): JSX.Element {
+export default function Bottom(props: Props): React.JSX.Element {
     const theme = useTheme();
     const style: CSSProperties = {
         position: "fixed",

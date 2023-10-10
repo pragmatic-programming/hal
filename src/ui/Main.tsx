@@ -11,7 +11,7 @@ interface Props {
     setHighlightedEditorId: (id: number) => void;
 }
 
-export default function Main(props: Props): JSX.Element {
+export default function Main(props: Props): React.JSX.Element {
     const theme = useTheme();
     const style: CSSProperties = {
         position: "fixed",

@@ -9,7 +9,7 @@ interface Props {
     setHighlightedEditorId: (id: number) => void;
 }
 
-export default function HtmlRenderer(props: Props): JSX.Element {
+export default function HtmlRenderer(props: Props): React.JSX.Element {
     return (
         <div className={"canvas"}>
             {props.editors.map((editor: Editor) => <EditorRenderer

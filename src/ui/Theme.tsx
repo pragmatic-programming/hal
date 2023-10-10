@@ -2,7 +2,7 @@ import React from "react";
 import { createTheme, Palette, PaletteMode, ThemeProvider } from "@mui/material";
 
 interface Props {
-    children: JSX.Element[];
+    children: React.JSX.Element[];
     mode: PaletteMode
 }
 
@@ -29,7 +29,7 @@ function theme(mode: PaletteMode) {
     });
 }
 
-export default function Theme(props: Props): JSX.Element {
+export default function Theme(props: Props): React.JSX.Element {
     return (
         <ThemeProvider theme={React.useMemo(() => theme(props.mode), [props.mode])}>
             {props.children}

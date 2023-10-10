@@ -10,7 +10,7 @@ interface Props {
     setHighlightedEditorId: (id: number) => void;
 }
 
-export function EditorRenderer(props: Props): JSX.Element {
+export function EditorRenderer(props: Props): React.JSX.Element {
     const theme = useTheme();
     let style: Partial<CSSProperties> = {};
     if (props.editor.id === props.highlightedEditorId) {
