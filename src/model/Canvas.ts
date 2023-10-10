@@ -5,4 +5,13 @@ export class Canvas {
         readonly editors: Editor[]
     ) {
     }
+
+    addEditor(editor: Editor):Canvas {
+        return new Canvas(
+            [
+                ...this.editors,
+                editor
+            ]
+        );
+    }
 }
