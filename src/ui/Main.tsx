@@ -8,7 +8,7 @@ interface Props {
     canvas: Canvas;
     highlightedEditorId: number | null;
     menuWidth: number;
-    setHighlightedEditorId: (id: number) => void;
+    setHighlightedEditorId: (id: number | null) => void;
 }
 
 export default function Main(props: Props): React.JSX.Element {

@@ -7,7 +7,7 @@ interface Props {
     editor: Editor;
     highlightedEditorId: number | null;
     leftOffset: number;
-    setHighlightedEditorId: (id: number) => void;
+    setHighlightedEditorId: (id: number | null) => void;
 }
 
 export function EditorRenderer(props: Props): React.JSX.Element {
@@ -20,7 +20,7 @@ export function EditorRenderer(props: Props): React.JSX.Element {
     }
     return (
         <div
-            onClick={() => props.setHighlightedEditorId(props.editor.id)}
+            onClick={() => props.setHighlightedEditorId(props.editor.id === props.highlightedEditorId ? null : props.editor.id)}
             className={"rectangle"}
             style={{
                 ...style,

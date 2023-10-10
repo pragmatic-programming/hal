@@ -6,7 +6,7 @@ interface Props {
     editors: Editor[];
     highlightedEditorId: number | null;
     leftOffset: number;
-    setHighlightedEditorId: (id: number) => void;
+    setHighlightedEditorId: (id: number | null) => void;
 }
 
 export default function HtmlRenderer(props: Props): React.JSX.Element {
