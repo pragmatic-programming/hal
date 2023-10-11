@@ -5,34 +5,29 @@ import { Editor } from "./model/Editor";
 import { Dimension } from "./model/Dimension";
 import { Position } from "./model/Position";
 import { Edge } from "./model/Edge";
-import { EdgeStyle } from "./model/EdgeStyle";
 
+let editor1 = new Editor(
+    1,
+    new Dimension(640, 480),
+    new Position(0, 50),
+    "javascript",
+    "var x = 'World';",
+);
+let editor2 = new Editor(
+    2,
+    new Dimension(640, 480),
+    new Position(800, 50),
+    "javascript",
+    "alert('Hello '+ x)"
+);
 const canvas = new Canvas(
         [
-            new Editor(
-                1,
-                new Dimension(640, 480),
-                new Position(0, 0),
-                "javascript",
-                "var x = 'World';",
-                [
-                    new Edge(
-                        1,
-                        2,
-                        new Position(645, 100),
-                        new Position(800, 100),
-                        EdgeStyle.dotted
-                    )
-                ]
-            ),
-            new Editor(
-                2,
-                new Dimension(640, 480),
-                new Position(800, 50),
-                "javascript",
-                "alert('Hello '+ x)"
-            ),
+            editor1,
+            editor2,
         ],
+        [
+            Edge.create(editor1, editor2)
+        ]
     )
 ;
 

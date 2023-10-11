@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "*"
+    "@babel/plugin-proposal-private-property-in-object": "*",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",

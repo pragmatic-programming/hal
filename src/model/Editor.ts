@@ -1,6 +1,5 @@
 import { Dimension } from "./Dimension";
 import { Position } from "./Position";
-import { Edge } from "./Edge";
 
 export class Editor {
     constructor(
@@ -9,7 +8,6 @@ export class Editor {
         readonly position: Position,
         readonly language: string,
         readonly value: string,
-        readonly edges: Edge[] = []
     ) {
     }
 
@@ -20,7 +18,7 @@ export class Editor {
             this.position.moved(delta),
             this.language,
             this.value,
-            this.edges
         );
     }
+
 }

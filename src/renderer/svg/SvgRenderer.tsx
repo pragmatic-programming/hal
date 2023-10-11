@@ -1,13 +1,12 @@
 import { Edge } from "../../model/Edge";
 import React from "react";
 import LineRenderer from "./LineRenderer";
-import { Editor } from "../../model/Editor";
 import { useStore } from "../../Store";
 import { State } from "../../State";
 import { useTheme } from "@mui/material";
 
 export default function SvgRenderer(): React.JSX.Element {
-    const editors: Editor[] = useStore((state: State) => state.canvas.editors);
+    const edges: Edge[] = useStore((state: State) => state.canvas.edges);
     const theme = useTheme();
 
     return (
@@ -28,11 +27,7 @@ export default function SvgRenderer(): React.JSX.Element {
                     />
                 </marker>
             </defs>
-            {
-                editors
-                    .flatMap(editor => editor.edges)
-                    .map((edge: Edge) => <LineRenderer key={edge.key} edge={edge}/>)
-            }
+            {edges.map((edge: Edge) => <LineRenderer key={edge.key} edge={edge}/>)}
         </svg>
     );
 }

@@ -1,10 +1,12 @@
 import { Editor } from "./Editor";
 import { Position } from "./Position";
 import { Dimension } from "./Dimension";
+import { Edge } from "./Edge";
 
 export class Canvas {
     constructor(
-        readonly editors: Editor[]
+        readonly editors: Editor[],
+        readonly edges: Edge[]
     ) {
     }
 
@@ -19,24 +21,35 @@ export class Canvas {
                     "javascript",
                     "alert('Hello '+ x)"
                 )
-            ]
+            ],
+            this.edges
         );
     }
 
     removeEditor(editorId: number | null): Canvas {
         return new Canvas(
-            this.editors
-                .filter(editor => editor.id !== editorId)
+            this.editors.filter(editor => editor.id !== editorId),
+            this.edges.filter((edge: Edge) => edge.from !== editorId && edge.to !== editorId)
         );
     }
 
     moveEditor(editorId: number, delta: Position): Canvas {
         return new Canvas(
             this.editors.map((editor: Editor): Editor => {
-                if (editor.id === editorId) {
-                    return editor.moved(delta);
+                    if (editor.id === editorId) {
+                        return editor.moved(delta);
+                    }
+                    return editor;
                 }
-                return editor;
+            ),
+            this.edges.map((edge:Edge): Edge=>{
+               if(edge.from === editorId){
+                    return edge.startMoved(delta)
+               }
+               if(edge.to === editorId){
+                   return edge.endMoved(delta)
+               }
+               return edge
             })
         );
     }

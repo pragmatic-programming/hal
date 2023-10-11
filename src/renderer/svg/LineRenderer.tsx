@@ -1,8 +1,6 @@
 import { Edge } from "../../model/Edge";
 import React from "react";
 import { EdgeStyle } from "../../model/EdgeStyle";
-import { useStore } from "../../Store";
-import { State } from "../../State";
 import { useTheme } from "@mui/material";
 
 interface Props {
@@ -10,7 +8,6 @@ interface Props {
 }
 
 export default function LineRenderer(props: Props): React.JSX.Element {
-    const menuWidth: number = useStore((state: State) => state.menuWidth);
     const theme = useTheme();
 
     function strokeDashArray(edge: Edge) {
@@ -27,9 +24,9 @@ export default function LineRenderer(props: Props): React.JSX.Element {
         <line
             key={props.edge.key}
             x1={props.edge.start.x}
-            y1={props.edge.start.y + menuWidth}
-            x2={props.edge.end.x - 10}
-            y2={props.edge.end.y + menuWidth}
+            y1={props.edge.start.y }
+            x2={props.edge.end.x}
+            y2={props.edge.end.y}
             strokeWidth="5"
             strokeDasharray={strokeDashArray(props.edge)}
             stroke={theme.palette.edge.main}

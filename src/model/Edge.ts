@@ -1,9 +1,9 @@
 import { Position } from "./Position";
 import { EdgeStyle } from "./EdgeStyle";
+import { Editor } from "./Editor";
 
 export class Edge {
-    // todo use real key or id
-    readonly key = crypto.randomUUID();
+    readonly key: string;
 
     constructor(
         readonly from: number,
@@ -12,6 +12,73 @@ export class Edge {
         readonly end: Position,
         readonly style: EdgeStyle = EdgeStyle.solid
     ) {
+        this.key = from.toString() + to.toString();
     }
 
+    startMoved(delta: Position): Edge {
+        return new Edge(
+            this.from,
+            this.to,
+            new Position(
+                this.start.x + delta.x,
+                this.start.y + delta.y
+            ),
+            this.end,
+            this.style
+        );
+    }
+
+    endMoved(delta: Position): Edge {
+        return new Edge(
+            this.from,
+            this.to,
+            this.start,
+            new Position(
+                this.end.x + delta.x,
+                this.end.y + delta.y
+            ),
+            this.style
+        );
+    }
+
+    static create(from: Editor, to: Editor): Edge {
+        let start: Position;
+        let end: Position;
+        let fromVerticalMiddle = this.verticalMiddle(from);
+        let toVerticalMiddle = this.verticalMiddle(to);
+        if (from.position.x > to.position.x) {
+            start = new Position(
+                from.position.x,
+                fromVerticalMiddle
+            );
+            end = new Position(
+                this.outsideEdgeRight(to),
+                toVerticalMiddle
+            );
+        } else {
+            start = new Position(
+                this.outsideEdgeRight(from),
+                fromVerticalMiddle
+            );
+            end = new Position(
+                to.position.x,
+                toVerticalMiddle
+            );
+        }
+        return new Edge(
+            from.id,
+            to.id,
+            start,
+            end,
+            EdgeStyle.dotted
+        );
+    }
+
+    private static outsideEdgeRight(to: Editor) {
+        return to.position.x + to.dimension.width;
+    }
+
+    private static verticalMiddle(editor: Editor) {
+        return Math.round(editor.position.y + (editor.dimension.height / 2));
+    }
 }
