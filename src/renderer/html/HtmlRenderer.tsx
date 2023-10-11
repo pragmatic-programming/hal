@@ -1,23 +1,16 @@
 import React from "react";
 import { Editor } from "../../model/Editor";
 import { EditorRenderer } from "./EditorRenderer";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 
-interface Props {
-    editors: Editor[];
-    highlightedEditorId: number | null;
-    leftOffset: number;
-    setHighlightedEditorId: (id: number | null) => void;
-}
-
-export default function HtmlRenderer(props: Props): React.JSX.Element {
+export default function HtmlRenderer(): React.JSX.Element {
+    const editors: Editor[] = useStore((state: State) => state.canvas.editors);
     return (
         <div className={"canvas"}>
-            {props.editors.map((editor: Editor) => <EditorRenderer
+            {editors.map((editor: Editor) => <EditorRenderer
                 editor={editor}
-                highlightedEditorId={props.highlightedEditorId}
                 key={editor.id}
-                leftOffset={props.leftOffset}
-                setHighlightedEditorId={props.setHighlightedEditorId}
             />)}
         </div>
     );

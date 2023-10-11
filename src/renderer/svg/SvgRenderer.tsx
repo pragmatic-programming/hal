@@ -2,13 +2,11 @@ import { Edge } from "../../model/Edge";
 import React from "react";
 import LineRenderer from "./LineRenderer";
 import { Editor } from "../../model/Editor";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 
-interface Props {
-    editors: Editor[];
-    leftOffset: number;
-}
-
-export default function SvgRenderer(props: Props): React.JSX.Element {
+export default function SvgRenderer(): React.JSX.Element {
+    const editors: Editor[] = useStore((state: State) => state.canvas.editors);
     return (
         <svg>
             <defs>
@@ -25,9 +23,9 @@ export default function SvgRenderer(props: Props): React.JSX.Element {
                 </marker>
             </defs>
             {
-                props.editors
+                editors
                     .flatMap(editor => editor.edges)
-                    .map((edge: Edge) => <LineRenderer key={edge.key} edge={edge} leftOffset={props.leftOffset}/>)
+                    .map((edge: Edge) => <LineRenderer key={edge.key} edge={edge}/>)
             }
         </svg>
     );
