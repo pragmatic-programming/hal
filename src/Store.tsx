@@ -50,6 +50,7 @@ export const useStore = create<State>((setState) => ({
     })),
     removeEditor: () => setState((state: State): State => ({
         ...state,
+        highlightedEditorId: null,
         canvas: state.canvas.removeEditor(state.highlightedEditorId)
     })),
     selectEditor: (id: number | null) => setState((state: State): State => ({
