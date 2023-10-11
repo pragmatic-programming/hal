@@ -22,8 +22,8 @@ export default function Menu(): React.JSX.Element {
         left: 0,
         width: menuWidth,
         height: "100vh",
-        backgroundColor: theme.palette.background.paper,
-        borderRight: "1px solid #363636"
+        backgroundColor: theme.palette.gui.menu.background,
+        borderRight: "1px solid " + theme.palette.gui.menu.border
     };
     return (
         <div style={style}>

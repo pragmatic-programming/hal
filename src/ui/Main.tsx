@@ -9,12 +9,12 @@ export default function Main(): React.JSX.Element {
     const theme = useTheme();
     const menuWidth: number = useStore((state: State) => state.menuWidth);
     const style: CSSProperties = {
+        backgroundColor: theme.palette.gui.canvas.background,
+        height: "100vh",
+        left: menuWidth,
         position: "fixed",
         top: 0,
-        left: menuWidth,
         width: window.innerWidth - menuWidth,
-        height: "100vh",
-        backgroundColor: theme.palette.background.default
     };
     return (
         <div style={style}>

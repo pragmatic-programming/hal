@@ -13,7 +13,7 @@ export default function Bottom(): React.JSX.Element {
         width: window.innerWidth - menuWidth,
         height: 200,
         borderTop: "1px solid #363636",
-        backgroundColor: theme.palette.background.default
+        backgroundColor: theme.palette.gui.bottom.background
     };
     return (
         <div style={style}>
