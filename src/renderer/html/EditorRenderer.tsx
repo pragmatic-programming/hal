@@ -28,7 +28,7 @@ export function EditorRenderer(props: Props): React.JSX.Element {
     if (props.editor.id === highlightedEditorId) {
         style = {
             ...style,
-            // todo highlight
+            borderWidth: 2
         };
     }
     return (
