@@ -2,10 +2,11 @@ import React, { CSSProperties } from "react";
 import { Position } from "../model/Position";
 import { Dimension } from "../model/Dimension";
 import { Editor } from "../model/Editor";
-import { Box, Divider, IconButton, useTheme } from "@mui/material";
+import { Divider, useTheme } from "@mui/material";
 import { AddBox, Brightness4, Brightness7, IndeterminateCheckBox } from "@mui/icons-material";
 import { useStore } from "../Store";
 import { State } from "../State";
+import MainButton from "./MainButton";
 
 export default function Menu(): React.JSX.Element {
     const theme = useTheme();
@@ -26,42 +27,30 @@ export default function Menu(): React.JSX.Element {
     };
     return (
         <div style={style}>
-            <Box sx={{width: menuWidth, textAlign: "center", marginTop: 2}}>
-                <IconButton
-                    size="large"
-                    onClick={switchMode}
-                >
-                    {theme.palette.mode === "dark" ? <Brightness7/> : <Brightness4/>}
-                </IconButton>
-            </Box>
+            <MainButton
+                onClick={switchMode}
+                icon={theme.palette.mode === "dark" ? <Brightness7/> : <Brightness4/>}
+            />
             <Divider sx={{marginTop: 2}}/>
-            <Box sx={{width: menuWidth, textAlign: "center", marginTop: 2}}>
-                <IconButton
-                    size="large"
-                    onClick={
-                        () => addEditor(
-                            new Editor(
-                                3,
-                                new Dimension(640, 480),
-                                new Position(0, 0),
-                                "javascript",
-                                "alert('Hello '+ x)"
-                            )
+            <MainButton
+                onClick={
+                    () => addEditor(
+                        new Editor(
+                            3,
+                            new Dimension(640, 480),
+                            new Position(0, 0),
+                            "javascript",
+                            "alert('Hello '+ x)"
                         )
-                    }
-                >
-                    <AddBox fontSize="inherit"></AddBox>
-                </IconButton>
-            </Box>
-            <Box sx={{width: menuWidth, textAlign: "center", marginTop: 2}}>
-                <IconButton
-                    disabled={highlightedEditorId === null}
-                    size="large"
-                    onClick={removeEditor}
-                >
-                    <IndeterminateCheckBox fontSize="inherit"></IndeterminateCheckBox>
-                </IconButton>
-            </Box>
+                    )
+                }
+                icon={<AddBox fontSize="inherit"/>}
+            />
+            <MainButton
+                onClick={removeEditor}
+                disabled={highlightedEditorId === null}
+                icon={<IndeterminateCheckBox fontSize="inherit"/>}
+            />
         </div>
     );
 }
