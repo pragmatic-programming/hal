@@ -1,6 +1,7 @@
 import { Canvas } from "./model/Canvas";
 import { PaletteMode } from "@mui/material";
 import { Editor } from "./model/Editor";
+import { Position } from "./model/Position";
 
 export interface State {
     menuWidth: number;
@@ -11,4 +12,5 @@ export interface State {
     removeEditor: () => void;
     selectEditor: (id: number | null) => void;
     addEditor: (editor: Editor) => void;
+    moveEditor: (editorId: number, position: Position) => void;
 }

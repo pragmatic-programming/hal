@@ -4,6 +4,7 @@ import { Editor as Monaco } from "@monaco-editor/react";
 import { useTheme } from "@mui/material";
 import { useStore } from "../../Store";
 import { State } from "../../State";
+import { useDraggable } from "@dnd-kit/core";
 
 interface Props {
     editor: Editor;
@@ -14,15 +15,18 @@ export function EditorRenderer(props: Props): React.JSX.Element {
     const highlightedEditorId: number | null = useStore((state: State) => state.highlightedEditorId);
     const selectEditor = useStore((state: State) => state.selectEditor);
     const menuWidth: number = useStore((state: State) => state.menuWidth);
-    let style: Partial<CSSProperties> = {};
+    const {attributes, listeners, setNodeRef, transform} = useDraggable({id: props.editor.id,});
+    let style: Partial<CSSProperties> = transform ? {transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,} : {};
+
     if (props.editor.id === highlightedEditorId) {
         style = {
+            ...style,
             border: "1px solid " + theme.palette.error.dark,
         };
     }
     return (
         <div
-            onClick={() => selectEditor(props.editor.id === highlightedEditorId ? null : props.editor.id)}
+            ref={setNodeRef}
             className={"rectangle"}
             style={{
                 ...style,
@@ -31,6 +35,9 @@ export function EditorRenderer(props: Props): React.JSX.Element {
                 height: props.editor.dimension.height,
                 width: props.editor.dimension.width,
             }}
+            {...listeners}
+            {...attributes}
+            onDoubleClick={() => selectEditor(props.editor.id === highlightedEditorId ? null : props.editor.id)}
         >
             <Monaco
                 defaultLanguage={props.editor.language}

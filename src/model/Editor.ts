@@ -13,4 +13,14 @@ export class Editor {
     ) {
     }
 
+    moved(delta: Position): Editor {
+        return new Editor(
+            this.id,
+            this.dimension,
+            this.position.moved(delta),
+            this.language,
+            this.value,
+            this.edges
+        );
+    }
 }

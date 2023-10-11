@@ -5,7 +5,6 @@ import Main from "./ui/Main";
 import Bottom from "./ui/Bottom";
 import Theme from "./ui/Theme";
 
-
 export default function App() {
     return (
         <Theme>

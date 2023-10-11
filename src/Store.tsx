@@ -37,11 +37,13 @@ const canvas = new Canvas(
 ;
 
 export const useStore = create<State>((setState) => ({
-    menuWidth:100,
+    menuWidth: 100,
     canvas: canvas,
     mode: "dark",
     highlightedEditorId: null,
-    switchMode: () => setState((state: State): State => ({...state, mode: state.mode === "dark" ? "light" : "dark"})),
+    switchMode: () => setState((state: State): State => ({
+        ...state, mode: state.mode === "dark" ? "light" : "dark"
+    })),
     addEditor: (editor: Editor) => setState((state: State): State => ({
         ...state,
         canvas: state.canvas.addEditor(editor)
@@ -50,5 +52,11 @@ export const useStore = create<State>((setState) => ({
         ...state,
         canvas: state.canvas.removeEditor(state.highlightedEditorId)
     })),
-    selectEditor: (id: number | null) => setState((state: State): State => ({...state, highlightedEditorId: id}))
+    selectEditor: (id: number | null) => setState((state: State): State => ({
+        ...state, highlightedEditorId: id
+    })),
+    moveEditor: (id: number, delta: Position) => setState((state: State): State => ({
+        ...state,
+        canvas: state.canvas.moveEditor(id, delta)
+    }))
 }));
