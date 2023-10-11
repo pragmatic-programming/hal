@@ -9,7 +9,7 @@ import { Edge } from "./model/Edge";
 let editor1 = new Editor(
     1,
     new Dimension(640, 480),
-    new Position(0, 50),
+    new Position(50, 50),
     "javascript",
     "var x = 'World';",
 );
