@@ -16,12 +16,19 @@ export function EditorRenderer(props: Props): React.JSX.Element {
     const selectEditor = useStore((state: State) => state.selectEditor);
     const menuWidth: number = useStore((state: State) => state.menuWidth);
     const {attributes, listeners, setNodeRef, transform} = useDraggable({id: props.editor.id,});
-    let style: Partial<CSSProperties> = transform ? {transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,} : {};
+    let style: Partial<CSSProperties> = {
+        border: "1px solid " + theme.palette.info.light,
+    };
+    if(transform){
+        style = {
+            transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+        };
+    }
 
     if (props.editor.id === highlightedEditorId) {
         style = {
             ...style,
-            border: "1px solid " + theme.palette.error.dark,
+            // todo highlight
         };
     }
     return (

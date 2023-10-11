@@ -39,7 +39,7 @@ const canvas = new Canvas(
 export const useStore = create<State>((setState) => ({
     menuWidth: 100,
     canvas: canvas,
-    mode: "dark",
+    mode: "light",
     highlightedEditorId: null,
     switchMode: () => setState((state: State): State => ({
         ...state, mode: state.mode === "dark" ? "light" : "dark"

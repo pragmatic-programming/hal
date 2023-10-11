@@ -7,11 +7,25 @@ interface Props {
     children: React.JSX.Element[];
 }
 
+// Augment the palette to include custom colors
+declare module "@mui/material/styles" {
+    interface Palette {
+        // todo better name
+        edge: Palette["primary"];
+    }
+}
+
 function theme(mode: PaletteMode) {
     let palette: Partial<Palette> = {
         background: {
             default: "#ffffff",
             paper: "#eeeeee"
+        },
+        edge: {
+            main: "#000000",
+            light: "#000000",
+            dark: "#000000",
+            contrastText: "#000000"
         }
     };
     if (mode === "dark") {
@@ -19,6 +33,12 @@ function theme(mode: PaletteMode) {
             background: {
                 default: "#1e1e1e",
                 paper: "#262626"
+            },
+            edge: {
+                main: "#ffffff",
+                light: "#ffffff",
+                dark: "#ffffff",
+                contrastText: "#ffffff"
             }
         };
     }
