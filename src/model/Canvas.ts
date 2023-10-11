@@ -1,5 +1,6 @@
 import { Editor } from "./Editor";
 import { Position } from "./Position";
+import { Dimension } from "./Dimension";
 
 export class Canvas {
     constructor(
@@ -7,11 +8,17 @@ export class Canvas {
     ) {
     }
 
-    addEditor(editor: Editor): Canvas {
+    addEditor(): Canvas {
         return new Canvas(
             [
                 ...this.editors,
-                editor
+                new Editor(
+                    this.nextId(),
+                    new Dimension(640, 480),
+                    new Position(0, 0),
+                    "javascript",
+                    "alert('Hello '+ x)"
+                )
             ]
         );
     }
@@ -32,5 +39,9 @@ export class Canvas {
                 return editor;
             })
         );
+    }
+
+    nextId(): number {
+        return Math.max(...this.editors.map(editor => editor.id), 0) + 1;
     }
 }

@@ -44,9 +44,9 @@ export const useStore = create<State>((setState) => ({
     switchMode: () => setState((state: State): State => ({
         ...state, mode: state.mode === "dark" ? "light" : "dark"
     })),
-    addEditor: (editor: Editor) => setState((state: State): State => ({
+    addEditor: () => setState((state: State): State => ({
         ...state,
-        canvas: state.canvas.addEditor(editor)
+        canvas: state.canvas.addEditor()
     })),
     removeEditor: () => setState((state: State): State => ({
         ...state,
