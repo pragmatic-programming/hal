@@ -20,7 +20,7 @@ export default function Menu(): React.JSX.Element {
         position: "fixed",
         top: 0,
         left: 0,
-        width: menuWidth,
+        width: menuWidth - 1, // subtract 1px which is added by borderRight
         height: "100vh",
         backgroundColor: theme.palette.gui.menu.background,
         borderRight: "1px solid " + theme.palette.gui.menu.border

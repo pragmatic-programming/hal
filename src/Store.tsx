@@ -12,7 +12,7 @@ const canvas = new Canvas(
             new Editor(
                 1,
                 new Dimension(640, 480),
-                new Position(5, 50),
+                new Position(0, 0),
                 "javascript",
                 "var x = 'World';",
                 [
