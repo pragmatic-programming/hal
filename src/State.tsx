@@ -4,6 +4,7 @@ import { Editor } from "./model/Editor";
 import { Position } from "./model/Position";
 
 export interface State {
+    locked: boolean;
     menuWidth: number;
     canvas: Canvas;
     mode: PaletteMode;
@@ -12,6 +13,7 @@ export interface State {
         second: number | null
     };
     switchMode: () => void;
+    switchLocked: () => void;
     removeEditor: () => void;
     selectEditor: (id: number | null) => void;
     addEditor: (editor: Editor) => void;

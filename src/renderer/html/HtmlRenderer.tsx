@@ -10,27 +10,32 @@ export default function HtmlRenderer(): React.JSX.Element {
     const editors: Editor[] = useStore((state: State) => state.canvas.editors());
     const moveEditor = useStore((state: State) => state.moveEditor);
     const moveEdges = useStore((state: State) => state.moveEdges);
+    const locked = useStore((state: State) => state.locked);
+    let elements: React.JSX.Element | React.JSX.Element[] = editors.map((editor: Editor) => <EditorRenderer
+        editor={editor}
+        key={editor.id}
+    />);
+    if (!locked) {
+        elements = (<DndContext
+            onDragEnd={(event: DragEndEvent): void => {
+                moveEditor(
+                    Number(event.active.id),
+                    Position.create(event.delta)
+                );
+            }}
+            onDragMove={(event: DragMoveEvent): void => {
+                moveEdges(
+                    Number(event.active.id),
+                    Position.create(event.delta)
+                );
+            }}
+        >
+            {elements}
+        </DndContext>);
+    }
     return (
         <div className={"canvas"}>
-            <DndContext
-                onDragEnd={(event: DragEndEvent): void => {
-                    moveEditor(
-                        Number(event.active.id),
-                        Position.create(event.delta)
-                    );
-                }}
-                onDragMove={(event: DragMoveEvent): void => {
-                    moveEdges(
-                        Number(event.active.id),
-                        Position.create(event.delta)
-                    );
-                }}
-            >
-                {editors.map((editor: Editor) => <EditorRenderer
-                    editor={editor}
-                    key={editor.id}
-                />)}
-            </DndContext>
+            {elements}
         </div>
     );
 }

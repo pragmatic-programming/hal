@@ -6,6 +6,7 @@ import RemoveEditorButton from "./RemoveEditorButton";
 import AddEditorButton from "./AddEditorButton";
 import AddEdgeButton from "./AddEdgeButton";
 import SwitchModeButton from "./SwitchModeButton";
+import SwitchLockedButton from "./SwitchLockedButton";
 
 export default function Menu(): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -26,6 +27,7 @@ export default function Menu(): React.JSX.Element {
             <AddEditorButton/>
             <RemoveEditorButton/>
             <AddEdgeButton/>
+            <SwitchLockedButton/>
         </div>
     );
 }

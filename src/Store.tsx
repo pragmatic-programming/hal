@@ -36,6 +36,7 @@ const canvas = new Canvas(
 ;
 
 export const useStore = create<State>((setState) => ({
+    locked: true,
     menuWidth: 100,
     canvas: canvas,
     mode: "light",
@@ -43,8 +44,13 @@ export const useStore = create<State>((setState) => ({
         first: null,
         second: null
     },
+    switchLocked: () => setState((state: State): State => ({
+        ...state,
+        locked: !state.locked
+    })),
     switchMode: () => setState((state: State): State => ({
-        ...state, mode: state.mode === "dark" ? "light" : "dark"
+        ...state,
+        mode: state.mode === "dark" ? "light" : "dark"
     })),
     addEditor: () => setState((state: State): State => ({
         ...state,
