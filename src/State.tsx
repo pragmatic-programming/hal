@@ -7,7 +7,10 @@ export interface State {
     menuWidth: number;
     canvas: Canvas;
     mode: PaletteMode;
-    highlightedEditorId: number | null;
+    highlightedEditor: {
+        first: number | null
+        second: number | null
+    };
     switchMode: () => void;
     removeEditor: () => void;
     selectEditor: (id: number | null) => void;

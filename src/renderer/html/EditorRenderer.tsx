@@ -13,12 +13,15 @@ interface Props {
 
 export function EditorRenderer(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
-    const highlightedEditorId: number | null = useStore((state: State) => state.highlightedEditorId);
+    const firstSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.first);
+    const secondSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.second);
     const selectEditor = useStore((state: State) => state.selectEditor);
     const menuWidth: number = useStore((state: State) => state.menuWidth);
     const {attributes, listeners, setNodeRef, transform} = useDraggable({id: props.editor.id,});
     let style: Partial<CSSProperties> = {
-        border: "1px solid " + theme.palette.info.light,
+        borderColor: theme.palette.info.light,
+        borderStyle: "solid",
+        borderWidth: 1,
         background: theme.palette.gui.menu.background
     };
     if (transform) {
@@ -26,7 +29,7 @@ export function EditorRenderer(props: Props): React.JSX.Element {
             transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
         };
     }
-    if (props.editor.id === highlightedEditorId) {
+    if (props.editor.id === firstSelectedEditor || props.editor.id === secondSelectedEditor) {
         style = {
             ...style,
             borderWidth: 2
@@ -45,7 +48,7 @@ export function EditorRenderer(props: Props): React.JSX.Element {
             }}
             {...listeners}
             {...attributes}
-            onDoubleClick={() => selectEditor(props.editor.id === highlightedEditorId ? null : props.editor.id)}
+            onDoubleClick={() => selectEditor(props.editor.id)}
         >
             <div
                 style={{

@@ -39,7 +39,10 @@ export const useStore = create<State>((setState) => ({
     menuWidth: 100,
     canvas: canvas,
     mode: "light",
-    highlightedEditorId: null,
+    highlightedEditor: {
+        first: null,
+        second: null
+    },
     switchMode: () => setState((state: State): State => ({
         ...state, mode: state.mode === "dark" ? "light" : "dark"
     })),
@@ -48,18 +51,54 @@ export const useStore = create<State>((setState) => ({
         canvas: state.canvas.addedEditor()
     })),
     removeEditor: () => setState((state: State): State => {
-        if (state.highlightedEditorId === null) {
-            throw Error("removeEditor() called with highlightedEditorId is null");
+        if (state.highlightedEditor.first === null) {
+            throw Error("removeEditor() called with highlightedEditor.first is null");
         }
         return {
             ...state,
-            highlightedEditorId: null,
-            canvas: state.canvas.removedEditor(state.highlightedEditorId)
+            highlightedEditor: {
+                ...state.highlightedEditor,
+                first: null
+            },
+            canvas: state.canvas.removedEditor(state.highlightedEditor.first)
         };
     }),
-    selectEditor: (id: number | null) => setState((state: State): State => ({
-        ...state, highlightedEditorId: id
-    })),
+    selectEditor: (id: number | null) => setState((state: State): State => {
+        if (state.highlightedEditor.first === null) {
+            return {
+                ...state,
+                highlightedEditor: {
+                    ...state.highlightedEditor,
+                    first: id,
+                },
+            };
+        }
+        if (state.highlightedEditor.first === id) {
+            return {
+                ...state,
+                highlightedEditor: {
+                    ...state.highlightedEditor,
+                    first: null,
+                },
+            };
+        }
+        if (state.highlightedEditor.second === id) {
+            return {
+                ...state,
+                highlightedEditor: {
+                    ...state.highlightedEditor,
+                    second: null
+                },
+            };
+        }
+        return {
+            ...state,
+            highlightedEditor: {
+                ...state.highlightedEditor,
+                second: id
+            },
+        };
+    }),
     moveEditor: (id: number, delta: Position) => setState((state: State): State => ({
         ...state,
         canvas: state.canvas.movedEditor(id, delta)

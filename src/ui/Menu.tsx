@@ -10,7 +10,7 @@ import MenuButton from "./MenuButton";
 
 export default function Menu(): React.JSX.Element {
     const theme: Theme = useTheme();
-    const highlightedEditorId: number | null = useStore((state: State) => state.highlightedEditorId);
+    const firstEditorIsNotSelected: boolean = useStore((state: State) => state.highlightedEditor.first ===null );
     const switchMode = useStore((state: State) => state.switchMode);
     const removeEditor = useStore((state: State) => state.removeEditor);
     const addEditor = useStore((state: State) => state.addEditor);
@@ -48,7 +48,7 @@ export default function Menu(): React.JSX.Element {
             />
             <MenuButton
                 onClick={removeEditor}
-                disabled={highlightedEditorId === null}
+                disabled={firstEditorIsNotSelected}
                 icon={<IndeterminateCheckBox fontSize="inherit"/>}
             />
         </div>
