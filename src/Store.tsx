@@ -124,5 +124,9 @@ export const useStore = create<State>((setState) => ({
             ...state,
             canvas: state.canvas.addedEdge(state.highlightedEditor.first, state.highlightedEditor.second)
         };
-    })
+    }),
+    updateEditorValue: (id: number, value: string | undefined) => setState((state: State): State => ({
+        ...state,
+        canvas: state.canvas.updateEditorValue(id, value)
+    })),
 }));

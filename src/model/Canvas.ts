@@ -58,4 +58,15 @@ export class Canvas {
             this._edges.addedEdge(this._editors.editor(first), this._editors.editor(second))
         );
     }
+
+    updateEditorValue(id: number, value: string | undefined) {
+        return new Canvas(
+            this._editors.replaceEditor(
+                this._editors
+                    .editor(id)
+                    .updatedValue(value)
+            ),
+            this._edges
+        );
+    }
 }

@@ -50,6 +50,12 @@ export class Editors {
         return new Editors(editors);
     }
 
+    replaceEditor(editor: Editor): Editors {
+        const editors = this.copiedEditorMap();
+        editors.set(editor.id, editor);
+        return new Editors(editors);
+    }
+
     private copiedEditorMap(): Map<number, Editor> {
         return new Map(this.editors);
     }
@@ -58,4 +64,5 @@ export class Editors {
     private nextId(): number {
         return Math.max(...Array.from(this.editors.keys()), 0) + 1;
     }
+
 }

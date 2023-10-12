@@ -9,7 +9,7 @@ export default function SwitchLockedButton(): React.JSX.Element {
     const switchLocked = useStore((state: State) => state.switchLocked);
     return (
         <Box sx={{width: menuWidth, textAlign: "center", marginTop: 2}}>
-            <Switch color="primary" defaultChecked={locked} onClick={switchLocked}/>
+            <Switch color="primary" checked={locked} onClick={switchLocked}/>
         </Box>
     );
 }

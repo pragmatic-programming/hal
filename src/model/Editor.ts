@@ -7,7 +7,7 @@ export class Editor {
         readonly dimension: Dimension,
         readonly position: Position,
         readonly language: string,
-        readonly value: string,
+        readonly value: string | undefined,
     ) {
     }
 
@@ -21,4 +21,13 @@ export class Editor {
         );
     }
 
+    updatedValue(value: string | undefined): Editor {
+        return new Editor(
+            this.id,
+            this.dimension,
+            this.position,
+            this.language,
+            value,
+        );
+    }
 }

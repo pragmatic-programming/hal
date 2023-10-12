@@ -11,12 +11,14 @@ interface Props {
     editor: Editor;
 }
 
+//todo this components requires refactoring
 export function EditorRenderer(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
+    const menuWidth: number = useStore((state: State) => state.menuWidth);
     const firstSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.first);
     const secondSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.second);
     const selectEditor = useStore((state: State) => state.selectEditor);
-    const menuWidth: number = useStore((state: State) => state.menuWidth);
+    const updateEditorValue = useStore((state: State) => state.updateEditorValue);
     const {listeners, setNodeRef, transform} = useDraggable({id: props.editor.id,});
     let style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
@@ -73,6 +75,7 @@ export function EditorRenderer(props: Props): React.JSX.Element {
                         enabled: false
                     }
                 }}
+                onChange={(value) => updateEditorValue(props.editor.id, value)}
             />
         </div>
     );
