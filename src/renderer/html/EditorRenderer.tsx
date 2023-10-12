@@ -1,11 +1,11 @@
 import React, { CSSProperties } from "react";
 import { Editor } from "../../model/Editor";
 import { Editor as Monaco } from "@monaco-editor/react";
-import { Theme, Typography, useTheme } from "@mui/material";
+import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../Store";
 import { State } from "../../State";
 import { useDraggable } from "@dnd-kit/core";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
+import { EditorHeader } from "./EditorHeader";
 
 interface Props {
     editor: Editor;
@@ -51,20 +51,7 @@ export function EditorRenderer(props: Props): React.JSX.Element {
             {...listeners}
             onDoubleClick={() => selectEditor(props.editor.id)}
         >
-            <div
-                style={{
-                    display: "inline-block",
-                    paddingTop: 5,
-                    paddingBottom: 5,
-                    paddingLeft: 10,
-                    paddingRight: 10,
-                    height: 20,
-                    backgroundColor: "#ffffff"
-                }}
-            >
-                <InsertDriveFileIcon fontSize="small"/>
-                <Typography style={{marginLeft: 25}} variant="caption">filename.js</Typography>
-            </div>
+            <EditorHeader/>
             <Monaco
                 defaultLanguage={props.editor.language}
                 defaultValue={props.editor.value}
