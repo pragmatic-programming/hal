@@ -13,8 +13,12 @@ interface Props {
 export function EditorRenderer(props: Props): React.JSX.Element {
     const updateEditorValue = useStore((state: State) => state.updateEditorValue);
     return (
-        <Draggable editor={props.editor}>
-            <EditorHeader/>
+        <Draggable
+            editor={props.editor}
+        >
+            <EditorHeader
+                editor={props.editor}
+            />
             <Monaco
                 defaultLanguage={props.editor.language}
                 defaultValue={props.editor.value}

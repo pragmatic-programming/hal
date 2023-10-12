@@ -29,7 +29,7 @@ export default function LineRenderer(props: Props): React.JSX.Element {
             y2={props.edge.end.y}
             strokeWidth="5"
             strokeDasharray={strokeDashArray(props.edge)}
-            stroke={theme.palette.edge.main}
+            stroke={theme.palette.edge}
             markerEnd="url(#arrow)"
         />
     );

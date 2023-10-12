@@ -1,8 +1,13 @@
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import { Typography } from "@mui/material";
 import React from "react";
+import { Editor } from "../../model/Editor";
 
-export function EditorHeader(): React.JSX.Element {
+interface Props {
+    editor: Editor;
+}
+
+export function EditorHeader(props: Props): React.JSX.Element {
     return (
         <div
             style={{
@@ -17,7 +22,7 @@ export function EditorHeader(): React.JSX.Element {
             }}
         >
             <InsertDriveFileIcon fontSize="small"/>
-            <Typography style={{marginLeft: 25}} variant="caption">filename.js</Typography>
+            <Typography style={{marginLeft: 25}} variant="caption">{props.editor.language}</Typography>
         </div>
     );
 }

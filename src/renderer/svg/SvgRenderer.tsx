@@ -21,8 +21,8 @@ export default function SvgRenderer(): React.JSX.Element {
                     orient="auto-start-reverse"
                 >
                     <path d="M 0 0 L 10 5 L 0 10 z"
-                          stroke={theme.palette.edge.main}
-                          fill={theme.palette.edge.main}
+                          stroke={theme.palette.edge}
+                          fill={theme.palette.edge}
                     />
                 </marker>
             </defs>
