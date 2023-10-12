@@ -1,47 +1,37 @@
 import React from "react";
-import { IconButton, Stack, Theme, useTheme } from "@mui/material";
-import { Loop } from "@mui/icons-material";
+import { Stack, Theme, useTheme } from "@mui/material";
 import { useStore } from "../Store";
 import { State } from "../State";
 import "./Bottom.scss";
+import BottomLeft from "./BottomLeft";
+import BottomRight from "./BottomRight";
 
 export default function Bottom(): React.JSX.Element {
     const theme: Theme = useTheme();
     // reduce bottomHeight by 4px, since paddingBottom and paddingTop will add 2px each
     const bottomHeight: number = useStore((state: State) => state.bottomHeight - 4);
-    const rotate: boolean = useStore((state: State) => !state.locked);
     return (
-        <div
-            style={{
-                backgroundColor: theme.palette.gui.bottom.background,
-                borderTop: "1px solid " + theme.palette.gui.menu.border,
-                left: 0,
-                bottom: 0,
-                height: bottomHeight,
-                paddingBottom: 2,
-                paddingTop: 2,
-                position: "fixed",
-                width: "100vw",
-            }}
-        >
             <Stack
                 direction="row"
-                spacing={1}
-                alignItems={"center"}
-                justifyContent={"end"}
+                justifyContent="space-between"
+                alignItems="center"
+                spacing={0}
                 style={{
+                    backgroundColor: theme.palette.gui.bottom.background,
+                    borderTop: "1px solid " + theme.palette.gui.menu.border,
+                    bottom: 0,
                     height: bottomHeight,
+                    left: 0,
+                    paddingBottom: 2,
+                    paddingLeft: 5,
                     paddingRight: 5,
+                    paddingTop: 2,
+                    position: "fixed",
+                    width: "calc(100vw - " + 10 + "px)",
                 }}
             >
-                <IconButton>
-                    <Loop
-                        className={rotate ? "rotate" : "still"}
-                        color={"action"}
-                        style={{display: "inline-block", fontSize: 20}}
-                    />
-                </IconButton>
+                <BottomLeft/>
+                <BottomRight/>
             </Stack>
-        </div>
     );
 }

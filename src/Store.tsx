@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { State } from "./State";
-import { Canvas } from "./model/Canvas";
+import { Project } from "./model/Project";
 import { Editor } from "./model/Editor";
 import { Dimension } from "./model/Dimension";
 import { Position } from "./model/Position";
@@ -27,7 +27,8 @@ let editor2 = new Editor(
 
 map.set(editor1.id, editor1);
 map.set(editor2.id, editor2);
-const canvas = new Canvas(
+const canvas = new Project(
+        "hello-world.hal",
         new Editors(map),
         new Edges([
             Edge.create(editor1, editor2)
@@ -38,8 +39,8 @@ const canvas = new Canvas(
 export const useStore = create<State>((setState) => ({
     locked: true,
     menuWidth: 100,
-    bottomHeight: 24,
-    canvas: canvas,
+    bottomHeight: 26,
+    project: canvas,
     mode: "light",
     highlightedEditor: {
         first: null,
@@ -55,7 +56,7 @@ export const useStore = create<State>((setState) => ({
     })),
     addEditor: () => setState((state: State): State => ({
         ...state,
-        canvas: state.canvas.addedEditor()
+        project: state.project.addedEditor()
     })),
     removeEditor: () => setState((state: State): State => {
         if (state.highlightedEditor.first === null) {
@@ -67,7 +68,7 @@ export const useStore = create<State>((setState) => ({
                 ...state.highlightedEditor,
                 first: null
             },
-            canvas: state.canvas.removedEditor(state.highlightedEditor.first)
+            project: state.project.removedEditor(state.highlightedEditor.first)
         };
     }),
     selectEditor: (id: number | null) => setState((state: State): State => {
@@ -108,11 +109,11 @@ export const useStore = create<State>((setState) => ({
     }),
     moveEditor: (id: number, delta: Position) => setState((state: State): State => ({
         ...state,
-        canvas: state.canvas.movedEditor(id, delta)
+        project: state.project.movedEditor(id, delta)
     })),
     moveEdges: (editorId: number, delta: Position) => setState((state: State): State => ({
         ...state,
-        canvas: state.canvas.movedEdges(editorId, delta)
+        project: state.project.movedEdges(editorId, delta)
     })),
     addEdge: () => setState((state: State): State => {
         if (state.highlightedEditor.first === null) {
@@ -123,11 +124,11 @@ export const useStore = create<State>((setState) => ({
         }
         return {
             ...state,
-            canvas: state.canvas.addedEdge(state.highlightedEditor.first, state.highlightedEditor.second)
+            project: state.project.addedEdge(state.highlightedEditor.first, state.highlightedEditor.second)
         };
     }),
     updateEditorValue: (id: number, value: string | undefined) => setState((state: State): State => ({
         ...state,
-        canvas: state.canvas.updateEditorValue(id, value)
+        project: state.project.updateEditorValue(id, value)
     })),
 }));

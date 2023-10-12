@@ -4,8 +4,9 @@ import { Editors } from "./Editors";
 import { Editor } from "./Editor";
 import { Edge } from "./Edge";
 
-export class Canvas {
+export class Project {
     constructor(
+        readonly name:string,
         readonly _editors: Editors,
         readonly _edges: Edges
     ) {
@@ -19,30 +20,34 @@ export class Canvas {
         return this._edges.edges;
     }
 
-    addedEditor(): Canvas {
-        return new Canvas(
+    addedEditor(): Project {
+        return new Project(
+            this.name,
             this._editors.addedEditor(),
             this._edges
         );
     }
 
-    removedEditor(id: number): Canvas {
-        return new Canvas(
+    removedEditor(id: number): Project {
+        return new Project(
+            this.name,
             this._editors.removedEditor(id),
             this._edges.removedEdges(id)
         );
     }
 
-    movedEditor(id: number, delta: Position): Canvas {
+    movedEditor(id: number, delta: Position): Project {
         const editors = this._editors.movedEditor(id, delta);
-        return new Canvas(
+        return new Project(
+            this.name,
             editors,
             this._edges.movedEdges(editors.editor(id), editors)
         );
     }
 
-    movedEdges(editorId: number, delta: Position): Canvas {
-        return new Canvas(
+    movedEdges(editorId: number, delta: Position): Project {
+        return new Project(
+            this.name,
             this._editors,
             this._edges.movedEdges(
                 //this editor is just used as a helper for moving edges, it won't persist
@@ -52,15 +57,17 @@ export class Canvas {
         );
     }
 
-    addedEdge(first: number, second: number): Canvas {
-        return new Canvas(
+    addedEdge(first: number, second: number): Project {
+        return new Project(
+            this.name,
             this._editors,
             this._edges.addedEdge(this._editors.editor(first), this._editors.editor(second))
         );
     }
 
     updateEditorValue(id: number, value: string | undefined) {
-        return new Canvas(
+        return new Project(
+            this.name,
             this._editors.replaceEditor(
                 this._editors
                     .editor(id)

@@ -6,7 +6,7 @@ import { State } from "../../State";
 import { Theme, useTheme } from "@mui/material";
 
 export default function SvgRenderer(): React.JSX.Element {
-    const edges: Edge[] = useStore((state: State) => state.canvas.edges());
+    const edges: Edge[] = useStore((state: State) => state.project.edges());
     const theme: Theme = useTheme();
     return (
         <svg>
