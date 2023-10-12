@@ -17,7 +17,7 @@ export function EditorRenderer(props: Props): React.JSX.Element {
     const secondSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.second);
     const selectEditor = useStore((state: State) => state.selectEditor);
     const menuWidth: number = useStore((state: State) => state.menuWidth);
-    const {attributes, listeners, setNodeRef, transform} = useDraggable({id: props.editor.id,});
+    const {listeners, setNodeRef, transform} = useDraggable({id: props.editor.id,});
     let style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
         borderStyle: "solid",
@@ -47,7 +47,6 @@ export function EditorRenderer(props: Props): React.JSX.Element {
                 width: props.editor.dimension.width,
             }}
             {...listeners}
-            {...attributes}
             onDoubleClick={() => selectEditor(props.editor.id)}
         >
             <div
