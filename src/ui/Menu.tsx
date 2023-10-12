@@ -2,14 +2,14 @@ import React, { CSSProperties } from "react";
 import { Position } from "../model/Position";
 import { Dimension } from "../model/Dimension";
 import { Editor } from "../model/Editor";
-import { Divider, useTheme } from "@mui/material";
+import { Divider, Theme, useTheme } from "@mui/material";
 import { AddBox, Brightness4, Brightness7, IndeterminateCheckBox } from "@mui/icons-material";
 import { useStore } from "../Store";
 import { State } from "../State";
 import MenuButton from "./MenuButton";
 
 export default function Menu(): React.JSX.Element {
-    const theme = useTheme();
+    const theme: Theme = useTheme();
     const highlightedEditorId: number | null = useStore((state: State) => state.highlightedEditorId);
     const switchMode = useStore((state: State) => state.switchMode);
     const removeEditor = useStore((state: State) => state.removeEditor);

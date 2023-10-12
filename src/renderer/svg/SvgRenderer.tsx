@@ -3,12 +3,11 @@ import React from "react";
 import LineRenderer from "./LineRenderer";
 import { useStore } from "../../Store";
 import { State } from "../../State";
-import { useTheme } from "@mui/material";
+import { Theme, useTheme } from "@mui/material";
 
 export default function SvgRenderer(): React.JSX.Element {
-    const edges: Edge[] = useStore((state: State) => state.canvas.edges);
-    const theme = useTheme();
-
+    const edges: Edge[] = useStore((state: State) => state.canvas.edges());
+    const theme: Theme = useTheme();
     return (
         <svg>
             <defs>

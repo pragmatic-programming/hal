@@ -1,92 +1,56 @@
-import { Editor } from "./Editor";
 import { Position } from "./Position";
-import { Dimension } from "./Dimension";
+import { Edges } from "./Edges";
+import { Editors } from "./Editors";
+import { Editor } from "./Editor";
 import { Edge } from "./Edge";
 
 export class Canvas {
     constructor(
-        readonly editors: Map<number, Editor>,
-        readonly edges: Edge[]
+        readonly _editors: Editors,
+        readonly _edges: Edges
     ) {
     }
 
-    addEditor(): Canvas {
-        const nextId = this.nextId();
+    editors(): Editor[] {
+        return Array.from(this._editors.editors.values());
+    }
+
+    edges(): Edge[] {
+        return this._edges.edges;
+    }
+
+    addedEditor(): Canvas {
         return new Canvas(
-            this.copiedEditorMap()
-                .set(
-                    nextId,
-                    new Editor(
-                        nextId,
-                        new Dimension(640, 480),
-                        new Position(0, 0),
-                        "javascript",
-                        "alert('Hello '+ x)"
-                    )
-                ),
-            this.edges
+            this._editors.addedEditor(),
+            this._edges
         );
     }
 
-    removeEditor(editorId: number): Canvas {
-        const map = this.copiedEditorMap();
-        map.delete(editorId);
+    removedEditor(id: number): Canvas {
         return new Canvas(
-            map,
-            this.removeEdges(editorId)
+            this._editors.removedEditor(id),
+            this._edges.removedEdges(id)
         );
     }
 
-    moveEditor(editorId: number, delta: Position): Canvas {
-        const map = this.copiedEditorMap();
-        const movedEditor = this.editor(map, editorId).moved(delta);
-        map.set(editorId, movedEditor);
+    movedEditor(id: number, delta: Position): Canvas {
+        const editors = this._editors.movedEditor(id, delta);
         return new Canvas(
-            map,
-            this.moveEdgesInternal(movedEditor, map)
+            editors,
+            this._edges.movedEdges(editors.editor(id), editors)
         );
     }
 
-    moveEdges(editorId: number, delta: Position): Canvas {
+    movedEdges(editorId: number, delta: Position): Canvas {
         return new Canvas(
-            this.editors,
-            this.moveEdgesInternal(
+            this._editors,
+            this._edges.movedEdges(
                 //this editor is just used as a helper for moving edges, it won't persist
-                this.editor(this.editors, editorId).moved(delta),
-                this.editors
+                this._editors.editor(editorId).moved(delta),
+                this._editors
             )
         );
     }
 
-    private copiedEditorMap(): Map<number, Editor> {
-        return new Map(this.editors);
-    }
 
-    private moveEdgesInternal(movedEditor: Editor, map: Map<number, Editor>): Edge[] {
-        return this.edges.map((edge: Edge): Edge => {
-            if (edge.from === movedEditor.id) {
-                return Edge.create(movedEditor, this.editor(map, edge.to));
-            }
-            if (edge.to === movedEditor.id) {
-                return Edge.create(this.editor(map, edge.from), movedEditor);
-            }
-            return edge;
-        });
-    }
-
-    private editor(map: Map<number, Editor>, id: number): Editor {
-        let editor: Editor | undefined = map.get(id);
-        if (editor === undefined) {
-            throw Error("Editor with id " + id + " does not exist");
-        }
-        return editor;
-    }
-
-    private removeEdges(editorId: number): Edge[] {
-        return this.edges.filter((edge: Edge) => edge.from !== editorId && edge.to !== editorId);
-    }
-
-    private nextId(): number {
-        return Math.max(...Array.from(this.editors.keys()), 0) + 1;
-    }
 }

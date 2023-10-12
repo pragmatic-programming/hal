@@ -1,14 +1,14 @@
 import { Edge } from "../../model/Edge";
 import React from "react";
 import { EdgeStyle } from "../../model/EdgeStyle";
-import { useTheme } from "@mui/material";
+import { Theme, useTheme } from "@mui/material";
 
 interface Props {
     edge: Edge;
 }
 
 export default function LineRenderer(props: Props): React.JSX.Element {
-    const theme = useTheme();
+    const theme: Theme = useTheme();
 
     function strokeDashArray(edge: Edge) {
         if (edge.style === EdgeStyle.solid) {

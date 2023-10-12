@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import { Editor } from "../../model/Editor";
 import { Editor as Monaco } from "@monaco-editor/react";
-import { Typography, useTheme } from "@mui/material";
+import { Theme, Typography, useTheme } from "@mui/material";
 import { useStore } from "../../Store";
 import { State } from "../../State";
 import { useDraggable } from "@dnd-kit/core";
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export function EditorRenderer(props: Props): React.JSX.Element {
-    const theme = useTheme();
+    const theme: Theme = useTheme();
     const highlightedEditorId: number | null = useStore((state: State) => state.highlightedEditorId);
     const selectEditor = useStore((state: State) => state.selectEditor);
     const menuWidth: number = useStore((state: State) => state.menuWidth);
