@@ -6,6 +6,8 @@ import { Dimension } from "./model/Dimension";
 import { Position } from "./model/Position";
 import { Edge } from "./model/Edge";
 
+const map = new Map<number, Editor>();
+
 let editor1 = new Editor(
     1,
     new Dimension(640, 480),
@@ -20,11 +22,11 @@ let editor2 = new Editor(
     "javascript",
     "alert('Hello '+ x)"
 );
+
+map.set(editor1.id, editor1);
+map.set(editor2.id, editor2);
 const canvas = new Canvas(
-        [
-            editor1,
-            editor2,
-        ],
+        map,
         [
             Edge.create(editor1, editor2)
         ]
@@ -43,11 +45,16 @@ export const useStore = create<State>((setState) => ({
         ...state,
         canvas: state.canvas.addEditor()
     })),
-    removeEditor: () => setState((state: State): State => ({
-        ...state,
-        highlightedEditorId: null,
-        canvas: state.canvas.removeEditor(state.highlightedEditorId)
-    })),
+    removeEditor: () => setState((state: State): State => {
+        if (state.highlightedEditorId === null) {
+            throw Error("removeEditor() called with hightlightedEditorId is null");
+        }
+        return {
+            ...state,
+            highlightedEditorId: null,
+            canvas: state.canvas.removeEditor(state.highlightedEditorId)
+        };
+    }),
     selectEditor: (id: number | null) => setState((state: State): State => ({
         ...state, highlightedEditorId: id
     })),

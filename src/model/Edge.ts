@@ -15,32 +15,6 @@ export class Edge {
         this.key = from.toString() + to.toString();
     }
 
-    startMoved(delta: Position): Edge {
-        return new Edge(
-            this.from,
-            this.to,
-            new Position(
-                this.start.x + delta.x,
-                this.start.y + delta.y
-            ),
-            this.end,
-            this.style
-        );
-    }
-
-    endMoved(delta: Position): Edge {
-        return new Edge(
-            this.from,
-            this.to,
-            this.start,
-            new Position(
-                this.end.x + delta.x,
-                this.end.y + delta.y
-            ),
-            this.style
-        );
-    }
-
     static create(from: Editor, to: Editor): Edge {
         let start: Position;
         let end: Position;
