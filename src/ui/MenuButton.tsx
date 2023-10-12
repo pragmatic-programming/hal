@@ -9,7 +9,7 @@ interface Props {
     onClick: () => void;
 }
 
-export default function MainButton(props: Props): React.JSX.Element {
+export default function MenuButton(props: Props): React.JSX.Element {
     const menuWidth: number = useStore((state: State) => state.menuWidth);
     return (
         <Box sx={{width: menuWidth, textAlign: "center", marginTop: 2}}>

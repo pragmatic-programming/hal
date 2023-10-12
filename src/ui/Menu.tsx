@@ -6,7 +6,7 @@ import { Divider, useTheme } from "@mui/material";
 import { AddBox, Brightness4, Brightness7, IndeterminateCheckBox } from "@mui/icons-material";
 import { useStore } from "../Store";
 import { State } from "../State";
-import MainButton from "./MainButton";
+import MenuButton from "./MenuButton";
 
 export default function Menu(): React.JSX.Element {
     const theme = useTheme();
@@ -27,12 +27,12 @@ export default function Menu(): React.JSX.Element {
     };
     return (
         <div style={style}>
-            <MainButton
+            <MenuButton
                 onClick={switchMode}
                 icon={theme.palette.mode === "dark" ? <Brightness7/> : <Brightness4/>}
             />
             <Divider sx={{marginTop: 2}}/>
-            <MainButton
+            <MenuButton
                 onClick={
                     () => addEditor(
                         new Editor(
@@ -46,7 +46,7 @@ export default function Menu(): React.JSX.Element {
                 }
                 icon={<AddBox fontSize="inherit"/>}
             />
-            <MainButton
+            <MenuButton
                 onClick={removeEditor}
                 disabled={highlightedEditorId === null}
                 icon={<IndeterminateCheckBox fontSize="inherit"/>}
