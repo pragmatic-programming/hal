@@ -38,6 +38,7 @@ const canvas = new Canvas(
 export const useStore = create<State>((setState) => ({
     locked: true,
     menuWidth: 100,
+    bottomHeight: 24,
     canvas: canvas,
     mode: "light",
     highlightedEditor: {

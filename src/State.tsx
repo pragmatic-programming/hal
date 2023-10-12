@@ -6,6 +6,7 @@ import { Position } from "./model/Position";
 export interface State {
     locked: boolean;
     menuWidth: number;
+    bottomHeight: number;
     canvas: Canvas;
     mode: PaletteMode;
     highlightedEditor: {
