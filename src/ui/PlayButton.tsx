@@ -8,7 +8,7 @@ export default function PlayButton(): React.JSX.Element {
             onClick={() => {
                 // todo
             }}
-            icon={<PlayArrow fontSize="inherit"/>}
+            icon={<PlayArrow fontSize="inherit" color={"success"}/>}
         />
     );
 }
