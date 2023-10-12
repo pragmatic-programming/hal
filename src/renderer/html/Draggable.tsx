@@ -16,7 +16,8 @@ export function Draggable(props: Props): React.JSX.Element {
     const firstSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.first);
     const secondSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.second);
     const selectEditor = useStore((state: State) => state.selectEditor);
-    const {listeners, setNodeRef, transform} = useDraggable({id: props.editor.id,});
+    const locked = useStore((state: State) => state.locked);
+    const {listeners, setNodeRef, transform} = useDraggable({id: props.editor.id, disabled: locked});
     let style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
         borderStyle: "solid",
