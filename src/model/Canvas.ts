@@ -52,5 +52,10 @@ export class Canvas {
         );
     }
 
-
+    addedEdge(first: number, second: number): Canvas {
+        return new Canvas(
+            this._editors,
+            this._edges.addedEdge(this._editors.editor(first), this._editors.editor(second))
+        );
+    }
 }

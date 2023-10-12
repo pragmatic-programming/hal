@@ -17,4 +17,5 @@ export interface State {
     addEditor: (editor: Editor) => void;
     moveEditor: (id: number, position: Position) => void;
     moveEdges: (editorId: number, position: Position) => void;
+    addEdge: () => void;
 }

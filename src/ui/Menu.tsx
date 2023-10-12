@@ -3,17 +3,19 @@ import { Position } from "../model/Position";
 import { Dimension } from "../model/Dimension";
 import { Editor } from "../model/Editor";
 import { Divider, Theme, useTheme } from "@mui/material";
-import { AddBox, Brightness4, Brightness7, IndeterminateCheckBox } from "@mui/icons-material";
+import { AddBox, Brightness4, Brightness7, IndeterminateCheckBox, TrendingFlat } from "@mui/icons-material";
 import { useStore } from "../Store";
 import { State } from "../State";
 import MenuButton from "./MenuButton";
 
 export default function Menu(): React.JSX.Element {
     const theme: Theme = useTheme();
-    const firstEditorIsNotSelected: boolean = useStore((state: State) => state.highlightedEditor.first ===null );
+    const firstEditorIsNotSelected: boolean = useStore((state: State) => state.highlightedEditor.first === null);
+    const notBothEditorsAreSelected: boolean = useStore((state: State) => state.highlightedEditor.first === null || state.highlightedEditor.second === null);
     const switchMode = useStore((state: State) => state.switchMode);
     const removeEditor = useStore((state: State) => state.removeEditor);
     const addEditor = useStore((state: State) => state.addEditor);
+    const addEdge = useStore((state: State) => state.addEdge);
     const menuWidth: number = useStore((state: State) => state.menuWidth);
     // todo all styles should be const
     const style: CSSProperties = {
@@ -50,6 +52,11 @@ export default function Menu(): React.JSX.Element {
                 onClick={removeEditor}
                 disabled={firstEditorIsNotSelected}
                 icon={<IndeterminateCheckBox fontSize="inherit"/>}
+            />
+            <MenuButton
+                onClick={addEdge}
+                disabled={notBothEditorsAreSelected}
+                icon={<TrendingFlat fontSize="inherit"/>}
             />
         </div>
     );

@@ -106,5 +106,17 @@ export const useStore = create<State>((setState) => ({
     moveEdges: (editorId: number, delta: Position) => setState((state: State): State => ({
         ...state,
         canvas: state.canvas.movedEdges(editorId, delta)
-    }))
+    })),
+    addEdge: () => setState((state: State): State => {
+        if (state.highlightedEditor.first === null) {
+            throw Error("addedEdge() called with highlightedEditor.first is null");
+        }
+        if (state.highlightedEditor.second === null) {
+            throw Error("addedEdge() called with highlightedEditor.second is null");
+        }
+        return {
+            ...state,
+            canvas: state.canvas.addedEdge(state.highlightedEditor.first, state.highlightedEditor.second)
+        };
+    })
 }));

@@ -9,6 +9,15 @@ export class Edges {
 
     }
 
+    addedEdge(from: Editor, to: Editor): Edges {
+        return new Edges(
+            [
+                ...this.edges,
+                Edge.create(from, to)
+            ]
+        );
+    }
+
     movedEdges(movedEditor: Editor, editors: Editors): Edges {
         return new Edges(
             this.edges.map((edge: Edge): Edge => {
