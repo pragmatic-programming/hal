@@ -61,5 +61,9 @@ export const useStore = create<State>((setState) => ({
     moveEditor: (id: number, delta: Position) => setState((state: State): State => ({
         ...state,
         canvas: state.canvas.moveEditor(id, delta)
+    })),
+    moveEdges: (editorId: number, delta: Position) => setState((state: State): State => ({
+        ...state,
+        canvas: state.canvas.moveEdges(editorId, delta)
     }))
 }));

@@ -12,5 +12,6 @@ export interface State {
     removeEditor: () => void;
     selectEditor: (id: number | null) => void;
     addEditor: (editor: Editor) => void;
-    moveEditor: (editorId: number, position: Position) => void;
+    moveEditor: (id: number, position: Position) => void;
+    moveEdges: (editorId: number, position: Position) => void;
 }

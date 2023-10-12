@@ -43,7 +43,18 @@ export class Canvas {
         map.set(editorId, movedEditor);
         return new Canvas(
             map,
-            this.moveEdges(editorId, movedEditor, map)
+            this.moveEdgesInternal(movedEditor, map)
+        );
+    }
+
+    moveEdges(editorId: number, delta: Position): Canvas {
+        return new Canvas(
+            this.editors,
+            this.moveEdgesInternal(
+                //this editor is just used as a helper for moving edges, it won't persist
+                this.editor(this.editors, editorId).moved(delta),
+                this.editors
+            )
         );
     }
 
@@ -51,12 +62,12 @@ export class Canvas {
         return new Map(this.editors);
     }
 
-    private moveEdges(editorId: number, movedEditor: Editor, map: Map<number, Editor>): Edge[] {
+    private moveEdgesInternal(movedEditor: Editor, map: Map<number, Editor>): Edge[] {
         return this.edges.map((edge: Edge): Edge => {
-            if (edge.from === editorId) {
+            if (edge.from === movedEditor.id) {
                 return Edge.create(movedEditor, this.editor(map, edge.to));
             }
-            if (edge.to === editorId) {
+            if (edge.to === movedEditor.id) {
                 return Edge.create(this.editor(map, edge.from), movedEditor);
             }
             return edge;
