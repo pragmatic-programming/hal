@@ -24,7 +24,7 @@ export default function LineRenderer(props: Props): React.JSX.Element {
         <line
             key={props.edge.key}
             x1={props.edge.start.x}
-            y1={props.edge.start.y }
+            y1={props.edge.start.y}
             x2={props.edge.end.x}
             y2={props.edge.end.y}
             strokeWidth="5"
