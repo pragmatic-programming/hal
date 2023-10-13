@@ -13,6 +13,7 @@ export interface State {
         first: number | null
         second: number | null
     };
+    run: () => void;
     switchMode: () => void;
     switchLocked: () => void;
     removeEditor: () => void;

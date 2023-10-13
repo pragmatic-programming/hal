@@ -46,6 +46,12 @@ export const useStore = create<State>((setState) => ({
         first: null,
         second: null
     },
+    run: () => setState((state: State): State => {
+        console.log("test");
+        return {
+            ...state,
+        };
+    }),
     switchLocked: () => setState((state: State): State => ({
         ...state,
         locked: !state.locked
