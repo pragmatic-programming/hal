@@ -5,7 +5,6 @@ import { State } from "../../State";
 
 export default function BottomLeft(): React.JSX.Element {
     const projectName: string = useStore((state: State) => state.project.name);
-    const result: string = useStore((state: State) => state.result);
     return (
         <Stack
             direction="row"
@@ -13,8 +12,6 @@ export default function BottomLeft(): React.JSX.Element {
             justifyContent={"flex-start"}
         >
             <Typography variant="caption">Project: {projectName}</Typography>
-            <Typography
-                variant="caption">{result}</Typography>
         </Stack>
 
     );

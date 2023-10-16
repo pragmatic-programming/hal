@@ -4,6 +4,7 @@ import LineRenderer from "./LineRenderer";
 import { useStore } from "../../Store";
 import { State } from "../../State";
 import { Theme, useTheme } from "@mui/material";
+import "./SvgRenderer.scss"
 
 export default function SvgRenderer(): React.JSX.Element {
     const edges: Edge[] = useStore((state: State) => state.project.edges());

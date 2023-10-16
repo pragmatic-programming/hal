@@ -4,6 +4,7 @@ import { useStore } from "../../Store";
 import { State } from "../../State";
 import { useDraggable } from "@dnd-kit/core";
 import { Editor } from "../../model/Editor";
+import { gui } from "../../constants";
 
 interface Props {
     editor: Editor;
@@ -12,7 +13,6 @@ interface Props {
 
 export function Draggable(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
-    const menuWidth: number = useStore((state: State) => state.menuWidth);
     const firstSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.first);
     const secondSelectedEditor: number | null = useStore((state: State) => state.highlightedEditor.second);
     const selectEditor = useStore((state: State) => state.selectEditor);
@@ -41,7 +41,7 @@ export function Draggable(props: Props): React.JSX.Element {
             className={"rectangle"}
             style={{
                 ...style,
-                left: props.editor.position.x + menuWidth,
+                left: props.editor.position.x + gui.menuWidth,
                 top: props.editor.position.y,
                 height: props.editor.dimension.height,
                 width: props.editor.dimension.width,

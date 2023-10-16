@@ -1,18 +1,22 @@
 import React from "react";
 import { Box, IconButton } from "@mui/material";
-import { useStore } from "../../Store";
-import { State } from "../../State";
+import { gui } from "../../constants";
 
 interface Props {
-    disabled?: boolean
-    icon: React.JSX.Element
+    disabled?: boolean;
+    icon: React.JSX.Element;
     onClick: () => void;
 }
 
 export default function MenuButton(props: Props): React.JSX.Element {
-    const menuWidth: number = useStore((state: State) => state.menuWidth);
     return (
-        <Box sx={{width: menuWidth, textAlign: "center", marginTop: 2}}>
+        // todo sx and style equal?
+        <Box sx={{
+            height: 32,
+            textAlign: "center",
+            width: gui.menuWidth,
+            marginTop: 2}}
+        >
             <IconButton
                 disabled={props.disabled}
                 onClick={props.onClick}

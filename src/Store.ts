@@ -3,17 +3,16 @@ import { State } from "./State";
 import { Position } from "./model/Position";
 import { ProjectToIHGraphProcessor } from "./model/ProjectToIHGraphProcessor";
 import { example } from "./model/example";
-import { createCompilationContextFromProcessors } from "kico";
+import { createCompilationContextFromProcessors, Identity } from "kico";
 import { HALGraphProcessor } from "hal-kico";
-import { EvalJSProcessor } from "./model/EvalJSProcessor";
+import { IHGraph } from "ihgraph";
 
 export const useStore = create<State>((setState) => ({
     locked: true,
-    menuWidth: 100,
-    bottomHeight: 26,
     result: "",
     project: example,
     mode: "light",
+    context: createCompilationContextFromProcessors(new IHGraph(), Identity),
     highlightedEditor: {
         first: null,
         second: null
@@ -25,15 +24,9 @@ export const useStore = create<State>((setState) => ({
             HALGraphProcessor
         );
         context.compile();
-        // todo context2 is a workaround
-        const context2 = createCompilationContextFromProcessors(
-            context.getResult(),
-            EvalJSProcessor
-        );
-        context2.compile();
         return {
             ...state,
-            result: context2.getResult()
+            context: context
         };
     }),
     switchLocked: () => setState((state: State): State => ({

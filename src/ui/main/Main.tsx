@@ -2,24 +2,23 @@ import React, { CSSProperties } from "react";
 import HtmlRenderer from "../../renderer/html/HtmlRenderer";
 import SvgRenderer from "../../renderer/svg/SvgRenderer";
 import { Theme, useTheme } from "@mui/material";
-import { useStore } from "../../Store";
-import { State } from "../../State";
+import { gui } from "../../constants";
 
 export default function Main(): React.JSX.Element {
     const theme: Theme = useTheme();
-    const menuWidth: number = useStore((state: State) => state.menuWidth);
     const style: CSSProperties = {
         backgroundColor: theme.palette.gui.canvas.background,
         height: "100vh",
-        left: menuWidth,
+        left: gui.menuWidth,
         position: "fixed",
         top: 0,
-        width: window.innerWidth - menuWidth,
+        width: window.innerWidth - gui.menuWidth,
     };
     return (
-        <div style={style}>
+        // todo use html5 semantic tags everywhere
+        <main style={style}>
             <HtmlRenderer/>
             <SvgRenderer/>
-        </div>
+        </main>
     );
 }
