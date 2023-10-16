@@ -2,14 +2,12 @@ import { Project } from "./model/Project";
 import { PaletteMode } from "@mui/material";
 import { Editor } from "./model/Editor";
 import { Position } from "./model/Position";
-import { IHGraph } from "../../ihgraph";
 
 export interface State {
     locked: boolean;
     menuWidth: number;
     bottomHeight: number;
-    // todo get rid of undefined
-    ihgraph: IHGraph | undefined;
+    result: string;
     project: Project;
     mode: PaletteMode;
     highlightedEditor: {

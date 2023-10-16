@@ -1,19 +1,23 @@
 import { Processor } from "kico";
 import { Project } from "./Project";
 import { IHGraph } from "ihgraph";
+import { loadDefaultTransformationConfiguration } from "hal-kico";
 
 export class ProjectToIHGraphProcessor extends Processor<Project, IHGraph> {
 
     process() {
         const graph = new IHGraph();
-        const edgeType = graph.createEdgeType("sequence", 1);
+        const edgeType = graph.createEdgeType("Sequence", 1);
         const model = this.getModel();
-        for (let editor of model.editors()) {
-            graph.createSourceNode(editor.id.toString());
+        for (const editor of model.editors()) {
+            if (!editor.value) {
+                throw new Error("Editor value is undefined");
+            }
+            graph.createSourceNode(editor.id.toString()).setContent(editor.value);
         }
-        for (let edge of model.edges()) {
-            let source = graph.getNodeById(edge.from.toString());
-            let target = graph.getNodeById(edge.to.toString());
+        for (const edge of model.edges()) {
+            const source = graph.getNodeById(edge.from.toString());
+            const target = graph.getNodeById(edge.to.toString());
             if (!source) {
                 throw new Error("Returned SourceNode is undefined");
             }
@@ -26,6 +30,7 @@ export class ProjectToIHGraphProcessor extends Processor<Project, IHGraph> {
                 target
             );
         }
+        loadDefaultTransformationConfiguration(graph);
         this.setModel(graph);
     }
 

@@ -13,14 +13,14 @@ let editor1 = new Editor(
     new Dimension(640, 480),
     new Position(50, 50),
     "javascript",
-    "var x = 'World';",
+    "var x = 1;",
 );
 let editor2 = new Editor(
     2,
     new Dimension(640, 480),
     new Position(800, 50),
     "javascript",
-    "alert('Hello '+ x)"
+    "x + 2"
 );
 
 map.set(editor1.id, editor1);
