@@ -1,11 +1,11 @@
 import React from "react";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 import MenuButton from "./MenuButton";
 import { AddBox } from "@mui/icons-material";
-import { Editor } from "../model/Editor";
-import { Dimension } from "../model/Dimension";
-import { Position } from "../model/Position";
+import { Editor } from "../../model/Editor";
+import { Dimension } from "../../model/Dimension";
+import { Position } from "../../model/Position";
 
 export default function AddEditorButton(): React.JSX.Element {
     const addEditor = useStore((state: State) => state.addEditor);

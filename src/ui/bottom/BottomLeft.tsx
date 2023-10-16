@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, Typography } from "@mui/material";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 import { IHGraph } from "ihgraph";
 
 export default function BottomLeft(): React.JSX.Element {

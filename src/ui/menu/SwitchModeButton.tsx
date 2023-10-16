@@ -1,6 +1,6 @@
 import React from "react";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 import MenuButton from "./MenuButton";
 import { Theme, useTheme } from "@mui/material";
 import { Brightness4, Brightness7 } from "@mui/icons-material";

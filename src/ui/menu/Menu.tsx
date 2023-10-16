@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import { Divider, Theme, useTheme } from "@mui/material";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 import RemoveEditorButton from "./RemoveEditorButton";
 import AddEditorButton from "./AddEditorButton";
 import AddEdgeButton from "./AddEdgeButton";

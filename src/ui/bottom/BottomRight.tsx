@@ -1,8 +1,8 @@
 import React from "react";
 import { IconButton, Stack } from "@mui/material";
 import { Loop } from "@mui/icons-material";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 
 export default function BottomRight(): React.JSX.Element {
     const rotate: boolean = useStore((state: State) => !state.locked);

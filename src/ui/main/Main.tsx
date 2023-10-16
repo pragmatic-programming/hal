@@ -1,9 +1,9 @@
 import React, { CSSProperties } from "react";
-import HtmlRenderer from "../renderer/html/HtmlRenderer";
-import SvgRenderer from "../renderer/svg/SvgRenderer";
+import HtmlRenderer from "../../renderer/html/HtmlRenderer";
+import SvgRenderer from "../../renderer/svg/SvgRenderer";
 import { Theme, useTheme } from "@mui/material";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 
 export default function Main(): React.JSX.Element {
     const theme: Theme = useTheme();

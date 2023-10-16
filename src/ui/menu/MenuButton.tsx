@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, IconButton } from "@mui/material";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 
 interface Props {
     disabled?: boolean

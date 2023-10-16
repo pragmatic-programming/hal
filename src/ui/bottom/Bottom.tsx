@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, Theme, useTheme } from "@mui/material";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 import "./Bottom.scss";
 import BottomLeft from "./BottomLeft";
 import BottomRight from "./BottomRight";

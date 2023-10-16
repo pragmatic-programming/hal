@@ -1,6 +1,6 @@
 import React from "react";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../../Store";
+import { State } from "../../State";
 import { Box, Switch } from "@mui/material";
 
 export default function SwitchLockedButton(): React.JSX.Element {
