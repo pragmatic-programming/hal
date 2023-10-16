@@ -3,16 +3,15 @@ import { State } from "./State";
 import { Position } from "./model/Position";
 import { ProjectToIHGraphProcessor } from "./model/ProjectToIHGraphProcessor";
 import { example } from "./model/example";
-import { createCompilationContextFromProcessors, Identity } from "kico";
+import { CompilationContext, createCompilationContextFromProcessors, System } from "kico";
 import { HALGraphProcessor } from "hal-kico";
-import { IHGraph } from "ihgraph";
 
 export const useStore = create<State>((setState) => ({
     locked: true,
     result: "",
     project: example,
     mode: "light",
-    context: createCompilationContextFromProcessors(new IHGraph(), Identity),
+    context: new CompilationContext(new System("empty", [])),
     highlightedEditor: {
         first: null,
         second: null

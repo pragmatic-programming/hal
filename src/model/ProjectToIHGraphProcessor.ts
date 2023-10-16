@@ -36,10 +36,10 @@ export class ProjectToIHGraphProcessor extends Processor<Project, IHGraph> {
     }
 
     getId() {
-        return "hal.projecttoihgraphprocessor";
+        return "hal.project";
     }
 
     getName() {
-        return "ProjectToIHGraphProcessor";
+        return "Project";
     }
 }
