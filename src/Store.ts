@@ -3,11 +3,14 @@ import { State } from "./State";
 import { Position } from "./model/Position";
 import { KicoProcessor } from "./model/KicoProcessor";
 import { example } from "./model/example";
+import { createCompilationContextFromProcessors } from "kico";
+import { IHGraph } from "ihgraph";
 
 export const useStore = create<State>((setState) => ({
     locked: true,
     menuWidth: 100,
     bottomHeight: 26,
+    ihgraph: undefined,
     project: example,
     mode: "light",
     highlightedEditor: {
@@ -15,10 +18,15 @@ export const useStore = create<State>((setState) => ({
         second: null
     },
     run: () => setState((state: State): State => {
-        const processor = new KicoProcessor();
-        console.log(processor.getId());
+        const context = createCompilationContextFromProcessors(
+            state.project,
+            KicoProcessor
+        );
+        context.compile();
+        const ihgraph: IHGraph = context.getResult();
         return {
             ...state,
+            ihgraph: ihgraph
         };
     }),
     switchLocked: () => setState((state: State): State => ({
