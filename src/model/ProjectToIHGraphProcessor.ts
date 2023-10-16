@@ -30,6 +30,7 @@ export class ProjectToIHGraphProcessor extends Processor<Project, IHGraph> {
                 target
             );
         }
+        // todo this line here is just a workaround
         loadDefaultTransformationConfiguration(graph);
         this.setModel(graph);
     }
