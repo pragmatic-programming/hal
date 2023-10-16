@@ -7,6 +7,7 @@ import { Position } from "./model/Position";
 import { Edge } from "./model/Edge";
 import { Editors } from "./model/Editors";
 import { Edges } from "./model/Edges";
+import { KicoProcessor } from "./model/KicoProcessor";
 
 const map = new Map<number, Editor>();
 
@@ -47,7 +48,8 @@ export const useStore = create<State>((setState) => ({
         second: null
     },
     run: () => setState((state: State): State => {
-        console.log("test");
+        const processor = new KicoProcessor();
+        console.log(processor.getId());
         return {
             ...state,
         };
