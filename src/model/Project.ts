@@ -3,10 +3,11 @@ import { Edges } from "./Edges";
 import { Editors } from "./Editors";
 import { Editor } from "./Editor";
 import { Edge } from "./Edge";
+import { KicoCloneable } from "../../../kico-core";
 
-export class Project {
+export class Project implements KicoCloneable {
     constructor(
-        readonly name:string,
+        readonly name: string,
         readonly _editors: Editors,
         readonly _edges: Edges
     ) {
@@ -76,4 +77,13 @@ export class Project {
             this._edges
         );
     }
+
+    clone(): KicoCloneable {
+        return this;
+    }
+
+    isMutable(): boolean {
+        return false;
+    }
+
 }

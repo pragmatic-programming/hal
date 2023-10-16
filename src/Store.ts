@@ -1,10 +1,9 @@
 import { create } from "zustand";
 import { State } from "./State";
 import { Position } from "./model/Position";
-import { KicoProcessor } from "./model/KicoProcessor";
+import { ProjectToIHGraphProcessor } from "./model/ProjectToIHGraphProcessor";
 import { example } from "./model/example";
 import { createCompilationContextFromProcessors } from "kico";
-import { IHGraph } from "ihgraph";
 
 export const useStore = create<State>((setState) => ({
     locked: true,
@@ -20,13 +19,12 @@ export const useStore = create<State>((setState) => ({
     run: () => setState((state: State): State => {
         const context = createCompilationContextFromProcessors(
             state.project,
-            KicoProcessor
+            ProjectToIHGraphProcessor
         );
         context.compile();
-        const ihgraph: IHGraph = context.getResult();
         return {
             ...state,
-            ihgraph: ihgraph
+            ihgraph: context.getResult()
         };
     }),
     switchLocked: () => setState((state: State): State => ({

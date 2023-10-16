@@ -1,7 +1,7 @@
-import { Editor } from "../src/model/Editor";
-import { Dimension } from "../src/model/Dimension";
-import { Position } from "../src/model/Position";
-import { Edge } from "../src/model/Edge";
+import { Editor } from "../../src/model/Editor";
+import { Dimension } from "../../src/model/Dimension";
+import { Position } from "../../src/model/Position";
+import { Edge } from "../../src/model/Edge";
 
 describe("create()", () => {
     it("from and to touch", () => {
