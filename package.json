@@ -24,6 +24,7 @@
     "@types/react-dom": "^18.2.6",
     "kico": "link:../kico-core",
     "ihgraph": "link:../ihgraph",
+    "hal-kico": "link:../hal-kico",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
