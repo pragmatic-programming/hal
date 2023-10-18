@@ -7,10 +7,7 @@ import { useStore } from "../../Store";
 import { State } from "../../State";
 import BottomRight from "./BottomRight";
 import BottomLeft from "./BottomLeft";
-import ProcessorModel from "./ProcessorModel";
-import StartModel from "./StartModel";
-import InterModel from "./InterModel";
-import EndModel from "./EndModel";
+import BottomStep from "./BottomStep";
 
 export default function Bottom(): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -54,15 +51,12 @@ export default function Bottom(): React.JSX.Element {
                     }}
                 >
                     {context.processors.map((processor: Processor<any, any>, index: number) => (
-                        // todo Warning: Each child in a list should have a unique "key" prop.
-                        <>
-                            {index === 0 ? <StartModel key={processor.getId() + "_start"}/> : <></>}
-                            <ProcessorModel key={processor.getId() + "_processor"} processor={processor}/>
-                            {index === context.processors.length - 1 ? <EndModel key={processor.getId() + "_end"}/> :
-                                <InterModel key={processor.getId() + "_end"}/>
-                            }
-
-                        </>
+                        <BottomStep
+                            key={processor.getId()}
+                            processor={processor}
+                            index={index}
+                            length={context.processors.length}
+                        />
                     ))}
                 </Stack>
             </Stack>

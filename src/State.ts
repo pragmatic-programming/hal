@@ -2,7 +2,7 @@ import { Project } from "./model/Project";
 import { PaletteMode } from "@mui/material";
 import { Editor } from "./model/Editor";
 import { Position } from "./model/Position";
-import { CompilationContext } from "kico";
+import { CompilationContext, Processor } from "kico";
 
 export interface State {
     locked: boolean;
@@ -13,6 +13,7 @@ export interface State {
         first: number | null
         second: number | null
     };
+    setProject: (processor: Processor<any, any>) => void;
     run: () => void;
     switchMode: () => void;
     switchLocked: () => void;

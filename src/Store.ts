@@ -3,7 +3,7 @@ import { State } from "./State";
 import { Position } from "./model/Position";
 import { ProjectToIHGraphProcessor } from "./model/ProjectToIHGraphProcessor";
 import { example } from "./model/example";
-import { CompilationContext, createCompilationContextFromProcessors, System } from "kico";
+import { CompilationContext, createCompilationContextFromProcessors, Processor, System } from "kico";
 import { HALGraphProcessor } from "hal-kico";
 
 export const useStore = create<State>((setState) => ({
@@ -30,6 +30,12 @@ export const useStore = create<State>((setState) => ({
         return {
             ...state,
             context: context2
+        };
+    }),
+    setProject: (processor: Processor<any, any>) => setState((state: State): State => {
+        console.log("foo")
+        return {
+            ...state
         };
     }),
     switchLocked: () => setState((state: State): State => ({
