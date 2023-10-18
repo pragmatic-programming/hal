@@ -9,7 +9,7 @@ interface Props {
 export default function StartModel(props: Props): React.JSX.Element {
     return (
         <Model
-            border="solid"
+            position={"inter"}
             processor={props.processor}
         />
     );

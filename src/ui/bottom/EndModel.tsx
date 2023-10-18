@@ -10,7 +10,7 @@ interface Props {
 export default function EndModel(props: Props): React.JSX.Element {
     return (
         <Model
-            border="double"
+            position="end"
             processor={props.processor}
         />
     );

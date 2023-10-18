@@ -33,7 +33,6 @@ export const useStore = create<State>((setState) => ({
         };
     }),
     setProject: (processor: Processor<any, any>) => setState((state: State): State => {
-        console.log("foo")
         return {
             ...state
         };
