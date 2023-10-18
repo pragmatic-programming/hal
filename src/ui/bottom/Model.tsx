@@ -3,7 +3,8 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import React from "react";
 import { useStore } from "../../Store";
 import { State } from "../../State";
-import { Processor } from "kico";
+import { Environment, Processor } from "kico";
+import { IHGraph } from "ihgraph";
 
 interface Props {
     position: "start" | "inter" | "end";
@@ -11,16 +12,18 @@ interface Props {
 }
 
 export default function Model(props: Props): React.JSX.Element {
-    const setProject = useStore((state: State) => state.setProject);
+    const renderIHGraph = useStore((state: State) => state.renderIhGraph);
     let borderStyle: "dotted" | "solid" | "double";
     let borderWidth: number;
     let marginLeft: "-10px" | "0px" = "0px";
     let marginRight: "-10px" | "0px" = "0px";
+    let property: IHGraph = props.processor.environment.getResult();
     switch (props.position) {
         case "start":
             borderStyle = "dotted";
             borderWidth = 2;
             marginLeft = "-10px";
+            property = props.processor.environment.getProperty(Environment.SOURCE_MODEL);
             break;
         case "inter":
             borderStyle = "solid";
@@ -35,7 +38,7 @@ export default function Model(props: Props): React.JSX.Element {
     }
     return (
         <IconButton
-            onClick={() => setProject(props.processor)}
+            onClick={() => renderIHGraph(property)}
             sx={{
                 marginLeft: marginLeft,
                 marginRight: marginRight,

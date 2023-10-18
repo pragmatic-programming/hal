@@ -3,6 +3,7 @@ import { PaletteMode } from "@mui/material";
 import { Editor } from "./model/Editor";
 import { Position } from "./model/Position";
 import { CompilationContext, Processor } from "kico";
+import { IHGraph } from "../../ihgraph";
 
 export interface State {
     locked: boolean;
@@ -13,7 +14,7 @@ export interface State {
         first: number | null
         second: number | null
     };
-    setProject: (processor: Processor<any, any>) => void;
+    renderIhGraph: (ihGraph: IHGraph) => void;
     run: () => void;
     switchMode: () => void;
     switchLocked: () => void;

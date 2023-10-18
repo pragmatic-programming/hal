@@ -3,8 +3,10 @@ import { State } from "./State";
 import { Position } from "./model/Position";
 import { ProjectToIHGraphProcessor } from "./model/ProjectToIHGraphProcessor";
 import { example } from "./model/example";
-import { CompilationContext, createCompilationContextFromProcessors, Processor, System } from "kico";
+import { CompilationContext, createCompilationContextFromProcessors, System } from "kico";
 import { HALGraphProcessor } from "hal-kico";
+import { IHGraphToProjectProcessor } from "./model/IHGraphToProjectProcessor";
+import { IHGraph } from "../../ihgraph";
 
 export const useStore = create<State>((setState) => ({
     locked: true,
@@ -17,24 +19,30 @@ export const useStore = create<State>((setState) => ({
         second: null
     },
     run: () => setState((state: State): State => {
-        const context = createCompilationContextFromProcessors(
+        const project = createCompilationContextFromProcessors(
             state.project,
             ProjectToIHGraphProcessor,
         );
-        context.compile();
-        const context2 = createCompilationContextFromProcessors(
-            context.getResult(),
+        project.compile();
+        const ihGraph = createCompilationContextFromProcessors(
+            project.getResult(),
             HALGraphProcessor
         );
-        context2.compile();
+        ihGraph.compile();
         return {
             ...state,
-            context: context2
+            context: ihGraph
         };
     }),
-    setProject: (processor: Processor<any, any>) => setState((state: State): State => {
+    renderIhGraph: (ihGraph: IHGraph) => setState((state: State): State => {
+        const context = createCompilationContextFromProcessors(
+            ihGraph,
+            IHGraphToProjectProcessor
+        );
+        context.compile();
         return {
-            ...state
+            ...state,
+            project: context.getResult(),
         };
     }),
     switchLocked: () => setState((state: State): State => ({
