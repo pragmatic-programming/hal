@@ -20,12 +20,16 @@ export const useStore = create<State>((setState) => ({
         const context = createCompilationContextFromProcessors(
             state.project,
             ProjectToIHGraphProcessor,
-            HALGraphProcessor
         );
         context.compile();
+        const context2 = createCompilationContextFromProcessors(
+            context.getResult(),
+            HALGraphProcessor
+        );
+        context2.compile();
         return {
             ...state,
-            context: context
+            context: context2
         };
     }),
     switchLocked: () => setState((state: State): State => ({

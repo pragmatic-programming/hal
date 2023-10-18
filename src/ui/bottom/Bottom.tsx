@@ -1,15 +1,16 @@
 import React from "react";
-import { Box, Stack, StepButton, Theme, useTheme } from "@mui/material";
+import { Stack, Theme, useTheme } from "@mui/material";
 import "./Bottom.scss";
 import { gui } from "../../constants";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import { CompilationContext } from "../../../../kico-core";
+import { CompilationContext, Processor } from "../../../../kico-core";
 import { useStore } from "../../Store";
 import { State } from "../../State";
 import BottomRight from "./BottomRight";
 import BottomLeft from "./BottomLeft";
+import ProcessorModel from "./ProcessorModel";
+import StartModel from "./StartModel";
+import InterModel from "./InterModel";
+import EndModel from "./EndModel";
 
 export default function Bottom(): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -40,17 +41,30 @@ export default function Bottom(): React.JSX.Element {
                     height: gui.bottomHeight - 4 - 36,
                 }}
             >
-                <Box sx={{width: "100%"}}>
-                    <Stepper activeStep={0} alternativeLabel>
-                        {context.processors.map((processor) => (
-                            <Step key={processor.getId()}>
-                                <StepButton>
-                                    <StepLabel>{processor.getName()}</StepLabel>
-                                </StepButton>
-                            </Step>
-                        ))}
-                    </Stepper>
-                </Box>
+                <Stack
+                    alignItems="center"
+                    spacing={0}
+                    direction="row"
+                    justifyContent={"space-between"}
+                    style={{
+                        marginLeft: 50,
+                        marginRight: 50,
+                        width: "100%",
+                        background: "linear-gradient(180deg, rgba(0,0,0,0) calc(50% - 1px), rgba(192,192,192,1) calc(50%), rgba(0,0,0,0) calc(50% + 1px))"
+                    }}
+                >
+                    {context.processors.map((processor: Processor<any, any>, index: number) => (
+                        // todo Warning: Each child in a list should have a unique "key" prop.
+                        <>
+                            {index === 0 ? <StartModel key={processor.getId() + "_start"}/> : <></>}
+                            <ProcessorModel key={processor.getId() + "_processor"} processor={processor}/>
+                            {index === context.processors.length - 1 ? <EndModel key={processor.getId() + "_end"}/> :
+                                <InterModel key={processor.getId() + "_end"}/>
+                            }
+
+                        </>
+                    ))}
+                </Stack>
             </Stack>
             <Stack
                 direction="row"
