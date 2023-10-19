@@ -10,6 +10,7 @@ export default function PlayButton(): React.JSX.Element {
         <MenuButton
             onClick={run}
             icon={<PlayArrow fontSize="inherit" color={"success"}/>}
+            tooltip="Compile"
         />
     );
 }

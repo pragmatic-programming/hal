@@ -6,12 +6,6 @@ import EditorNode from "./EditorNode";
 import { gui } from "../../../constants";
 import { useStore } from "../../../Store";
 import { shallow } from "zustand/shallow";
-import { useLayouting } from "./Layouting";
-import { Button, Stack } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import DataUsageIcon from '@mui/icons-material/DataUsage';
-import BoltIcon from '@mui/icons-material/Bolt';
 
 
 const selector = (state: State) => ({
@@ -26,7 +20,6 @@ const selector = (state: State) => ({
 export default function Flow(): React.JSX.Element {
     const nodeTypes = useMemo(() => ({editorNode: EditorNode}), []);
     const {nodes, edges, onNodesChange, onEdgesChange, onConnect} = useStore(selector, shallow);
-    const layout = useLayouting();
 
     return (
         <div
@@ -44,37 +37,6 @@ export default function Flow(): React.JSX.Element {
                 onNodesChange={onNodesChange}
             >
                 <Panel position="top-right">
-                    <Stack direction="row" spacing={2}>
-                        <Button
-                            onClick={() => layout({"elk.algorithm": "layered", "elk.direction": "DOWN"})}
-                            startIcon={<MoreVertIcon/>}
-                            variant="contained"
-                        >
-                            vertical
-                        </Button>
-                        <Button
-                            onClick={() => layout({"elk.algorithm": "layered", "elk.direction": "RIGHT"})}
-                            startIcon={<MoreHorizIcon/>}
-                            variant="contained"
-                        >
-                            horizontal
-                        </Button>
-                        <Button
-                            onClick={() => layout({"elk.algorithm": "org.eclipse.elk.radial"})}
-                            startIcon={<DataUsageIcon/>}
-                            variant="contained"
-                        >
-                            radial
-                        </Button>
-                        <Button
-                            variant="contained"
-                            color="info"
-                            startIcon={<BoltIcon/>}
-                            onClick={() => layout({"elk.algorithm": "org.eclipse.elk.force",})}
-                        >
-                            force
-                        </Button>
-                    </Stack>
                 </Panel>
                 <Background/>
                 <Controls

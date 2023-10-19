@@ -4,7 +4,7 @@ import { useStore } from "../Store";
 import { State } from "../State";
 
 interface Props {
-    children: React.JSX.Element[];
+    children: React.JSX.Element[] | React.JSX.Element;
 }
 
 // Augment the palette to include custom colors

@@ -12,6 +12,7 @@ export default function SwitchModeButton(): React.JSX.Element {
         <MenuButton
             onClick={switchMode}
             icon={theme.palette.mode === "dark" ? <Brightness7/> : <Brightness4/>}
+            tooltip={theme.palette.mode === "dark" ? "Light Mode" : "Dark Mode"}
         />
     );
 }

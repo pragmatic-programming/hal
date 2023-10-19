@@ -2,7 +2,6 @@ import React, { CSSProperties } from "react";
 import { Theme, useTheme } from "@mui/material";
 import { gui } from "../../constants";
 import Flow from "./renderer/Flow";
-import { ReactFlowProvider } from "reactflow";
 
 export default function Main(): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -17,9 +16,7 @@ export default function Main(): React.JSX.Element {
     return (
         // todo use html5 semantic tags everywhere
         <main style={style}>
-            <ReactFlowProvider>
-                <Flow/>
-            </ReactFlowProvider>
+            <Flow/>
         </main>
     );
 }

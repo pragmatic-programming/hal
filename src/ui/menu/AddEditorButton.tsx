@@ -23,6 +23,7 @@ export default function AddEditorButton(): React.JSX.Element {
                 }
             }
             icon={<AddBox fontSize="inherit"/>}
+            tooltip="Add Editor"
         />
     );
 }

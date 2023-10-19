@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Tooltip } from "@mui/material";
 import { gui } from "../../constants";
 
 interface Props {
     disabled?: boolean;
     icon: React.JSX.Element;
     onClick: () => void;
+    tooltip: string;
 }
 
 export default function MenuButton(props: Props): React.JSX.Element {
@@ -19,13 +20,18 @@ export default function MenuButton(props: Props): React.JSX.Element {
                 marginTop: 2
             }}
         >
-            <IconButton
-                disabled={props.disabled}
-                onClick={props.onClick}
-                size="large"
+            <Tooltip
+                title={props.tooltip}
+                placement={"right"}
             >
-                {props.icon}
-            </IconButton>
+                <IconButton
+                    disabled={props.disabled}
+                    onClick={props.onClick}
+                    size="large"
+                >
+                    {props.icon}
+                </IconButton>
+            </Tooltip>
         </Box>
     );
 }
