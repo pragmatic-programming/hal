@@ -11,11 +11,13 @@ interface Props {
 export default function MenuButton(props: Props): React.JSX.Element {
     return (
         // todo sx and style equal?
-        <Box sx={{
-            height: 32,
-            textAlign: "center",
-            width: gui.menuWidth,
-            marginTop: 2}}
+        <Box
+            sx={{
+                height: 32,
+                textAlign: "center",
+                width: gui.menuWidth,
+                marginTop: 2
+            }}
         >
             <IconButton
                 disabled={props.disabled}
