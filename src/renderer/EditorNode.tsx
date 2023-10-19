@@ -1,10 +1,10 @@
 import React, { ChangeEvent, CSSProperties, useCallback } from "react";
 import { Handle, NodeProps, Position } from "reactflow";
 import { Editor as Monaco } from "@monaco-editor/react";
-import { EditorHeader } from "./html/EditorHeader";
+import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
 
-export default function TextUpdaterNode(props: NodeProps) {
+export default function EditorNode(props: NodeProps) {
     const onChange = useCallback((evt: ChangeEvent) => {
         console.log("foo");
     }, []);
@@ -23,7 +23,7 @@ export default function TextUpdaterNode(props: NodeProps) {
             <div
                 style={style}
             >
-                <EditorHeader
+                <EditorNodeHeader
                     language="javascript"
                 />
                 <Monaco

@@ -18,7 +18,7 @@ let editor1 = new Editor(
 let editor2 = new Editor(
     2,
     new Dimension(640, 480),
-    new Position(800, 50),
+    new Position(50, 500),
     "javascript",
     "x + 2"
 );

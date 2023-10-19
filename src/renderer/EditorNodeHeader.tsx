@@ -6,7 +6,7 @@ interface Props {
     language: string;
 }
 
-export function EditorHeader(props: Props): React.JSX.Element {
+export function EditorNodeHeader(props: Props): React.JSX.Element {
     return (
         <Chip
             icon={<InsertDriveFileIcon/>}

@@ -13,11 +13,11 @@ import "reactflow/dist/style.css";
 import { useStore } from "../Store";
 import { FlowState, State } from "../State";
 import React, { useCallback, useMemo, useState } from "react";
-import TextUpdaterNode from "./TextUpdaterNode";
+import EditorNode from "./EditorNode";
 
 export default function Flow(): React.JSX.Element {
     const flow: FlowState = useStore((state: State) => state.flow);
-    const nodeTypes = useMemo(() => ({textUpdater: TextUpdaterNode}), []);
+    const nodeTypes = useMemo(() => ({textUpdater: EditorNode}), []);
     const [nodes, setNodes] = useState(flow.nodes);
     const [edges, setEdges] = useState(flow.edges);
     const onNodesChange = useCallback(
