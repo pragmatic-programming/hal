@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import { Theme, useTheme } from "@mui/material";
 import { gui } from "../../constants";
-import Flow from "../../renderer/Flow";
+import Flow from "./renderer/Flow";
 
 export default function Main(): React.JSX.Element {
     const theme: Theme = useTheme();

@@ -10,8 +10,8 @@ import ReactFlow, {
     NodeChange
 } from "reactflow";
 import "reactflow/dist/style.css";
-import { useStore } from "../Store";
-import { FlowState, State } from "../State";
+import { useStore } from "../../../Store";
+import { FlowState, State } from "../../../State";
 import React, { useCallback, useMemo, useState } from "react";
 import EditorNode from "./EditorNode";
 
