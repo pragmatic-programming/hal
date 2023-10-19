@@ -1,10 +1,7 @@
 import React, { CSSProperties } from "react";
 import { Divider, Theme, useTheme } from "@mui/material";
-import RemoveEditorButton from "./RemoveEditorButton";
 import AddEditorButton from "./AddEditorButton";
-import AddEdgeButton from "./AddEdgeButton";
 import SwitchModeButton from "./SwitchModeButton";
-import SwitchLockedButton from "./SwitchLockedButton";
 import PlayButton from "./PlayButton";
 import { gui } from "../../constants";
 
@@ -24,9 +21,6 @@ export default function Menu(): React.JSX.Element {
             <SwitchModeButton/>
             <Divider sx={{marginTop: 2}}/>
             <AddEditorButton/>
-            <RemoveEditorButton/>
-            <AddEdgeButton/>
-            <SwitchLockedButton/>
             <PlayButton/>
         </div>
     );

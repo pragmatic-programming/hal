@@ -1,13 +1,10 @@
-import React, { ChangeEvent, CSSProperties, useCallback } from "react";
+import React, { CSSProperties } from "react";
 import { Handle, NodeProps, Position } from "reactflow";
 import { Editor as Monaco } from "@monaco-editor/react";
 import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
 
 export default function EditorNode(props: NodeProps) {
-    const onChange = useCallback((evt: ChangeEvent) => {
-        console.log("foo");
-    }, []);
     const theme: Theme = useTheme();
 
     const style: Partial<CSSProperties> = {
@@ -36,8 +33,6 @@ export default function EditorNode(props: NodeProps) {
                             enabled: false
                         }
                     }}
-                    onChange={() => onChange}
-                    // onChange={(value) => updateEditorValue(props.editor.id, value)}
                 />
             </div>
             <Handle type="source" position={Position.Bottom} id="a"/>

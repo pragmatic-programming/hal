@@ -1,56 +1,53 @@
 import { create } from "zustand";
-import { State } from "./State";
-import { Position } from "./model/Position";
-import { ProjectToIHGraphProcessor } from "./model/processor/ProjectToIHGraphProcessor";
-import { example } from "./model/example";
-import { CompilationContext, createCompilationContextFromProcessors, System } from "kico";
-import { HALGraphProcessor } from "hal-kico";
-import { IHGraphToProjectProcessor } from "./model/processor/IHGraphToProjectProcessor";
+import { FlowState, State } from "./State";
+import { CompilationContext, System } from "kico";
 import { IHGraph } from "../../ihgraph";
-import { ProjectToFlowProcessor } from "./model/processor/ProjectToFlowProcessor";
+import { addEdge, applyEdgeChanges, applyNodeChanges, Connection, EdgeChange, NodeChange } from "reactflow";
+import { edges, nodes } from "./model/example";
+import { flowToIHGraph, iHGraphToFlow, ihGraphToHalGraph } from "./model/processor/compilationContexts";
 
-const nodes = createCompilationContextFromProcessors(
-    example,
-    ProjectToFlowProcessor,
-);
-nodes.compile();
 
-export const useStore = create<State>((setState) => ({
+export const useStore = create<State>((setState, getState) => ({
+    nodes: nodes,
+    edges: edges,
+    onNodesChange: (changes: NodeChange[]) => {
+        setState({
+            nodes: applyNodeChanges(changes, getState().nodes),
+        });
+    },
+    onEdgesChange: (changes: EdgeChange[]) => {
+        setState({
+            edges: applyEdgeChanges(changes, getState().edges),
+        });
+    },
+    onConnect: (connection: Connection) => {
+        setState({
+            edges: addEdge(connection, getState().edges),
+        });
+    },
+    projectName: "hello-world.hal",
     locked: true,
-    result: "",
-    flow: nodes.getResult(),
-    project: example,
     mode: "light",
     context: new CompilationContext(new System("empty", [])),
-    highlightedEditor: {
-        first: null,
-        second: null
-    },
     run: () => setState((state: State): State => {
-        const project = createCompilationContextFromProcessors(
-            state.project,
-            ProjectToIHGraphProcessor,
-        );
-        project.compile();
-        const ihGraph = createCompilationContextFromProcessors(
-            project.getResult(),
-            HALGraphProcessor
-        );
-        ihGraph.compile();
-        return {
-            ...state,
-            context: ihGraph
-        };
-    }),
-    renderIhGraph: (ihGraph: IHGraph) => setState((state: State): State => {
-        const context = createCompilationContextFromProcessors(
-            ihGraph,
-            IHGraphToProjectProcessor
-        );
+        const preContext: CompilationContext = flowToIHGraph(new FlowState(state.nodes, state.edges));
+        preContext.compile();
+        const context: CompilationContext = ihGraphToHalGraph(preContext.getResult());
         context.compile();
         return {
             ...state,
-            project: context.getResult(),
+            context: context
+        };
+    }),
+    renderIhGraph: (ihGraph: IHGraph) => setState((state: State): State => {
+        console.log(ihGraph);
+        const context: CompilationContext = iHGraphToFlow(ihGraph);
+        context.compile();
+        const flowState = context.getResult();
+        return {
+            ...state,
+            nodes: flowState.nodes,
+            edges: flowState.edges,
         };
     }),
     switchLocked: () => setState((state: State): State => ({
@@ -60,82 +57,5 @@ export const useStore = create<State>((setState) => ({
     switchMode: () => setState((state: State): State => ({
         ...state,
         mode: state.mode === "dark" ? "light" : "dark"
-    })),
-    addEditor: () => setState((state: State): State => ({
-        ...state,
-        project: state.project.addedEditor()
-    })),
-    removeEditor: () => setState((state: State): State => {
-        if (state.highlightedEditor.first === null) {
-            throw Error("removeEditor() called with highlightedEditor.first is null");
-        }
-        return {
-            ...state,
-            highlightedEditor: {
-                ...state.highlightedEditor,
-                first: null
-            },
-            project: state.project.removedEditor(state.highlightedEditor.first)
-        };
-    }),
-    selectEditor: (id: number | null) => setState((state: State): State => {
-        if (state.highlightedEditor.first === null) {
-            return {
-                ...state,
-                highlightedEditor: {
-                    ...state.highlightedEditor,
-                    first: id,
-                },
-            };
-        }
-        if (state.highlightedEditor.first === id) {
-            return {
-                ...state,
-                highlightedEditor: {
-                    ...state.highlightedEditor,
-                    first: null,
-                },
-            };
-        }
-        if (state.highlightedEditor.second === id) {
-            return {
-                ...state,
-                highlightedEditor: {
-                    ...state.highlightedEditor,
-                    second: null
-                },
-            };
-        }
-        return {
-            ...state,
-            highlightedEditor: {
-                ...state.highlightedEditor,
-                second: id
-            },
-        };
-    }),
-    moveEditor: (id: number, delta: Position) => setState((state: State): State => ({
-        ...state,
-        project: state.project.movedEditor(id, delta)
-    })),
-    moveEdges: (editorId: number, delta: Position) => setState((state: State): State => ({
-        ...state,
-        project: state.project.movedEdges(editorId, delta)
-    })),
-    addEdge: () => setState((state: State): State => {
-        if (state.highlightedEditor.first === null) {
-            throw Error("addedEdge() called with highlightedEditor.first is null");
-        }
-        if (state.highlightedEditor.second === null) {
-            throw Error("addedEdge() called with highlightedEditor.second is null");
-        }
-        return {
-            ...state,
-            project: state.project.addedEdge(state.highlightedEditor.first, state.highlightedEditor.second)
-        };
-    }),
-    updateEditorValue: (id: number, value: string | undefined) => setState((state: State): State => ({
-        ...state,
-        project: state.project.updateEditorValue(id, value)
     })),
 }));

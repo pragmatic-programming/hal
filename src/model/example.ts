@@ -1,35 +1,20 @@
-import { Editor } from "./Editor";
-import { Dimension } from "./Dimension";
-import { Position } from "./Position";
-import { Project } from "./Project";
-import { Editors } from "./Editors";
-import { Edges } from "./Edges";
-import { Edge } from "./Edge";
+import { Edge, Node } from "reactflow";
 
-const map = new Map<number, Editor>();
 
-let editor1 = new Editor(
-    1,
-    new Dimension(640, 480),
-    new Position(50, 50),
-    "javascript",
-    "var x = 1;",
-);
-let editor2 = new Editor(
-    2,
-    new Dimension(640, 480),
-    new Position(50, 500),
-    "javascript",
-    "x + 2"
-);
-
-map.set(editor1.id, editor1);
-map.set(editor2.id, editor2);
-export const example = new Project(
-        "hello-world.hal",
-        new Editors(map),
-        new Edges([
-            Edge.create(editor1, editor2)
-        ])
-    )
-;
+export const nodes: Node[] = [
+    {
+        id: "1",
+        type: "editorNode",
+        data: {value: "var x = 1;"},
+        position: {x: 100, y: 25},
+    },
+    {
+        id: "2",
+        type: "editorNode",
+        data: {value: "x + 2"},
+        position: {x: 100, y: 425},
+    },
+];
+export const edges: Edge[] = [
+    {id: "e1-2", source: "1", target: "2"},
+];

@@ -1,10 +1,7 @@
-import { Project } from "./model/Project";
 import { PaletteMode } from "@mui/material";
-import { Editor } from "./model/Editor";
-import { Position } from "./model/Position";
 import { CompilationContext } from "kico";
 import { IHGraph } from "../../ihgraph";
-import { Edge, Node } from "reactflow";
+import { Edge, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
 
 export class FlowState {
     constructor(
@@ -15,24 +12,19 @@ export class FlowState {
 }
 
 export interface State {
+    //start reactflow
+    nodes: Node[];
+    edges: Edge[];
+    onNodesChange: OnNodesChange;
+    onEdgesChange: OnEdgesChange;
+    onConnect: OnConnect;
+    //end reactflow
+    projectName: string,
     locked: boolean;
     context: CompilationContext;
-    flow: FlowState,
-    project: Project;
     mode: PaletteMode;
-    highlightedEditor: {
-        first: number | null
-        second: number | null
-    };
     renderIhGraph: (ihGraph: IHGraph) => void;
     run: () => void;
     switchMode: () => void;
     switchLocked: () => void;
-    removeEditor: () => void;
-    selectEditor: (id: number | null) => void;
-    addEditor: (editor: Editor) => void;
-    moveEditor: (id: number, position: Position) => void;
-    moveEdges: (editorId: number, position: Position) => void;
-    addEdge: () => void;
-    updateEditorValue: (id: number, value: string | undefined) => void;
 }
