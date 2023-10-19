@@ -1,16 +1,24 @@
 import { create } from "zustand";
 import { State } from "./State";
 import { Position } from "./model/Position";
-import { ProjectToIHGraphProcessor } from "./model/ProjectToIHGraphProcessor";
+import { ProjectToIHGraphProcessor } from "./model/processor/ProjectToIHGraphProcessor";
 import { example } from "./model/example";
 import { CompilationContext, createCompilationContextFromProcessors, System } from "kico";
 import { HALGraphProcessor } from "hal-kico";
-import { IHGraphToProjectProcessor } from "./model/IHGraphToProjectProcessor";
+import { IHGraphToProjectProcessor } from "./model/processor/IHGraphToProjectProcessor";
 import { IHGraph } from "../../ihgraph";
+import { ProjectToFlowProcessor } from "./model/processor/ProjectToFlowProcessor";
+
+const nodes = createCompilationContextFromProcessors(
+    example,
+    ProjectToFlowProcessor,
+);
+nodes.compile();
 
 export const useStore = create<State>((setState) => ({
     locked: true,
     result: "",
+    flow: nodes.getResult(),
     project: example,
     mode: "light",
     context: new CompilationContext(new System("empty", [])),

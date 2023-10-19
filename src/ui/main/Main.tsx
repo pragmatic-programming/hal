@@ -1,8 +1,7 @@
 import React, { CSSProperties } from "react";
-import HtmlRenderer from "../../renderer/html/HtmlRenderer";
-import SvgRenderer from "../../renderer/svg/SvgRenderer";
 import { Theme, useTheme } from "@mui/material";
 import { gui } from "../../constants";
+import Flow from "../../renderer/Flow";
 
 export default function Main(): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -17,8 +16,7 @@ export default function Main(): React.JSX.Element {
     return (
         // todo use html5 semantic tags everywhere
         <main style={style}>
-            <HtmlRenderer/>
-            <SvgRenderer/>
+            <Flow/>
         </main>
     );
 }

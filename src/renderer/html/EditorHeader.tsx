@@ -1,28 +1,21 @@
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
-import { Typography } from "@mui/material";
+import { Chip } from "@mui/material";
 import React from "react";
-import { Editor } from "../../model/Editor";
 
 interface Props {
-    editor: Editor;
+    language: string;
 }
 
 export function EditorHeader(props: Props): React.JSX.Element {
     return (
-        <div
+        <Chip
+            icon={<InsertDriveFileIcon/>}
+            label={props.language}
             style={{
-                display: "inline-block",
-                paddingTop: 5,
-                paddingBottom: 5,
-                paddingLeft: 10,
-                paddingRight: 10,
-                height: 20,
                 // todo should come from theme
-                backgroundColor: "#ffffff"
+                backgroundColor: "#ffffff",
+                borderRadius: 0
             }}
-        >
-            <InsertDriveFileIcon fontSize="small"/>
-            <Typography style={{marginLeft: 25}} variant="caption">{props.editor.language}</Typography>
-        </div>
+        />
     );
 }

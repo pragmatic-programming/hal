@@ -1,5 +1,5 @@
 import { Processor } from "kico";
-import { Project } from "./Project";
+import { Project } from "../Project";
 import { IHGraph } from "ihgraph";
 import { loadDefaultTransformationConfiguration } from "hal-kico";
 

@@ -1,11 +1,11 @@
 import { Processor } from "kico";
-import { Project } from "./Project";
+import { Project } from "../Project";
 import { IHGraph } from "ihgraph";
-import { Editor } from "./Editor";
-import { Position } from "./Position";
-import { Editors } from "./Editors";
-import { Edges } from "./Edges";
-import { Edge } from "./Edge";
+import { Editor } from "../Editor";
+import { Position } from "../Position";
+import { Editors } from "../Editors";
+import { Edges } from "../Edges";
+import { Edge } from "../Edge";
 
 export class IHGraphToProjectProcessor extends Processor<IHGraph, Project> {
 

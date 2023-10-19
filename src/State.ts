@@ -2,12 +2,22 @@ import { Project } from "./model/Project";
 import { PaletteMode } from "@mui/material";
 import { Editor } from "./model/Editor";
 import { Position } from "./model/Position";
-import { CompilationContext, Processor } from "kico";
+import { CompilationContext } from "kico";
 import { IHGraph } from "../../ihgraph";
+import { Edge, Node } from "reactflow";
+
+export class FlowState {
+    constructor(
+        readonly nodes: Node[],
+        readonly edges: Edge[]
+    ) {
+    }
+}
 
 export interface State {
     locked: boolean;
     context: CompilationContext;
+    flow: FlowState,
     project: Project;
     mode: PaletteMode;
     highlightedEditor: {
