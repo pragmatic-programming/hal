@@ -14,6 +14,7 @@ export default function AddEditorButton(): React.JSX.Element {
                         [{
                             type: "add",
                             item: {
+                                // todo we need to find the next id
                                 id: "3",
                                 type: "editorNode",
                                 data: {value: "x + 2"},
