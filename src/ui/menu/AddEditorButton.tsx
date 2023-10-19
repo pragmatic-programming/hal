@@ -15,7 +15,7 @@ export default function AddEditorButton(): React.JSX.Element {
                             type: "add",
                             item: {
                                 id: "3",
-                                type: "textUpdater",
+                                type: "editorNode",
                                 data: {value: "x + 2"},
                                 position: {x: 100, y: 125},
                             },
