@@ -1,16 +1,16 @@
 import React from "react";
 import "./App.scss";
 import Menu from "./ui/menu/Menu";
-import Main from "./ui/main/Main";
 import Theme from "./ui/Theme";
 import Bottom from "./ui/bottom/Bottom";
 import { ReactFlowProvider } from "reactflow";
+import Flow from "./ui/flow/Flow";
 
 export default function App(): React.JSX.Element {
     return (
         <Theme>
             <ReactFlowProvider>
-                <Main/>
+                <Flow/>
                 <Menu/>
                 <Bottom/>
             </ReactFlowProvider>

@@ -8,7 +8,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DataUsageIcon from "@mui/icons-material/DataUsage";
 import BoltIcon from "@mui/icons-material/Bolt";
-import { useLayouting } from "../main/renderer/Layouting";
+import { useLayouting } from "../flow/Layouting";
 import MenuButton from "./MenuButton";
 import MenuDivider from "./MenuDivider";
 
