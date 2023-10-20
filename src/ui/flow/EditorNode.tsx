@@ -1,11 +1,12 @@
 import React, { CSSProperties } from "react";
-import { Handle, NodeProps, Position } from "reactflow";
+import { Handle, NodeProps, Position, useReactFlow } from "reactflow";
 import { Editor as Monaco } from "@monaco-editor/react";
 import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
 
 export default function EditorNode(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
+    const {getNode} = useReactFlow();
 
     const style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
@@ -35,7 +36,22 @@ export default function EditorNode(props: NodeProps): React.JSX.Element {
                     }}
                 />
             </div>
-            <Handle type="source" position={Position.Right} id="a"/>
+            <Handle type="source" position={Position.Right} isValidConnection={connection => {
+                if (!connection.target) {
+                    return false;
+                }
+                if (!connection.source) {
+                    return false;
+                }
+                if (connection.target === connection.source) {
+                    return false;
+                }
+                const target = getNode(connection.target);
+                if (!target) {
+                    return false;
+                }
+                return target.type === "editorNode" || target.type === "resultNode";
+            }}/>
         </>
     );
 }

@@ -7,6 +7,7 @@ import { gui } from "../../constants";
 import { useStore } from "../../Store";
 import { shallow } from "zustand/shallow";
 import { Theme, useTheme } from "@mui/material";
+import ResultNode from "./ResultNode";
 
 
 const selector = (state: State) => ({
@@ -19,7 +20,7 @@ const selector = (state: State) => ({
 
 
 export default function Flow(): React.JSX.Element {
-    const nodeTypes = useMemo(() => ({editorNode: EditorNode}), []);
+    const nodeTypes = useMemo(() => ({editorNode: EditorNode, resultNode: ResultNode}), []);
     const {nodes, edges, onNodesChange, onEdgesChange, onConnect} = useStore(selector, shallow);
     const theme: Theme = useTheme();
     const style: CSSProperties = {

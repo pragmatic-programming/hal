@@ -28,7 +28,8 @@ export default function Menu(): React.JSX.Element {
         <div style={style}>
             <SwitchModeButton/>
             <MenuDivider/>
-            <AddEditorButton/>
+            <AddEditorButton type="editorNode" tooltip="Add Editor Node"/>
+            <AddEditorButton type="resultNode" tooltip="Add Result Node"/>
             <PlayButton/>
             <MenuDivider/>
             <MenuButton

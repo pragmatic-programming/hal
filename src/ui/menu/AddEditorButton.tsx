@@ -4,8 +4,18 @@ import { State } from "../../State";
 import MenuButton from "./MenuButton";
 import { AddBox } from "@mui/icons-material";
 
-export default function AddEditorButton(): React.JSX.Element {
+interface Props {
+    type: string;
+    tooltip: string;
+}
+
+export default function AddEditorButton(props: Props): React.JSX.Element {
     const addEditor = useStore((state: State) => state.onNodesChange);
+    const nextId = useStore(
+        (state: State) => Math.max(
+            ...state.nodes.map(node => Number(node.id)), 0
+        ) + 1
+    );
     return (
         <MenuButton
             onClick={
@@ -14,17 +24,16 @@ export default function AddEditorButton(): React.JSX.Element {
                         [{
                             type: "add",
                             item: {
-                                // todo we need to find the next id
-                                id: "3",
-                                type: "editorNode",
-                                data: {value: "x + 2"},
+                                id: nextId.toString(),
+                                type: props.type,
+                                data: {value: ""},
                                 position: {x: 100, y: 125},
                             },
                         }]);
                 }
             }
             icon={<AddBox fontSize="inherit"/>}
-            tooltip="Add Editor"
+            tooltip={props.tooltip}
         />
     );
 }

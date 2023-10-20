@@ -15,6 +15,12 @@ export const nodes: Node[] = [
         position: {x: 400, y: 25},
     },
 ];
+
+export const markerEnd = {
+    type: MarkerType.ArrowClosed,
+    width: 30,
+    height: 30,
+};
 export const edges: Edge[] = [
     {
         id: "e1-2",
@@ -23,10 +29,6 @@ export const edges: Edge[] = [
         // todo add label to ihgraph
         label: "sequence",
         type: "smoothstep",
-        markerEnd: {
-            type: MarkerType.ArrowClosed,
-            width: 30,
-            height: 30,
-        }
+        markerEnd: markerEnd
     },
 ];

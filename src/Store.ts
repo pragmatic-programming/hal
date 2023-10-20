@@ -2,8 +2,8 @@ import { create } from "zustand";
 import { FlowState, State } from "./State";
 import { CompilationContext, System } from "kico";
 import { IHGraph } from "../../ihgraph";
-import { addEdge, applyEdgeChanges, applyNodeChanges, Connection, EdgeChange, NodeChange } from "reactflow";
-import { edges, nodes } from "./model/example";
+import { addEdge, applyEdgeChanges, applyNodeChanges, Connection, Edge, EdgeChange, NodeChange } from "reactflow";
+import { edges, markerEnd, nodes } from "./model/example";
 import { flowToIHGraph, iHGraphToFlow, ihGraphToHalGraph } from "./model/processor/compilationContexts";
 
 
@@ -21,6 +21,51 @@ export const useStore = create<State>((setState, getState) => ({
         });
     },
     onConnect: (connection: Connection) => {
+        const source = connection.source;
+        const target = connection.target;
+        if (!source) {
+            throw new Error("Source is undefined");
+        }
+        if (!target) {
+            throw new Error("Target is undefined");
+        }
+        const sourceNode = getState().nodes.find(node => node.id === source);
+        const targetNode = getState().nodes.find(node => node.id === target);
+        if (!sourceNode) {
+            throw new Error("SourceNode is undefined");
+        }
+        if (!targetNode) {
+            throw new Error("TargetNode is undefined");
+        }
+        // todo refactor this
+        if (sourceNode.type === "editorNode" && targetNode.type === "resultNode") {
+            const edge: Edge = {
+                id: "e" + source + "-" + target,
+                source: source,
+                target: target,
+                label: "execute",
+                animated: true,
+                markerEnd: markerEnd
+            };
+            setState({
+                edges: addEdge(edge, getState().edges),
+            });
+            return;
+        }
+        if (sourceNode.type === "editorNode" && targetNode.type === "editorNode") {
+            const edge: Edge = {
+                id: "e" + source + "-" + target,
+                source: source,
+                target: target,
+                label: "sequence",
+                type: "smoothstep",
+                markerEnd: markerEnd
+            };
+            setState({
+                edges: addEdge(edge, getState().edges),
+            });
+            return;
+        }
         setState({
             edges: addEdge(connection, getState().edges),
         });
@@ -40,7 +85,6 @@ export const useStore = create<State>((setState, getState) => ({
         };
     }),
     renderIhGraph: (ihGraph: IHGraph) => setState((state: State): State => {
-        console.log(ihGraph);
         const context: CompilationContext = iHGraphToFlow(ihGraph);
         context.compile();
         const flowState = context.getResult();
