@@ -4,7 +4,7 @@ import { Editor as Monaco } from "@monaco-editor/react";
 import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
 
-export default function EditorNode(props: NodeProps) {
+export default function EditorNode(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
 
     const style: Partial<CSSProperties> = {
@@ -16,7 +16,7 @@ export default function EditorNode(props: NodeProps) {
 
     return (
         <>
-            <Handle type="target" position={Position.Top}/>
+            <Handle type="target" position={Position.Left}/>
             <div
                 style={style}
             >
@@ -35,7 +35,7 @@ export default function EditorNode(props: NodeProps) {
                     }}
                 />
             </div>
-            <Handle type="source" position={Position.Bottom} id="a"/>
+            <Handle type="source" position={Position.Right} id="a"/>
         </>
     );
 }
