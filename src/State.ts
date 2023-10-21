@@ -2,11 +2,12 @@ import { PaletteMode } from "@mui/material";
 import { CompilationContext } from "kico";
 import { IHGraph } from "../../ihgraph";
 import { Edge, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
+import EdgeData from "./model/EdgeData";
 
 export class FlowState {
     constructor(
         readonly nodes: Node[],
-        readonly edges: Edge[]
+        readonly edges: Edge<EdgeData>[]
     ) {
     }
 }
@@ -14,7 +15,7 @@ export class FlowState {
 export interface State {
     //start reactflow
     nodes: Node[];
-    edges: Edge[];
+    edges: Edge<EdgeData>[];
     onNodesChange: OnNodesChange;
     onEdgesChange: OnEdgesChange;
     onConnect: OnConnect;

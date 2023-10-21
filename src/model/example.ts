@@ -1,4 +1,5 @@
-import { Edge, MarkerType, Node } from "reactflow";
+import { Edge, Node } from "reactflow";
+import { createExecuteEdge, createSequenceEdge } from "./createEdge";
 
 
 export const nodes: Node[] = [
@@ -14,21 +15,15 @@ export const nodes: Node[] = [
         data: {value: "x + 2"},
         position: {x: 400, y: 25},
     },
+    {
+        id: "3",
+        type: "resultNode",
+        data: {value: ""},
+        position: {x: 700, y: 25},
+    },
 ];
 
-export const markerEnd = {
-    type: MarkerType.ArrowClosed,
-    width: 30,
-    height: 30,
-};
 export const edges: Edge[] = [
-    {
-        id: "e1-2",
-        source: "1",
-        target: "2",
-        // todo add label to ihgraph
-        label: "sequence",
-        type: "smoothstep",
-        markerEnd: markerEnd
-    },
+    createSequenceEdge("1", "2"),
+    createExecuteEdge("2", "3")
 ];

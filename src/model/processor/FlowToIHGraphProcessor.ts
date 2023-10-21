@@ -8,7 +8,8 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
 
     process() {
         const graph = new IHGraph();
-        const edgeType = graph.createEdgeType("Sequence", 1);
+        const edgeTypeSequence = graph.createEdgeType("Sequence", 1);
+        // const edgeTypeExecute = graph.createEdgeType("Execute", 2);
         const model = this.getModel();
         for (const node of model.nodes) {
             graph.createSourceNode(node.id).setContent(node.data.value);
@@ -22,6 +23,13 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             if (!target) {
                 throw new Error("Returned TargetNode is undefined");
             }
+            if (!edge.data) {
+                throw new Error("Edge data is undefined");
+            }
+            let edgeType = edgeTypeSequence;
+            // if (edge.data.type === "execute") {
+            //     edgeType = edgeTypeExecute;
+            // }
             graph.createTransformationEdge(
                 edgeType,
                 source,
