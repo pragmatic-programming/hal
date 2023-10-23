@@ -5,6 +5,7 @@ import { useStore } from "../../Store";
 import { State } from "../../State";
 import { Environment, Processor } from "kico";
 import { IHGraph } from "ihgraph";
+import { useReactFlow } from "reactflow";
 
 interface Props {
     position: "start" | "inter" | "end";
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export default function Model(props: Props): React.JSX.Element {
+    const {getNode, fitView} = useReactFlow();
     const renderIHGraph = useStore((state: State) => state.renderIhGraph);
     let borderStyle: "dotted" | "solid" | "double";
     let borderWidth: number;
@@ -38,7 +40,7 @@ export default function Model(props: Props): React.JSX.Element {
     }
     return (
         <IconButton
-            onClick={() => renderIHGraph(property)}
+            onClick={() => renderIHGraph(property, getNode, fitView)}
             sx={{
                 marginLeft: marginLeft,
                 marginRight: marginRight,

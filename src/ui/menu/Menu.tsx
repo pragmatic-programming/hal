@@ -8,13 +8,16 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DataUsageIcon from "@mui/icons-material/DataUsage";
 import BoltIcon from "@mui/icons-material/Bolt";
-import { useLayouting } from "../flow/Layouting";
 import MenuButton from "./MenuButton";
 import MenuDivider from "./MenuDivider";
+import { State } from "../../State";
+import { useStore } from "../../Store";
+import { useReactFlow } from "reactflow";
 
 export default function Menu(): React.JSX.Element {
     const theme: Theme = useTheme();
-    const layout = useLayouting();
+    const {getNode, fitView} = useReactFlow();
+    const layout = useStore((state: State) => state.layout);
     const style: CSSProperties = {
         position: "fixed",
         top: 0,
@@ -34,22 +37,22 @@ export default function Menu(): React.JSX.Element {
             <MenuDivider/>
             <MenuButton
                 icon={<MoreVertIcon/>}
-                onClick={() => layout({"elk.algorithm": "layered", "elk.direction": "DOWN"})}
+                onClick={() => layout(getNode, fitView, {"elk.algorithm": "layered", "elk.direction": "DOWN"})}
                 tooltip="Vertical Layout"
             />
             <MenuButton
                 icon={<MoreHorizIcon/>}
-                onClick={() => layout({"elk.algorithm": "layered", "elk.direction": "RIGHT"})}
+                onClick={() => layout(getNode, fitView, {"elk.algorithm": "layered", "elk.direction": "RIGHT"})}
                 tooltip="Horizontal Layout"
             />
             <MenuButton
                 icon={<DataUsageIcon/>}
-                onClick={() => layout({"elk.algorithm": "org.eclipse.elk.radial"})}
+                onClick={() => layout(getNode, fitView, {"elk.algorithm": "org.eclipse.elk.radial"})}
                 tooltip="Radial Layout"
             />
             <MenuButton
                 icon={<BoltIcon/>}
-                onClick={() => layout({"elk.algorithm": "org.eclipse.elk.force"})}
+                onClick={() => layout(getNode, fitView, {"elk.algorithm": "org.eclipse.elk.force"})}
                 tooltip="Force Layout"
             />
         </div>

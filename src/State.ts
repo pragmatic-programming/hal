@@ -3,6 +3,7 @@ import { CompilationContext } from "kico";
 import { IHGraph } from "../../ihgraph";
 import { Edge, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
 import EdgeData from "./model/EdgeData";
+import { LayoutOptions } from "elkjs/lib/elk-api";
 
 export class FlowState {
     constructor(
@@ -24,7 +25,8 @@ export interface State {
     locked: boolean;
     context: CompilationContext;
     mode: PaletteMode;
-    renderIhGraph: (ihGraph: IHGraph) => void;
+    layout: (getNode: (id: string) => Node | undefined, fitView: () => void, layoutOptions: LayoutOptions) => void;
+    renderIhGraph: (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: () => void) => void;
     run: () => void;
     switchMode: () => void;
     switchLocked: () => void;
