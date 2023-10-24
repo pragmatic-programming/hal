@@ -1,7 +1,7 @@
 import React from "react";
 import { createTheme, Palette, PaletteMode, ThemeProvider } from "@mui/material";
-import { useStore } from "../Store";
-import { State } from "../State";
+import { useStore } from "../state/Store";
+import { State } from "../state/State";
 
 interface Props {
     children: React.JSX.Element[] | React.JSX.Element;

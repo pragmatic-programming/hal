@@ -1,10 +1,10 @@
 import ReactFlow, { Background, Controls } from "reactflow";
 import "reactflow/dist/style.css";
-import { State } from "../../State";
+import { State } from "../../state/State";
 import React, { CSSProperties, useMemo } from "react";
 import EditorNode from "./EditorNode";
 import { gui } from "../../constants";
-import { useStore } from "../../Store";
+import { useStore } from "../../state/Store";
 import { shallow } from "zustand/shallow";
 import { Theme, useTheme } from "@mui/material";
 import ResultNode from "./ResultNode";

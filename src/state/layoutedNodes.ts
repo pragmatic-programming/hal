@@ -9,7 +9,7 @@ const elk = new ELK({
     }
 });
 
-export async function layout(getState: () => State, getNode: (id: string) => (Node | undefined), layoutOptions: LayoutOptions = {}) {
+export async function layoutedNodes(getState: () => State, getNode: (id: string) => (Node | undefined), layoutOptions: LayoutOptions = {}) {
     const options = {
         ...layoutOptions,
         "elk.algorithm": "layered",

@@ -1,8 +1,8 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
-import { FlowState } from "../../State";
 import { Edge, Node } from "reactflow";
 import { markerEnd } from "../createEdge";
+import { FlowState } from "../../state/FlowState";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
@@ -28,7 +28,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
             if (!targetId) {
                 throw new Error("Returned targetId is undefined");
             }
-            
+
             let edgeLabel = "";
             let edgeStyle = "";
             let edgeIsAnimated = false;
@@ -44,8 +44,8 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
             }
 
             edges.push({
-                id: "e" + sourceId + "-" + targetId, 
-                source: sourceId, 
+                id: "e" + sourceId + "-" + targetId,
+                source: sourceId,
                 target: targetId,
                 label: edgeLabel,
                 type: edgeStyle,

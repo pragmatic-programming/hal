@@ -1,9 +1,9 @@
 import { CompilationContext, createCompilationContextFromProcessors } from "kico";
 import { HALGraphProcessor } from "hal-kico";
 import { IHGraph } from "ihgraph";
-import { FlowState } from "../../State";
 import { FlowToIHGraphProcessor } from "./FlowToIHGraphProcessor";
 import { IHGraphToFlowProcessor } from "./IHGraphToFlowProcessor";
+import { FlowState } from "../../state/FlowState";
 
 
 export function ihGraphToHalGraph(ihgraph: IHGraph): CompilationContext {

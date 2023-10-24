@@ -1,7 +1,8 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { EvalProcessor, SequenceProcessor } from "hal-kico";
-import { FlowState } from "../../State";
+
+import { FlowState } from "../../state/FlowState";
 
 
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {

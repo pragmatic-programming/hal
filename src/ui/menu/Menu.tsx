@@ -10,8 +10,8 @@ import DataUsageIcon from "@mui/icons-material/DataUsage";
 import BoltIcon from "@mui/icons-material/Bolt";
 import MenuButton from "./MenuButton";
 import MenuDivider from "./MenuDivider";
-import { State } from "../../State";
-import { useStore } from "../../Store";
+import { State } from "../../state/State";
+import { useStore } from "../../state/Store";
 import { useReactFlow } from "reactflow";
 
 export default function Menu(): React.JSX.Element {

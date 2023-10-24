@@ -1,8 +1,8 @@
 import { Avatar, IconButton } from "@mui/material";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import React from "react";
-import { useStore } from "../../Store";
-import { State } from "../../State";
+import { useStore } from "../../state/Store";
+import { State } from "../../state/State";
 import { Environment, Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { useReactFlow } from "reactflow";
