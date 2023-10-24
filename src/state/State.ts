@@ -18,5 +18,6 @@ export interface State {
     projectName: string,
     renderIhGraph: (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: () => void) => void;
     run: () => void;
+    setContent: (getNode: (id: string) => Node | undefined, editorId: string, content: string | undefined) => void,
     switchMode: () => void;
 }

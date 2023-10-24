@@ -3,9 +3,12 @@ import { Handle, NodeProps, Position, useReactFlow } from "reactflow";
 import { Editor as Monaco } from "@monaco-editor/react";
 import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
+import { useStore } from "../../state/Store";
+import { State } from "../../state/State";
 
 export default function EditorNode(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
+    const setContent = useStore((state: State) => state.setContent);
     const {getNode} = useReactFlow();
 
     const style: Partial<CSSProperties> = {
@@ -27,6 +30,9 @@ export default function EditorNode(props: NodeProps): React.JSX.Element {
                 <Monaco
                     defaultLanguage={"javascript"}
                     defaultValue={props.data.value}
+                    onChange={(value: string | undefined) => {
+                        setContent(getNode, props.id, value);
+                    }}
                     width={200}
                     height={300}
                     options={{
