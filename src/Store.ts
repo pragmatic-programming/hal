@@ -2,12 +2,23 @@ import { create } from "zustand";
 import { FlowState, State } from "./State";
 import { CompilationContext, System } from "kico";
 import { IHGraph } from "../../ihgraph";
-import { addEdge, applyEdgeChanges, applyNodeChanges, Connection, EdgeChange, Node, NodeChange } from "reactflow";
+import {
+    addEdge,
+    applyEdgeChanges,
+    applyNodeChanges,
+    Connection,
+    EdgeChange,
+    FitViewOptions,
+    Node,
+    NodeChange
+} from "reactflow";
 import { edges, nodes } from "./model/example";
 import { flowToIHGraph, iHGraphToFlow, ihGraphToHalGraph } from "./model/processor/compilationContexts";
 import { createExecuteEdge, createSequenceEdge } from "./model/createEdge";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import { layout } from "./layout";
+
+const globalFitViewOptions = {maxZoom: 1};
 
 export const useStore = create<State>((setState, getState) => ({
     nodes: nodes,
@@ -70,15 +81,15 @@ export const useStore = create<State>((setState, getState) => ({
             context: context
         };
     }),
-    layout: async (getNode: (id: string) => Node | undefined, fitView: () => void, layoutOptions: LayoutOptions) => {
+    layout: async (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions) => {
         setState({
             nodes: await layout(getState, getNode, layoutOptions)
         });
         window.requestAnimationFrame(() => {
-            fitView();
+            fitView(globalFitViewOptions);
         });
     },
-    renderIhGraph: async (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: () => void) => {
+    renderIhGraph: async (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void) => {
         const context: CompilationContext = iHGraphToFlow(ihGraph);
         context.compile();
         const flowState = context.getResult();
@@ -91,7 +102,7 @@ export const useStore = create<State>((setState, getState) => ({
             nodes: await layout(getState, getNode)
         });
         window.requestAnimationFrame(() => {
-            fitView();
+            fitView(globalFitViewOptions);
         });
     },
     switchLocked: () => setState((state: State): State => ({

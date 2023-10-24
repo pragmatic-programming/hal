@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function Model(props: Props): React.JSX.Element {
-    const {getNode, fitView} = useReactFlow();
+    const {getNode, fitView } = useReactFlow();
     const renderIHGraph = useStore((state: State) => state.renderIhGraph);
     let borderStyle: "dotted" | "solid" | "double";
     let borderWidth: number;
