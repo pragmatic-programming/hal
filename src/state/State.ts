@@ -6,18 +6,16 @@ import EdgeData from "../model/EdgeData";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 
 export interface State {
-    //start reactflow
-    nodes: Node[];
-    edges: Edge<EdgeData>[];
-    onNodesChange: OnNodesChange;
-    onEdgesChange: OnEdgesChange;
-    onConnect: OnConnect;
-    //end reactflow
     busy: boolean,
-    projectName: string,
     context: CompilationContext;
-    mode: PaletteMode;
+    edges: Edge<EdgeData>[];
     layout: (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions) => void;
+    mode: PaletteMode;
+    nodes: Node[];
+    onConnect: OnConnect;
+    onEdgesChange: OnEdgesChange;
+    onNodesChange: OnNodesChange;
+    projectName: string,
     renderIhGraph: (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: () => void) => void;
     run: () => void;
     switchMode: () => void;

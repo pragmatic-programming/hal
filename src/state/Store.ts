@@ -11,17 +11,17 @@ import { renderIhGraph } from "./renderIhGraph";
 import { switchMode } from "./switchMode";
 
 export const useStore = create<State>((setState, getState) => ({
-    nodes: nodes,
-    edges: edges,
-    onNodesChange: onNodesChange(setState, getState),
-    onEdgesChange: onEdgesChange(setState, getState),
-    onConnect: onConnect(getState, setState),
     busy: false,
-    projectName: "hello-world.hal",
-    mode: "light",
     context: new CompilationContext(new System("empty", [])),
-    run: run(setState),
+    edges: edges,
     layout: layout(setState, getState),
+    mode: "light",
+    nodes: nodes,
+    onConnect: onConnect(getState, setState),
+    onEdgesChange: onEdgesChange(setState, getState),
+    onNodesChange: onNodesChange(setState, getState),
+    projectName: "hello-world.hal",
     renderIhGraph: renderIhGraph(setState, getState),
+    run: run(setState),
     switchMode: switchMode(setState),
 }));
