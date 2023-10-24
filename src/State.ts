@@ -1,12 +1,14 @@
 import { PaletteMode } from "@mui/material";
 import { CompilationContext } from "kico";
 import { IHGraph } from "../../ihgraph";
-import { Edge, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
+import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
+import EdgeData from "./model/EdgeData";
+import { LayoutOptions } from "elkjs/lib/elk-api";
 
 export class FlowState {
     constructor(
         readonly nodes: Node[],
-        readonly edges: Edge[]
+        readonly edges: Edge<EdgeData>[]
     ) {
     }
 }
@@ -14,7 +16,7 @@ export class FlowState {
 export interface State {
     //start reactflow
     nodes: Node[];
-    edges: Edge[];
+    edges: Edge<EdgeData>[];
     onNodesChange: OnNodesChange;
     onEdgesChange: OnEdgesChange;
     onConnect: OnConnect;
@@ -23,7 +25,8 @@ export interface State {
     locked: boolean;
     context: CompilationContext;
     mode: PaletteMode;
-    renderIhGraph: (ihGraph: IHGraph) => void;
+    layout: (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions) => void;
+    renderIhGraph: (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: () => void) => void;
     run: () => void;
     switchMode: () => void;
     switchLocked: () => void;

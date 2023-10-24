@@ -2,7 +2,7 @@ import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { FlowState } from "../../State";
 import { Edge, Node } from "reactflow";
-import { markerEnd } from "../example";
+import { markerEnd } from "../createEdge";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
