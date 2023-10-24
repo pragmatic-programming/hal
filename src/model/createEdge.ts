@@ -7,15 +7,25 @@ export const markerEnd = {
     height: 30,
 };
 
+export function createEdge(edgeType: string, sourceId: string, targetId: string): Edge<EdgeData> {
+    if (edgeType === "sequence") {
+        return createSequenceEdge(sourceId, targetId);
+    }
+    if (edgeType === "execute") {
+        return createExecuteEdge(sourceId, targetId);
+    }
+    throw new Error("Unknown edge type: " + edgeType);
+}
+
 export function createSequenceEdge(source: string, target: string): Edge<EdgeData> {
-    return createEdge(source, target, "sequence");
+    return edge(source, target, "sequence");
 }
 
 export function createExecuteEdge(source: string, target: string): Edge<EdgeData> {
-    return createEdge(source, target, "execute");
+    return edge(source, target, "execute");
 }
 
-export function createEdge(source: string, target: string, type: EdgeType): Edge<EdgeData> {
+function edge(source: string, target: string, type: EdgeType): Edge<EdgeData> {
     return {
         id: "e" + source + "-" + target,
         source: source,

@@ -1,8 +1,9 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { Edge, Node } from "reactflow";
-import { markerEnd } from "../createEdge";
+import { createEdge } from "../createEdge";
 import { FlowState } from "../../state/FlowState";
+import { createNode } from "../createNode";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
@@ -10,12 +11,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
         const ihGraph: IHGraph = this.getModel();
         const nodes: Node[] = [];
         for (const sourceNode of ihGraph.getSourceNodes()) {
-            nodes.push({
-                id: sourceNode.getId(),
-                type: "editorNode",
-                data: {value: sourceNode.getContent()},
-                position: {x: 50, y: 25},
-            });
+            nodes.push(createNode(sourceNode));
         }
         const edges: Edge[] = [];
         for (const edge of ihGraph.getEdges()) {
@@ -28,33 +24,11 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
             if (!targetId) {
                 throw new Error("Returned targetId is undefined");
             }
-
-            let edgeLabel = "";
-            let edgeStyle = "";
-            let edgeIsAnimated = false;
-
-            if (edgeType === "sequence") {
-                edgeLabel = "sequence";
-                edgeStyle = "smoothstep";
-            } else if (edgeType === "execute") {
-                edgeLabel = "Execute";
-                edgeIsAnimated = true;
-            } else {
-                throw new Error("Unknown edge type: " + edgeType);
-            }
-
-            edges.push({
-                id: "e" + sourceId + "-" + targetId,
-                source: sourceId,
-                target: targetId,
-                label: edgeLabel,
-                type: edgeStyle,
-                animated: edgeIsAnimated,
-                markerEnd: markerEnd
-            });
+            edges.push(createEdge(edgeType, sourceId, targetId));
         }
         this.setModel(new FlowState(nodes, edges));
     }
+
 
     getId() {
         return "hal.flow.to";
