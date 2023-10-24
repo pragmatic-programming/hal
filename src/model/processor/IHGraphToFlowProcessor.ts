@@ -2,6 +2,7 @@ import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { FlowState } from "../../State";
 import { Edge, Node } from "reactflow";
+import { markerEnd } from "../example";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
@@ -20,15 +21,37 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
         for (const edge of ihGraph.getEdges()) {
             const sourceId = edge.getSourceNode().getId();
             const targetId = edge.getTargetNode().getId();
+            const edgeType = edge.getType().getId();
             if (!sourceId) {
                 throw new Error("Returned sourceId is undefined");
             }
             if (!targetId) {
                 throw new Error("Returned targetId is undefined");
             }
-            edges.push(
-                {id: "e" + sourceId + "-" + targetId, source: sourceId, target: targetId},
-            );
+            
+            let edgeLabel = "";
+            let edgeStyle = "";
+            let edgeIsAnimated = false;
+
+            if (edgeType === "sequence") {
+                edgeLabel = "sequence";
+                edgeStyle = "smoothstep";
+            } else if (edgeType === "execute") {
+                edgeLabel = "Execute";
+                edgeIsAnimated = true;
+            } else {
+                throw new Error("Unknown edge type: " + edgeType);
+            }
+
+            edges.push({
+                id: "e" + sourceId + "-" + targetId, 
+                source: sourceId, 
+                target: targetId,
+                label: edgeLabel,
+                type: edgeStyle,
+                animated: edgeIsAnimated,
+                markerEnd: markerEnd
+            });
         }
         this.setModel(new FlowState(nodes, edges));
     }

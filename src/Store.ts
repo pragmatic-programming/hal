@@ -5,6 +5,7 @@ import { IHGraph } from "../../ihgraph";
 import { addEdge, applyEdgeChanges, applyNodeChanges, Connection, Edge, EdgeChange, NodeChange } from "reactflow";
 import { edges, markerEnd, nodes } from "./model/example";
 import { flowToIHGraph, iHGraphToFlow, ihGraphToHalGraph } from "./model/processor/compilationContexts";
+import { CliqueSelectionProcessor } from "hal-kico";
 
 
 export const useStore = create<State>((setState, getState) => ({
@@ -78,6 +79,7 @@ export const useStore = create<State>((setState, getState) => ({
         const preContext: CompilationContext = flowToIHGraph(new FlowState(state.nodes, state.edges));
         preContext.compile();
         const context: CompilationContext = ihGraphToHalGraph(preContext.getResult());
+        context.startEnvironment.setProperty(CliqueSelectionProcessor.CSP_LOG, false);
         context.compile();
         return {
             ...state,

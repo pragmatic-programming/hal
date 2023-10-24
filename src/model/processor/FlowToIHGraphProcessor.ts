@@ -1,6 +1,6 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
-import { loadDefaultTransformationConfiguration } from "hal-kico";
+import { EvalProcessor, SequenceProcessor } from "hal-kico";
 import { FlowState } from "../../State";
 
 
@@ -8,7 +8,9 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
 
     process() {
         const graph = new IHGraph();
-        const edgeType = graph.createEdgeType("Sequence", 1);
+        graph.createEdgeType("sequence", 8);
+        graph.createEdgeType("execute", 2);
+
         const model = this.getModel();
         for (const node of model.nodes) {
             graph.createSourceNode(node.id).setContent(node.data.value);
@@ -16,11 +18,15 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
         for (const edge of model.edges) {
             const source = graph.getNodeById(edge.source);
             const target = graph.getNodeById(edge.target);
+            const edgeType = graph.getEdgeTypeById(edge.label as string);
             if (!source) {
                 throw new Error("Returned SourceNode is undefined");
             }
             if (!target) {
                 throw new Error("Returned TargetNode is undefined");
+            }
+            if (!edgeType) {
+                throw new Error("Returned EdgeType is undefined: " + edge.label + "");
             }
             graph.createTransformationEdge(
                 edgeType,
@@ -28,8 +34,8 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
                 target
             );
         }
-        // todo this line here is just a workaround
-        loadDefaultTransformationConfiguration(graph);
+        graph.getTransformationConfiguration().setById("sequence", SequenceProcessor);
+        graph.getTransformationConfiguration().setById("execute", EvalProcessor);
         this.setModel(graph);
     }
 
