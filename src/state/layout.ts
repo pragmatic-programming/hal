@@ -5,7 +5,7 @@ import { layoutedNodes } from "./layoutedNodes";
 import { globalFitViewOptions } from "../constants";
 
 export function layout(setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void, getState: () => State) {
-    return async (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions) => {
+    return async (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions = {}) => {
         setState({
             busy: true
         });

@@ -16,12 +16,13 @@ const selector = (state: State) => ({
     onNodesChange: state.onNodesChange,
     onEdgesChange: state.onEdgesChange,
     onConnect: state.onConnect,
+    layout: state.layout
 });
 
 
 export default function Flow(): React.JSX.Element {
     const nodeTypes = useMemo(() => ({editorNode: EditorNode, resultNode: ResultNode}), []);
-    const {nodes, edges, onNodesChange, onEdgesChange, onConnect} = useStore(selector, shallow);
+    const {layout, nodes, edges, onNodesChange, onEdgesChange, onConnect} = useStore(selector, shallow);
     const theme: Theme = useTheme();
     const style: CSSProperties = {
         backgroundColor: theme.palette.gui.canvas.background,
@@ -37,6 +38,7 @@ export default function Flow(): React.JSX.Element {
             style={style}
         >
             <ReactFlow
+                onInit={reactFlowInstance => layout(reactFlowInstance.getNode, reactFlowInstance.fitView,{})}
                 edges={edges}
                 nodeTypes={nodeTypes}
                 nodes={nodes}
