@@ -3,7 +3,6 @@ import React from "react";
 import { InsertDriveFile } from "@mui/icons-material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import { useReactFlow } from "reactflow";
 
 interface Props {
     nodeId: string,
@@ -19,7 +18,6 @@ const EditorNodeLabelTextField = styled(TextField)({
 });
 
 export function EditorNodeHeader(props: Props): React.JSX.Element {
-    const {getNode} = useReactFlow();
     const setNodeLabel = useStore((state: State) => state.setNodeLabel);
     return (
         <Box
@@ -41,7 +39,7 @@ export function EditorNodeHeader(props: Props): React.JSX.Element {
                 size="small"
                 value={props.nodeLabel}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    setNodeLabel(getNode, props.nodeId, event.target.value);
+                    setNodeLabel(props.nodeId, event.target.value);
                 }}
             />
         </Box>

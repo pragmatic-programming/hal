@@ -11,6 +11,7 @@ import { renderIhGraph } from "./renderIhGraph";
 import { switchMode } from "./switchMode";
 import { setNodeContent } from "./setNodeContent";
 import { setNodeLabel } from "./setNodeLabel";
+import { setEdgeLabel } from "./setEdgeLabel";
 
 export const useStore = create<State>((setState, getState) => ({
     busy: false,
@@ -27,5 +28,6 @@ export const useStore = create<State>((setState, getState) => ({
     run: run(setState),
     setNodeValue: setNodeContent(getState, setState),
     setNodeLabel: setNodeLabel(getState, setState),
+    setEdgeLabel: setEdgeLabel(getState, setState),
     switchMode: switchMode(setState),
 }));

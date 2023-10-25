@@ -33,7 +33,7 @@ export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Elemen
                     defaultLanguage={"javascript"}
                     defaultValue={props.data.content}
                     onChange={(value: string | undefined) => {
-                        setNodeValue(getNode, props.id, value);
+                        setNodeValue(props.id, value);
                     }}
                     height={300}
                     options={{

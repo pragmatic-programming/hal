@@ -4,7 +4,7 @@ import NodeData from "../model/NodeData";
 
 
 export function setNodeLabel(getState: () => State, setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void) {
-    return async (getNode: (id: string) => Node | undefined, editorId: string, label: string) => {
+    return async (editorId: string, label: string) => {
         setState({
             nodes: getState().nodes.map((node: Node<NodeData>) => {
                 if (node.id === editorId) {
