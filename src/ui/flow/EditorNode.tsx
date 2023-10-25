@@ -5,10 +5,11 @@ import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
+import NodeData from "../../model/NodeData";
 
-export default function EditorNode(props: NodeProps): React.JSX.Element {
+export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
-    const setContent = useStore((state: State) => state.setContent);
+    const setNodeValue = useStore((state: State) => state.setNodeValue);
     const {getNode} = useReactFlow();
 
     const style: Partial<CSSProperties> = {
@@ -25,15 +26,15 @@ export default function EditorNode(props: NodeProps): React.JSX.Element {
                 style={style}
             >
                 <EditorNodeHeader
-                    language="javascript"
+                    nodeLabel={props.data.label}
+                    nodeId={props.id}
                 />
                 <Monaco
                     defaultLanguage={"javascript"}
-                    defaultValue={props.data.value}
+                    defaultValue={props.data.content}
                     onChange={(value: string | undefined) => {
-                        setContent(getNode, props.id, value);
+                        setNodeValue(getNode, props.id, value);
                     }}
-                    width={200}
                     height={300}
                     options={{
                         minimap: {

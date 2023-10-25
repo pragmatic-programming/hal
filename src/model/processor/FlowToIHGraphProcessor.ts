@@ -14,7 +14,7 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
 
         const model = this.getModel();
         for (const node of model.nodes) {
-            graph.createSourceNode(node.id).setContent(node.data.value);
+            graph.createSourceNode(node.id).setContent(node.data.content ? node.data.content : "");
         }
         for (const edge of model.edges) {
             const source = graph.getNodeById(edge.source);

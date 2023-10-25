@@ -9,7 +9,8 @@ import { run } from "./run";
 import { layout } from "./layout";
 import { renderIhGraph } from "./renderIhGraph";
 import { switchMode } from "./switchMode";
-import { setContent } from "./setContent";
+import { setNodeContent } from "./setNodeContent";
+import { setNodeLabel } from "./setNodeLabel";
 
 export const useStore = create<State>((setState, getState) => ({
     busy: false,
@@ -24,6 +25,7 @@ export const useStore = create<State>((setState, getState) => ({
     projectName: "hello-world.hal",
     renderIhGraph: renderIhGraph(setState, getState),
     run: run(setState),
-    setContent: setContent(getState, setState),
+    setNodeValue: setNodeContent(getState, setState),
+    setNodeLabel: setNodeLabel(getState, setState),
     switchMode: switchMode(setState),
 }));

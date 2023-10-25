@@ -11,11 +11,11 @@ const elk = new ELK({
 
 export async function layoutedNodes(getState: () => State, getNode: (id: string) => (Node | undefined), layoutOptions: LayoutOptions = {}) {
     const options = {
-        ...layoutOptions,
         "elk.algorithm": "layered",
         "elk.direction": "RIGHT",
-        "elk.layered.spacing.nodeNodeBetweenLayers": "200",
+        "elk.layered.spacing.nodeNodeBetweenLayers": "400",
         "elk.spacing.nodeNode": "400",
+        ...layoutOptions,
     };
 
     const graph: ElkNode = {
