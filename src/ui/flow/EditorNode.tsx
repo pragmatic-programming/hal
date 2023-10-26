@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { Handle, NodeProps, Position, useReactFlow } from "reactflow";
+import { Handle, NodeProps, Position } from "reactflow";
 import { Editor as Monaco } from "@monaco-editor/react";
 import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
@@ -10,7 +10,6 @@ import NodeData from "../../model/NodeData";
 export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
     const setNodeValue = useStore((state: State) => state.setNodeValue);
-    const {getNode} = useReactFlow();
 
     const style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
@@ -21,7 +20,11 @@ export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Elemen
 
     return (
         <>
-            <Handle type="target" position={Position.Left}/>
+            <Handle
+                id="input"
+                type="target"
+                position={Position.Left}
+            />
             <div
                 style={style}
             >
@@ -43,22 +46,18 @@ export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Elemen
                     }}
                 />
             </div>
-            <Handle type="source" position={Position.Right} isValidConnection={connection => {
-                if (!connection.target) {
-                    return false;
-                }
-                if (!connection.source) {
-                    return false;
-                }
-                if (connection.target === connection.source) {
-                    return false;
-                }
-                const target = getNode(connection.target);
-                if (!target) {
-                    return false;
-                }
-                return target.type === "editorNode" || target.type === "resultNode";
-            }}/>
+            <Handle
+                id="execute"
+                type="source"
+                position={Position.Right}
+                style={{top: 50}}
+            />
+            <Handle
+                id="sequence"
+                type="source"
+                position={Position.Right}
+                style={{top: 10}}
+            />
         </>
     );
 }

@@ -4,6 +4,7 @@ import { createExecuteEdge, createSequenceEdge } from "../model/createEdge";
 
 export function onConnect(getState: () => State, setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void) {
     return (connection: Connection) => {
+        console.log(connection);
         const source = connection.source;
         const target = connection.target;
         if (!source) {
@@ -20,21 +21,18 @@ export function onConnect(getState: () => State, setState: (partial: (Partial<St
         if (!targetNode) {
             throw new Error("TargetNode is undefined");
         }
-        // todo refactor this
-        if (sourceNode.type === "editorNode" && targetNode.type === "resultNode") {
+        if (connection.sourceHandle === "execute") {
             setState({
                 edges: addEdge(createExecuteEdge(source, target), getState().edges),
             });
             return;
         }
-        if (sourceNode.type === "editorNode" && targetNode.type === "editorNode") {
+        if (connection.sourceHandle === "sequence") {
             setState({
                 edges: addEdge(createSequenceEdge(source, target), getState().edges),
             });
             return;
         }
-        setState({
-            edges: addEdge(connection, getState().edges),
-        });
+        throw new Error("Can't create edge for sourceHandle type '" + connection.sourceHandle + "'");
     };
 }

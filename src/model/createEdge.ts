@@ -19,18 +19,20 @@ export function createEdge(edgeType: string, sourceId: string, targetId: string)
 }
 
 export function createSequenceEdge(source: string, target: string): Edge {
-    return edge(source, target, "sequence");
+    return edge(source, target, "sequence", "sequence", "input");
 }
 
 export function createExecuteEdge(source: string, target: string): Edge {
-    return edge(source, target, "execute");
+    return edge(source, target, "execute", "execute", "input");
 }
 
-function edge(source: string, target: string, type: string): Edge {
+function edge(source: string, target: string, type: string, sourceHandle: string, targetHandle: string): Edge {
     return {
         id: "e" + source + "-" + target,
         source: source,
         target: target,
+        sourceHandle: sourceHandle,
+        targetHandle: targetHandle,
         label: type,
         type: type,
         markerEnd: markerEnd,
