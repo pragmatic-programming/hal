@@ -25,6 +25,13 @@ export function EdgeRenderer(props: EdgeProps): React.JSX.Element {
                     <TextField
                         variant="outlined"
                         size="small"
+                        InputProps={{
+                            inputProps: {
+                                style: {
+                                    textAlign: "center",
+                                }
+                            }
+                        }}
                         value={props.label}
                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
                         style={{
