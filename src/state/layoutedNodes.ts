@@ -16,6 +16,7 @@ export async function layoutedNodes(getState: () => State, getNode: (id: string)
         "elk.direction": "RIGHT",
         "elk.layered.spacing.nodeNodeBetweenLayers": "200",
         "elk.spacing.nodeNode": "400",
+        "org.eclipse.elk.spacing.nodeNode": "30"
     };
 
     const graph: ElkNode = {
