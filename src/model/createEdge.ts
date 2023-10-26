@@ -6,6 +6,8 @@ export const markerEnd = {
     height: 30,
 };
 
+export const validEdgeTypes: string[] = ["sequence", "execute"];
+
 export function createEdge(edgeType: string, sourceId: string, targetId: string): Edge {
     if (edgeType === "sequence") {
         return createSequenceEdge(sourceId, targetId);

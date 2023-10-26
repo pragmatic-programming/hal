@@ -3,6 +3,7 @@ import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath } from "reactflow
 import { TextField } from "@mui/material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
+import { validEdgeTypes } from "../../model/createEdge";
 
 export function EdgeRenderer(props: EdgeProps): React.JSX.Element {
     const [edgePath, labelX, labelY] = getBezierPath(props);
@@ -32,6 +33,7 @@ export function EdgeRenderer(props: EdgeProps): React.JSX.Element {
                                 }
                             }
                         }}
+                        error={validEdgeTypes.find(value => value === props.label) === undefined}
                         value={props.label}
                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
                         style={{
