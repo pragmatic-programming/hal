@@ -1,4 +1,4 @@
-import ReactFlow, { Background, Controls } from "reactflow";
+import ReactFlow, { Background, Controls, EdgeTypes } from "reactflow";
 import "reactflow/dist/style.css";
 import { State } from "../../state/State";
 import React, { CSSProperties, useMemo } from "react";
@@ -8,6 +8,7 @@ import { useStore } from "../../state/Store";
 import { shallow } from "zustand/shallow";
 import { Theme, useTheme } from "@mui/material";
 import ResultNode from "./ResultNode";
+import { EdgeRenderer } from "./EdgeRenderer";
 
 
 const selector = (state: State) => ({
@@ -19,6 +20,10 @@ const selector = (state: State) => ({
     layout: state.layout
 });
 
+const edgeTypes: EdgeTypes = {
+    sequence: EdgeRenderer,
+    execute: EdgeRenderer,
+};
 
 export default function Flow(): React.JSX.Element {
     const nodeTypes = useMemo(() => ({editorNode: EditorNode, resultNode: ResultNode}), []);
@@ -38,12 +43,13 @@ export default function Flow(): React.JSX.Element {
             style={style}
         >
             <ReactFlow
-                onInit={reactFlowInstance => layout(reactFlowInstance.getNode, reactFlowInstance.fitView,{})}
+                edgeTypes={edgeTypes}
                 edges={edges}
                 nodeTypes={nodeTypes}
                 nodes={nodes}
                 onConnect={onConnect}
                 onEdgesChange={onEdgesChange}
+                onInit={reactFlowInstance => layout(reactFlowInstance.getNode, reactFlowInstance.fitView,{})}
                 onNodesChange={onNodesChange}
             >
                 <Background/>

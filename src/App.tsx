@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.scss";
 import Menu from "./ui/menu/Menu";
 import Theme from "./ui/Theme";
 import Bottom from "./ui/bottom/Bottom";
