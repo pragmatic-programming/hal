@@ -10,8 +10,7 @@ const elk = new ELK({
 });
 
 export async function layoutedNodes(getState: () => State, getNode: (id: string) => (Node | undefined), layoutOptions: LayoutOptions = {}) {
-    const options = {
-
+    const options: LayoutOptions = {
         "elk.algorithm": "layered",
         "elk.direction": "RIGHT",
         "elk.layered.spacing.nodeNodeBetweenLayers": "400",
