@@ -1,23 +1,28 @@
 import React from "react";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import MenuButton from "./MenuButton";
-import { AddBox } from "@mui/icons-material";
+import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { useReactFlow } from "reactflow";
 
 interface Props {
     type: string;
-    tooltip: string;
+    text: string;
+    icon: React.JSX.Element;
 }
 
 export default function AddEditorButton(props: Props): React.JSX.Element {
     const addEditor = useStore((state: State) => state.onNodesChange);
+    const layout = useStore((state: State) => state.layout);
+    const toggleDrawer = useStore((state: State) => state.toggleDrawer);
+    const {getNode, fitView} = useReactFlow();
     const nextId = useStore(
         (state: State) => Math.max(
             ...state.nodes.map(node => Number(node.id)), 0
         ) + 1
     );
     return (
-        <MenuButton
+        <ListItemButton
+            sx={{pl: 4}}
             onClick={
                 () => {
                     addEditor(
@@ -27,13 +32,18 @@ export default function AddEditorButton(props: Props): React.JSX.Element {
                                 id: nextId.toString(),
                                 type: props.type,
                                 data: {value: ""},
-                                position: {x: 100, y: 125},
+                                position: {x: 0, y: 0},
                             },
                         }]);
+                    toggleDrawer();
+                    layout(getNode, fitView);
                 }
             }
-            icon={<AddBox fontSize="inherit"/>}
-            tooltip={props.tooltip}
-        />
+        >
+            <ListItemIcon>
+                {props.icon}
+            </ListItemIcon>
+            <ListItemText primary={props.text}/>
+        </ListItemButton>
     );
 }

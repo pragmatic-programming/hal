@@ -12,10 +12,12 @@ import { switchMode } from "./switchMode";
 import { setNodeContent } from "./setNodeContent";
 import { setNodeLabel } from "./setNodeLabel";
 import { setEdgeLabel } from "./setEdgeLabel";
+import { toggleDrawer } from "./toggleDrawer";
 
 export const useStore = create<State>((setState, getState) => ({
     busy: false,
     context: new CompilationContext(new System("empty", [])),
+    drawerOpen: true,
     edges: edges,
     layout: layout(setState, getState),
     mode: "light",
@@ -26,8 +28,9 @@ export const useStore = create<State>((setState, getState) => ({
     projectName: "hello-world.hal",
     renderIhGraph: renderIhGraph(setState, getState),
     run: run(setState),
-    setNodeValue: setNodeContent(getState, setState),
-    setNodeLabel: setNodeLabel(getState, setState),
     setEdgeLabel: setEdgeLabel(getState, setState),
+    setNodeLabel: setNodeLabel(getState, setState),
+    setNodeValue: setNodeContent(getState, setState),
     switchMode: switchMode(setState),
+    toggleDrawer: toggleDrawer(setState),
 }));
