@@ -17,7 +17,7 @@ import { toggleDrawer } from "./toggleDrawer";
 export const useStore = create<State>((setState, getState) => ({
     busy: false,
     context: new CompilationContext(new System("empty", [])),
-    drawerOpen: true,
+    drawerOpen: false,
     edges: edges,
     layout: layout(setState, getState),
     mode: "light",
