@@ -1,4 +1,4 @@
-import ReactFlow, { Background, Controls, EdgeTypes } from "reactflow";
+import ReactFlow, { Background, Controls, EdgeTypes, ReactFlowInstance } from "reactflow";
 import "reactflow/dist/style.css";
 import { State } from "../../state/State";
 import React, { CSSProperties, useMemo } from "react";
@@ -49,7 +49,7 @@ export default function Flow(): React.JSX.Element {
                 nodes={nodes}
                 onConnect={onConnect}
                 onEdgesChange={onEdgesChange}
-                onInit={reactFlowInstance => layout(reactFlowInstance.getNode, reactFlowInstance.fitView,{})}
+                onInit={(reactFlowInstance :ReactFlowInstance )=> layout(reactFlowInstance.getNode, reactFlowInstance.fitView,{})}
                 onNodesChange={onNodesChange}
             >
                 <Background/>

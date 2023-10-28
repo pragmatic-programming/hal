@@ -10,6 +10,7 @@ import NodeData from "../../model/NodeData";
 export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
     const setNodeValue = useStore((state: State) => state.setNodeValue);
+    const setNodeLabel = useStore((state: State) => state.setNodeLabel);
 
     const style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
@@ -29,21 +30,16 @@ export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Elemen
                 style={style}
             >
                 <EditorNodeHeader
-                    nodeLabel={props.data.label}
+                    value={props.data.label}
+                    onChange={(content: string) => setNodeLabel(props.id, content)}
                     nodeId={props.id}
                 />
                 <Monaco
                     defaultLanguage={"javascript"}
-                    defaultValue={props.data.content}
-                    onChange={(value: string | undefined) => {
-                        setNodeValue(props.id, value);
-                    }}
                     height={300}
-                    options={{
-                        minimap: {
-                            enabled: false
-                        }
-                    }}
+                    onChange={(value: string | undefined) => setNodeValue(props.id, value)}
+                    options={{minimap: {enabled: false}}}
+                    value={props.data.content}
                 />
             </div>
             <Handle

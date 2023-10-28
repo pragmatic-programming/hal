@@ -10,7 +10,6 @@ interface Props {
 // Augment the palette to include custom colors
 declare module "@mui/material/styles" {
     interface Palette {
-        edge: string,
         gui: {
             menu: {
                 background: string,
@@ -28,7 +27,12 @@ declare module "@mui/material/styles" {
 
 function theme(mode: PaletteMode) {
     let palette: Partial<Palette> = {
-        edge: "#000000",
+        primary: {
+            main: "rgba(0, 0, 0, 0.87)",
+            light: "rgba(0, 0, 0, 0.87)",
+            dark: "rgba(0, 0, 0, 0.87)",
+            contrastText: "rgba(0, 0, 0, 0.87)",
+        },
         gui: {
             menu: {
                 background: "#eeeeee",
@@ -44,7 +48,6 @@ function theme(mode: PaletteMode) {
     };
     if (mode === "dark") {
         palette = {
-            edge: "#000000",
             gui: {
                 menu: {
                     background: "#1e1e1e",

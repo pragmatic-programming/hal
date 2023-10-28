@@ -5,8 +5,17 @@ import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } f
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import NodeData from "../model/NodeData";
 
+export interface EditorOpenState {
+    nodeId: string,
+    content: string | undefined,
+    label: string,
+}
+
 export interface State {
     busy: boolean,
+    editorOpen: EditorOpenState | undefined,
+    editorOpenSetContent: (content: string | undefined) => void,
+    editorOpenSetLabel: (content: string) => void,
     context: CompilationContext,
     drawerOpen: boolean,
     edges: Edge[],
@@ -16,6 +25,7 @@ export interface State {
     onConnect: OnConnect,
     onEdgesChange: OnEdgesChange,
     onNodesChange: OnNodesChange,
+    openEditor: (getNode: (id: string) => Node | undefined, editorId: string | undefined) => void,
     projectName: string,
     renderIhGraph: (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: () => void) => void,
     run: () => void,

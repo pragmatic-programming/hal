@@ -3,13 +3,16 @@ import React from "react";
 import { InsertDriveFile } from "@mui/icons-material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
+import { Node, useReactFlow } from "reactflow";
+import NodeData from "../../model/NodeData";
 
 interface Props {
     nodeId: string,
-    nodeLabel: string,
+    value: string | undefined,
+    onChange: (content: string) => void,
 }
 
-const EditorNodeLabelTextField = styled(TextField)({
+export const EditorNodeLabelTextField = styled(TextField)({
     "& .MuiOutlinedInput-root": {
         "& fieldset": {
             border: "none"
@@ -18,7 +21,12 @@ const EditorNodeLabelTextField = styled(TextField)({
 });
 
 export function EditorNodeHeader(props: Props): React.JSX.Element {
-    const setNodeLabel = useStore((state: State) => state.setNodeLabel);
+    const openEditor = useStore((state: State) => state.openEditor);
+    const {getNode} = useReactFlow();
+    let node: Node<NodeData> | undefined = getNode(props.nodeId);
+    if (!node) {
+        throw new Error("Node is undefined");
+    }
     return (
         <Box
             sx={{
@@ -26,21 +34,20 @@ export function EditorNodeHeader(props: Props): React.JSX.Element {
                 // todo should come from theme
                 backgroundColor: "#ffffff",
                 display: "flex",
-                mr: 5,
+                mr: 6,
                 pb: .5,
                 pl: 1,
                 pt: .5,
             }}
         >
             <InsertDriveFile
+                onClick={() => openEditor(getNode, props.nodeId)}
                 sx={{color: "action.active"}}
             />
             <EditorNodeLabelTextField
                 size="small"
-                value={props.nodeLabel}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                    setNodeLabel(props.nodeId, event.target.value);
-                }}
+                value={props.value}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {props.onChange(event.target.value);}}
             />
         </Box>
     );

@@ -13,18 +13,25 @@ import { setNodeContent } from "./setNodeContent";
 import { setNodeLabel } from "./setNodeLabel";
 import { setEdgeLabel } from "./setEdgeLabel";
 import { toggleDrawer } from "./toggleDrawer";
+import { openEditor } from "./openEditor";
+import { editorOpenSetContent } from "./editorOpenSetContent";
+import { editorOpenSetLabel } from "./editorOpenSetLabel";
 
 export const useStore = create<State>((setState, getState) => ({
     busy: false,
     context: new CompilationContext(new System("empty", [])),
     drawerOpen: false,
     edges: edges,
+    editorOpen: undefined,
+    editorOpenSetContent: editorOpenSetContent(setState),
+    editorOpenSetLabel: editorOpenSetLabel(setState),
     layout: layout(setState, getState),
     mode: "light",
     nodes: nodes,
     onConnect: onConnect(getState, setState),
     onEdgesChange: onEdgesChange(setState, getState),
     onNodesChange: onNodesChange(setState, getState),
+    openEditor: openEditor(getState, setState),
     projectName: "hello-world.hal",
     renderIhGraph: renderIhGraph(setState, getState),
     run: run(setState),
