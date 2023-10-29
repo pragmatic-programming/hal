@@ -1,6 +1,6 @@
-import { State } from "./State";
+import { State } from "../State";
 import { addEdge, Connection } from "reactflow";
-import { createExecuteEdge, createSequenceEdge } from "../model/createEdge";
+import { createExecuteEdge, createSequenceEdge } from "../../model/createEdge";
 import { StoreApi } from "zustand";
 
 export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {

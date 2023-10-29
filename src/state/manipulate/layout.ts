@@ -1,8 +1,8 @@
-import { State } from "./State";
+import { State } from "../State";
 import { FitViewOptions, Node } from "reactflow";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import { layoutedNodes } from "./layoutedNodes";
-import { globalFitViewOptions } from "../constants";
+import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 
 export function layout(setState: StoreApi<State>['setState'], getState: () => State) {

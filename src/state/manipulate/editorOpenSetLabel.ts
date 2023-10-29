@@ -1,4 +1,4 @@
-import { State } from "./State";
+import { State } from "../State";
 import { StoreApi } from "zustand";
 
 export function editorOpenSetLabel(setState: StoreApi<State>['setState']) {
@@ -6,7 +6,6 @@ export function editorOpenSetLabel(setState: StoreApi<State>['setState']) {
         if (!state.editorOpen) {
             throw new Error("EditorOpen is undefined");
         }
-
         return {
             ...state,
             editorOpen: {

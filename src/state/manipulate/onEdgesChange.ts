@@ -1,4 +1,4 @@
-import { State } from "./State";
+import { State } from "../State";
 import { applyEdgeChanges, EdgeChange } from "reactflow";
 import { StoreApi } from "zustand";
 

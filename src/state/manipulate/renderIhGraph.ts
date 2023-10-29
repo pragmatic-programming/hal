@@ -1,10 +1,10 @@
-import { State } from "./State";
+import { State } from "../State";
 import { IHGraph } from "ihgraph";
 import { FitViewOptions, Node } from "reactflow";
 import { CompilationContext } from "kico";
-import { iHGraphToFlow } from "../model/processor/compilationContexts";
+import { iHGraphToFlow } from "../../model/processor/compilationContexts";
 import { layoutedNodes } from "./layoutedNodes";
-import { globalFitViewOptions } from "../constants";
+import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 
 export function renderIhGraph(setState: StoreApi<State>["setState"], getState: () => State) {

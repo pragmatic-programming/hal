@@ -1,4 +1,4 @@
-import { State } from "./State";
+import { State } from "../State";
 import { StoreApi } from "zustand";
 
 export function switchMode(setState: StoreApi<State>["setState"]) {

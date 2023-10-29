@@ -1,20 +1,20 @@
 import { State } from "./State";
 import { CompilationContext, System } from "kico";
 import { edges, nodes } from "../model/example";
-import { onNodesChange } from "./onNodesChange";
-import { onEdgesChange } from "./onEdgesChange";
-import { onConnect } from "./onConnect";
-import { run } from "./run";
-import { layout } from "./layout";
-import { renderIhGraph } from "./renderIhGraph";
-import { switchMode } from "./switchMode";
-import { setNodeContent } from "./setNodeContent";
-import { setNodeLabel } from "./setNodeLabel";
-import { setEdgeLabel } from "./setEdgeLabel";
-import { toggleDrawer } from "./toggleDrawer";
-import { openEditor } from "./openEditor";
-import { editorOpenSetContent } from "./editorOpenSetContent";
-import { editorOpenSetLabel } from "./editorOpenSetLabel";
+import { onNodesChange } from "./manipulate/onNodesChange";
+import { onEdgesChange } from "./manipulate/onEdgesChange";
+import { onConnect } from "./manipulate/onConnect";
+import { run } from "./manipulate/run";
+import { layout } from "./manipulate/layout";
+import { renderIhGraph } from "./manipulate/renderIhGraph";
+import { switchMode } from "./manipulate/switchMode";
+import { setNodeContent } from "./manipulate/setNodeContent";
+import { setNodeLabel } from "./manipulate/setNodeLabel";
+import { setEdgeLabel } from "./manipulate/setEdgeLabel";
+import { toggleDrawer } from "./manipulate/toggleDrawer";
+import { openEditor } from "./manipulate/openEditor";
+import { editorOpenSetContent } from "./manipulate/editorOpenSetContent";
+import { editorOpenSetLabel } from "./manipulate/editorOpenSetLabel";
 import { createWithEqualityFn } from "zustand/traditional";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({

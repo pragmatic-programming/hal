@@ -1,4 +1,4 @@
-import { State } from "./State";
+import { State } from "../State";
 import { applyNodeChanges, NodeChange } from "reactflow";
 import { StoreApi } from "zustand";
 

@@ -1,4 +1,4 @@
-import { State } from "./State";
+import { State } from "../State";
 import { StoreApi } from "zustand";
 
 export function editorOpenSetContent(setState: StoreApi<State>["setState"]) {

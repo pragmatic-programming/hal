@@ -1,6 +1,6 @@
-import { State } from "./State";
+import { State } from "../State";
 import { Node } from "reactflow";
-import NodeData from "../model/NodeData";
+import NodeData from "../../model/NodeData";
 import { StoreApi } from "zustand";
 
 export function openEditor(setState: StoreApi<State>["setState"], getState: () => State) {

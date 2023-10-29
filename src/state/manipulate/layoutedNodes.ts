@@ -1,4 +1,4 @@
-import { State } from "./State";
+import { State } from "../State";
 import { Edge, Node } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
 
