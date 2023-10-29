@@ -32,7 +32,7 @@ export default function Editor(props: Props): React.JSX.Element {
                 borderColor: theme.palette.info.light,
                 borderStyle: "solid",
                 borderWidth: 2,
-                background: theme.palette.gui.menu.background,
+                background: theme.palette.primary.main,
             }}
         >
             <IconButton

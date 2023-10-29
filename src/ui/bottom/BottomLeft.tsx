@@ -11,7 +11,7 @@ export default function BottomLeft(): React.JSX.Element {
             spacing={1}
             justifyContent={"flex-start"}
         >
-            <Typography variant="caption">Project: {projectName}</Typography>
+            <Typography variant="caption" color="secondary">Project: {projectName}</Typography>
         </Stack>
 
     );

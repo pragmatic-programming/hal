@@ -6,7 +6,6 @@ import EditorNode from "./EditorNode";
 import { gui } from "../../constants";
 import { useStore } from "../../state/Store";
 import { shallow } from "zustand/shallow";
-import { Theme, useTheme } from "@mui/material";
 import ResultNode from "./ResultNode";
 import { EdgeRenderer } from "./EdgeRenderer";
 
@@ -28,9 +27,7 @@ const edgeTypes: EdgeTypes = {
 export default function Flow(): React.JSX.Element {
     const nodeTypes = useMemo(() => ({editorNode: EditorNode, resultNode: ResultNode}), []);
     const {layout, nodes, edges, onNodesChange, onEdgesChange, onConnect} = useStore(selector, shallow);
-    const theme: Theme = useTheme();
     const style: CSSProperties = {
-        backgroundColor: theme.palette.gui.canvas.background,
         left: gui.menuWidth,
         position: "fixed",
         top: 0,
@@ -49,7 +46,7 @@ export default function Flow(): React.JSX.Element {
                 nodes={nodes}
                 onConnect={onConnect}
                 onEdgesChange={onEdgesChange}
-                onInit={(reactFlowInstance :ReactFlowInstance )=> layout(reactFlowInstance.getNode, reactFlowInstance.fitView,{})}
+                onInit={(reactFlowInstance: ReactFlowInstance) => layout(reactFlowInstance.getNode, reactFlowInstance.fitView, {})}
                 onNodesChange={onNodesChange}
             >
                 <Background/>

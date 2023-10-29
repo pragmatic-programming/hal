@@ -16,7 +16,7 @@ export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Elemen
         borderColor: theme.palette.info.light,
         borderStyle: "solid",
         borderWidth: 1,
-        background: theme.palette.gui.menu.background,
+        background: theme.palette.primary.main,
     };
 
     return (

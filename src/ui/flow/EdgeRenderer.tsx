@@ -1,6 +1,6 @@
 import React from "react";
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath } from "reactflow";
-import { TextField } from "@mui/material";
+import { TextField, Theme, useTheme } from "@mui/material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { validEdgeTypes } from "../../model/createEdge";
@@ -8,6 +8,7 @@ import { validEdgeTypes } from "../../model/createEdge";
 export function EdgeRenderer(props: EdgeProps): React.JSX.Element {
     const [edgePath, labelX, labelY] = getBezierPath(props);
     const setEdgeLabel = useStore((state: State) => state.setEdgeLabel);
+    const theme: Theme = useTheme();
     return (
         <>
             <BaseEdge
@@ -37,7 +38,7 @@ export function EdgeRenderer(props: EdgeProps): React.JSX.Element {
                         value={props.label}
                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
                         style={{
-                            backgroundColor: "#ffffff",
+                            backgroundColor: theme.palette.primary.light,
                             width: 100,
                         }}
                     />

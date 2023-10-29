@@ -15,7 +15,7 @@ export default function BottomRight(): React.JSX.Element {
             <IconButton>
                 <Loop
                     className={rotate ? "rotate" : "still"}
-                    color={"action"}
+                    color={"secondary"}
                     style={{fontSize: 20}}
                 />
             </IconButton>

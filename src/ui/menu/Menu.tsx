@@ -16,8 +16,8 @@ export default function Menu(): React.JSX.Element {
         left: 0,
         width: gui.menuWidth - 1, // subtract 1px which is added by borderRight
         height: "calc(100vh - " + gui.bottomHeight + "px)",
-        backgroundColor: theme.palette.gui.menu.background,
-        borderRight: "1px solid " + theme.palette.gui.menu.border
+        backgroundColor: theme.palette.primary.main,
+        borderRight: "1px solid " + theme.palette.primary.dark
     };
     return (
         <div style={style}>

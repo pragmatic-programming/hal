@@ -7,58 +7,35 @@ interface Props {
     children: React.JSX.Element[] | React.JSX.Element;
 }
 
-// Augment the palette to include custom colors
-declare module "@mui/material/styles" {
-    interface Palette {
-        gui: {
-            menu: {
-                background: string,
-                border: string
-            },
-            bottom: {
-                background: string,
-            },
-            canvas: {
-                background: string,
-            }
-        };
-    }
-}
 
 function theme(mode: PaletteMode) {
     let palette: Partial<Palette> = {
         primary: {
-            main: "rgba(0, 0, 0, 0.87)",
-            light: "rgba(0, 0, 0, 0.87)",
-            dark: "rgba(0, 0, 0, 0.87)",
+            main: "#eeeeee",
+            light: "#f0f0f0",
+            dark: "#dcdcdc",
             contrastText: "rgba(0, 0, 0, 0.87)",
         },
-        gui: {
-            menu: {
-                background: "#eeeeee",
-                border: "#dcdcdc",
-            },
-            bottom: {
-                background: "#f0f0f0"
-            },
-            canvas: {
-                background: "#f5f5f5"
-            }
+        secondary:{
+            main: "rgba(0, 0, 0, 0.87)",
+            light: "#f0f0f0",
+            dark: "#dcdcdc",
+            contrastText: "",
         }
     };
     if (mode === "dark") {
         palette = {
-            gui: {
-                menu: {
-                    background: "#1e1e1e",
-                    border: "#262626",
-                },
-                bottom: {
-                    background: "#f0f0f0"
-                },
-                canvas: {
-                    background: "#f5f5f5"
-                }
+            secondary: {
+                main: "#eeeeee",
+                light: "#f0f0f0",
+                dark: "#dcdcdc",
+                contrastText: "rgba(0, 0, 0, 0.87)",
+            },
+            primary:{
+                main: "rgba(0, 0, 0, 0.87)",
+                light: "#f0f0f0",
+                dark: "#dcdcdc",
+                contrastText: "",
             }
         };
     }
