@@ -1,8 +1,9 @@
 import { State } from "./State";
 import { Node } from "reactflow";
 import NodeData from "../model/NodeData";
+import { StoreApi } from "zustand";
 
-export function openEditor(getState: () => State, setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void) {
+export function openEditor(setState: StoreApi<State>["setState"], getState: () => State) {
     return (getNode: (id: string) => Node | undefined, editorId: string | undefined) => {
         if (editorId) {
             const node: Node<NodeData> | undefined = getNode(editorId);

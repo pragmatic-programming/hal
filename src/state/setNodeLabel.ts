@@ -1,9 +1,10 @@
 import { State } from "./State";
 import { Node } from "reactflow";
 import NodeData from "../model/NodeData";
+import { StoreApi } from "zustand";
 
 
-export function setNodeLabel(getState: () => State, setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void) {
+export function setNodeLabel(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (editorId: string, label: string) => {
         setState({
             nodes: getState().nodes.map((node: Node<NodeData>) => {

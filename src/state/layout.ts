@@ -3,8 +3,9 @@ import { FitViewOptions, Node } from "reactflow";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import { layoutedNodes } from "./layoutedNodes";
 import { globalFitViewOptions } from "../constants";
+import { StoreApi } from "zustand";
 
-export function layout(setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void, getState: () => State) {
+export function layout(setState: StoreApi<State>['setState'], getState: () => State) {
     return async (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions = {}) => {
         setState({
             busy: true

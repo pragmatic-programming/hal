@@ -1,8 +1,9 @@
 import { State } from "./State";
 import { addEdge, Connection } from "reactflow";
 import { createExecuteEdge, createSequenceEdge } from "../model/createEdge";
+import { StoreApi } from "zustand";
 
-export function onConnect(getState: () => State, setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void) {
+export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {
     return (connection: Connection) => {
         console.log(connection);
         const source = connection.source;

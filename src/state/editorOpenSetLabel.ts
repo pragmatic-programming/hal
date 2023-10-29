@@ -1,6 +1,7 @@
 import { State } from "./State";
+import { StoreApi } from "zustand";
 
-export function editorOpenSetLabel(setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void) {
+export function editorOpenSetLabel(setState: StoreApi<State>['setState']) {
     return (label: string) => setState((state: State): State => {
         if (!state.editorOpen) {
             throw new Error("EditorOpen is undefined");

@@ -1,7 +1,8 @@
 import { State } from "./State";
 import { applyNodeChanges, NodeChange } from "reactflow";
+import { StoreApi } from "zustand";
 
-export function onNodesChange(setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void, getState: () => State) {
+export function onNodesChange(setState: StoreApi<State>["setState"], getState: () => State) {
     return (changes: NodeChange[]) => {
         setState({
             nodes: applyNodeChanges(changes, getState().nodes),

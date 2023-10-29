@@ -3,9 +3,10 @@ import { CompilationContext } from "kico";
 import { flowToIHGraph, ihGraphToHalGraph } from "../model/processor/compilationContexts";
 import { CliqueSelectionProcessor } from "hal-kico";
 import { FlowState } from "./FlowState";
+import { StoreApi } from "zustand";
 
 
-export function run(setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void) {
+export function run(setState: StoreApi<State>["setState"]) {
     return async () => setState((state: State): State => {
         setState({
             busy: true

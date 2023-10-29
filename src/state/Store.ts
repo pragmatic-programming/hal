@@ -1,4 +1,3 @@
-import { create } from "zustand";
 import { State } from "./State";
 import { CompilationContext, System } from "kico";
 import { edges, nodes } from "../model/example";
@@ -16,8 +15,9 @@ import { toggleDrawer } from "./toggleDrawer";
 import { openEditor } from "./openEditor";
 import { editorOpenSetContent } from "./editorOpenSetContent";
 import { editorOpenSetLabel } from "./editorOpenSetLabel";
+import { createWithEqualityFn } from "zustand/traditional";
 
-export const useStore = create<State>((setState, getState) => ({
+export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     busy: false,
     context: new CompilationContext(new System("empty", [])),
     drawerOpen: false,
@@ -28,16 +28,16 @@ export const useStore = create<State>((setState, getState) => ({
     layout: layout(setState, getState),
     mode: "light",
     nodes: nodes,
-    onConnect: onConnect(getState, setState),
+    onConnect: onConnect(setState, getState),
     onEdgesChange: onEdgesChange(setState, getState),
     onNodesChange: onNodesChange(setState, getState),
-    openEditor: openEditor(getState, setState),
+    openEditor: openEditor(setState, getState,),
     projectName: "hello-world.hal",
     renderIhGraph: renderIhGraph(setState, getState),
     run: run(setState),
-    setEdgeLabel: setEdgeLabel(getState, setState),
-    setNodeLabel: setNodeLabel(getState, setState),
-    setNodeValue: setNodeContent(getState, setState),
+    setEdgeLabel: setEdgeLabel(setState, getState,),
+    setNodeLabel: setNodeLabel(setState, getState,),
+    setNodeValue: setNodeContent(setState, getState,),
     switchMode: switchMode(setState),
     toggleDrawer: toggleDrawer(setState),
 }));

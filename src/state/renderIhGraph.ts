@@ -5,8 +5,9 @@ import { CompilationContext } from "kico";
 import { iHGraphToFlow } from "../model/processor/compilationContexts";
 import { layoutedNodes } from "./layoutedNodes";
 import { globalFitViewOptions } from "../constants";
+import { StoreApi } from "zustand";
 
-export function renderIhGraph(setState: (partial: (Partial<State> | ((state: State) => (Partial<State> | State)) | State), replace?: (boolean | undefined)) => void, getState: () => State) {
+export function renderIhGraph(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void) => {
         setState({
             busy: true
