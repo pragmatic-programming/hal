@@ -1,15 +1,15 @@
 import React from "react";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import MenuButton from "./MenuButton";
 import { Theme, useTheme } from "@mui/material";
 import { Brightness4, Brightness7 } from "@mui/icons-material";
+import ButtonMenu from "./ButtonMenu";
 
-export default function SwitchModeButton(): React.JSX.Element {
+export default function ButtonSwitchMode(): React.JSX.Element {
     const theme: Theme = useTheme();
     const switchMode = useStore((state: State) => state.switchMode);
     return (
-        <MenuButton
+        <ButtonMenu
             onClick={switchMode}
             icon={theme.palette.mode === "dark" ? <Brightness7/> : <Brightness4/>}
             tooltip={theme.palette.mode === "dark" ? "Light Mode" : "Dark Mode"}

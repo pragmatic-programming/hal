@@ -20,7 +20,7 @@ export const EditorNodeLabelTextField = styled(TextField)({
     },
 });
 
-export function EditorNodeHeader(props: Props): React.JSX.Element {
+export default function EditorNodeHeader(props: Props): React.JSX.Element {
     const openEditor = useStore((state: State) => state.openEditor);
     const {getNode} = useReactFlow();
     let node: Node<NodeData> | undefined = getNode(props.nodeId);

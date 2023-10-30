@@ -1,8 +1,8 @@
 import { Processor } from "kico";
-import StartModel from "./StartModel";
-import ProcessorModel from "./ProcessorModel";
-import EndModel from "./EndModel";
-import InterModel from "./InterModel";
+import ModelStart from "./ModelStart";
+import ModelProcessor from "./ModelProcessor";
+import ModelEnd from "./ModelEnd";
+import InterModel from "./ModelInter";
 import React from "react";
 
 interface Props {
@@ -12,11 +12,11 @@ interface Props {
 }
 
 export default function BottomStep(props: Props) {
-    const processor = <ProcessorModel processor={props.processor}/>;
+    const processor = <ModelProcessor processor={props.processor}/>;
     const model = <InterModel processor={props.processor}/>;
     if (props.index === 0) {
         return <>
-            <StartModel processor={props.processor}/>
+            <ModelStart processor={props.processor}/>
             {processor}
             {model}
         </>;
@@ -24,7 +24,7 @@ export default function BottomStep(props: Props) {
     if (props.index === props.length - 1) {
         return <>
             {processor}
-            <EndModel processor={props.processor}/>
+            <ModelEnd processor={props.processor}/>
         </>;
     }
     return <>

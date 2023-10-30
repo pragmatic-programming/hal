@@ -1,15 +1,15 @@
 import React, { CSSProperties } from "react";
 import { NodeProps } from "reactflow";
 import { Editor as Monaco } from "@monaco-editor/react";
-import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import NodeData from "../../../model/NodeData";
-import TargetHandle from "../handle/TargetHandle";
-import SourceHandle from "../handle/SourceHandle";
+import HandleTarget from "../handle/HandleTarget";
+import HandleSource from "../handle/HandleSource";
+import EditorNodeHeader from "./EditorNodeHeader";
 
-export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Element {
+export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
     const setNodeValue = useStore((state: State) => state.setNodeValue);
     const setNodeLabel = useStore((state: State) => state.setNodeLabel);
@@ -25,14 +25,14 @@ export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Elemen
         <div
             style={style}
         >
-            <TargetHandle
+            <HandleTarget
                 style={{top: 100}}
             />
-            <SourceHandle
+            <HandleSource
                 id="execute"
                 style={{top: 100}}
             />
-            <SourceHandle
+            <HandleSource
                 id="sequence"
                 style={{top: 200}}
             />

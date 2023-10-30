@@ -27,7 +27,7 @@ export function createResultNode(
 ): Node<NodeData> {
     return node(
         id,
-        "resultNode",
+        "result",
         content,
         label,
         x,
@@ -44,7 +44,7 @@ export function createEditorNode(
 ): Node<NodeData> {
     return node(
         id,
-        "editorNode",
+        "editor",
         content,
         label,
         x,
@@ -59,7 +59,7 @@ export function createCreationNode(
 ): Node<NodeData> {
     return {
         id: id,
-        type: "creationNode",
+        type: "creation",
         data: {
             content: "",
             label: "",

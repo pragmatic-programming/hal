@@ -9,7 +9,7 @@ interface Props {
     position: Position;
 }
 
-export function StyledHandle(props: Props): React.JSX.Element {
+export default function HandleStyled(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
     return (
         <Handle

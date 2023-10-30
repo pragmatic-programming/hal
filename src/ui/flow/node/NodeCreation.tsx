@@ -5,7 +5,7 @@ import { Add } from "@mui/icons-material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 
-export default function CreationNode(props: NodeProps): React.JSX.Element {
+export default function NodeCreation(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
     const toggleDrawer = useStore((state: State) => state.toggleDrawer);
     return (

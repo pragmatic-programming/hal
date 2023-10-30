@@ -3,7 +3,7 @@ import Menu from "./ui/menu/Menu";
 import Theme from "./ui/Theme";
 import Bottom from "./ui/bottom/Bottom";
 import { ReactFlowProvider } from "reactflow";
-import Flow from "./ui/flow/Flow";
+import Flow from "./ui/flow/flow/Flow";
 import Editor from "./ui/Editor";
 import { State } from "./state/State";
 import { useStore } from "./state/Store";

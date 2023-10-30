@@ -1,15 +1,15 @@
 import ReactFlow, { Background, Controls, OnConnectStartParams, ReactFlowInstance, useReactFlow } from "reactflow";
 import "reactflow/dist/style.css";
-import { State } from "../../state/State";
+import { State } from "../../../state/State";
 import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef } from "react";
-import { useStore } from "../../state/Store";
+import { useStore } from "../../../state/Store";
 import { shallow } from "zustand/shallow";
-import { createCreationNode } from "../../model/createNode";
-import nextNodeId from "../../state/nextNodeId";
-import { createEdgeFromOnConnectStartParams } from "../../model/createEdge";
-import { edgeTypes } from "./edge/EdgeTypes";
-import { nodeTypes } from "./node/NodeTypes";
-import { gui } from "../../constants";
+import { createCreationNode } from "../../../model/createNode";
+import nextNodeId from "../../../state/nextNodeId";
+import { createEdgeFromOnConnectStartParams } from "../../../model/createEdge";
+import { edgeTypes } from "./EdgeTypes";
+import { nodeTypes } from "./NodeTypes";
+import { gui } from "../../../constants";
 
 const selector = (state: State) => ({
     nodes: state.nodes,

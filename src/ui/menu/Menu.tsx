@@ -1,10 +1,10 @@
 import React from "react";
 import { Theme, useTheme } from "@mui/material";
-import SwitchModeButton from "./SwitchModeButton";
-import PlayButton from "./PlayButton";
+import ButtonPlay from "./ButtonPlay";
 import { gui } from "../../constants";
+import MenuLayout from "./MenuLayout";
 import MenuDivider from "./MenuDivider";
-import LayoutMenu from "./LayoutMenu";
+import ButtonSwitchMode from "./ButtonSwitchMode";
 
 export default function Menu(): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -18,11 +18,11 @@ export default function Menu(): React.JSX.Element {
             backgroundColor: theme.palette.primary.main,
             borderRight: "1px solid " + theme.palette.primary.dark
         }}>
-            <SwitchModeButton/>
+            <ButtonSwitchMode/>
             <MenuDivider/>
-            <PlayButton/>
+            <ButtonPlay/>
             <MenuDivider/>
-            <LayoutMenu/>
+            <MenuLayout/>
         </div>
     );
 }

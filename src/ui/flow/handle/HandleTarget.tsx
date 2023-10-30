@@ -1,14 +1,14 @@
 import { Position } from "reactflow";
 import React, { CSSProperties } from "react";
-import { StyledHandle } from "./StyledHandle";
+import HandleStyled from "./HandleStyled";
 
 interface Props {
     style?: CSSProperties;
 }
 
-export default function TargetHandle(props: Props): React.JSX.Element {
+export default function HandleTarget(props: Props): React.JSX.Element {
     return (
-        <StyledHandle
+        <HandleStyled
             id="input"
             position={Position.Left}
             style={{

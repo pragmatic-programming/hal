@@ -9,7 +9,7 @@ interface Props {
     tooltip: string;
 }
 
-export default function MenuButton(props: Props): React.JSX.Element {
+export default function ButtonMenu(props: Props): React.JSX.Element {
     return (
         // todo sx and style equal?
         <Box

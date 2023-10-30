@@ -2,7 +2,7 @@ import React from "react";
 import { Handle, NodeProps, Position } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 
-export default function ResultNode(props: NodeProps): React.JSX.Element {
+export default function NodeResult(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
 
     return (

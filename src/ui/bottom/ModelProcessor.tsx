@@ -8,7 +8,7 @@ interface Props {
     processor: Processor<any, any>;
 }
 
-export default function ProcessorModel(props: Props): React.JSX.Element {
+export default function ModelProcessor(props: Props): React.JSX.Element {
     return (
         <Chip
             icon={<MemoryIcon/>}

@@ -2,15 +2,14 @@ import React from "react";
 import Model from "./Model";
 import { Processor } from "kico";
 
-
 interface Props {
     processor: Processor<any, any>;
 }
 
-export default function EndModel(props: Props): React.JSX.Element {
+export default function ModelStart(props: Props): React.JSX.Element {
     return (
         <Model
-            position="end"
+            position={"start"}
             processor={props.processor}
         />
     );
