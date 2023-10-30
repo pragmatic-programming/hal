@@ -12,7 +12,7 @@ function theme(mode: PaletteMode) {
     let palette: Partial<Palette> = {
         primary: {
             main: "#eeeeee",
-            light: "#f0f0f0",
+            light: "#ffffff",
             dark: "#dcdcdc",
             contrastText: "rgba(0, 0, 0, 0.87)",
         },
