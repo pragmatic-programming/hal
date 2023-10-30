@@ -6,7 +6,7 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
     const executeEdge = sourceNode
         .getIncomingEdges()
         .find((edge: TransformationEdge) => edge.getType().getId() === "execute");
-    return createNode(
+    return node(
         sourceNode.getId(),
         executeEdge ? "resultNode" : "editorNode",
         sourceNode.getContent(),
@@ -15,6 +15,40 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
         // todo get position from sourceNode
         0,
         0
+    );
+}
+
+export function createResultNode(
+    id: string,
+    content: string,
+    label: string,
+    x: number,
+    y: number,
+): Node<NodeData> {
+    return node(
+        id,
+        "resultNode",
+        content,
+        label,
+        x,
+        y,
+    );
+}
+
+export function createEditorNode(
+    id: string,
+    content: string,
+    label: string,
+    x: number,
+    y: number,
+): Node<NodeData> {
+    return node(
+        id,
+        "editorNode",
+        content,
+        label,
+        x,
+        y,
     );
 }
 
@@ -34,7 +68,7 @@ export function createCreationNode(
     };
 }
 
-export function createNode(
+function node(
     id: string,
     type: string,
     content: string,

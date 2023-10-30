@@ -1,27 +1,31 @@
 import { Edge, Node } from "reactflow";
 import { createExecuteEdge, createSequenceEdge } from "./createEdge";
 import NodeData from "./NodeData";
+import { createEditorNode, createResultNode } from "./createNode";
 
 
 export const nodes: Node<NodeData>[] = [
-    {
-        id: "1",
-        type: "editorNode",
-        data: {content: "var x = 1;", label: "Declaration"},
-        position: {x: 50, y: 25},
-    },
-    {
-        id: "2",
-        type: "editorNode",
-        data: {content: "x + 2", label: "Usage"},
-        position: {x: 400, y: 25},
-    },
-    {
-        id: "3",
-        type: "resultNode",
-        data: {content: "", label: "Result"},
-        position: {x: 700, y: 25},
-    },
+    createEditorNode(
+        "1",
+        "var x = 1;",
+        "Declaration",
+        50,
+        25,
+    ),
+    createEditorNode(
+        "2",
+        "x + 2;",
+        "Usage",
+        50,
+        25,
+    ),
+    createResultNode(
+        "3",
+        "",
+        "Result",
+        700,
+        25,
+    )
 ];
 
 export const edges: Edge[] = [
