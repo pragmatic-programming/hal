@@ -1,11 +1,13 @@
 import React, { CSSProperties } from "react";
-import { Handle, NodeProps, Position } from "reactflow";
+import { NodeProps } from "reactflow";
 import { Editor as Monaco } from "@monaco-editor/react";
 import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import NodeData from "../../../model/NodeData";
+import TargetHandle from "../handle/TargetHandle";
+import SourceHandle from "../handle/SourceHandle";
 
 export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -20,40 +22,32 @@ export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Elemen
     };
 
     return (
-        <>
-            <Handle
-                id="input"
-                type="target"
-                position={Position.Left}
+        <div
+            style={style}
+        >
+            <TargetHandle
+                style={{top: 100}}
             />
-            <div
-                style={style}
-            >
-                <EditorNodeHeader
-                    value={props.data.label}
-                    onChange={(content: string) => setNodeLabel(props.id, content)}
-                    nodeId={props.id}
-                />
-                <Monaco
-                    defaultLanguage={"javascript"}
-                    height={300}
-                    onChange={(value: string | undefined) => setNodeValue(props.id, value)}
-                    options={{minimap: {enabled: false}}}
-                    value={props.data.content}
-                />
-            </div>
-            <Handle
+            <SourceHandle
                 id="execute"
-                type="source"
-                position={Position.Right}
-                style={{top: 50}}
+                style={{top: 100}}
             />
-            <Handle
+            <SourceHandle
                 id="sequence"
-                type="source"
-                position={Position.Right}
-                style={{top: 10}}
+                style={{top: 200}}
             />
-        </>
+            <EditorNodeHeader
+                value={props.data.label}
+                onChange={(content: string) => setNodeLabel(props.id, content)}
+                nodeId={props.id}
+            />
+            <Monaco
+                defaultLanguage={"javascript"}
+                height={300}
+                onChange={(value: string | undefined) => setNodeValue(props.id, value)}
+                options={{minimap: {enabled: false}}}
+                value={props.data.content}
+            />
+        </div>
     );
 }

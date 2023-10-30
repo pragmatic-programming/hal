@@ -42,7 +42,7 @@ export function createExecuteEdge(source: string, target: string): Edge {
 
 function edge(source: string, target: string, type: string, sourceHandle: string, targetHandle: string): Edge {
     return {
-        id: "e" + source + "-" + target,
+        id: "e" + source + "-" + target + "-" + type,
         source: source,
         target: target,
         sourceHandle: sourceHandle,
