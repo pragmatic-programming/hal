@@ -2,12 +2,12 @@ import ReactFlow, { Background, Controls, EdgeTypes, ReactFlowInstance } from "r
 import "reactflow/dist/style.css";
 import { State } from "../../state/State";
 import React, { CSSProperties, useMemo } from "react";
-import EditorNode from "./EditorNode";
+import EditorNode from "./node/EditorNode";
 import { gui } from "../../constants";
 import { useStore } from "../../state/Store";
 import { shallow } from "zustand/shallow";
-import ResultNode from "./ResultNode";
-import { EdgeRenderer } from "./EdgeRenderer";
+import ResultNode from "./node/ResultNode";
+import { EdgeRenderer } from "./edge/EdgeRenderer";
 
 
 const selector = (state: State) => ({

@@ -1,9 +1,9 @@
 import React from "react";
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath } from "reactflow";
 import { TextField, Theme, useTheme } from "@mui/material";
-import { useStore } from "../../state/Store";
-import { State } from "../../state/State";
-import { validEdgeTypes } from "../../model/createEdge";
+import { useStore } from "../../../state/Store";
+import { State } from "../../../state/State";
+import { validEdgeTypes } from "../../../model/createEdge";
 
 export function EdgeRenderer(props: EdgeProps): React.JSX.Element {
     const [edgePath, labelX, labelY] = getBezierPath(props);

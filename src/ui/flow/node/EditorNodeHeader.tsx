@@ -1,10 +1,10 @@
 import { Box, styled, TextField } from "@mui/material";
 import React from "react";
 import { InsertDriveFile } from "@mui/icons-material";
-import { useStore } from "../../state/Store";
-import { State } from "../../state/State";
+import { useStore } from "../../../state/Store";
+import { State } from "../../../state/State";
 import { Node, useReactFlow } from "reactflow";
-import NodeData from "../../model/NodeData";
+import NodeData from "../../../model/NodeData";
 
 interface Props {
     nodeId: string,

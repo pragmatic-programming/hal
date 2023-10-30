@@ -3,9 +3,9 @@ import { Handle, NodeProps, Position } from "reactflow";
 import { Editor as Monaco } from "@monaco-editor/react";
 import { EditorNodeHeader } from "./EditorNodeHeader";
 import { Theme, useTheme } from "@mui/material";
-import { useStore } from "../../state/Store";
-import { State } from "../../state/State";
-import NodeData from "../../model/NodeData";
+import { useStore } from "../../../state/Store";
+import { State } from "../../../state/State";
+import NodeData from "../../../model/NodeData";
 
 export default function EditorNode(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
