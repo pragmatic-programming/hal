@@ -11,7 +11,7 @@ import { switchMode } from "./manipulate/switchMode";
 import { setNodeContent } from "./manipulate/setNodeContent";
 import { setNodeLabel } from "./manipulate/setNodeLabel";
 import { setEdgeLabel } from "./manipulate/setEdgeLabel";
-import { toggleDrawer } from "./manipulate/toggleDrawer";
+import { openNewDialog } from "./manipulate/openNewDialog";
 import { openEditor } from "./manipulate/openEditor";
 import { editorOpenSetContent } from "./manipulate/editorOpenSetContent";
 import { editorOpenSetLabel } from "./manipulate/editorOpenSetLabel";
@@ -22,10 +22,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     //state
     busy: false,
     context: new CompilationContext(new System("empty", [])),
-    drawerOpen: undefined,
     edges: edges,
     editorOpen: undefined,
     mode: "light",
+    newNodeDialogOpen: undefined,
     nodes: nodes,
     projectName: "hello-world.hal",
     //manipulators
@@ -36,6 +36,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     onEdgesChange: onEdgesChange(setState, getState),
     onNodesChange: onNodesChange(setState, getState),
     openEditor: openEditor(setState, getState),
+    openNewNodeDialog: openNewDialog(setState),
     renderIhGraph: renderIhGraph(setState, getState),
     run: run(setState),
     setEdgeLabel: setEdgeLabel(setState, getState),
@@ -43,5 +44,4 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     setNodeType: setNodeType(setState, getState),
     setNodeValue: setNodeContent(setState, getState),
     switchMode: switchMode(setState),
-    toggleDrawer: toggleDrawer(setState),
 }));

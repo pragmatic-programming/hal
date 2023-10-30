@@ -7,7 +7,7 @@ import { State } from "../../../state/State";
 
 export default function NodeCreation(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
-    const toggleDrawer = useStore((state: State) => state.toggleDrawer);
+    const openNewNodeDialog = useStore((state: State) => state.openNewNodeDialog);
     return (
         <>
             <Handle type="target" position={Position.Left}/>
@@ -19,7 +19,7 @@ export default function NodeCreation(props: NodeProps): React.JSX.Element {
                 }}
             >
                 <IconButton
-                    onClick={() => toggleDrawer(props.id)}
+                    onClick={() => openNewNodeDialog(props.id)}
                 >
                     <Add/>
                 </IconButton>

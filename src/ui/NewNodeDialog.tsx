@@ -16,18 +16,18 @@ import { useStore } from "../state/Store";
 import { State } from "../state/State";
 import DoneIcon from "@mui/icons-material/Done";
 import { useReactFlow } from "reactflow";
-import { DrawerState } from "../state/substates/DrawerState";
+import { NewDialogOpenState } from "../state/substates/NewDialogOpenState";
 
 interface Props {
-    drawerOpen: DrawerState;
+    newNodeDialogOpen: NewDialogOpenState;
 }
 
 
 export default function NewNodeDialog(props: Props): React.JSX.Element {
     const setNodeType = useStore((state: State) => state.setNodeType);
     const {getNode} = useReactFlow();
-    const toggleDrawer = useStore((state: State) => state.toggleDrawer);
-    const node = getNode(props.drawerOpen.nodeId);
+    const openNewDialog = useStore((state: State) => state.openNewNodeDialog);
+    const node = getNode(props.newNodeDialogOpen.nodeId);
     if (!node) {
         throw new Error("Node is undefined");
     }
@@ -45,7 +45,7 @@ export default function NewNodeDialog(props: Props): React.JSX.Element {
                         edge="end"
                         color="inherit"
                         aria-label="close"
-                        onClick={() => toggleDrawer(undefined)}
+                        onClick={() => openNewDialog(undefined)}
                     >
                         <Close/>
                     </IconButton>
@@ -53,7 +53,7 @@ export default function NewNodeDialog(props: Props): React.JSX.Element {
             </AppBar>
             <List>
                 <ListItemButton
-                    onClick={() => setNodeType(props.drawerOpen.nodeId, "editorNode")}
+                    onClick={() => setNodeType(props.newNodeDialogOpen.nodeId, "editor")}
                 >
                     <ListItemIcon>
                         <InsertDriveFile/>
@@ -64,7 +64,7 @@ export default function NewNodeDialog(props: Props): React.JSX.Element {
                 </ListItemButton>
                 <Divider/>
                 <ListItemButton
-                    onClick={() => setNodeType(props.drawerOpen.nodeId, "resultNode")}
+                    onClick={() => setNodeType(props.newNodeDialogOpen.nodeId, "result")}
                 >
                     <ListItemIcon>
                         <DoneIcon/>

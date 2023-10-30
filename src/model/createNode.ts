@@ -1,6 +1,7 @@
 import { SourceNode, TransformationEdge } from "ihgraph";
 import { Node } from "reactflow";
 import NodeData from "./NodeData";
+import { nodeType } from "../ui/flow/flow/NodeTypes";
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
     const executeEdge = sourceNode
@@ -8,7 +9,7 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
         .find((edge: TransformationEdge) => edge.getType().getId() === "execute");
     return node(
         sourceNode.getId(),
-        executeEdge ? "resultNode" : "editorNode",
+        executeEdge ? "result" : "editor",
         sourceNode.getContent(),
         // todo get label from sourceNode
         "Missing",
@@ -70,7 +71,7 @@ export function createCreationNode(
 
 function node(
     id: string,
-    type: string,
+    type: nodeType,
     content: string,
     label: string,
     x: number,

@@ -7,8 +7,8 @@ import { shallow } from "zustand/shallow";
 import { createCreationNode } from "../../../model/createNode";
 import nextNodeId from "../../../state/nextNodeId";
 import { createEdgeFromOnConnectStartParams } from "../../../model/createEdge";
-import { edgeTypes } from "./EdgeTypes";
-import { nodeTypes } from "./NodeTypes";
+import { edgeTypesMapping } from "./EdgeTypes";
+import { nodeTypesMapping } from "./NodeTypes";
 import { gui } from "../../../constants";
 
 const selector = (state: State) => ({
@@ -89,9 +89,9 @@ export default function Flow(): React.JSX.Element {
         >
             <ReactFlow
                 connectionRadius={0}
-                edgeTypes={edgeTypes}
+                edgeTypes={edgeTypesMapping}
                 edges={edges}
-                nodeTypes={nodeTypes}
+                nodeTypes={nodeTypesMapping}
                 nodes={nodes}
                 onConnect={onConnect}
                 onConnectEnd={onConnectEnd}

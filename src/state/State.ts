@@ -4,33 +4,34 @@ import { IHGraph } from "ihgraph";
 import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import NodeData from "../model/NodeData";
-import { DrawerState } from "./substates/DrawerState";
+import { NewDialogOpenState } from "./substates/NewDialogOpenState";
 import { EditorOpenState } from "./substates/EditorOpenState";
+import { nodeType } from "../ui/flow/flow/NodeTypes";
 
 export interface State {
     //state
     busy: boolean,
     context: CompilationContext,
-    drawerOpen: DrawerState | undefined,
     edges: Edge[],
     editorOpen: EditorOpenState | undefined,
     mode: PaletteMode,
+    newNodeDialogOpen: NewDialogOpenState | undefined,
     nodes: Node<NodeData>[],
     projectName: string,
     //manipulators
     editorOpenSetContent: (content: string | undefined) => void,
     editorOpenSetLabel: (content: string) => void,
-    layout: (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
+    layout: (getNode: (nodeId: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
     onConnect: OnConnect,
     onEdgesChange: OnEdgesChange,
     onNodesChange: OnNodesChange,
-    openEditor: (getNode: (id: string) => Node | undefined, editorId: string | undefined) => void,
-    renderIhGraph: (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: () => void) => void,
+    openEditor: (getNode: (nodeId: string) => Node | undefined, editorId: string | undefined) => void,
+    openNewNodeDialog: (nodeId: string | undefined) => void,
+    renderIhGraph: (ihGraph: IHGraph, getNode: (nodeId: string) => Node | undefined, fitView: () => void) => void,
     run: () => void,
-    setEdgeLabel: (editorId: string, label: string) => void,
-    setNodeLabel: (editorId: string, label: string) => void,
-    setNodeType: (editorId: string, type: string) => void,
-    setNodeValue: (editorId: string, content: string | undefined) => void,
+    setEdgeLabel: (nodeId: string, label: string) => void,
+    setNodeLabel: (nodeId: string, label: string) => void,
+    setNodeType: (nodeId: string, type: nodeType) => void,
+    setNodeValue: (nodeId: string, content: string | undefined) => void,
     switchMode: () => void,
-    toggleDrawer: (nodeId: string | undefined) => void,
 }

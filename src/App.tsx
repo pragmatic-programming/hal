@@ -15,10 +15,10 @@ export default function App(): React.JSX.Element {
     if (editorOpen) {
         editor = <Editor editorOpen={editorOpen}/>;
     }
-    const drawerOpen = useStore((state: State) => state.drawerOpen);
+    const newNodeDialogOpen = useStore((state: State) => state.newNodeDialogOpen);
     let newNodeDialog = undefined;
-    if (drawerOpen) {
-        newNodeDialog = <NewNodeDialog drawerOpen={drawerOpen}/>;
+    if (newNodeDialogOpen) {
+        newNodeDialog = <NewNodeDialog newNodeDialogOpen={newNodeDialogOpen}/>;
     }
     return (
         <Theme>
