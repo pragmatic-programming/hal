@@ -27,13 +27,16 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         >
             <HandleTarget
                 style={{top: 100}}
+                nodeId={props.id}
             />
             <HandleSource
                 id="execute"
+                nodeId={props.id}
                 style={{top: 100}}
             />
             <HandleSource
                 id="sequence"
+                nodeId={props.id}
                 style={{top: 200}}
             />
             <EditorNodeHeader

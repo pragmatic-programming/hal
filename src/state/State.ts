@@ -18,6 +18,7 @@ export interface State {
     newNodeDialogOpen: NewDialogOpenState | undefined,
     nodes: Node<NodeData>[],
     projectName: string,
+    connectingSourceNodeId: string | null,
     //manipulators
     editorOpenSetContent: (content: string | undefined) => void,
     editorOpenSetLabel: (content: string) => void,
@@ -29,6 +30,7 @@ export interface State {
     openNewNodeDialog: (nodeId: string | undefined) => void,
     renderIhGraph: (ihGraph: IHGraph, getNode: (nodeId: string) => Node | undefined, fitView: () => void) => void,
     run: () => void,
+    setConnectingSourceNodeId: (nodeId: string | null) => void,
     setEdgeLabel: (nodeId: string, label: string) => void,
     setNodeLabel: (nodeId: string, label: string) => void,
     setNodeType: (nodeId: string, type: nodeType) => void,

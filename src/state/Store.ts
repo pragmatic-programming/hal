@@ -17,6 +17,7 @@ import { editorOpenSetContent } from "./manipulate/editorOpenSetContent";
 import { editorOpenSetLabel } from "./manipulate/editorOpenSetLabel";
 import { createWithEqualityFn } from "zustand/traditional";
 import { setNodeType } from "./manipulate/setNodeType";
+import { setConnectingSourceNodeId } from "./manipulate/setConnectingSourceNodeId";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     //state
@@ -28,6 +29,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     newNodeDialogOpen: undefined,
     nodes: nodes,
     projectName: "hello-world.hal",
+    connectingSourceNodeId: null,
     //manipulators
     editorOpenSetContent: editorOpenSetContent(setState),
     editorOpenSetLabel: editorOpenSetLabel(setState),
@@ -39,6 +41,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     openNewNodeDialog: openNewDialog(setState),
     renderIhGraph: renderIhGraph(setState, getState),
     run: run(setState),
+    setConnectingSourceNodeId: setConnectingSourceNodeId(setState),
     setEdgeLabel: setEdgeLabel(setState, getState),
     setNodeLabel: setNodeLabel(setState, getState),
     setNodeType: setNodeType(setState, getState),

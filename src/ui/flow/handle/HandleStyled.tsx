@@ -15,9 +15,9 @@ export default function HandleStyled(props: Props): React.JSX.Element {
         <Handle
             id={props.id}
             style={{
-                ...props.style,
                 zIndex: -1,
                 backgroundColor: theme.palette.primary.dark,
+                ...props.style,
             }}
             type={props.type}
             position={props.position}

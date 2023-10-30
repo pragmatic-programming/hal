@@ -1,13 +1,16 @@
 import React from "react";
-import { Handle, NodeProps, Position } from "reactflow";
+import { NodeProps } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
+import HandleTarget from "../handle/HandleTarget";
 
 export default function NodeResult(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
 
     return (
         <>
-            <Handle type="target" position={Position.Left}/>
+            <HandleTarget
+                nodeId={props.id}
+            />
             <div
                 style={{
                     borderColor: theme.palette.info.light,

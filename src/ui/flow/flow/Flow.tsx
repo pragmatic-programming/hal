@@ -35,13 +35,16 @@ export default function Flow(): React.JSX.Element {
         onConnect
     } = useStore(selector, shallow);
     const nextId = useStore((state: State) => nextNodeId(state));
+    const setConnectingSourceNodeId = useStore((state: State) => state.setConnectingSourceNodeId);
 
     const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {
         connectStartParams.current = onConnectStartParams;
-    }, []);
+        setConnectingSourceNodeId(onConnectStartParams.nodeId);
+    }, [setConnectingSourceNodeId]);
 
     const onConnectEnd = useCallback(
         (event: MouseEvent | TouchEvent): void => {
+            setConnectingSourceNodeId(null)
             if (event instanceof MouseEvent) {
                 if (event.target instanceof HTMLElement) {
                     const targetIsPane = event.target.classList.contains("react-flow__pane");
@@ -72,7 +75,13 @@ export default function Flow(): React.JSX.Element {
                 }
             }
         },
-        [nextId, onEdgesChange, onNodesChange, project]
+        [
+            nextId,
+            onEdgesChange,
+            onNodesChange,
+            project,
+            setConnectingSourceNodeId
+        ]
     );
 
     return (
