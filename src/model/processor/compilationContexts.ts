@@ -3,7 +3,7 @@ import { HALGraphProcessor } from "hal-kico";
 import { IHGraph } from "ihgraph";
 import { FlowToIHGraphProcessor } from "./FlowToIHGraphProcessor";
 import { IHGraphToFlowProcessor } from "./IHGraphToFlowProcessor";
-import { FlowState } from "../../state/FlowState";
+import { FlowState } from "../FlowState";
 
 
 export function ihGraphToHalGraph(ihgraph: IHGraph): CompilationContext {

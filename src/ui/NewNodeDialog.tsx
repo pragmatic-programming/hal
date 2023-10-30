@@ -13,9 +13,10 @@ import {
 import React from "react";
 import { Close, InsertDriveFile } from "@mui/icons-material";
 import { useStore } from "../state/Store";
-import { DrawerState, State } from "../state/State";
+import { State } from "../state/State";
 import DoneIcon from "@mui/icons-material/Done";
 import { useReactFlow } from "reactflow";
+import { DrawerState } from "../state/substates/DrawerState";
 
 interface Props {
     drawerOpen: DrawerState;

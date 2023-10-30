@@ -19,27 +19,29 @@ import { createWithEqualityFn } from "zustand/traditional";
 import { setNodeType } from "./manipulate/setNodeType";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
+    //state
     busy: false,
     context: new CompilationContext(new System("empty", [])),
     drawerOpen: undefined,
     edges: edges,
     editorOpen: undefined,
+    mode: "light",
+    nodes: nodes,
+    projectName: "hello-world.hal",
+    //manipulators
     editorOpenSetContent: editorOpenSetContent(setState),
     editorOpenSetLabel: editorOpenSetLabel(setState),
     layout: layout(setState, getState),
-    mode: "light",
-    nodes: nodes,
     onConnect: onConnect(setState, getState),
     onEdgesChange: onEdgesChange(setState, getState),
     onNodesChange: onNodesChange(setState, getState),
     openEditor: openEditor(setState, getState),
-    projectName: "hello-world.hal",
     renderIhGraph: renderIhGraph(setState, getState),
     run: run(setState),
     setEdgeLabel: setEdgeLabel(setState, getState),
     setNodeLabel: setNodeLabel(setState, getState),
-    setNodeValue: setNodeContent(setState, getState),
     setNodeType: setNodeType(setState, getState),
+    setNodeValue: setNodeContent(setState, getState),
     switchMode: switchMode(setState),
     toggleDrawer: toggleDrawer(setState),
 }));

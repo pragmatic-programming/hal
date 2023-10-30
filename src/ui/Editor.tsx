@@ -1,12 +1,13 @@
 import React from "react";
 import { Editor as Monaco } from "@monaco-editor/react";
 import { useStore } from "../state/Store";
-import { EditorOpenState, State } from "../state/State";
+import { State } from "../state/State";
 import { Node, useReactFlow } from "reactflow";
 import NodeData from "../model/NodeData";
 import { IconButton, Theme, useTheme } from "@mui/material";
 import { EditorNodeHeader } from "./flow/node/EditorNodeHeader";
 import { Close } from "@mui/icons-material";
+import { EditorOpenState } from "../state/substates/EditorOpenState";
 
 interface Props {
     editorOpen: EditorOpenState;
