@@ -5,7 +5,6 @@ import { StoreApi } from "zustand";
 
 export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {
     return (connection: Connection) => {
-        console.log(connection);
         const source = connection.source;
         const target = connection.target;
         if (!source) {

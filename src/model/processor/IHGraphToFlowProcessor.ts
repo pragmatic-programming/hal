@@ -3,7 +3,7 @@ import { IHGraph } from "ihgraph";
 import { Edge, Node } from "reactflow";
 import { createEdge } from "../createEdge";
 import { FlowState } from "../../state/FlowState";
-import { createNode } from "../createNode";
+import { createNodeFromSourceNode } from "../createNode";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
@@ -11,7 +11,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
         const ihGraph: IHGraph = this.getModel();
         const nodes: Node[] = [];
         for (const sourceNode of ihGraph.getSourceNodes()) {
-            nodes.push(createNode(sourceNode));
+            nodes.push(createNodeFromSourceNode(sourceNode));
         }
         const edges: Edge[] = [];
         for (const edge of ihGraph.getEdges()) {

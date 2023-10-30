@@ -1,4 +1,4 @@
-import { Edge, MarkerType } from "reactflow";
+import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
 
 export const markerEnd = {
     type: MarkerType.ArrowClosed,
@@ -7,6 +7,20 @@ export const markerEnd = {
 };
 
 export const validEdgeTypes: string[] = ["sequence", "execute"];
+
+export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
+    if (!onConnectStartParams.nodeId) {
+        throw new Error("ConnectingNodeId.current.nodeId is null");
+    }
+    if (!onConnectStartParams.handleId) {
+        throw new Error("ConnectingNodeId.current.handle is null");
+    }
+    return createEdge(
+        onConnectStartParams.handleId,
+        onConnectStartParams.nodeId,
+        targetId
+    );
+}
 
 export function createEdge(edgeType: string, sourceId: string, targetId: string): Edge {
     if (edgeType === "sequence") {

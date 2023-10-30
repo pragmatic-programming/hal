@@ -11,13 +11,17 @@ export interface EditorOpenState {
     label: string,
 }
 
+export interface DrawerState {
+    nodeId: string,
+}
+
 export interface State {
     busy: boolean,
     editorOpen: EditorOpenState | undefined,
     editorOpenSetContent: (content: string | undefined) => void,
     editorOpenSetLabel: (content: string) => void,
     context: CompilationContext,
-    drawerOpen: boolean,
+    drawerOpen: DrawerState | undefined,
     edges: Edge[],
     layout: (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
     mode: PaletteMode,
@@ -31,7 +35,8 @@ export interface State {
     run: () => void,
     setEdgeLabel: (editorId: string, label: string) => void,
     setNodeLabel: (editorId: string, label: string) => void,
+    setNodeType: (editorId: string, type: string) => void,
     setNodeValue: (editorId: string, content: string | undefined) => void,
     switchMode: () => void,
-    toggleDrawer: () => void,
+    toggleDrawer: (nodeId: string | undefined) => void,
 }
