@@ -7,7 +7,7 @@ import Flow from "./ui/flow/flow/Flow";
 import Editor from "./ui/Editor";
 import { State } from "./state/State";
 import { useStore } from "./state/Store";
-import NewNodeDialog from "./ui/NewNodeDialog";
+import DialogNodeNew from "./ui/DialogNodeNew";
 
 export default function App(): React.JSX.Element {
     const editorOpen = useStore((state: State) => state.editorOpen);
@@ -18,7 +18,7 @@ export default function App(): React.JSX.Element {
     const newNodeDialogOpen = useStore((state: State) => state.newNodeDialogOpen);
     let newNodeDialog = undefined;
     if (newNodeDialogOpen) {
-        newNodeDialog = <NewNodeDialog newNodeDialogOpen={newNodeDialogOpen}/>;
+        newNodeDialog = <DialogNodeNew newNodeDialogOpen={newNodeDialogOpen}/>;
     }
     return (
         <Theme>

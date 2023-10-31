@@ -13,6 +13,7 @@ export default function ModelProcessor(props: Props): React.JSX.Element {
         <Chip
             icon={<MemoryIcon/>}
             label={props.processor.getName()}
+            //todo background color
             style={{backgroundColor: "#e0e0e0"}}
         />
     );

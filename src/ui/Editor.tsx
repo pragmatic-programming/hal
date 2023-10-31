@@ -8,6 +8,7 @@ import { IconButton, Theme, useTheme } from "@mui/material";
 import NodeEditorHeader from "./flow/node/NodeEditorHeader";
 import { Close } from "@mui/icons-material";
 import { EditorOpenState } from "../state/substates/EditorOpenState";
+import { BoxBackgroundMain } from "./BoxBackgroundMain";
 
 interface Props {
     editorOpen: EditorOpenState;
@@ -25,7 +26,7 @@ export default function Editor(props: Props): React.JSX.Element {
         throw new Error("Node is undefined");
     }
     return (
-        <div
+        <BoxBackgroundMain
             style={{
                 position: "fixed",
                 width: "calc(100vw - 4px)",
@@ -33,7 +34,6 @@ export default function Editor(props: Props): React.JSX.Element {
                 borderColor: theme.palette.info.light,
                 borderStyle: "solid",
                 borderWidth: 2,
-                background: theme.palette.primary.main,
             }}
         >
             <IconButton
@@ -62,6 +62,6 @@ export default function Editor(props: Props): React.JSX.Element {
                 width="100"
                 height="calc(100vh - 48px - 4px)"
             />
-        </div>
+        </BoxBackgroundMain>
     );
 }

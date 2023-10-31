@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Theme, useTheme } from "@mui/material";
+import { Stack } from "@mui/material";
 import "./Bottom.scss";
 import { gui } from "../../constants";
 import { CompilationContext, Processor } from "../../../../kico-core";
@@ -8,15 +8,14 @@ import { State } from "../../state/State";
 import BottomRight from "./BottomRight";
 import BottomLeft from "./BottomLeft";
 import BottomStep from "./BottomStep";
+import { BoxBackgroundMain } from "../BoxBackgroundMain";
 
 export default function Bottom(): React.JSX.Element {
-    const theme: Theme = useTheme();
     const context: CompilationContext = useStore((state: State) => state.context);
     return (
-        <div
+        <BoxBackgroundMain
+            border="top"
             style={{
-                backgroundColor: theme.palette.primary.main,
-                borderTop: "1px solid " + theme.palette.primary.dark,
                 bottom: 0,
                 // reduce bottomHeight by 4px, since paddingBottom and paddingTop will add 2px each
                 height: gui.bottomHeight - 4,
@@ -60,23 +59,23 @@ export default function Bottom(): React.JSX.Element {
                     ))}
                 </Stack>
             </Stack>
-            <Stack
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-                spacing={0}
+            <BoxBackgroundMain
+                border="top"
                 style={{
-                    borderTop: "1px solid " + theme.palette.primary.dark,
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                     bottom: 0,
-                    paddingLeft: 5,
+                    paddingLeft: 10,
+                    paddingRight: 5,
                     height: 36,
                     position: "fixed",
-                    width: "100%",
+                    width: "calc(100% - 15px)",
                 }}
             >
                 <BottomLeft/>
                 <BottomRight/>
-            </Stack>
-        </div>
+            </BoxBackgroundMain>
+        </BoxBackgroundMain>
     );
 }

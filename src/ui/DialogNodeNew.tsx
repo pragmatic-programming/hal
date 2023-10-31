@@ -1,5 +1,4 @@
 import {
-    Box,
     Dialog,
     Divider,
     IconButton,
@@ -7,9 +6,7 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Theme,
-    Typography,
-    useTheme
+    Typography
 } from "@mui/material";
 import React from "react";
 import { Close, InsertDriveFile } from "@mui/icons-material";
@@ -18,18 +15,18 @@ import { State } from "../state/State";
 import DoneIcon from "@mui/icons-material/Done";
 import { useReactFlow } from "reactflow";
 import { NewDialogOpenState } from "../state/substates/NewDialogOpenState";
+import { BoxBackgroundMain } from "./BoxBackgroundMain";
 
 interface Props {
     newNodeDialogOpen: NewDialogOpenState;
 }
 
 
-export default function NewNodeDialog(props: Props): React.JSX.Element {
+export default function DialogNodeNew(props: Props): React.JSX.Element {
     const setNodeType = useStore((state: State) => state.setNodeType);
     const {getNode} = useReactFlow();
     const openNewDialog = useStore((state: State) => state.openNewNodeDialog);
     const node = getNode(props.newNodeDialogOpen.nodeId);
-    const theme: Theme = useTheme();
     if (!node) {
         throw new Error("Node is undefined");
     }
@@ -38,15 +35,15 @@ export default function NewNodeDialog(props: Props): React.JSX.Element {
             fullScreen
             open={true}
         >
-            <Box
-                sx={{
+            <BoxBackgroundMain
+                border="bottom"
+                style={{
                     alignItems: "center",
-                    backgroundColor: theme.palette.primary.main,
-                    borderBottom: "1px solid " + theme.palette.primary.dark,
                     display: "flex",
-                    pr: 2,
-                    pl: 1,
-                    pt: .5,
+                    paddingBottom: .5,
+                    paddingLeft: 5,
+                    paddingRight: 20,
+                    paddingTop: .5,
                 }}
             >
                 <Typography sx={{ml: 2, flex: 1}} variant="body1" component="div">
@@ -60,7 +57,7 @@ export default function NewNodeDialog(props: Props): React.JSX.Element {
                 >
                     <Close/>
                 </IconButton>
-            </Box>
+            </BoxBackgroundMain>
             <List>
                 <ListItemButton
                     onClick={() => setNodeType(props.newNodeDialogOpen.nodeId, "editor")}

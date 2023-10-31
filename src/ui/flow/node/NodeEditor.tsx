@@ -8,6 +8,7 @@ import NodeData from "../../../model/NodeData";
 import HandleTarget from "../handle/HandleTarget";
 import HandleSource from "../handle/HandleSource";
 import NodeEditorHeader from "./NodeEditorHeader";
+import { BoxBackgroundMain } from "../../BoxBackgroundMain";
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -18,11 +19,10 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         borderColor: theme.palette.info.light,
         borderStyle: "solid",
         borderWidth: 1,
-        background: theme.palette.primary.main,
     };
 
     return (
-        <div
+        <BoxBackgroundMain
             style={style}
         >
             <HandleTarget
@@ -51,6 +51,6 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 options={{minimap: {enabled: false}}}
                 value={props.data.content}
             />
-        </div>
+        </BoxBackgroundMain>
     );
 }
