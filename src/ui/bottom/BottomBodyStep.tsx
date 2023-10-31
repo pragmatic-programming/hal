@@ -11,7 +11,7 @@ interface Props {
     length: number;
 }
 
-export default function BottomStep(props: Props) {
+export default function BottomBodyStep(props: Props) {
     const processor = <ModelProcessor processor={props.processor}/>;
     const model = <InterModel processor={props.processor}/>;
     if (props.index === 0) {

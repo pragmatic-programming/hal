@@ -4,7 +4,7 @@ import { Loop } from "@mui/icons-material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 
-export default function BottomRight(): React.JSX.Element {
+export default function BottomFooterRight(): React.JSX.Element {
     const rotate: boolean = useStore((state: State) => state.busy);
     return (
         <Stack

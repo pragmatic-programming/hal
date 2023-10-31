@@ -3,7 +3,7 @@ import { Stack, Typography } from "@mui/material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 
-export default function BottomLeft(): React.JSX.Element {
+export default function BottomFooterLeft(): React.JSX.Element {
     const projectName: string = useStore((state: State) => state.projectName);
     return (
         <Stack
