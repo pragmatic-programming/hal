@@ -1,5 +1,5 @@
 import {
-    AppBar,
+    Box,
     Dialog,
     Divider,
     IconButton,
@@ -7,8 +7,9 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Toolbar,
-    Typography
+    Theme,
+    Typography,
+    useTheme
 } from "@mui/material";
 import React from "react";
 import { Close, InsertDriveFile } from "@mui/icons-material";
@@ -28,6 +29,7 @@ export default function NewNodeDialog(props: Props): React.JSX.Element {
     const {getNode} = useReactFlow();
     const openNewDialog = useStore((state: State) => state.openNewNodeDialog);
     const node = getNode(props.newNodeDialogOpen.nodeId);
+    const theme: Theme = useTheme();
     if (!node) {
         throw new Error("Node is undefined");
     }
@@ -36,21 +38,29 @@ export default function NewNodeDialog(props: Props): React.JSX.Element {
             fullScreen
             open={true}
         >
-            <AppBar sx={{position: "relative"}}>
-                <Toolbar>
-                    <Typography sx={{ml: 2, flex: 1}} variant="h6" component="div">
-                        New Node
-                    </Typography>
-                    <IconButton
-                        edge="end"
-                        color="inherit"
-                        aria-label="close"
-                        onClick={() => openNewDialog(undefined)}
-                    >
-                        <Close/>
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
+            <Box
+                sx={{
+                    alignItems: "center",
+                    backgroundColor: theme.palette.primary.main,
+                    borderBottom: "1px solid " + theme.palette.primary.dark,
+                    display: "flex",
+                    pr: 2,
+                    pl: 1,
+                    pt: .5,
+                }}
+            >
+                <Typography sx={{ml: 2, flex: 1}} variant="body1" component="div">
+                    New Node
+                </Typography>
+                <IconButton
+                    edge="end"
+                    color="inherit"
+                    aria-label="close"
+                    onClick={() => openNewDialog(undefined)}
+                >
+                    <Close/>
+                </IconButton>
+            </Box>
             <List>
                 <ListItemButton
                     onClick={() => setNodeType(props.newNodeDialogOpen.nodeId, "editor")}

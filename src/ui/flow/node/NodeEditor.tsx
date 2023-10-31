@@ -7,7 +7,7 @@ import { State } from "../../../state/State";
 import NodeData from "../../../model/NodeData";
 import HandleTarget from "../handle/HandleTarget";
 import HandleSource from "../handle/HandleSource";
-import EditorNodeHeader from "./EditorNodeHeader";
+import NodeEditorHeader from "./NodeEditorHeader";
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -39,7 +39,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 nodeId={props.id}
                 style={{top: 200}}
             />
-            <EditorNodeHeader
+            <NodeEditorHeader
                 value={props.data.label}
                 onChange={(content: string) => setNodeLabel(props.id, content)}
                 nodeId={props.id}

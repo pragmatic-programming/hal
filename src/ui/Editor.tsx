@@ -5,7 +5,7 @@ import { State } from "../state/State";
 import { Node, useReactFlow } from "reactflow";
 import NodeData from "../model/NodeData";
 import { IconButton, Theme, useTheme } from "@mui/material";
-import EditorNodeHeader from "./flow/node/EditorNodeHeader";
+import NodeEditorHeader from "./flow/node/NodeEditorHeader";
 import { Close } from "@mui/icons-material";
 import { EditorOpenState } from "../state/substates/EditorOpenState";
 
@@ -46,7 +46,7 @@ export default function Editor(props: Props): React.JSX.Element {
             >
                 <Close/>
             </IconButton>
-            <EditorNodeHeader
+            <NodeEditorHeader
                 onChange={(value: string) => {
                     editorOpenSetLabel(value);
                     console.log(value);
