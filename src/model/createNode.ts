@@ -58,15 +58,14 @@ export function createCreationNode(
     x: number,
     y: number,
 ): Node<NodeData> {
-    return {
-        id: id,
-        type: "creation",
-        data: {
-            content: "",
-            label: "",
-        },
-        position: {x: x, y: y},
-    };
+    return node(
+        id,
+        "creation",
+        "",
+        "",
+        x,
+        y,
+    );
 }
 
 function node(
@@ -82,7 +81,8 @@ function node(
         type: type,
         data: {
             content: content,
-            label: label
+            label: label,
+            language: "JavaScript",
         },
         position: {x: x, y: y},
     };

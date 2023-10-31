@@ -1,11 +1,11 @@
 import { styled, TextField } from "@mui/material";
 import React from "react";
 import { InsertDriveFile } from "@mui/icons-material";
-import { useStore } from "../../../state/Store";
-import { State } from "../../../state/State";
+import { useStore } from "../../state/Store";
+import { State } from "../../state/State";
 import { Node, useReactFlow } from "reactflow";
-import NodeData from "../../../model/NodeData";
-import { BoxBackgroundLight } from "../../BoxBackgroundLight";
+import NodeData from "../../model/NodeData";
+import { BoxBackgroundLight } from "../BoxBackgroundLight";
 
 interface Props {
     nodeId: string,
@@ -21,7 +21,7 @@ export const EditorNodeLabelTextField = styled(TextField)({
     },
 });
 
-export default function NodeEditorHeader(props: Props): React.JSX.Element {
+export default function EditorHeader(props: Props): React.JSX.Element {
     const openEditor = useStore((state: State) => state.openEditor);
     const {getNode} = useReactFlow();
     let node: Node<NodeData> | undefined = getNode(props.nodeId);

@@ -7,8 +7,9 @@ import { State } from "../../../state/State";
 import NodeData from "../../../model/NodeData";
 import HandleTarget from "../handle/HandleTarget";
 import HandleSource from "../handle/HandleSource";
-import NodeEditorHeader from "./NodeEditorHeader";
+import EditorHeader from "../../editor/EditorHeader";
 import { BoxBackgroundMain } from "../../BoxBackgroundMain";
+import EditorFooter from "../../editor/EditorFooter";
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -39,7 +40,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 nodeId={props.id}
                 style={{top: 200}}
             />
-            <NodeEditorHeader
+            <EditorHeader
                 value={props.data.label}
                 onChange={(content: string) => setNodeLabel(props.id, content)}
                 nodeId={props.id}
@@ -50,6 +51,9 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 onChange={(value: string | undefined) => setNodeValue(props.id, value)}
                 options={{minimap: {enabled: false}}}
                 value={props.data.content}
+            />
+            <EditorFooter
+                language={props.data.language}
             />
         </BoxBackgroundMain>
     );

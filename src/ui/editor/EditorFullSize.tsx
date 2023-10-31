@@ -1,20 +1,21 @@
 import React from "react";
 import { Editor as Monaco } from "@monaco-editor/react";
-import { useStore } from "../state/Store";
-import { State } from "../state/State";
+import { useStore } from "../../state/Store";
+import { State } from "../../state/State";
 import { Node, useReactFlow } from "reactflow";
-import NodeData from "../model/NodeData";
+import NodeData from "../../model/NodeData";
 import { IconButton, Theme, useTheme } from "@mui/material";
-import NodeEditorHeader from "./flow/node/NodeEditorHeader";
+import EditorHeader from "./EditorHeader";
 import { Close } from "@mui/icons-material";
-import { EditorOpenState } from "../state/substates/EditorOpenState";
-import { BoxBackgroundMain } from "./BoxBackgroundMain";
+import { EditorOpenState } from "../../state/substates/EditorOpenState";
+import { BoxBackgroundMain } from "../BoxBackgroundMain";
+import EditorFooter from "./EditorFooter";
 
 interface Props {
     editorOpen: EditorOpenState;
 }
 
-export default function Editor(props: Props): React.JSX.Element {
+export default function EditorFullSize(props: Props): React.JSX.Element {
     const editorOpenSetLabel = useStore((state: State) => state.editorOpenSetLabel);
     const editorOpenSetContent = useStore((state: State) => state.editorOpenSetContent);
     const openEditor = useStore((state: State) => state.openEditor);
@@ -46,7 +47,7 @@ export default function Editor(props: Props): React.JSX.Element {
             >
                 <Close/>
             </IconButton>
-            <NodeEditorHeader
+            <EditorHeader
                 onChange={(value: string) => {
                     editorOpenSetLabel(value);
                     console.log(value);
@@ -59,8 +60,11 @@ export default function Editor(props: Props): React.JSX.Element {
                 onChange={(value: string | undefined) => editorOpenSetContent(value)}
                 options={{minimap: {enabled: false}}}
                 value={node.data.content}
-                width="100"
-                height="calc(100vh - 48px - 4px)"
+                width="calc"
+                height="calc(100vh - 48px - 4px - 36px)"
+            />
+            <EditorFooter
+                language={node.data.language}
             />
         </BoxBackgroundMain>
     );
