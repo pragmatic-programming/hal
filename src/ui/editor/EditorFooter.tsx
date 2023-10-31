@@ -6,15 +6,18 @@ interface Props {
     language: "JavaScript";
 }
 
+export const editorFooterHeight = 34;
+
 export default function EditorFooter(props: Props): React.JSX.Element {
     return (
         <BoxBackgroundLight
             border="top"
             style={{
-                height: 30,
+                alignItems: "center",
+                display: "flex",
+                height: editorFooterHeight,
                 paddingLeft: 8,
                 paddingRight: 46,
-                paddingTop: 4,
             }}
         >
             <Typography variant="caption">

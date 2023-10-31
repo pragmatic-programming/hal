@@ -1,7 +1,6 @@
 import React from "react";
 import { Stack } from "@mui/material";
 import "./Bottom.scss";
-import { gui } from "../../constants";
 import { CompilationContext, Processor } from "../../../../kico-core";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
@@ -9,6 +8,8 @@ import BottomRight from "./BottomRight";
 import BottomLeft from "./BottomLeft";
 import BottomStep from "./BottomStep";
 import { BoxBackgroundMain } from "../BoxBackgroundMain";
+
+export const bottomHeight = 150;
 
 export default function Bottom(): React.JSX.Element {
     const context: CompilationContext = useStore((state: State) => state.context);
@@ -18,7 +19,7 @@ export default function Bottom(): React.JSX.Element {
             style={{
                 bottom: 0,
                 // reduce bottomHeight by 4px, since paddingBottom and paddingTop will add 2px each
-                height: gui.bottomHeight - 4,
+                height: bottomHeight - 4,
                 left: 0,
                 paddingBottom: 2,
                 paddingLeft: 0,
@@ -34,7 +35,7 @@ export default function Bottom(): React.JSX.Element {
                 spacing={0}
                 style={{
                     width: "100%",
-                    height: gui.bottomHeight - 4 - 36,
+                    height: bottomHeight - 4 - 36,
                 }}
             >
                 <Stack

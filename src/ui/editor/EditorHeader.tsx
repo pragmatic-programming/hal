@@ -13,13 +13,15 @@ interface Props {
     onChange: (content: string) => void,
 }
 
-export const EditorNodeLabelTextField = styled(TextField)({
+const EditorNodeLabelTextField = styled(TextField)({
     "& .MuiOutlinedInput-root": {
         "& fieldset": {
             border: "none"
         },
     },
 });
+
+export const editorHeaderHeight = 46;
 
 export default function EditorHeader(props: Props): React.JSX.Element {
     const openEditor = useStore((state: State) => state.openEditor);
@@ -33,10 +35,9 @@ export default function EditorHeader(props: Props): React.JSX.Element {
             style={{
                 alignItems: "center",
                 display: "flex",
+                height: editorHeaderHeight,
                 marginRight: 46,
-                paddingBottom: 4,
                 paddingLeft: 8,
-                paddingTop: 4,
             }}
         >
             <InsertDriveFile

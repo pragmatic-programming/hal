@@ -17,6 +17,7 @@ export function EditorBody(props: Props) {
             onChange={props.onChange}
             options={{minimap: {enabled: false}}}
             value={props.value}
+            width={props.width}
         />
     );
 }

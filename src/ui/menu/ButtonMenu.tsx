@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, IconButton, Tooltip } from "@mui/material";
-import { gui } from "../../constants";
+import { menuWidth } from "./Menu";
 
 interface Props {
     disabled?: boolean;
@@ -11,13 +11,12 @@ interface Props {
 
 export default function ButtonMenu(props: Props): React.JSX.Element {
     return (
-        // todo sx and style equal?
         <Box
-            sx={{
+            style={{
                 height: 32,
+                marginTop: 16,
                 textAlign: "center",
-                width: gui.menuWidth,
-                marginTop: 2
+                width: menuWidth,
             }}
         >
             <Tooltip

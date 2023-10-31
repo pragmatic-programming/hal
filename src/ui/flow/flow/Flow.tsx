@@ -9,7 +9,8 @@ import nextNodeId from "../../../state/nextNodeId";
 import { createEdgeFromOnConnectStartParams } from "../../../model/createEdge";
 import { edgeTypesMapping } from "./EdgeTypes";
 import { nodeTypesMapping } from "./NodeTypes";
-import { gui } from "../../../constants";
+import { bottomHeight } from "../../bottom/Bottom";
+import { menuWidth } from "../../menu/Menu";
 
 const selector = (state: State) => ({
     nodes: state.nodes,
@@ -44,7 +45,7 @@ export default function Flow(): React.JSX.Element {
 
     const onConnectEnd = useCallback(
         (event: MouseEvent | TouchEvent): void => {
-            setConnectingSourceNodeId(null)
+            setConnectingSourceNodeId(null);
             if (event instanceof MouseEvent) {
                 if (event.target instanceof HTMLElement) {
                     const targetIsPane = event.target.classList.contains("react-flow__pane");
@@ -89,11 +90,11 @@ export default function Flow(): React.JSX.Element {
             className="wrapper"
             ref={reactFlowWrapper}
             style={{
-                left: gui.menuWidth,
+                height: "calc(100vh - " + bottomHeight + "px)",
+                left: menuWidth,
                 position: "fixed",
                 top: 0,
-                height: "calc(100vh - " + gui.bottomHeight + "px)",
-                width: "calc(100vw - " + gui.menuWidth + "px)",
+                width: "calc(100vw - " + menuWidth + "px)",
             }}
         >
             <ReactFlow
