@@ -1,5 +1,4 @@
 import React from "react";
-import { Editor as Monaco } from "@monaco-editor/react";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { Node, useReactFlow } from "reactflow";
@@ -10,6 +9,7 @@ import { Close } from "@mui/icons-material";
 import { EditorOpenState } from "../../state/substates/EditorOpenState";
 import { BoxBackgroundMain } from "../BoxBackgroundMain";
 import EditorFooter from "./EditorFooter";
+import { EditorBody } from "./EditorBody";
 
 interface Props {
     editorOpen: EditorOpenState;
@@ -55,13 +55,12 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                 nodeId={props.editorOpen.nodeId}
                 value={label}
             />
-            <Monaco
-                defaultLanguage={"javascript"}
+            <EditorBody
+                height="calc(100vh - 48px - 4px - 34px)"
+                language={node.data.language}
                 onChange={(value: string | undefined) => editorOpenSetContent(value)}
-                options={{minimap: {enabled: false}}}
                 value={node.data.content}
-                width="calc"
-                height="calc(100vh - 48px - 4px - 36px)"
+                width="calc(100vw - 4px)"
             />
             <EditorFooter
                 language={node.data.language}

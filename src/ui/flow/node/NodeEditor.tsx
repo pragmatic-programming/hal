@@ -1,6 +1,5 @@
 import React, { CSSProperties } from "react";
 import { NodeProps } from "reactflow";
-import { Editor as Monaco } from "@monaco-editor/react";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
@@ -10,6 +9,7 @@ import HandleSource from "../handle/HandleSource";
 import EditorHeader from "../../editor/EditorHeader";
 import { BoxBackgroundMain } from "../../BoxBackgroundMain";
 import EditorFooter from "../../editor/EditorFooter";
+import { EditorBody } from "../../editor/EditorBody";
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -20,6 +20,8 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         borderColor: theme.palette.info.light,
         borderStyle: "solid",
         borderWidth: 1,
+        width: 300,
+        height: 300,
     };
 
     return (
@@ -45,12 +47,12 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 onChange={(content: string) => setNodeLabel(props.id, content)}
                 nodeId={props.id}
             />
-            <Monaco
-                defaultLanguage={"javascript"}
-                height={300}
+            <EditorBody
+                height="calc(100% - 48px - 1px - 34px)"
+                language={props.data.language}
                 onChange={(value: string | undefined) => setNodeValue(props.id, value)}
-                options={{minimap: {enabled: false}}}
                 value={props.data.content}
+                width="calc(100% - 2px)"
             />
             <EditorFooter
                 language={props.data.language}
