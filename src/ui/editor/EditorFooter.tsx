@@ -1,5 +1,5 @@
 import React from "react";
-import { BoxBackgroundLight } from "../BoxBackgroundLight";
+import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
 import { Typography } from "@mui/material";
 
 interface Props {

@@ -7,7 +7,7 @@ import NodeData from "../../../model/NodeData";
 import HandleTarget from "../handle/HandleTarget";
 import HandleSource from "../handle/HandleSource";
 import EditorHeader, { editorHeaderHeight } from "../../editor/EditorHeader";
-import { BoxBackgroundMain } from "../../BoxBackgroundMain";
+import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
 

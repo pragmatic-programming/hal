@@ -7,7 +7,7 @@ import { IconButton, Theme, useTheme } from "@mui/material";
 import EditorHeader, { editorHeaderHeight } from "./EditorHeader";
 import { Close } from "@mui/icons-material";
 import { EditorOpenState } from "../../state/substates/EditorOpenState";
-import { BoxBackgroundMain } from "../BoxBackgroundMain";
+import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "./EditorFooter";
 import { EditorBody } from "./EditorBody";
 

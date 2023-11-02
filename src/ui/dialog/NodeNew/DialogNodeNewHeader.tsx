@@ -4,7 +4,7 @@ import { Close } from "@mui/icons-material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { editorHeaderHeight } from "../../editor/EditorHeader";
-import { BoxBackgroundMain } from "../../BoxBackgroundMain";
+import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 
 
 export default function DialogNodeNewHeader(): React.JSX.Element {

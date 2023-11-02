@@ -3,7 +3,7 @@ import ButtonPlay from "./ButtonPlay";
 import MenuLayout from "./MenuLayout";
 import MenuDivider from "./MenuDivider";
 import ButtonSwitchMode from "./ButtonSwitchMode";
-import { BoxBackgroundMain } from "../BoxBackgroundMain";
+import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import { bottomHeight } from "../bottom/Bottom";
 
 export const menuWidth = 100;

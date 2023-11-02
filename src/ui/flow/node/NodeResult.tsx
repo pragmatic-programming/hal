@@ -2,7 +2,7 @@ import React from "react";
 import { NodeProps } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import HandleTarget from "../handle/HandleTarget";
-import { BoxBackgroundMain } from "../../BoxBackgroundMain";
+import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 
 export default function NodeResult(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Bottom.scss";
-import { BoxBackgroundMain } from "../BoxBackgroundMain";
+import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import { BottomFooter } from "./BottomFooter";
 import { BottomBody } from "./BottomBody";
 

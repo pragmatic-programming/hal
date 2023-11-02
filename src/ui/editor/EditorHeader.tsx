@@ -5,7 +5,7 @@ import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { Node, useReactFlow } from "reactflow";
 import NodeData from "../../model/NodeData";
-import { BoxBackgroundLight } from "../BoxBackgroundLight";
+import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
 
 interface Props {
     nodeId: string,

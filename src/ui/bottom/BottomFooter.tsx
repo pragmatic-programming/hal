@@ -1,5 +1,5 @@
 import React from "react";
-import { BoxBackgroundMain } from "../BoxBackgroundMain";
+import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import BottomFooterLeft from "./BottomFooterLeft";
 import BottomFooterRight from "./BottomFooterRight";
 
