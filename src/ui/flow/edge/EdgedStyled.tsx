@@ -6,6 +6,7 @@ import { State } from "../../../state/State";
 import { validEdgeTypes } from "../../../model/createEdge";
 
 export default function EdgedStyled(props: EdgeProps): React.JSX.Element {
+    // todo make path style configurable
     const [edgePath, labelX, labelY] = getBezierPath(props);
     const setEdgeLabel = useStore((state: State) => state.setEdgeLabel);
     const theme: Theme = useTheme();
