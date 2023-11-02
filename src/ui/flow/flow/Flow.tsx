@@ -21,7 +21,7 @@ const selector = (state: State) => ({
     layout: state.layout,
 });
 
-export const creationNodeHalfHeight = 30;
+const creationNodeHalfHeight = 30;
 
 export default function Flow(): React.JSX.Element {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);

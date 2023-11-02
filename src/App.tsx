@@ -7,7 +7,7 @@ import Flow from "./ui/flow/flow/Flow";
 import EditorFullSize from "./ui/editor/EditorFullSize";
 import { State } from "./state/State";
 import { useStore } from "./state/Store";
-import DialogNodeNew from "./ui/DialogNodeNew";
+import DialogNodeNew from "./ui/dialog/NodeNew/DialogNodeNew";
 
 export default function App(): React.JSX.Element {
     const editorOpen = useStore((state: State) => state.editorOpen);

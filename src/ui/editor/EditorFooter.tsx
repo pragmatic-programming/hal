@@ -15,8 +15,7 @@ export default function EditorFooter(props: Props): React.JSX.Element {
             style={{
                 alignItems: "center",
                 display: "flex",
-                // reduce height by 1 since top border is set
-                height: editorFooterHeight - 1,
+                height: editorFooterHeight - 1, // reduce height by 1 since top border is set
                 paddingLeft: 8,
                 paddingRight: 46,
             }}
