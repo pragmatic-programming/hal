@@ -12,11 +12,13 @@ interface Props {
 export default function DialogNodeNew(props: Props): React.JSX.Element {
     return (
         <Dialog
-            fullScreen
+            fullScreen={true}
             open={true}
         >
             <DialogNodeNewHeader/>
-            <DialogNodeNewBody nodeId={props.newNodeDialogOpen.nodeId}/>
+            <DialogNodeNewBody
+                nodeId={props.newNodeDialogOpen.nodeId}
+            />
         </Dialog>
     );
 }

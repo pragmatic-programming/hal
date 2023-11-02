@@ -20,7 +20,7 @@ export function DialogNodeNewBody(props: Props): React.JSX.Element {
                     <InsertDriveFile/>
                 </ListItemIcon>
                 <ListItemText
-                    primary="Editor Node"
+                    primary="Editor"
                 />
             </ListItemButton>
             <Divider/>
@@ -31,7 +31,7 @@ export function DialogNodeNewBody(props: Props): React.JSX.Element {
                     <DoneIcon/>
                 </ListItemIcon>
                 <ListItemText
-                    primary="Result Node"
+                    primary="Result"
                 />
             </ListItemButton>
         </List>

@@ -15,9 +15,9 @@ export default function DialogNodeNewHeader(): React.JSX.Element {
             style={{
                 alignItems: "center",
                 display: "flex",
+                height: editorHeaderHeight, // todo make global constant
                 paddingLeft: 5,
                 paddingRight: 20,
-                height: editorHeaderHeight // todo make global constant
             }}
         >
             <Typography
