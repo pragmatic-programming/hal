@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Tooltip } from "@mui/material";
+import { Avatar, IconButton, Theme, Tooltip, useTheme } from "@mui/material";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import React from "react";
 import { useStore } from "../../state/Store";
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function Model(props: Props): React.JSX.Element {
+    const theme: Theme = useTheme();
     const {getNode, fitView} = useReactFlow();
     const renderIHGraph = useStore((state: State) => state.renderIhGraph);
     let borderStyle: "dotted" | "solid" | "double";
@@ -56,11 +57,10 @@ export default function Model(props: Props): React.JSX.Element {
             >
                 <Avatar
                     style={{
-                        backgroundColor: "#e0e0e0",
-                        borderColor: "rgb(97, 97, 97)",
+                        backgroundColor: theme.palette.primary.dark,
+                        borderColor: theme.palette.secondary.main,
                         borderStyle: borderStyle,
                         borderWidth: borderWidth,
-                        color: "rgb(97, 97, 97)",
                         cursor: "pointer",
                     }}
                 >

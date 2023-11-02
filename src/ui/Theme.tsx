@@ -16,8 +16,8 @@ function theme(mode: PaletteMode) {
             dark: "#dcdcdc",
             contrastText: "rgba(0, 0, 0, 0.87)",
         },
-        secondary:{
-            main: "rgba(0, 0, 0, 0.87)",
+        secondary: {
+            main: "rgb(97, 97, 97)",
             light: "#f0f0f0",
             dark: "#dcdcdc",
             contrastText: "",
@@ -31,7 +31,7 @@ function theme(mode: PaletteMode) {
                 dark: "#dcdcdc",
                 contrastText: "rgba(0, 0, 0, 0.87)",
             },
-            primary:{
+            primary: {
                 main: "rgba(0, 0, 0, 0.87)",
                 light: "#f0f0f0",
                 dark: "#dcdcdc",
