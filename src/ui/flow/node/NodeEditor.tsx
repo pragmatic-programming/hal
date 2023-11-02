@@ -58,6 +58,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 width={"calc(100% - " + editorBodyReducedWidth + "px)"}
             />
             <EditorFooter
+                nodeId={props.id}
                 language={props.data.language}
             />
         </BoxBackgroundMain>

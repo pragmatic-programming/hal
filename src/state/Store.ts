@@ -18,6 +18,7 @@ import { editorOpenSetLabel } from "./manipulate/editorOpenSetLabel";
 import { createWithEqualityFn } from "zustand/traditional";
 import { setNodeType } from "./manipulate/setNodeType";
 import { setConnectingSourceNodeId } from "./manipulate/setConnectingSourceNodeId";
+import { setNodeLanguage } from "./manipulate/setNodeLanguage";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     //state
@@ -46,5 +47,6 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     setNodeLabel: setNodeLabel(setState, getState),
     setNodeType: setNodeType(setState, getState),
     setNodeValue: setNodeContent(setState, getState),
+    setNodeLanguage: setNodeLanguage(setState, getState),
     switchMode: switchMode(setState),
 }));

@@ -65,7 +65,12 @@ export default function Flow(): React.JSX.Element {
                         if (connectStartParams.current?.handleType === "source") {
                             onNodesChange([{
                                 type: "add",
-                                item: createCreationNode(nextId, position.x, position.y - creationNodeHalfHeight)
+                                item: createCreationNode(
+                                    nextId,
+                                    "JavaScript",
+                                    position.x,
+                                    position.y - creationNodeHalfHeight
+                                )
                             }]);
                             onEdgesChange([{
                                 type: "add",

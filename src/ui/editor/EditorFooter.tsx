@@ -1,9 +1,11 @@
 import React from "react";
 import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
-import { Typography } from "@mui/material";
+import EditorFooterLanguageSelect from "./EditorFooterLanguageSelect";
+import { Language } from "../../model/Languages";
 
 interface Props {
-    language: "JavaScript";
+    nodeId: string;
+    language: Language;
 }
 
 export const editorFooterHeight = 36;
@@ -16,13 +18,14 @@ export default function EditorFooter(props: Props): React.JSX.Element {
                 alignItems: "center",
                 display: "flex",
                 height: editorFooterHeight - 1, // reduce height by 1 since top border is set
-                paddingLeft: 8,
+                paddingLeft: 10,
                 paddingRight: 46,
             }}
         >
-            <Typography variant="caption">
-                {props.language}
-            </Typography>
+            <EditorFooterLanguageSelect
+                nodeId={props.nodeId}
+                language={props.language}
+            />
         </BoxBackgroundLight>
     );
 }

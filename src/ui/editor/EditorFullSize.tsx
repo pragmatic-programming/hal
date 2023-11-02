@@ -66,6 +66,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                 width={"calc(vw - " + editorBodyReducedHeight + "px)"}
             />
             <EditorFooter
+                nodeId={node.id}
                 language={node.data.language}
             />
         </BoxBackgroundMain>

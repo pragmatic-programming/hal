@@ -2,6 +2,7 @@ import { SourceNode, TransformationEdge } from "ihgraph";
 import { Node } from "reactflow";
 import NodeData from "./NodeData";
 import { nodeType } from "../ui/flow/flow/NodeTypes";
+import { Language } from "./Languages";
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
     const executeEdge = sourceNode
@@ -13,6 +14,8 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
         sourceNode.getContent(),
         // todo get label from sourceNode
         "Missing",
+        //todo get language from sourceNode,
+        "JavaScript",
         // todo get position from sourceNode
         0,
         0
@@ -31,6 +34,8 @@ export function createResultNode(
         "result",
         content,
         label,
+        // todo result nodes do not need languages,
+        "JavaScript",
         x,
         y,
     );
@@ -40,6 +45,7 @@ export function createEditorNode(
     id: string,
     content: string,
     label: string,
+    language: Language,
     x: number,
     y: number,
 ): Node<NodeData> {
@@ -48,6 +54,7 @@ export function createEditorNode(
         "editor",
         content,
         label,
+        language,
         x,
         y,
     );
@@ -55,6 +62,7 @@ export function createEditorNode(
 
 export function createCreationNode(
     id: string,
+    language: Language,
     x: number,
     y: number,
 ): Node<NodeData> {
@@ -63,6 +71,7 @@ export function createCreationNode(
         "creation",
         "",
         "",
+        language,
         x,
         y,
     );
@@ -73,6 +82,7 @@ function node(
     type: nodeType,
     content: string,
     label: string,
+    language: Language,
     x: number,
     y: number,
 ): Node<NodeData> {
@@ -82,7 +92,7 @@ function node(
         data: {
             content: content,
             label: label,
-            language: "JavaScript",
+            language: language,
         },
         position: {x: x, y: y},
     };
