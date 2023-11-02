@@ -6,7 +6,7 @@ interface Props {
     language: "JavaScript";
 }
 
-export const editorFooterHeight = 34;
+export const editorFooterHeight = 36;
 
 export default function EditorFooter(props: Props): React.JSX.Element {
     return (
@@ -15,7 +15,8 @@ export default function EditorFooter(props: Props): React.JSX.Element {
             style={{
                 alignItems: "center",
                 display: "flex",
-                height: editorFooterHeight,
+                // reduce height by 1 since top border is set
+                height: editorFooterHeight - 1,
                 paddingLeft: 8,
                 paddingRight: 46,
             }}

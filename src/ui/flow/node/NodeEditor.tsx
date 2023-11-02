@@ -6,10 +6,13 @@ import { State } from "../../../state/State";
 import NodeData from "../../../model/NodeData";
 import HandleTarget from "../handle/HandleTarget";
 import HandleSource from "../handle/HandleSource";
-import EditorHeader from "../../editor/EditorHeader";
+import EditorHeader, { editorHeaderHeight } from "../../editor/EditorHeader";
 import { BoxBackgroundMain } from "../../BoxBackgroundMain";
-import EditorFooter from "../../editor/EditorFooter";
+import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
+
+const editorBodyReducedWidth = 2;
+const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -48,11 +51,11 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 nodeId={props.id}
             />
             <EditorBody
-                height="calc(100% - 48px - 1px - 34px)"
+                height={"calc(100% - " + editorBodyReducedHeight + "px)"}
                 language={props.data.language}
                 onChange={(value: string | undefined) => setNodeValue(props.id, value)}
                 value={props.data.content}
-                width="calc(100% - 2px)"
+                width={"calc(100% - " + editorBodyReducedWidth + "px)"}
             />
             <EditorFooter
                 language={props.data.language}

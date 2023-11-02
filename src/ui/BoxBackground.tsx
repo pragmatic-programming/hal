@@ -27,6 +27,7 @@ export function BoxBackground(props: Props): React.JSX.Element {
             break;
         case "right":
             style.borderRight = border;
+            break;
     }
     return (
         <div
