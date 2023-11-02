@@ -8,8 +8,6 @@ import { run } from "./manipulate/run";
 import { layout } from "./manipulate/layout";
 import { renderIhGraph } from "./manipulate/renderIhGraph";
 import { switchMode } from "./manipulate/switchMode";
-import { setNodeContent } from "./manipulate/setNodeContent";
-import { setNodeLabel } from "./manipulate/setNodeLabel";
 import { setEdgeLabel } from "./manipulate/setEdgeLabel";
 import { openNewDialog } from "./manipulate/openNewDialog";
 import { openEditor } from "./manipulate/openEditor";
@@ -18,7 +16,7 @@ import { editorOpenSetLabel } from "./manipulate/editorOpenSetLabel";
 import { createWithEqualityFn } from "zustand/traditional";
 import { setNodeType } from "./manipulate/setNodeType";
 import { setConnectingSourceNodeId } from "./manipulate/setConnectingSourceNodeId";
-import { setNodeLanguage } from "./manipulate/setNodeLanguage";
+import { setNodeNodeData } from "./manipulate/setNodeNodeData";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     //state
@@ -44,9 +42,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     run: run(setState),
     setConnectingSourceNodeId: setConnectingSourceNodeId(setState),
     setEdgeLabel: setEdgeLabel(setState, getState),
-    setNodeLabel: setNodeLabel(setState, getState),
+    setNodeNodeData: setNodeNodeData(setState, getState),
     setNodeType: setNodeType(setState, getState),
-    setNodeValue: setNodeContent(setState, getState),
-    setNodeLanguage: setNodeLanguage(setState, getState),
     switchMode: switchMode(setState),
 }));

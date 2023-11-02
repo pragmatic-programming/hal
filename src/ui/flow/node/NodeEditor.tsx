@@ -16,8 +16,7 @@ const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
-    const setNodeValue = useStore((state: State) => state.setNodeValue);
-    const setNodeLabel = useStore((state: State) => state.setNodeLabel);
+    const setNodeNodeData = useStore((state: State) => state.setNodeNodeData);
 
     const style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
@@ -47,13 +46,13 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
             />
             <EditorHeader
                 value={props.data.label}
-                onChange={(content: string) => setNodeLabel(props.id, content)}
+                onChange={(label: string) => setNodeNodeData(props.id, {label: label})}
                 nodeId={props.id}
             />
             <EditorBody
                 height={"calc(100% - " + editorBodyReducedHeight + "px)"}
                 language={props.data.language}
-                onChange={(value: string | undefined) => setNodeValue(props.id, value)}
+                onChange={(content: string | undefined) => setNodeNodeData(props.id, {content: content})}
                 value={props.data.content}
                 width={"calc(100% - " + editorBodyReducedWidth + "px)"}
             />

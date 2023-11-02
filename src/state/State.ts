@@ -7,7 +7,6 @@ import NodeData from "../model/NodeData";
 import { NewDialogOpenState } from "./substates/NewDialogOpenState";
 import { EditorOpenState } from "./substates/EditorOpenState";
 import { nodeType } from "../ui/flow/flow/NodeTypes";
-import { Language } from "../model/Languages";
 
 export interface State {
     //state
@@ -33,9 +32,7 @@ export interface State {
     run: () => void,
     setConnectingSourceNodeId: (nodeId: string | null) => void,
     setEdgeLabel: (nodeId: string, label: string) => void,
-    setNodeLabel: (nodeId: string, label: string) => void,
     setNodeType: (nodeId: string, type: nodeType) => void,
-    setNodeValue: (nodeId: string, content: string | undefined) => void,
-    setNodeLanguage: (nodeId: string, language: Language) => void,
+    setNodeNodeData: (nodeId: string, nodeData: Partial<NodeData>) => void,
     switchMode: () => void,
 }
