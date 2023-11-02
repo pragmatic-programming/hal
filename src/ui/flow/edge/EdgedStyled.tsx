@@ -13,6 +13,7 @@ export default function EdgedStyled(props: EdgeProps): React.JSX.Element {
         <>
             <BaseEdge
                 id={props.id}
+                markerEnd={props.markerEnd}
                 path={edgePath}
             />
             <EdgeLabelRenderer>
