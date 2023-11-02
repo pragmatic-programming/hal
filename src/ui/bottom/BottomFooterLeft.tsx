@@ -10,6 +10,8 @@ export default function BottomFooterLeft(): React.JSX.Element {
             direction="row"
             spacing={1}
             justifyContent={"flex-start"}
+            // icon in BottomFooterRight has a native paddingRight of 8px
+            style={{marginLeft: 8}}
         >
             <Typography variant="caption" color="secondary">Project: {projectName}</Typography>
         </Stack>

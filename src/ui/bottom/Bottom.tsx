@@ -12,15 +12,10 @@ export default function Bottom(): React.JSX.Element {
             border="top"
             style={{
                 bottom: 0,
-                // reduce bottomHeight by 4px, since paddingBottom and paddingTop will add 2px each
-                height: bottomHeight - 4,
+                height: bottomHeight,
                 left: 0,
-                paddingBottom: 2,
-                paddingLeft: 0,
-                paddingRight: 5,
-                paddingTop: 2,
                 position: "fixed",
-                width: "calc(100vw - " + 5 + "px)",
+                width: "100%",
             }}
         >
             <BottomBody/>
