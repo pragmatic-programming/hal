@@ -32,7 +32,6 @@ export default function DialogNodeNewHeader(): React.JSX.Element {
             </Typography>
             <IconButton
                 edge="end"
-                color="inherit"
                 aria-label="close"
                 onClick={() => openNewDialog(undefined)}
             >

@@ -15,7 +15,6 @@ export default function BottomFooterRight(): React.JSX.Element {
             <IconButton>
                 <Loop
                     className={rotate ? "rotate" : "still"}
-                    color={"secondary"}
                     style={{fontSize: 20}}
                 />
             </IconButton>

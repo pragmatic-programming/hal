@@ -64,7 +64,7 @@ export default function Model(props: Props): React.JSX.Element {
                         cursor: "pointer",
                     }}
                 >
-                    <AccountTreeIcon color="action"/>
+                    <AccountTreeIcon color="secondary"/>
                 </Avatar>
             </IconButton>
         </Tooltip>
