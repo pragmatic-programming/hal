@@ -7,18 +7,20 @@ import NodeData from "../model/NodeData";
 import { NewDialogOpenState } from "./substates/NewDialogOpenState";
 import { EditorOpenState } from "./substates/EditorOpenState";
 import { nodeType } from "../ui/flow/flow/NodeTypes";
+import { EdgePathStyle } from "./EdgePathStyle";
 
 export interface State {
     //state
     busy: boolean,
+    connectingSourceNodeId: string | null,
     context: CompilationContext,
+    edgePathStyle: EdgePathStyle
     edges: Edge[],
     editorOpen: EditorOpenState | undefined,
     mode: PaletteMode,
     newNodeDialogOpen: NewDialogOpenState | undefined,
     nodes: Node<NodeData>[],
     projectName: string,
-    connectingSourceNodeId: string | null,
     //manipulators
     editorOpenSetContent: (content: string | undefined) => void,
     editorOpenSetLabel: (content: string) => void,
@@ -32,7 +34,8 @@ export interface State {
     run: () => void,
     setConnectingSourceNodeId: (nodeId: string | null) => void,
     setEdgeLabel: (nodeId: string, label: string) => void,
-    setNodeType: (nodeId: string, type: nodeType) => void,
+    setEdgePathStyle: (edgePathStyle: EdgePathStyle) => void,
     setNodeNodeData: (nodeId: string, nodeData: Partial<NodeData>) => void,
+    setNodeType: (nodeId: string, type: nodeType) => void,
     switchMode: () => void,
 }

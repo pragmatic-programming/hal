@@ -5,6 +5,7 @@ import MenuDivider from "./MenuDivider";
 import ButtonSwitchMode from "./ButtonSwitchMode";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import { bottomHeight } from "../bottom/Bottom";
+import MenuEdgePathStyle from "./MenuEdgePathStyle";
 
 export const menuWidth = 100;
 
@@ -24,6 +25,8 @@ export default function Menu(): React.JSX.Element {
             <ButtonPlay/>
             <MenuDivider/>
             <MenuLayout/>
+            <MenuDivider/>
+            <MenuEdgePathStyle/>
         </BoxBackgroundMain>
     );
 }

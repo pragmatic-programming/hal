@@ -17,18 +17,20 @@ import { createWithEqualityFn } from "zustand/traditional";
 import { setNodeType } from "./manipulate/setNodeType";
 import { setConnectingSourceNodeId } from "./manipulate/setConnectingSourceNodeId";
 import { setNodeNodeData } from "./manipulate/setNodeNodeData";
+import { setEdgePathStyle } from "./manipulate/setEdgePathStyle";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     //state
     busy: false,
+    connectingSourceNodeId: null,
     context: new CompilationContext(new System("empty", [])),
+    edgePathStyle: "Bezier",
     edges: edges,
     editorOpen: undefined,
     mode: "light",
     newNodeDialogOpen: undefined,
     nodes: nodes,
     projectName: "hello-world.hal",
-    connectingSourceNodeId: null,
     //manipulators
     editorOpenSetContent: editorOpenSetContent(setState),
     editorOpenSetLabel: editorOpenSetLabel(setState),
@@ -42,6 +44,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     run: run(setState),
     setConnectingSourceNodeId: setConnectingSourceNodeId(setState),
     setEdgeLabel: setEdgeLabel(setState, getState),
+    setEdgePathStyle: setEdgePathStyle(setState),
     setNodeNodeData: setNodeNodeData(setState, getState),
     setNodeType: setNodeType(setState, getState),
     switchMode: switchMode(setState),

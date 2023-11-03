@@ -1,13 +1,23 @@
 import React from "react";
-import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath } from "reactflow";
+import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath, getSmoothStepPath, getStraightPath } from "reactflow";
 import { TextField, Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { validEdgeTypes } from "../../../model/createEdge";
 
 export default function EdgedStyled(props: EdgeProps): React.JSX.Element {
-    // todo make path style configurable
-    const [edgePath, labelX, labelY] = getBezierPath(props);
+    const edgePathStyle = useStore((state: State) => state.edgePathStyle);
+    let edgePath, labelX, labelY;
+    switch (edgePathStyle) {
+        case "Straight":
+            [edgePath, labelX, labelY] = getStraightPath(props);
+            break;
+        case "Smooth":
+            [edgePath, labelX, labelY] = getSmoothStepPath(props);
+            break;
+        default:
+            [edgePath, labelX, labelY] = getBezierPath(props);
+    }
     const setEdgeLabel = useStore((state: State) => state.setEdgeLabel);
     const theme: Theme = useTheme();
     return (
