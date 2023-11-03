@@ -10,7 +10,7 @@ import { useReactFlow } from "reactflow";
 
 export default function MenuLayout(): React.JSX.Element {
     const {getNode, fitView} = useReactFlow();
-    const layout = useStore((state: State) => state.layout);
+    const layout = useStore((state: State) => state.reactFlow.layout);
     return (
         <>
             <ButtonMenu

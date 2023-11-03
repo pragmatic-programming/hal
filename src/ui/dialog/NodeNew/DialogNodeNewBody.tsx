@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function DialogNodeNewBody(props: Props): React.JSX.Element {
-    const setNodeType = useStore((state: State) => state.setNodeType);
+    const setNodeType = useStore((state: State) => state.reactFlow.setNodeType);
     return (
         <List>
             <ListItemButton

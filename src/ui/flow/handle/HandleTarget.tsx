@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function HandleTarget(props: Props): React.JSX.Element {
-    const isPossibleTarget = useStore((state: State) => state.connectingSourceNodeId !== null && state.connectingSourceNodeId !== props.nodeId);
+    const isPossibleTarget = useStore((state: State) => state.reactFlow.connectingSourceNodeId !== null && state.reactFlow.connectingSourceNodeId !== props.nodeId);
     const theme: Theme = useTheme();
     let style: CSSProperties = {
         ...props.style,

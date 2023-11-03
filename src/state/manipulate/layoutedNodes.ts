@@ -22,12 +22,12 @@ export async function layoutedNodes(getState: () => State, getNode: (id: string)
     const graph: ElkNode = {
         id: "root",
         layoutOptions: options,
-        children: getState().nodes.map((node: Node): ElkNode => ({
+        children: getState().reactFlow.nodes.map((node: Node): ElkNode => ({
             id: node.id,
             width: node.width ? node.width : 100,
             height: node.height ? node.height : 100,
         })),
-        edges: getState().edges.map((edge: Edge): ElkExtendedEdge => ({
+        edges: getState().reactFlow.edges.map((edge: Edge): ElkExtendedEdge => ({
             id: edge.id,
             sources: [edge.source],
             targets: [edge.target]

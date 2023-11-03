@@ -7,7 +7,7 @@ import { State } from "../../state/State";
 import { useStore } from "../../state/Store";
 
 export default function MenuEdgePathStyle(): React.JSX.Element {
-    const setEdgePathStyle = useStore((state: State) => state.setEdgePathStyle);
+    const setEdgePathStyle = useStore((state: State) => state.reactFlow.setEdgePathStyle);
     return (
         <>
             <ButtonMenu

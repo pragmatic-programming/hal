@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function EditorFooterLanguageSelect(props: Props) {
-    const setNodeNodeData = useStore((state: State) => state.setNodeNodeData);
+    const setNodeNodeData = useStore((state: State) => state.reactFlow.setNodeNodeData);
     return (
         <FormControl
             style={{

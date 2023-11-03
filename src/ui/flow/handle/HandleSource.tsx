@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function HandleSource(props: Props): React.JSX.Element {
-    const connecting = useStore((state: State) => state.connectingSourceNodeId !== null);
+    const connecting = useStore((state: State) => state.reactFlow.connectingSourceNodeId !== null);
     const theme: Theme = useTheme();
     let style: CSSProperties = {
         ...props.style,

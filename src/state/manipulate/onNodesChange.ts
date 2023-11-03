@@ -5,7 +5,10 @@ import { StoreApi } from "zustand";
 export function onNodesChange(setState: StoreApi<State>["setState"], getState: () => State) {
     return (changes: NodeChange[]) => {
         setState({
-            nodes: applyNodeChanges(changes, getState().nodes),
+            reactFlow: {
+                ...getState().reactFlow,
+                nodes: applyNodeChanges(changes, getState().reactFlow.nodes),
+            }
         });
     };
 }

@@ -13,8 +13,8 @@ export function onConnect(setState: StoreApi<State>["setState"], getState: () =>
         if (!target) {
             throw new Error("Target is undefined");
         }
-        const sourceNode = getState().nodes.find(node => node.id === source);
-        const targetNode = getState().nodes.find(node => node.id === target);
+        const sourceNode = getState().reactFlow.nodes.find(node => node.id === source);
+        const targetNode = getState().reactFlow.nodes.find(node => node.id === target);
         if (!sourceNode) {
             throw new Error("SourceNode is undefined");
         }
@@ -23,13 +23,19 @@ export function onConnect(setState: StoreApi<State>["setState"], getState: () =>
         }
         if (connection.sourceHandle === "execute") {
             setState({
-                edges: addEdge(createExecuteEdge(source, target), getState().edges),
+                reactFlow: {
+                    ...getState().reactFlow,
+                    edges: addEdge(createExecuteEdge(source, target), getState().reactFlow.edges),
+                }
             });
             return;
         }
         if (connection.sourceHandle === "sequence") {
             setState({
-                edges: addEdge(createSequenceEdge(source, target), getState().edges),
+                reactFlow: {
+                    ...getState().reactFlow,
+                    edges: addEdge(createSequenceEdge(source, target), getState().reactFlow.edges),
+                }
             });
             return;
         }

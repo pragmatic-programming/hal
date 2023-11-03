@@ -13,12 +13,12 @@ import { bottomHeight } from "../../bottom/Bottom";
 import { menuWidth } from "../../menu/Menu";
 
 const selector = (state: State) => ({
-    nodes: state.nodes,
-    edges: state.edges,
-    onNodesChange: state.onNodesChange,
-    onEdgesChange: state.onEdgesChange,
-    onConnect: state.onConnect,
-    layout: state.layout,
+    nodes: state.reactFlow.nodes,
+    edges: state.reactFlow.edges,
+    onNodesChange: state.reactFlow.onNodesChange,
+    onEdgesChange: state.reactFlow.onEdgesChange,
+    onConnect: state.reactFlow.onConnect,
+    layout: state.reactFlow.layout,
 });
 
 const creationNodeHalfHeight = 30;
@@ -36,7 +36,7 @@ export default function Flow(): React.JSX.Element {
         onConnect
     } = useStore(selector, shallow);
     const nextId = useStore((state: State) => nextNodeId(state));
-    const setConnectingSourceNodeId = useStore((state: State) => state.setConnectingSourceNodeId);
+    const setConnectingSourceNodeId = useStore((state: State) => state.reactFlow.setConnectingSourceNodeId);
 
     const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {
         connectStartParams.current = onConnectStartParams;

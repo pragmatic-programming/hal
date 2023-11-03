@@ -16,7 +16,7 @@ const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const theme: Theme = useTheme();
-    const setNodeNodeData = useStore((state: State) => state.setNodeNodeData);
+    const setNodeNodeData = useStore((state: State) => state.reactFlow.setNodeNodeData);
 
     const style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
