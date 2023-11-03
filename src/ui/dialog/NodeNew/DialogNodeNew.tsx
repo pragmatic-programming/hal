@@ -1,11 +1,11 @@
 import { Dialog } from "@mui/material";
 import React from "react";
-import { NewDialogOpenState } from "../../../state/substates/NewDialogOpenState";
+import { StateDialogNodeNewOpen } from "../../../state/dialogNodeNew/StateDialogNodeNew";
 import { DialogNodeNewBody } from "./DialogNodeNewBody";
 import DialogNodeNewHeader from "./DialogNodeNewHeader";
 
 interface Props {
-    newNodeDialogOpen: NewDialogOpenState;
+    stateDialogNodeNewOpen: StateDialogNodeNewOpen;
 }
 
 
@@ -17,7 +17,7 @@ export default function DialogNodeNew(props: Props): React.JSX.Element {
         >
             <DialogNodeNewHeader/>
             <DialogNodeNewBody
-                nodeId={props.newNodeDialogOpen.nodeId}
+                nodeId={props.stateDialogNodeNewOpen.nodeId}
             />
         </Dialog>
     );

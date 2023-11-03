@@ -17,7 +17,10 @@ export function run(setState: StoreApi<State>["setState"]) {
         context.compile();
         return {
             ...state,
-            context: context,
+            compilation: {
+                ...state.compilation,
+                context: context,
+            },
             busy: false,
         };
     });

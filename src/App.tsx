@@ -10,15 +10,15 @@ import { useStore } from "./state/Store";
 import DialogNodeNew from "./ui/dialog/NodeNew/DialogNodeNew";
 
 export default function App(): React.JSX.Element {
-    const editorOpen = useStore((state: State) => state.editorOpen);
+    const stateEditorOpen = useStore((state: State) => state.editor.open);
     let editor = undefined;
-    if (editorOpen) {
-        editor = <EditorFullSize editorOpen={editorOpen}/>;
+    if (stateEditorOpen) {
+        editor = <EditorFullSize editorState={stateEditorOpen}/>;
     }
-    const newNodeDialogOpen = useStore((state: State) => state.newNodeDialogOpen);
-    let newNodeDialog = undefined;
-    if (newNodeDialogOpen) {
-        newNodeDialog = <DialogNodeNew newNodeDialogOpen={newNodeDialogOpen}/>;
+    const stateDialogNodeNew = useStore((state: State) => state.dialog.open);
+    let dialog = undefined;
+    if (stateDialogNodeNew) {
+        dialog = <DialogNodeNew stateDialogNodeNewOpen={stateDialogNodeNew}/>;
     }
     return (
         <Theme>
@@ -26,8 +26,8 @@ export default function App(): React.JSX.Element {
                 <Flow/>
                 <Menu/>
                 <Bottom/>
-                {newNodeDialog}
                 {editor}
+                {dialog}
             </ReactFlowProvider>
         </Theme>
     );

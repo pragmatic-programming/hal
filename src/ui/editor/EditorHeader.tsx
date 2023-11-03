@@ -24,7 +24,7 @@ const EditorNodeLabelTextField = styled(TextField)({
 export const editorHeaderHeight = 46;
 
 export default function EditorHeader(props: Props): React.JSX.Element {
-    const openEditor = useStore((state: State) => state.openEditor);
+    const openEditor = useStore((state: State) => state.editor.editorOpen);
     const {getNode} = useReactFlow();
     let node: Node<NodeData> | undefined = getNode(props.nodeId);
     if (!node) {

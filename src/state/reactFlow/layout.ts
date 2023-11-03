@@ -1,7 +1,7 @@
 import { State } from "../State";
 import { FitViewOptions, Node } from "reactflow";
 import { LayoutOptions } from "elkjs/lib/elk-api";
-import { layoutedNodes } from "./layoutedNodes";
+import { layoutedNodes } from "../manipulate/layoutedNodes";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 

@@ -5,9 +5,9 @@ import { CompilationContext } from "kico";
 import { iHGraphToFlow } from "../../model/processor/compilationContexts";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
-import { layoutedNodes } from "./layoutedNodes";
+import { layoutedNodes } from "../manipulate/layoutedNodes";
 
-export function renderIhGraph(setState: StoreApi<State>["setState"], getState: () => State) {
+export function render(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void) => {
         setState({
             busy: true

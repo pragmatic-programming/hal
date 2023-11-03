@@ -7,7 +7,7 @@ import { State } from "../../../state/State";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 
 export default function NodeCreation(props: NodeProps): React.JSX.Element {
-    const openNewNodeDialog = useStore((state: State) => state.openNewNodeDialog);
+    const dialogOpen = useStore((state: State) => state.dialog.dialogOpen);
     return (
         <>
             <Handle type="target" position={Position.Left}/>
@@ -17,7 +17,7 @@ export default function NodeCreation(props: NodeProps): React.JSX.Element {
                 }}
             >
                 <IconButton
-                    onClick={() => openNewNodeDialog(props.id)}
+                    onClick={() => dialogOpen(props.id)}
                 >
                     <Add/>
                 </IconButton>

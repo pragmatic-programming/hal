@@ -8,7 +8,7 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 
 
 export default function DialogNodeNewHeader(): React.JSX.Element {
-    const openNewDialog = useStore((state: State) => state.openNewNodeDialog);
+    const dialogOpen = useStore((state: State) => state.dialog.dialogOpen);
     return (
         <BoxBackgroundMain
             border="bottom"
@@ -33,7 +33,7 @@ export default function DialogNodeNewHeader(): React.JSX.Element {
             <IconButton
                 edge="end"
                 aria-label="close"
-                onClick={() => openNewDialog(undefined)}
+                onClick={() => dialogOpen(undefined)}
             >
                 <Close/>
             </IconButton>

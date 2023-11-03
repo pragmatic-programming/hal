@@ -5,7 +5,7 @@ import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 
 export default function ButtonPlay(): React.JSX.Element {
-    const run = useStore((state: State) => state.run)
+    const run = useStore((state: State) => state.compilation.run);
     return (
         <ButtonMenu
             onClick={run}

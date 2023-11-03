@@ -5,7 +5,6 @@ import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, us
 import { useStore } from "../../../state/Store";
 import { shallow } from "zustand/shallow";
 import { createCreationNode } from "../../../model/createNode";
-import nextNodeId from "../../../state/nextNodeId";
 import { createEdgeFromOnConnectStartParams } from "../../../model/createEdge";
 import { edgeTypesMapping } from "./EdgeTypes";
 import { nodeTypesMapping } from "./NodeTypes";
@@ -35,7 +34,7 @@ export default function Flow(): React.JSX.Element {
         onEdgesChange,
         onConnect
     } = useStore(selector, shallow);
-    const nextId = useStore((state: State) => nextNodeId(state));
+    const nextId = useStore((state: State) => state.reactFlow.nextNodeId);
     const setConnectingSourceNodeId = useStore((state: State) => state.reactFlow.setConnectingSourceNodeId);
 
     const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {
@@ -63,10 +62,11 @@ export default function Flow(): React.JSX.Element {
                             throw new Error("ConnectingNodeId.current is null");
                         }
                         if (connectStartParams.current?.handleType === "source") {
+                            const targetId = nextId();
                             onNodesChange([{
                                 type: "add",
                                 item: createCreationNode(
-                                    nextId,
+                                    targetId,
                                     "JavaScript",
                                     position.x,
                                     position.y - creationNodeHalfHeight
@@ -74,7 +74,7 @@ export default function Flow(): React.JSX.Element {
                             }]);
                             onEdgesChange([{
                                 type: "add",
-                                item: createEdgeFromOnConnectStartParams(connectStartParams.current, nextId)
+                                item: createEdgeFromOnConnectStartParams(connectStartParams.current, targetId)
                             }]);
                         }
                     }

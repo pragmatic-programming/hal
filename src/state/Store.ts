@@ -1,30 +1,36 @@
 import { State } from "./State";
 import { CompilationContext, System } from "kico";
 import { edges, nodes } from "../model/example";
-import { onNodesChange } from "./manipulate/onNodesChange";
-import { onEdgesChange } from "./manipulate/onEdgesChange";
-import { onConnect } from "./manipulate/onConnect";
-import { run } from "./manipulate/run";
-import { layout } from "./manipulate/layout";
-import { renderIhGraph } from "./manipulate/renderIhGraph";
+import { onNodesChange } from "./reactFlow/onNodesChange";
+import { onEdgesChange } from "./reactFlow/onEdgesChange";
+import { onConnect } from "./reactFlow/onConnect";
+import { run } from "./compilation/run";
+import { layout } from "./reactFlow/layout";
+import { render } from "./compilation/render";
 import { switchMode } from "./manipulate/switchMode";
-import { setEdgeLabel } from "./manipulate/setEdgeLabel";
-import { openNewDialog } from "./manipulate/openNewDialog";
-import { openEditor } from "./manipulate/openEditor";
-import { editorOpenSetContent } from "./manipulate/editorOpenSetContent";
-import { editorOpenSetLabel } from "./manipulate/editorOpenSetLabel";
+import { setEdgeLabel } from "./reactFlow/setEdgeLabel";
+import { dialogOpen } from "./dialogNodeNew/dialogOpen";
+import { editorOpen } from "./editor/editorOpen";
+import { editorContentSet } from "./editor/editorContentSet";
+import { editorLabelSet } from "./editor/editorLabelSet";
 import { createWithEqualityFn } from "zustand/traditional";
-import { setNodeType } from "./manipulate/setNodeType";
-import { setConnectingSourceNodeId } from "./manipulate/setConnectingSourceNodeId";
-import { setNodeNodeData } from "./manipulate/setNodeNodeData";
-import { setEdgePathStyle } from "./manipulate/setEdgePathStyle";
+import { setNodeType } from "./reactFlow/setNodeType";
+import { setConnectingSourceNodeId } from "./reactFlow/setConnectingSourceNodeId";
+import { setNodeNodeData } from "./reactFlow/setNodeNodeData";
+import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
+import { nextNodeId } from "./reactFlow/nextNodeId";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     busy: false,
-    context: new CompilationContext(new System("empty", [])),
+    compilation: {
+        context: new CompilationContext(new System("empty", [])),
+        render: render(setState, getState),
+        run: run(setState),
+    },
     reactFlow: {
         connectingSourceNodeId: null,
         edgePathStyle: "Bezier",
+        nextNodeId: nextNodeId(getState),
         edges: edges,
         layout: layout(setState, getState),
         nodes: nodes,
@@ -37,15 +43,17 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setNodeNodeData: setNodeNodeData(setState, getState),
         setNodeType: setNodeType(setState, getState),
     },
-    editorOpen: undefined,
+    editor: {
+        open: undefined,
+        editorContentSet: editorContentSet(setState),
+        editorLabelSet: editorLabelSet(setState),
+        editorOpen: editorOpen(setState, getState),
+    },
+    dialog: {
+        open: undefined,
+        dialogOpen: dialogOpen(setState),
+    },
     mode: "light",
-    newNodeDialogOpen: undefined,
     projectName: "hello-world.hal",
-    editorOpenSetContent: editorOpenSetContent(setState),
-    editorOpenSetLabel: editorOpenSetLabel(setState),
-    openEditor: openEditor(setState, getState),
-    openNewNodeDialog: openNewDialog(setState),
-    renderIhGraph: renderIhGraph(setState, getState),
-    run: run(setState),
     switchMode: switchMode(setState),
 }));

@@ -8,7 +8,7 @@ import { State } from "../../state/State";
 import { bottomFooterHeight } from "./BottomFooter";
 
 export function BottomBody(): React.JSX.Element {
-    const context: CompilationContext = useStore((state: State) => state.context);
+    const context: CompilationContext = useStore((state: State) => state.compilation.context);
     return (
         <Stack
             alignItems="center"

@@ -6,13 +6,13 @@ import NodeData from "../../model/NodeData";
 import { IconButton, Theme, useTheme } from "@mui/material";
 import EditorHeader, { editorHeaderHeight } from "./EditorHeader";
 import { Close } from "@mui/icons-material";
-import { EditorOpenState } from "../../state/substates/EditorOpenState";
+import { StateEditorOpen } from "../../state/editor/StateEditor";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "./EditorFooter";
 import { EditorBody } from "./EditorBody";
 
 interface Props {
-    editorOpen: EditorOpenState;
+    editorState: StateEditorOpen;
 }
 
 const editorFullSizeBorderWidth = 2;
@@ -22,13 +22,12 @@ const editorBodyReducedWidth = editorFullSizeBorderWidth * 2 + editorFooterHeigh
 const editorBodyReducedHeight = editorFullSizeReducedHeight * 2;
 
 export default function EditorFullSize(props: Props): React.JSX.Element {
-    const editorOpenSetLabel = useStore((state: State) => state.editorOpenSetLabel);
-    const editorOpenSetContent = useStore((state: State) => state.editorOpenSetContent);
-    const openEditor = useStore((state: State) => state.openEditor);
-    const label = useStore((state: State) => state.editorOpen?.label);
+    const editorOpenSetLabel = useStore((state: State) => state.editor.editorLabelSet);
+    const editorOpenSetContent = useStore((state: State) => state.editor.editorContentSet);
+    const openEditor = useStore((state: State) => state.editor.editorOpen);
     const {getNode} = useReactFlow();
     const theme: Theme = useTheme();
-    let node: Node<NodeData> | undefined = getNode(props.editorOpen.nodeId);
+    let node: Node<NodeData> | undefined = getNode(props.editorState.nodeId);
     if (!node) {
         throw new Error("Node is undefined");
     }
@@ -54,9 +53,9 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                 <Close/>
             </IconButton>
             <EditorHeader
-                nodeId={props.editorOpen.nodeId}
+                nodeId={props.editorState.nodeId}
                 onChange={(value: string) => editorOpenSetLabel(value)}
-                value={label}
+                value={props.editorState.label}
             />
             <EditorBody
                 height={"calc(100vh - " + editorBodyReducedWidth + "px)"}

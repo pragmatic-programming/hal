@@ -6,7 +6,10 @@ export function setNodeType(setState: StoreApi<State>["setState"], getState: () 
     return async (nodeId: string, type: nodeType) => {
         const reactFlow = getState().reactFlow;
         setState({
-            newNodeDialogOpen: undefined,
+            dialog: {
+                ...getState().dialog,
+                open: undefined
+            },
             reactFlow: {
                 ...reactFlow,
                 nodes: reactFlow.nodes.map(node => {

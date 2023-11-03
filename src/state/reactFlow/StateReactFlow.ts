@@ -1,14 +1,15 @@
 import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
 import NodeData from "../../model/NodeData";
-import { EdgePathStyle } from "../EdgePathStyle";
+import { EdgePathStyle } from "./EdgePathStyle";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import { nodeType } from "../../ui/flow/flow/NodeTypes";
 
-export interface ReactFlow {
+export interface StateReactFlow {
     connectingSourceNodeId: string | null,
     edgePathStyle: EdgePathStyle
     edges: Edge[],
     layout: (getNode: (nodeId: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
+    nextNodeId: () => string,
     nodes: Node<NodeData>[],
     onConnect: OnConnect,
     onEdgesChange: OnEdgesChange,
