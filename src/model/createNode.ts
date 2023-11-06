@@ -5,6 +5,7 @@ import { nodeType } from "../ui/flow/flow/NodeTypes";
 import { Language } from "./Languages";
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
+    const nodeData = sourceNode.getAnnotationData<NodeData>("nodeData");
     const executeEdge = sourceNode
         .getIncomingEdges()
         .find((edge: TransformationEdge) => edge.getType().getId() === "execute");
@@ -12,10 +13,8 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
         sourceNode.getId(),
         executeEdge ? "result" : "editor",
         sourceNode.getContent(),
-        // todo get label from sourceNode
-        "Missing",
-        //todo get language from sourceNode,
-        "JavaScript",
+        nodeData.label,
+        nodeData.language,
         // todo get position from sourceNode
         0,
         0
