@@ -16,7 +16,7 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             const sourceNode = graph.createSourceNode(node.id);
             // todo node.data.content is redundant
             sourceNode.setContent(node.data.content ? node.data.content : "");
-            sourceNode.setAnnotation(graph.createAnnotation("nodeData", node.data));
+            sourceNode.createAnnotation("nodeData", node.data);
         }
         for (const edge of model.edges) {
             const source = graph.getNodeById(edge.source);

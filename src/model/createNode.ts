@@ -5,7 +5,10 @@ import { nodeType } from "../ui/flow/flow/NodeTypes";
 import { Language } from "./Languages";
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
-    const nodeData = sourceNode.getAnnotationData<NodeData>("nodeData");
+    let nodeData: NodeData = { label: "unknown", language: "JavaScript", content: "" };
+    if (sourceNode.hasAnnotation("nodeData")) {
+        nodeData = sourceNode.getAnnotationData<NodeData>("nodeData");
+    }
     const executeEdge = sourceNode
         .getIncomingEdges()
         .find((edge: TransformationEdge) => edge.getType().getId() === "execute");
