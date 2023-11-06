@@ -1,10 +1,13 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
-import { EvalProcessor, SequenceProcessor } from "hal-kico";
+import { SequenceProcessor } from "hal-kico";
 import { FlowState } from "../FlowState";
+import { JSEvalProcessor } from "./edgeTypes/JSEvalProcessor";
 
 
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
+
+    public static readonly ANNOTATION_NODE_DATA = "nodeData";
 
     process() {
         const graph = new IHGraph();
@@ -16,7 +19,7 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             const sourceNode = graph.createSourceNode(node.id);
             // todo node.data.content is redundant
             sourceNode.setContent(node.data.content ? node.data.content : "");
-            sourceNode.createAnnotation("nodeData", node.data);
+            sourceNode.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, node.data);
         }
         for (const edge of model.edges) {
             const source = graph.getNodeById(edge.source);
@@ -38,7 +41,7 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             );
         }
         graph.getTransformationConfiguration().setById("sequence", SequenceProcessor);
-        graph.getTransformationConfiguration().setById("execute", EvalProcessor);
+        graph.getTransformationConfiguration().setById("execute", JSEvalProcessor);
         this.setModel(graph);
     }
 

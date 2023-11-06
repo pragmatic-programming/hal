@@ -3,11 +3,12 @@ import { Node } from "reactflow";
 import NodeData from "./NodeData";
 import { nodeType } from "../ui/flow/flow/NodeTypes";
 import { Language } from "./Languages";
+import { FlowToIHGraphProcessor } from "./processor/FlowToIHGraphProcessor";
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
     let nodeData: NodeData = { label: "unknown", language: "JavaScript", content: "" };
-    if (sourceNode.hasAnnotation("nodeData")) {
-        nodeData = sourceNode.getAnnotationData<NodeData>("nodeData");
+    if (sourceNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
+        nodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
     }
     const executeEdge = sourceNode
         .getIncomingEdges()
