@@ -32,6 +32,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         width: 300,
         height: 300,
     };
+    // todo two handleSources overlay
     return (
         <BoxBackgroundMain
             style={style}
