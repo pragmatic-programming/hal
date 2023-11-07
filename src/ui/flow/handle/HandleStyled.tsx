@@ -12,9 +12,9 @@ interface Props {
 
 function createStyle(props: Props, theme: Theme): React.CSSProperties | undefined {
     let style: React.CSSProperties = {
+        backgroundColor: theme.palette.primary.dark,
         ...props.style,
         zIndex: -1,
-        backgroundColor: theme.palette.primary.dark,
         padding: 5,
     };
     switch (props.position) {
