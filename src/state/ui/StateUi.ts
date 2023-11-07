@@ -1,6 +1,6 @@
 import { PaletteMode } from "@mui/material";
 
-export interface StateUi{
+export interface StateUi {
     busy: boolean,
     mode: PaletteMode,
     projectName: string,

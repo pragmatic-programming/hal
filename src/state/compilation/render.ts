@@ -13,6 +13,10 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
             ui: {
                 ...getState().ui,
                 busy: true,
+            },
+            menuExamples: {
+                ...getState().menuExamples,
+                open: false,
             }
         });
         const context: CompilationContext = iHGraphToFlow(ihGraph);
@@ -38,7 +42,7 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
             ui: {
                 ...getState().ui,
                 busy: false,
-            }
+            },
         });
     };
 }

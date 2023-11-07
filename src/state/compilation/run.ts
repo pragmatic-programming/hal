@@ -3,6 +3,7 @@ import { CompilationContext } from "kico";
 import { flowToIHGraph, ihGraphToHalGraph } from "../../model/processor/compilationContexts";
 import { CliqueSelectionProcessor } from "hal-kico";
 import { StoreApi } from "zustand";
+import { IHGraph } from "../../../../ihgraph";
 
 
 export function run(setState: StoreApi<State>["setState"]) {
@@ -15,7 +16,9 @@ export function run(setState: StoreApi<State>["setState"]) {
         });
         const preContext: CompilationContext = flowToIHGraph(state.reactFlow);
         preContext.compile();
-        const context: CompilationContext = ihGraphToHalGraph(preContext.getResult());
+        const result: IHGraph = preContext.getResult();
+        console.log(result.serialize(true))
+        const context: CompilationContext = ihGraphToHalGraph(result);
         context.startEnvironment.setProperty(CliqueSelectionProcessor.CSP_LOG, false);
         context.compile();
         return {
@@ -25,7 +28,7 @@ export function run(setState: StoreApi<State>["setState"]) {
                 context: context,
             },
             ui: {
-               ...state.ui,
+                ...state.ui,
                 busy: false,
             }
         };

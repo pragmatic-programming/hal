@@ -19,6 +19,7 @@ import { setConnectingSourceNodeId } from "./reactFlow/setConnectingSourceNodeId
 import { setNodeNodeData } from "./reactFlow/setNodeNodeData";
 import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
 import { nextNodeId } from "./reactFlow/nextNodeId";
+import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -36,6 +37,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         editorLabelSet: editorLabelSet(setState),
         editorOpen: editorOpen(setState, getState),
     },
+    menuExamples: {
+        open: false,
+        menuOpenToggle: menuOpenToggle(setState),
+    },
     reactFlow: {
         connectingSourceNodeId: null,
         edgePathStyle: "Bezier",
@@ -52,7 +57,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setNodeNodeData: setNodeNodeData(setState, getState),
         setNodeType: setNodeType(setState, getState),
     },
-    ui:{
+    ui: {
         busy: false,
         mode: "light",
         projectName: "hello-world.hal",
