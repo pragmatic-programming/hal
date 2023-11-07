@@ -15,6 +15,13 @@ const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
+    if (!props.targetPosition) {
+        throw new Error("TargetPosition is undefined");
+    }
+    if (!props.sourcePosition) {
+        throw new Error("SourcePosition is undefined");
+    }
+
     const theme: Theme = useTheme();
     const setNodeNodeData = useStore((state: State) => state.reactFlow.setNodeNodeData);
 
@@ -25,24 +32,23 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         width: 300,
         height: 300,
     };
-
     return (
         <BoxBackgroundMain
             style={style}
         >
             <HandleTarget
-                style={{top: 100}}
                 nodeId={props.id}
+                position={props.targetPosition}
             />
             <HandleSource
                 id="execute"
                 nodeId={props.id}
-                style={{top: 100}}
+                position={props.sourcePosition}
             />
             <HandleSource
                 id="sequence"
                 nodeId={props.id}
-                style={{top: 200}}
+                position={props.sourcePosition}
             />
             <EditorHeader
                 value={props.data.label}

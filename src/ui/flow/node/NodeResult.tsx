@@ -5,11 +5,15 @@ import HandleTarget from "../handle/HandleTarget";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 
 export default function NodeResult(props: NodeProps): React.JSX.Element {
+    if (!props.targetPosition) {
+        throw new Error("TargetPosition is undefined");
+    }
     const theme: Theme = useTheme();
     return (
         <>
             <HandleTarget
                 nodeId={props.id}
+                position={props.targetPosition}
             />
             <BoxBackgroundMain
                 style={{

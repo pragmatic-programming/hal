@@ -8,16 +8,14 @@ import { Theme, useTheme } from "@mui/material";
 interface Props {
     nodeId: string;
     style?: CSSProperties;
+    position: Position;
 }
+
 
 export default function HandleTarget(props: Props): React.JSX.Element {
     const isPossibleTarget = useStore((state: State) => state.reactFlow.connectingSourceNodeId !== null && state.reactFlow.connectingSourceNodeId !== props.nodeId);
     const theme: Theme = useTheme();
-    let style: CSSProperties = {
-        ...props.style,
-        padding: 5,
-        left: -8,
-    };
+    let style: CSSProperties = {};
     if (isPossibleTarget) {
         style = {
             ...style,
@@ -26,9 +24,9 @@ export default function HandleTarget(props: Props): React.JSX.Element {
     }
     return (
         <HandleStyled
-            id="input"
-            position={Position.Left}
             style={style}
+            id="input"
+            position={props.position}
             type="target"
         />
     );

@@ -30,9 +30,9 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     reactFlow: {
         connectingSourceNodeId: null,
         edgePathStyle: "Bezier",
-        nextNodeId: nextNodeId(getState),
         edges: edges,
         layout: layout(setState, getState),
+        nextNodeId: nextNodeId(getState),
         nodes: nodes,
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),

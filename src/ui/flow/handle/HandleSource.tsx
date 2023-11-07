@@ -9,16 +9,14 @@ interface Props {
     id: string;
     nodeId: string;
     style?: CSSProperties;
+    position: Position;
 }
+
 
 export default function HandleSource(props: Props): React.JSX.Element {
     const connecting = useStore((state: State) => state.reactFlow.connectingSourceNodeId !== null);
     const theme: Theme = useTheme();
-    let style: CSSProperties = {
-        ...props.style,
-        padding: 5,
-        right: -8,
-    };
+    let style: CSSProperties = {};
     if (connecting) {
         style = {
             ...style,
@@ -27,9 +25,9 @@ export default function HandleSource(props: Props): React.JSX.Element {
     }
     return (
         <HandleStyled
-            id={props.id}
-            position={Position.Right}
             style={style}
+            id={props.id}
+            position={props.position}
             type="source"
         />
     );

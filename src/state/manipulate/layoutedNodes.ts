@@ -1,5 +1,5 @@
 import { State } from "../State";
-import { Edge, Node } from "reactflow";
+import { Edge, Node, Position } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
 
 const elk = new ELK({
@@ -52,6 +52,8 @@ export async function layoutedNodes(getState: () => State, getNode: (id: string)
         if (!child.y) {
             throw new Error("Child.y is undefined");
         }
+        node.sourcePosition = layoutOptions["elk.direction"] === "DOWN" ? Position.Bottom : Position.Right;
+        node.targetPosition = layoutOptions["elk.direction"] === "DOWN" ? Position.Top : Position.Left;
         node.position = {
             x: child.x,
             y: child.y,

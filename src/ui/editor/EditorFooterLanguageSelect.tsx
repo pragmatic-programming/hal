@@ -25,7 +25,6 @@ export default function EditorFooterLanguageSelect(props: Props) {
             <Select
                 input={<InputBase/>}
                 onChange={(event: SelectChangeEvent<Language>) => {
-                    console.log(event.target.value);
                     if (!isLanguage(event.target.value)) {
                         throw new Error("Event.target.value is not of language type");
                     }
