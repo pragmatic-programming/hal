@@ -4,7 +4,7 @@ import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 
 export default function BottomFooterLeft(): React.JSX.Element {
-    const projectName: string = useStore((state: State) => state.projectName);
+    const projectName: string = useStore((state: State) => state.ui.projectName);
     return (
         <Stack
             direction="row"

@@ -48,7 +48,7 @@ function theme(mode: PaletteMode) {
 }
 
 export default function Theme(props: Props): React.JSX.Element {
-    const mode: PaletteMode = useStore((state: State) => state.mode);
+    const mode: PaletteMode = useStore((state: State) => state.ui.mode);
     return (
         <ThemeProvider theme={React.useMemo(() => theme(mode), [mode])}>
             {props.children}

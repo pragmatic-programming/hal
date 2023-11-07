@@ -7,7 +7,7 @@ import ButtonMenu from "./ButtonMenu";
 
 export default function ButtonSwitchMode(): React.JSX.Element {
     const theme: Theme = useTheme();
-    const switchMode = useStore((state: State) => state.switchMode);
+    const switchMode = useStore((state: State) => state.ui.switchMode);
     return (
         <ButtonMenu
             onClick={switchMode}

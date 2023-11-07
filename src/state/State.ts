@@ -3,14 +3,12 @@ import { StateDialogNodeNew } from "./dialogNodeNew/StateDialogNodeNew";
 import { StateEditor } from "./editor/StateEditor";
 import { StateReactFlow } from "./reactFlow/StateReactFlow";
 import { StateCompilation } from "./compilation/StateCompilation";
+import { StateUi } from "./ui/StateUi";
 
 export interface State {
-    busy: boolean,
     compilation: StateCompilation,
     dialog: StateDialogNodeNew,
     editor: StateEditor,
-    mode: PaletteMode,
-    projectName: string,
     reactFlow: StateReactFlow
-    switchMode: () => void,
+    ui: StateUi,
 }

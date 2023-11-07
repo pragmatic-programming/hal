@@ -7,7 +7,7 @@ import { onConnect } from "./reactFlow/onConnect";
 import { run } from "./compilation/run";
 import { layout } from "./reactFlow/layout";
 import { render } from "./compilation/render";
-import { switchMode } from "./manipulate/switchMode";
+import { switchMode } from "./ui/switchMode";
 import { setEdgeLabel } from "./reactFlow/setEdgeLabel";
 import { dialogOpen } from "./dialogNodeNew/dialogOpen";
 import { editorOpen } from "./editor/editorOpen";
@@ -21,11 +21,20 @@ import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
 import { nextNodeId } from "./reactFlow/nextNodeId";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
-    busy: false,
     compilation: {
         context: new CompilationContext(new System("empty", [])),
         render: render(setState, getState),
         run: run(setState),
+    },
+    dialog: {
+        open: undefined,
+        dialogOpen: dialogOpen(setState),
+    },
+    editor: {
+        open: undefined,
+        editorContentSet: editorContentSet(setState),
+        editorLabelSet: editorLabelSet(setState),
+        editorOpen: editorOpen(setState, getState),
     },
     reactFlow: {
         connectingSourceNodeId: null,
@@ -43,17 +52,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setNodeNodeData: setNodeNodeData(setState, getState),
         setNodeType: setNodeType(setState, getState),
     },
-    editor: {
-        open: undefined,
-        editorContentSet: editorContentSet(setState),
-        editorLabelSet: editorLabelSet(setState),
-        editorOpen: editorOpen(setState, getState),
+    ui:{
+        busy: false,
+        mode: "light",
+        projectName: "hello-world.hal",
+        switchMode: switchMode(setState),
     },
-    dialog: {
-        open: undefined,
-        dialogOpen: dialogOpen(setState),
-    },
-    mode: "light",
-    projectName: "hello-world.hal",
-    switchMode: switchMode(setState),
 }));

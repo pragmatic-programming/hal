@@ -5,7 +5,7 @@ import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 
 export default function BottomFooterRight(): React.JSX.Element {
-    const rotate: boolean = useStore((state: State) => state.busy);
+    const rotate: boolean = useStore((state: State) => state.ui.busy);
     return (
         <Stack
             direction="row"

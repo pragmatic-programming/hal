@@ -8,7 +8,10 @@ import { StoreApi } from "zustand";
 export function run(setState: StoreApi<State>["setState"]) {
     return async () => setState((state: State): State => {
         setState({
-            busy: true
+            ui: {
+                ...state.ui,
+                busy: true,
+            }
         });
         const preContext: CompilationContext = flowToIHGraph(state.reactFlow);
         preContext.compile();
@@ -21,7 +24,10 @@ export function run(setState: StoreApi<State>["setState"]) {
                 ...state.compilation,
                 context: context,
             },
-            busy: false,
+            ui: {
+               ...state.ui,
+                busy: false,
+            }
         };
     });
 }
