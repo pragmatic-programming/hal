@@ -8,7 +8,9 @@
           "data": {
             "content": "var x = 1;",
             "label": "Declaration",
-            "language": "JavaScript"
+            "language": "JavaScript",
+            "width": 300,
+            "height": 200
           }
         }
       },
@@ -22,7 +24,9 @@
           "data": {
             "content": "x + 2;",
             "label": "Usage",
-            "language": "JavaScript"
+            "language": "JavaScript",
+            "width": 300,
+            "height": 200
           }
         }
       },
@@ -36,7 +40,9 @@
           "data": {
             "content": "",
             "label": "Result",
-            "language": "JavaScript"
+            "language": "JavaScript",
+            "width": 300,
+            "height": 200
           }
         }
       },

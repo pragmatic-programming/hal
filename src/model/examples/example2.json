@@ -8,7 +8,9 @@
           "data": {
             "content": "var x = 1;",
             "label": "Declaration",
-            "language": "JavaScript"
+            "language": "JavaScript",
+            "width": 300,
+            "height": 200
           }
         }
       },

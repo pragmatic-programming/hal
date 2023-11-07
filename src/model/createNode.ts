@@ -7,7 +7,8 @@ import { FlowToIHGraphProcessor } from "./processor/FlowToIHGraphProcessor";
 
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
-    let nodeData: NodeData = {label: "unknown", language: "JavaScript", content: ""};
+    //todo
+    let nodeData: NodeData = {label: "unknown", language: "JavaScript", content: "", width: 0, height: 0};
     if (sourceNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
         nodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
     }
@@ -22,7 +23,9 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
         nodeData.language,
         // todo get position from sourceNode
         0,
-        0
+        0,
+        nodeData.width,
+        nodeData.height,
     );
 }
 
@@ -41,6 +44,8 @@ export function createCreationNode(
         language,
         x,
         y,
+        0,
+        0
     );
 }
 
@@ -52,6 +57,8 @@ function node(
     language: Language,
     x: number,
     y: number,
+    width: number,
+    height: number,
 ): Node<NodeData> {
     return {
         id: id,
@@ -60,7 +67,11 @@ function node(
             content: content,
             label: label,
             language: language,
+            width: width,
+            height: height,
         },
         position: {x: x, y: y},
+        width: width,
+        height: height,
     };
 }

@@ -19,9 +19,11 @@ export class JSEvalProcessor extends EvalProcessor {
         const nodeData: NodeData = {
             label: "Eval",
             language: "JavaScript",
-            content: node.getContent()
-        }
+            content: node.getContent(),
+            width: 100,
+            height: 100,
+        };
         node.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, nodeData);
     }
-    
+
 }

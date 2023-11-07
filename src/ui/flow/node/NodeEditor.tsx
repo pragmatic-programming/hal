@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { NodeProps } from "reactflow";
+import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
@@ -21,7 +21,17 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     if (!props.sourcePosition) {
         throw new Error("SourcePosition is undefined");
     }
-
+    const {getNode} = useReactFlow();
+    const node = getNode(props.id);
+    if (!node) {
+        throw new Error("Node is undefined");
+    }
+    if (!node.height) {
+        throw new Error("Node.height is undefined");
+    }
+    if (!node.width) {
+        throw new Error("Node.width is undefined");
+    }
     const theme: Theme = useTheme();
     const setNodeNodeData = useStore((state: State) => state.reactFlow.setNodeNodeData);
 
@@ -29,14 +39,15 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         borderColor: theme.palette.info.light,
         borderStyle: "solid",
         borderWidth: 1,
-        width: 300,
-        height: 300,
+        width: node.width,
+        height: node.height,
     };
     // todo two handleSources overlay
     return (
         <BoxBackgroundMain
             style={style}
         >
+            <NodeResizer minWidth={100} minHeight={30} />
             <HandleTarget
                 nodeId={props.id}
                 position={props.targetPosition}
