@@ -44,7 +44,7 @@ export default function MenuExamples(): React.JSX.Element {
             <Drawer
                 anchor={"left"}
                 open={open}
-                onClose={() => menuOpenToggle()}
+                onClose={menuOpenToggle}
             >
                 <List
                     style={{
