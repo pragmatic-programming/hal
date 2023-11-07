@@ -1,0 +1,75 @@
+{
+  "annotations": {},
+  "nodes": [
+    {
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "var x = 1;",
+            "label": "Declaration",
+            "language": "JavaScript"
+          }
+        }
+      },
+      "id": "1",
+      "content": "var x = 1;"
+    },
+    {
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "x + 2;",
+            "label": "Usage",
+            "language": "JavaScript"
+          }
+        }
+      },
+      "id": "2",
+      "content": "x + 2;"
+    },
+    {
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "",
+            "label": "Result",
+            "language": "JavaScript"
+          }
+        }
+      },
+      "id": "3",
+      "content": ""
+    }
+  ],
+  "edgeTypes": [
+    {
+      "annotations": {},
+      "id": "sequence",
+      "priority": 8,
+      "immediate": false
+    },
+    {
+      "annotations": {},
+      "id": "execute",
+      "priority": 2,
+      "immediate": false
+    }
+  ],
+  "edges": [
+    {
+      "annotations": {},
+      "edgeType": "sequence",
+      "sourceNode": "1",
+      "targetNode": "2"
+    },
+    {
+      "annotations": {},
+      "edgeType": "execute",
+      "sourceNode": "2",
+      "targetNode": "3"
+    }
+  ]
+}

@@ -5,8 +5,9 @@ import { nodeType } from "../ui/flow/flow/NodeTypes";
 import { Language } from "./Languages";
 import { FlowToIHGraphProcessor } from "./processor/FlowToIHGraphProcessor";
 
+
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
-    let nodeData: NodeData = { label: "unknown", language: "JavaScript", content: "" };
+    let nodeData: NodeData = {label: "unknown", language: "JavaScript", content: ""};
     if (sourceNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
         nodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
     }
@@ -25,43 +26,6 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
     );
 }
 
-export function createResultNode(
-    id: string,
-    content: string,
-    label: string,
-    x: number,
-    y: number,
-): Node<NodeData> {
-    return node(
-        id,
-        "result",
-        content,
-        label,
-        // todo result nodes do not need languages,
-        "JavaScript",
-        x,
-        y,
-    );
-}
-
-export function createEditorNode(
-    id: string,
-    content: string,
-    label: string,
-    language: Language,
-    x: number,
-    y: number,
-): Node<NodeData> {
-    return node(
-        id,
-        "editor",
-        content,
-        label,
-        language,
-        x,
-        y,
-    );
-}
 
 export function createCreationNode(
     id: string,

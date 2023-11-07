@@ -5,19 +5,22 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import ButtonMenu from "./ButtonMenu";
 import { FormatListBulleted } from "@mui/icons-material";
-import { createIHGraphFromJSONString } from "ihgraph";
+import { createIHGraphFromJSON } from "ihgraph";
 import { useReactFlow } from "reactflow";
+
+import example1 from "../../model/examples/example1.json";
+import example2 from "../../model/examples/example2.json";
 
 const examples = [
     {
         id: 1,
         name: "Example 1",
-        value: "{\"annotations\":{},\"nodes\":[{\"annotations\":{},\"id\":\"1\",\"content\":\"var x = 1;\"}],\"edgeTypes\":[{\"annotations\":{},\"id\":\"sequence\",\"priority\":8,\"immediate\":false},{\"annotations\":{},\"id\":\"execute\",\"priority\":2,\"immediate\":false}],\"edges\":[]}",
+        value: example1,
     },
     {
         id: 2,
         name: "Example 2",
-        value: "{\"annotations\":{},\"nodes\":[{\"annotations\":{},\"id\":\"1\",\"content\":\"var x = 1;\"},{\"annotations\":{},\"id\":\"2\",\"content\":\"x + 2;\"},{\"annotations\":{},\"id\":\"3\",\"content\":\"\"}],\"edgeTypes\":[{\"annotations\":{},\"id\":\"sequence\",\"priority\":8,\"immediate\":false},{\"annotations\":{},\"id\":\"execute\",\"priority\":2,\"immediate\":false}],\"edges\":[{\"annotations\":{},\"edgeType\":\"sequence\",\"sourceNode\":\"1\",\"targetNode\":\"2\"},{\"annotations\":{},\"edgeType\":\"execute\",\"sourceNode\":\"2\",\"targetNode\":\"3\"}]}",
+        value: example2,
     },
 ];
 
@@ -25,9 +28,9 @@ export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);
     const menuOpenToggle = useStore((state: State) => state.menuExamples.menuOpenToggle);
     const {getNode, fitView} = useReactFlow();
-    const render = useStore((state: State) => (ihGraphAsJson: string) => {
+    const render = useStore((state: State) => (ihGraphAsJson: any) => {
         state.compilation.render(
-            createIHGraphFromJSONString(ihGraphAsJson),
+            createIHGraphFromJSON(ihGraphAsJson),
             getNode,
             fitView
         );

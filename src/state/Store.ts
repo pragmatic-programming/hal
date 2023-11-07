@@ -1,6 +1,5 @@
 import { State } from "./State";
 import { CompilationContext, System } from "kico";
-import { edges, nodes } from "../model/example";
 import { onNodesChange } from "./reactFlow/onNodesChange";
 import { onEdgesChange } from "./reactFlow/onEdgesChange";
 import { onConnect } from "./reactFlow/onConnect";
@@ -20,6 +19,15 @@ import { setNodeNodeData } from "./reactFlow/setNodeNodeData";
 import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
 import { nextNodeId } from "./reactFlow/nextNodeId";
 import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
+import { iHGraphToFlow } from "../model/processor/compilationContexts";
+import { createIHGraphFromJSON } from "ihgraph";
+
+import example1 from "../model/examples/example1.json";
+
+
+const context: CompilationContext = iHGraphToFlow(createIHGraphFromJSON(example1));
+context.compile();
+const example = context.getResult();
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -44,10 +52,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     reactFlow: {
         connectingSourceNodeId: null,
         edgePathStyle: "Bezier",
-        edges: edges,
+        edges: example.edges,
         layout: layout(setState, getState),
         nextNodeId: nextNodeId(getState),
-        nodes: nodes,
+        nodes: example.nodes,
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),
         onNodesChange: onNodesChange(setState, getState),
