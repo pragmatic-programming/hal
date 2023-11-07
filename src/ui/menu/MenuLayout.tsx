@@ -9,28 +9,28 @@ import { useStore } from "../../state/Store";
 import { useReactFlow } from "reactflow";
 
 export default function MenuLayout(): React.JSX.Element {
-    const {getNode, fitView} = useReactFlow();
+    const {fitView} = useReactFlow();
     const layout = useStore((state: State) => state.reactFlow.layout);
     return (
         <>
             <ButtonMenu
                 icon={<MoreVertIcon/>}
-                onClick={() => layout(getNode, fitView, {"elk.algorithm": "layered", "elk.direction": "DOWN"})}
+                onClick={() => layout(fitView, {"elk.algorithm": "layered", "elk.direction": "DOWN"})}
                 tooltip="Vertical Layout"
             />
             <ButtonMenu
                 icon={<MoreHorizIcon/>}
-                onClick={() => layout(getNode, fitView, {"elk.algorithm": "layered", "elk.direction": "RIGHT"})}
+                onClick={() => layout(fitView, {"elk.algorithm": "layered", "elk.direction": "RIGHT"})}
                 tooltip="Horizontal Layout"
             />
             <ButtonMenu
                 icon={<DataUsageIcon/>}
-                onClick={() => layout(getNode, fitView, {"elk.algorithm": "org.eclipse.elk.radial"})}
+                onClick={() => layout(fitView, {"elk.algorithm": "org.eclipse.elk.radial"})}
                 tooltip="Radial Layout"
             />
             <ButtonMenu
                 icon={<BoltIcon/>}
-                onClick={() => layout(getNode, fitView, {"elk.algorithm": "org.eclipse.elk.force"})}
+                onClick={() => layout(fitView, {"elk.algorithm": "org.eclipse.elk.force"})}
                 tooltip="Force Layout"
             />
         </>

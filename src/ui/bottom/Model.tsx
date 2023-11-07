@@ -14,32 +14,32 @@ interface Props {
 
 export default function Model(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
-    const {getNode, fitView} = useReactFlow();
+    const {fitView} = useReactFlow();
     const renderIHGraph = useStore((state: State) => state.compilation.render);
     let borderStyle: "dotted" | "solid" | "double";
     let borderWidth: number;
     let marginLeft: "-10px" | "0px" = "0px";
     let marginRight: "-10px" | "0px" = "0px";
     let property: IHGraph = props.processor.environment.getResult();
-    let title : string;
+    let title: string;
     switch (props.position) {
         case "start":
             borderStyle = "dotted";
             borderWidth = 2;
             marginLeft = "-10px";
             property = props.processor.environment.getProperty(Environment.SOURCE_MODEL);
-            title = "Input"
+            title = "Input";
             break;
         case "inter":
             borderStyle = "solid";
             borderWidth = 2;
-            title = "Intermediate"
+            title = "Intermediate";
             break;
         case "end":
             borderStyle = "double";
             borderWidth = 4;
             marginRight = "-10px";
-            title = "Result"
+            title = "Result";
             break;
 
     }
@@ -49,7 +49,7 @@ export default function Model(props: Props): React.JSX.Element {
             title={title}
         >
             <IconButton
-                onClick={() => renderIHGraph(property, getNode, fitView)}
+                onClick={() => renderIHGraph(property, fitView)}
                 sx={{
                     marginLeft: marginLeft,
                     marginRight: marginRight,

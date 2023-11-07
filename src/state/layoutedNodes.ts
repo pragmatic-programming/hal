@@ -1,6 +1,6 @@
-import { State } from "./State";
 import { Edge, Node, Position } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
+import { StateReactFlow } from "./reactFlow/StateReactFlow";
 
 const elk = new ELK({
     workerFactory: function (url) { // the value of 'url' is irrelevant here
@@ -9,7 +9,7 @@ const elk = new ELK({
     }
 });
 
-export async function layoutedNodes(getState: () => State, getNode: (id: string) => (Node | undefined), layoutOptions: LayoutOptions = {}) {
+export async function layoutedNodes(stateReactFlow: StateReactFlow, layoutOptions: LayoutOptions = {}) {
     const options: LayoutOptions = {
         "elk.algorithm": "layered",
         "elk.direction": "RIGHT",
@@ -19,15 +19,20 @@ export async function layoutedNodes(getState: () => State, getNode: (id: string)
         ...layoutOptions,
     };
 
+    const nodeMap = new Map<string, Node>();
+
     const graph: ElkNode = {
         id: "root",
         layoutOptions: options,
-        children: getState().reactFlow.nodes.map((node: Node): ElkNode => ({
-            id: node.id,
-            width: node.width ? node.width : 100,
-            height: node.height ? node.height : 100,
-        })),
-        edges: getState().reactFlow.edges.map((edge: Edge): ElkExtendedEdge => ({
+        children: stateReactFlow.nodes.map((node: Node): ElkNode => {
+            nodeMap.set(node.id, node);
+            return {
+                id: node.id,
+                width: node.width ? node.width : 100,
+                height: node.height ? node.height : 100,
+            };
+        }),
+        edges: stateReactFlow.edges.map((edge: Edge): ElkExtendedEdge => ({
             id: edge.id,
             sources: [edge.source],
             targets: [edge.target]
@@ -42,7 +47,7 @@ export async function layoutedNodes(getState: () => State, getNode: (id: string)
         throw new Error("Children are undefined");
     }
     root.children.forEach((child: ElkNode): void => {
-        const node: Node | undefined = getNode(child.id);
+        const node: Node | undefined = nodeMap.get(child.id);
         if (!node) {
             throw new Error("Node is undefined");
         }

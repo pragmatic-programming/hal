@@ -8,7 +8,7 @@ export interface StateReactFlow {
     connectingSourceNodeId: string | null,
     edgePathStyle: EdgePathStyle
     edges: Edge[],
-    layout: (getNode: (nodeId: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
+    layout: (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
     nextNodeId: () => string,
     nodes: Node<NodeData>[],
     onConnect: OnConnect,

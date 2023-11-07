@@ -1,6 +1,6 @@
 import { State } from "../State";
 import { IHGraph } from "ihgraph";
-import { FitViewOptions, Node } from "reactflow";
+import { FitViewOptions } from "reactflow";
 import { CompilationContext } from "kico";
 import { iHGraphToFlow } from "../../model/processor/compilationContexts";
 import { globalFitViewOptions } from "../../constants";
@@ -8,7 +8,7 @@ import { StoreApi } from "zustand";
 import { layoutedNodes } from "../layoutedNodes";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (ihGraph: IHGraph, getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void) => {
+    return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void) => {
         setState({
             ui: {
                 ...getState().ui,
@@ -22,17 +22,15 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         const context: CompilationContext = iHGraphToFlow(ihGraph);
         context.compile();
         const flowState = context.getResult();
+        const reactFlow = {
+            ...getState().reactFlow,
+            nodes: flowState.nodes,
+            edges: flowState.edges,
+        };
         setState({
             reactFlow: {
-                ...getState().reactFlow,
-                nodes: flowState.nodes,
-                edges: flowState.edges,
-            }
-        });
-        setState({
-            reactFlow: {
-                ...getState().reactFlow,
-                nodes: await layoutedNodes(getState, getNode)
+                ...reactFlow,
+                nodes: await layoutedNodes(reactFlow)
             }
         });
         window.requestAnimationFrame(() => {

@@ -112,7 +112,7 @@ export default function Flow(): React.JSX.Element {
                 onConnectEnd={onConnectEnd}
                 onConnectStart={onConnectStart}
                 onEdgesChange={onEdgesChange}
-                onInit={(reactFlowInstance: ReactFlowInstance) => layout(reactFlowInstance.getNode, reactFlowInstance.fitView, {})}
+                onInit={(reactFlowInstance: ReactFlowInstance) => layout(reactFlowInstance.fitView, {})}
                 onNodesChange={onNodesChange}
             >
                 <Background/>

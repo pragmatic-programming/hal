@@ -1,22 +1,23 @@
 import { State } from "../State";
-import { FitViewOptions, Node } from "reactflow";
+import { FitViewOptions } from "reactflow";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import { layoutedNodes } from "../layoutedNodes";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 
 export function layout(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (getNode: (id: string) => Node | undefined, fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions = {}) => {
+    return async (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions = {}) => {
         setState({
             ui: {
                 ...getState().ui,
                 busy: true,
             }
         });
+        const reactFlow = getState().reactFlow;
         setState({
             reactFlow: {
-                ...getState().reactFlow,
-                nodes: await layoutedNodes(getState, getNode, layoutOptions),
+                ...reactFlow,
+                nodes: await layoutedNodes(reactFlow, layoutOptions),
             }
         });
         window.requestAnimationFrame(() => {

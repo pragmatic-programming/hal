@@ -27,11 +27,10 @@ const examples = [
 export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);
     const menuOpenToggle = useStore((state: State) => state.menuExamples.menuOpenToggle);
-    const {getNode, fitView} = useReactFlow();
+    const {fitView} = useReactFlow();
     const render = useStore((state: State) => (ihGraphAsJson: any) => {
         state.compilation.render(
             createIHGraphFromJSON(ihGraphAsJson),
-            getNode,
             fitView
         );
     });
