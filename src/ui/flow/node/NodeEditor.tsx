@@ -59,6 +59,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
             />
             {edgeTypes.map((value, index) => <HandleSource
                     id={value}
+                    key={value}
                     nodeId={props.id}
                     order={index + 1}
                     position={sourcePosition}
