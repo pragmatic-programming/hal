@@ -36,7 +36,7 @@ export default function NodeResult(props: NodeProps): React.JSX.Element {
                     width: node.width,
                 }}
             >
-                {props.data.value}
+                {props.data.content}
             </BoxBackgroundMain>
         </>
     );

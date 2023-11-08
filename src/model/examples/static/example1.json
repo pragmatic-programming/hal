@@ -7,6 +7,7 @@
           "id": "nodeData",
           "data": {
             "content": "var x = 1;",
+            "type": "editor",
             "label": "Declaration",
             "language": "JavaScript",
             "width": 300,
@@ -23,6 +24,7 @@
           "id": "nodeData",
           "data": {
             "content": "x + 2;",
+            "type": "editor",
             "label": "Usage",
             "language": "JavaScript",
             "width": 300,
@@ -39,6 +41,7 @@
           "id": "nodeData",
           "data": {
             "content": "",
+            "type": "result",
             "label": "Result",
             "language": "JavaScript",
             "width": 300,

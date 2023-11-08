@@ -9,6 +9,8 @@ import { createIHGraphFromJSON } from "ihgraph";
 import { useReactFlow } from "reactflow";
 import { examples } from "../../model/examples/examples";
 
+const menuExamplesWidth = 300;
+
 export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);
     const menuOpenToggle = useStore((state: State) => state.menuExamples.menuOpenToggle);
@@ -33,7 +35,7 @@ export default function MenuExamples(): React.JSX.Element {
             >
                 <List
                     style={{
-                        width: 200
+                        width: menuExamplesWidth
                     }}
                 >
                     {examples.map(example =>

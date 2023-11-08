@@ -1,4 +1,5 @@
 import { Language } from "./Languages";
+import { nodeType } from "../ui/flow/flow/NodeTypes";
 
 export default interface NodeData {
     //todo content is redundant
@@ -7,4 +8,5 @@ export default interface NodeData {
     language: Language,
     width: number,
     height: number,
+    type: nodeType,
 }

@@ -1,4 +1,4 @@
-import { SourceNode, TransformationEdge } from "ihgraph";
+import { SourceNode } from "ihgraph";
 import { Node } from "reactflow";
 import NodeData from "./NodeData";
 import { nodeType } from "../ui/flow/flow/NodeTypes";
@@ -8,16 +8,20 @@ import { FlowToIHGraphProcessor } from "./processor/FlowToIHGraphProcessor";
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
     //todo
-    let nodeData: NodeData = {label: "unknown", language: "JavaScript", content: "", width: 0, height: 0};
+    let nodeData: NodeData = {
+        label: "unknown",
+        language: "JavaScript",
+        type: "editor",
+        content: "",
+        width: 0,
+        height: 0
+    };
     if (sourceNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
         nodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
     }
-    const executeEdge = sourceNode
-        .getIncomingEdges()
-        .find((edge: TransformationEdge) => edge.getType().getId() === "execute");
     return node(
         sourceNode.getId(),
-        executeEdge ? "result" : "editor",
+        nodeData.type,
         sourceNode.getContent(),
         nodeData.label,
         nodeData.language,
@@ -65,10 +69,11 @@ function node(
         type: type,
         data: {
             content: content,
+            height: height,
             label: label,
             language: language,
+            type: type,
             width: width,
-            height: height,
         },
         position: {x: x, y: y},
         width: width,
