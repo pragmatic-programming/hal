@@ -2,10 +2,10 @@ import React, { CSSProperties } from "react";
 import { Theme, useTheme } from "@mui/material";
 
 interface Props {
-    border?: "top" | "bottom" | "left" | "right";
     backgroundColor: string;
+    border?: "top" | "bottom" | "left" | "right";
+    children: React.ReactNode;
     style?: CSSProperties;
-    children: React.JSX.Element | React.JSX.Element[];
 }
 
 export function BoxBackground(props: Props): React.JSX.Element {

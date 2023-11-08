@@ -7,6 +7,7 @@ import { Theme, useTheme } from "@mui/material";
 
 interface Props {
     id: string;
+    order?: number;
     nodeId: string;
     style?: CSSProperties;
     position: Position;
@@ -25,9 +26,10 @@ export default function HandleSource(props: Props): React.JSX.Element {
     }
     return (
         <HandleStyled
-            style={style}
             id={props.id}
+            order={props.order}
             position={props.position}
+            style={style}
             type="source"
         />
     );

@@ -3,7 +3,7 @@ import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath, getSmoothStepPat
 import { TextField, Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
-import { validEdgeTypes } from "../../../model/createEdge";
+import { isEdgeType } from "../flow/EdgeTypes";
 
 export default function EdgedStyled(props: EdgeProps): React.JSX.Element {
     const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
@@ -46,7 +46,7 @@ export default function EdgedStyled(props: EdgeProps): React.JSX.Element {
                                 }
                             }
                         }}
-                        error={validEdgeTypes.find(value => value === props.label) === undefined}
+                        error={!isEdgeType(props.label)}
                         value={props.label}
                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
                         style={{

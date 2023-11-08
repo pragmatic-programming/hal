@@ -7,8 +7,6 @@ export const markerEnd = {
     height: 30,
 };
 
-export const validEdgeTypes: string[] = ["sequence", "execute"];
-
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
     if (!onConnectStartParams.nodeId) {
         throw new Error("OnConnectStartParams.nodeId is null");
