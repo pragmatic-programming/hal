@@ -2,7 +2,6 @@ import React from "react";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { Node, useReactFlow } from "reactflow";
-import NodeData from "../../model/NodeData";
 import { IconButton, Theme, useTheme } from "@mui/material";
 import EditorHeader, { editorHeaderHeight } from "./EditorHeader";
 import { Close } from "@mui/icons-material";
@@ -10,6 +9,7 @@ import { StateEditorOpen } from "../../state/editor/StateEditor";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "./EditorFooter";
 import { EditorBody } from "./EditorBody";
+import { NodeData } from "../../model/NodeData";
 
 interface Props {
     editorState: StateEditorOpen;
@@ -30,6 +30,9 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
     let node: Node<NodeData> | undefined = getNode(props.editorState.nodeId);
     if (!node) {
         throw new Error("Node is undefined");
+    }
+    if(node.data.type !== "editor"){
+        throw new Error("Node has wrong type");
     }
     return (
         <BoxBackgroundMain

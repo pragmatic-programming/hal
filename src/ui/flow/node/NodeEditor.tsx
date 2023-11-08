@@ -3,13 +3,13 @@ import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
-import NodeData from "../../../model/NodeData";
 import HandleTarget from "../handle/HandleTarget";
 import HandleSource from "../handle/HandleSource";
 import EditorHeader, { editorHeaderHeight } from "../../editor/EditorHeader";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
+import { NodeData } from "../../../model/NodeData";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
@@ -32,8 +32,12 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     if (!node.width) {
         throw new Error("Node.width is undefined");
     }
+    if (props.data.type !== "editor") {
+        throw new Error("Node.data has wrong type");
+    }
     const theme: Theme = useTheme();
-    const setNodeNodeData = useStore((state: State) => state.reactFlow.setNodeNodeData);
+    const setNodeNodeDataLabel = useStore((state: State) => state.reactFlow.setNodeNodeDataLabel);
+    const setNodeNodeDataContent = useStore((state: State) => state.reactFlow.setNodeNodeDataContent);
 
     const style: Partial<CSSProperties> = {
         borderColor: theme.palette.info.light,
@@ -47,7 +51,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         <BoxBackgroundMain
             style={style}
         >
-            <NodeResizer minWidth={100} minHeight={30} />
+            <NodeResizer minWidth={100} minHeight={30}/>
             <HandleTarget
                 nodeId={props.id}
                 position={props.targetPosition}
@@ -64,13 +68,13 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
             />
             <EditorHeader
                 value={props.data.label}
-                onChange={(label: string) => setNodeNodeData(props.id, {label: label})}
+                onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}
                 nodeId={props.id}
             />
             <EditorBody
                 height={"calc(100% - " + editorBodyReducedHeight + "px)"}
                 language={props.data.language}
-                onChange={(content: string | undefined) => setNodeNodeData(props.id, {content: content})}
+                onChange={(content: string | undefined) => setNodeNodeDataContent(props.id, content)}
                 value={props.data.content}
                 width={"calc(100% - " + editorBodyReducedWidth + "px)"}
             />

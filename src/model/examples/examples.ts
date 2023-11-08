@@ -1,13 +1,13 @@
 import * as ihgraph from "ihgraph";
-import example1 from "./static/example1.json";
+import exampleJavaScriptSequence from "./static/example-javascript-sequence.json";
 import exampleSingleImageNode from "./static/example-single-image-node.json";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 
 export const examples = [
     {
         id: 1,
-        name: "Example 1",
-        value: example1,
+        name: "JavaScript Sequence",
+        value: exampleJavaScriptSequence,
     },
     {
         id: 2,

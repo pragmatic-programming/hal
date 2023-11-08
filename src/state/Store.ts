@@ -15,13 +15,15 @@ import { editorLabelSet } from "./editor/editorLabelSet";
 import { createWithEqualityFn } from "zustand/traditional";
 import { setNodeType } from "./reactFlow/setNodeType";
 import { setConnectingSourceNodeId } from "./reactFlow/setConnectingSourceNodeId";
-import { setNodeNodeData } from "./reactFlow/setNodeNodeData";
+import { setNodeNodeDataLanguage } from "./reactFlow/setNodeNodeDataLanguage";
 import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
 import { nextNodeId } from "./reactFlow/nextNodeId";
 import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
 import { iHGraphToFlow } from "../model/processor/compilationContexts";
 import { createIHGraphFromJSON } from "ihgraph";
 import { examples } from "../model/examples/examples";
+import { setNodeNodeDataLabel } from "./reactFlow/setNodeNodeDataLabel";
+import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
 
 const context: CompilationContext = iHGraphToFlow(createIHGraphFromJSON(examples[0].value));
 context.compile();
@@ -60,7 +62,9 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setConnectingSourceNodeId: setConnectingSourceNodeId(setState),
         setEdgeLabel: setEdgeLabel(setState, getState),
         setEdgePathStyle: setEdgePathStyle(setState, getState),
-        setNodeNodeData: setNodeNodeData(setState, getState),
+        setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
+        setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
+        setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
         setNodeType: setNodeType(setState, getState),
     },
     ui: {

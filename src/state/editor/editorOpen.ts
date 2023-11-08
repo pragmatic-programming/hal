@@ -1,6 +1,6 @@
 import { State } from "../State";
 import { Node } from "reactflow";
-import NodeData from "../../model/NodeData";
+import { NodeData } from "../../model/NodeData";
 import { StoreApi } from "zustand";
 import { StateReactFlow } from "../reactFlow/StateReactFlow";
 import { StateEditorOpen } from "./StateEditor";
@@ -12,6 +12,9 @@ export function editorOpen(setState: StoreApi<State>["setState"], getState: () =
             const node: Node<NodeData> | undefined = getNode(editorId);
             if (!node) {
                 throw new Error("Node is undefined");
+            }
+            if(node.data.type !== "editor"){
+                throw new Error("Node.data has wrong type");
             }
             setState({
                 editor: {
@@ -38,6 +41,9 @@ export function editorOpen(setState: StoreApi<State>["setState"], getState: () =
                     ...reactFlow,
                     nodes: reactFlow.nodes.map((node: Node<NodeData>) => {
                         if (node.id === open.nodeId) {
+                            if(node.data.type !== "editor"){
+                                throw new Error("Node.data has wrong type");
+                            }
                             node.data = {
                                 ...node.data,
                                 label: open.label,

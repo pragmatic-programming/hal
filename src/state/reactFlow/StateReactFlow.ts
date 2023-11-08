@@ -1,8 +1,9 @@
 import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
-import NodeData from "../../model/NodeData";
+import { NodeData } from "../../model/NodeData";
 import { EdgePathStyle } from "./EdgePathStyle";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import { nodeType } from "../../ui/flow/flow/NodeTypes";
+import { Language } from "../../model/Languages";
 
 export interface StateReactFlow {
     connectingSourceNodeId: string | null,
@@ -17,6 +18,8 @@ export interface StateReactFlow {
     setConnectingSourceNodeId: (nodeId: string | null) => void,
     setEdgeLabel: (nodeId: string, label: string) => void,
     setEdgePathStyle: (edgePathStyle: EdgePathStyle) => void,
-    setNodeNodeData: (nodeId: string, nodeData: Partial<NodeData>) => void,
+    setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,
+    setNodeNodeDataLabel: (nodeId: string, label: string) => void,
+    setNodeNodeDataLanguage: (nodeId: string, language: Language) => void,
     setNodeType: (nodeId: string, type: nodeType) => void,
 }

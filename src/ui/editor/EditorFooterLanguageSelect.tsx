@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function EditorFooterLanguageSelect(props: Props) {
-    const setNodeNodeData = useStore((state: State) => state.reactFlow.setNodeNodeData);
+    const setNodeNodeDataLanguage = useStore((state: State) => state.reactFlow.setNodeNodeDataLanguage);
     return (
         <FormControl
             style={{
@@ -28,7 +28,7 @@ export default function EditorFooterLanguageSelect(props: Props) {
                     if (!isLanguage(event.target.value)) {
                         throw new Error("Event.target.value is not of language type");
                     }
-                    setNodeNodeData(props.nodeId, {language: event.target.value});
+                    setNodeNodeDataLanguage(props.nodeId, event.target.value);
                 }}
                 value={props.language}
             >

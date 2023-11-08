@@ -4,7 +4,7 @@ import { State } from "../../../state/State";
 import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef } from "react";
 import { useStore } from "../../../state/Store";
 import { shallow } from "zustand/shallow";
-import { createCreationNode } from "../../../model/createNode";
+import { createNodeCreation } from "../../../model/createNode";
 import { createEdgeFromOnConnectStartParams } from "../../../model/createEdge";
 import { edgeTypesMapping } from "./EdgeTypes";
 import { nodeTypesMapping } from "./NodeTypes";
@@ -65,9 +65,8 @@ export default function Flow(): React.JSX.Element {
                             const targetId = nextId();
                             onNodesChange([{
                                 type: "add",
-                                item: createCreationNode(
+                                item: createNodeCreation(
                                     targetId,
-                                    "JavaScript",
                                     position.x,
                                     position.y - creationNodeHalfHeight
                                 )
