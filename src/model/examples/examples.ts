@@ -1,6 +1,6 @@
 import * as ihgraph from "ihgraph";
 import exampleJavaScriptSequence from "./static/example-javascript-sequence.json";
-import exampleSingleImageNode from "./static/example-single-image-node.json";
+import exampleSCChart from "./static/example-scchart.json";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 
 export const examples = [
@@ -11,8 +11,8 @@ export const examples = [
     },
     {
         id: 2,
-        name: "Single Image Node",
-        value: exampleSingleImageNode,
+        name: "SCChart",
+        value: exampleSCChart,
     },
     {   id: 3,
         name: "Example 3",
@@ -31,7 +31,7 @@ function addDefaultAnnotations(example: ihgraph.IHGraphFactoryInterface): ihgrap
                 label: node.id,
                 type: "editor",
                 content: node.content ? node.content : "",
-                language: "JavaScript",
+                language: "C",
                 width: 300,
                 height: 200
             }

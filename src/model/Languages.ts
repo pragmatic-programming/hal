@@ -1,7 +1,9 @@
 export const languages = [
-    "JavaScript",
-    "Python",
+    "C",
     "HTML",
+    "JavaScript",
+    "PlainText",
+    "Python",
 ] as const;
 
 export type Language = typeof languages[number];

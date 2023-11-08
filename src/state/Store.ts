@@ -25,7 +25,7 @@ import { examples } from "../model/examples/examples";
 import { setNodeNodeDataLabel } from "./reactFlow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
 
-const context: CompilationContext = iHGraphToFlow(createIHGraphFromJSON(examples[0].value));
+const context: CompilationContext = iHGraphToFlow(createIHGraphFromJSON(examples[1].value));
 context.compile();
 const example = context.getResult();
 
