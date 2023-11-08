@@ -7,22 +7,7 @@ import ButtonMenu from "./ButtonMenu";
 import { FormatListBulleted } from "@mui/icons-material";
 import { createIHGraphFromJSON } from "ihgraph";
 import { useReactFlow } from "reactflow";
-
-import example1 from "../../model/examples/example1.json";
-import example2 from "../../model/examples/example2.json";
-
-const examples = [
-    {
-        id: 1,
-        name: "Example 1",
-        value: example1,
-    },
-    {
-        id: 2,
-        name: "Example 2",
-        value: example2,
-    },
-];
+import { examples } from "../../model/examples/examples";
 
 export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);

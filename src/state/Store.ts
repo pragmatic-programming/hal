@@ -21,11 +21,9 @@ import { nextNodeId } from "./reactFlow/nextNodeId";
 import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
 import { iHGraphToFlow } from "../model/processor/compilationContexts";
 import { createIHGraphFromJSON } from "ihgraph";
+import { examples } from "../model/examples/examples";
 
-import example1 from "../model/examples/example1.json";
-
-
-const context: CompilationContext = iHGraphToFlow(createIHGraphFromJSON(example1));
+const context: CompilationContext = iHGraphToFlow(createIHGraphFromJSON(examples[0].value));
 context.compile();
 const example = context.getResult();
 
