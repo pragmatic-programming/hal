@@ -3,7 +3,7 @@ import { IHGraph } from "ihgraph";
 import { SequenceProcessor } from "hal-kico";
 import { FlowState } from "../FlowState";
 import { JSEvalProcessor } from "./edgeTypes/JSEvalProcessor";
-import NodeData from "../NodeData";
+import { NodeData } from "../NodeData";
 
 
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
@@ -32,7 +32,9 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
                 height: height,
             };
             // todo node.data.content is redundant
-            sourceNode.setContent(data.content ? data.content : "");
+            if (data.type !== "creation") {
+                sourceNode.setContent(data.content ? data.content : "");
+            }
             sourceNode.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, data);
         }
         for (const edge of model.edges) {
