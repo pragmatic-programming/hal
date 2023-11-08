@@ -31,7 +31,7 @@ function addDefaultAnnotations(example: ihgraph.IHGraphFactoryInterface): ihgrap
                 label: node.id,
                 type: "editor",
                 content: node.content ? node.content : "",
-                language: "JavaScript",
+                language: "C",
                 width: 300,
                 height: 200
             }
