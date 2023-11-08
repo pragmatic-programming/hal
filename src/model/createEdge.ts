@@ -1,5 +1,5 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
-import { edgeType } from "../ui/flow/flow/EdgeTypes";
+import { edgeType, isEdgeType } from "../ui/flow/flow/EdgeTypes";
 
 export const markerEnd = {
     type: MarkerType.ArrowClosed,
@@ -11,10 +11,13 @@ export const validEdgeTypes: string[] = ["sequence", "execute"];
 
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
     if (!onConnectStartParams.nodeId) {
-        throw new Error("ConnectingNodeId.current.nodeId is null");
+        throw new Error("OnConnectStartParams.nodeId is null");
     }
     if (!onConnectStartParams.handleId) {
-        throw new Error("ConnectingNodeId.current.handle is null");
+        throw new Error("OnConnectStartParams.handleId is null");
+    }
+    if (!isEdgeType(onConnectStartParams.handleId)) {
+        throw new Error("OnConnectStartParams.handleId is not a valid edgeType");
     }
     return createEdge(
         onConnectStartParams.handleId,
@@ -23,23 +26,10 @@ export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConne
     );
 }
 
-export function createEdge(edgeType: string, sourceId: string, targetId: string): Edge {
-    if (edgeType === "sequence") {
-        return createSequenceEdge(sourceId, targetId);
-    }
-    if (edgeType === "execute") {
-        return createExecuteEdge(sourceId, targetId);
-    }
-    throw new Error("Unknown edge type: " + edgeType);
+export function createEdge(edgeType: edgeType, sourceId: string, targetId: string): Edge {
+    return edge(sourceId, targetId, edgeType, edgeType, "input");
 }
 
-export function createSequenceEdge(source: string, target: string): Edge {
-    return edge(source, target, "sequence", "sequence", "input");
-}
-
-export function createExecuteEdge(source: string, target: string): Edge {
-    return edge(source, target, "execute", "execute", "input");
-}
 
 function edge(source: string, target: string, type: edgeType, sourceHandle: string, targetHandle: string): Edge {
     return {

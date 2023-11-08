@@ -1,7 +1,8 @@
 import { State } from "../State";
 import { addEdge, Connection } from "reactflow";
-import { createExecuteEdge, createSequenceEdge } from "../../model/createEdge";
+import { createEdge } from "../../model/createEdge";
 import { StoreApi } from "zustand";
+import { isEdgeType } from "../../ui/flow/flow/EdgeTypes";
 
 export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {
     return (connection: Connection) => {
@@ -21,24 +22,14 @@ export function onConnect(setState: StoreApi<State>["setState"], getState: () =>
         if (!targetNode) {
             throw new Error("TargetNode is undefined");
         }
-        if (connection.sourceHandle === "execute") {
-            setState({
-                reactFlow: {
-                    ...getState().reactFlow,
-                    edges: addEdge(createExecuteEdge(source, target), getState().reactFlow.edges),
-                }
-            });
-            return;
+        if (!isEdgeType(connection.sourceHandle)) {
+            throw new Error("Connection.sourceHandle is not a valid edgeType");
         }
-        if (connection.sourceHandle === "sequence") {
-            setState({
-                reactFlow: {
-                    ...getState().reactFlow,
-                    edges: addEdge(createSequenceEdge(source, target), getState().reactFlow.edges),
-                }
-            });
-            return;
-        }
-        throw new Error("Can't create edge for sourceHandle type '" + connection.sourceHandle + "'");
+        setState({
+            reactFlow: {
+                ...getState().reactFlow,
+                edges: addEdge(createEdge(connection.sourceHandle, source, target), getState().reactFlow.edges),
+            }
+        });
     };
 }
