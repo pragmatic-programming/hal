@@ -12,8 +12,8 @@ export class JSEvalProcessor extends EvalProcessor {
         return "JS Eval";
     }
 
-    process(): void {
-        super.process();
+    async process(): Promise<void> {
+        await super.process();
 
         const node = this.getModel().getSourceNodes()[0];
         const nodeData: NodeData = {

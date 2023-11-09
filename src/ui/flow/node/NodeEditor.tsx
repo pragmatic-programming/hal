@@ -10,7 +10,7 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
 import { NodeData } from "../../../model/NodeData";
-import { edgeTypes } from "../flow/EdgeTypes";
+import { edgeType, edgeTypes } from "../flow/EdgeTypes";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
@@ -57,7 +57,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 nodeId={props.id}
                 position={props.targetPosition}
             />
-            {edgeTypes.map((value, index) => <HandleSource
+            {edgeTypes.map((value: edgeType, index) => <HandleSource
                     id={value}
                     key={value}
                     nodeId={props.id}

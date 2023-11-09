@@ -8,7 +8,7 @@ import { isEdgeType } from "../../ui/flow/flow/EdgeTypes";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
-    process() {
+    async process() {
         const ihGraph: IHGraph = this.getModel();
         const nodes: Node[] = [];
         for (const sourceNode of ihGraph.getSourceNodes()) {
