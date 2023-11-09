@@ -46,7 +46,14 @@ export class SCChartProcessor extends CliqueProcessor {
                 })
             }
         );
+        await this.handleResponseNotOk(response);
         return URL.createObjectURL(await response.blob());
+    }
+
+    private async handleResponseNotOk(response: Response) {
+        if (!response.ok) {
+            throw new Error(await response.text());
+        }
     }
 
     private async htmlImageElement(image64: string): Promise<HTMLImageElement> {
