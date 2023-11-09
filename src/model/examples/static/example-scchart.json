@@ -37,7 +37,7 @@
   "edgeTypes": [
     {
       "annotations": {},
-      "id": "sequence",
+      "id": "scchart",
       "priority": 8,
       "immediate": false
     }
@@ -45,7 +45,7 @@
   "edges": [
     {
       "annotations": {},
-      "edgeType": "sequence",
+      "edgeType": "scchart",
       "sourceNode": "1",
       "targetNode": "2"
     }

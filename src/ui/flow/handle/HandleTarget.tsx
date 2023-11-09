@@ -7,8 +7,8 @@ import { Theme, useTheme } from "@mui/material";
 
 interface Props {
     nodeId: string;
-    style?: CSSProperties;
     position: Position;
+    style?: CSSProperties;
 }
 
 
@@ -24,9 +24,9 @@ export default function HandleTarget(props: Props): React.JSX.Element {
     }
     return (
         <HandleStyled
-            style={style}
             id="input"
             position={props.position}
+            style={style}
             type="target"
         />
     );

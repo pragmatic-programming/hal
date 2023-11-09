@@ -10,6 +10,7 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
 import { NodeData } from "../../../model/NodeData";
+import { edgeTypes } from "../flow/EdgeTypes";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
@@ -18,7 +19,8 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     if (!props.targetPosition) {
         throw new Error("TargetPosition is undefined");
     }
-    if (!props.sourcePosition) {
+    const sourcePosition = props.sourcePosition;
+    if (!sourcePosition) {
         throw new Error("SourcePosition is undefined");
     }
     const {getNode} = useReactFlow();
@@ -46,7 +48,6 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         width: node.width,
         height: node.height,
     };
-    // todo two handleSources overlay
     return (
         <BoxBackgroundMain
             style={style}
@@ -56,16 +57,14 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 nodeId={props.id}
                 position={props.targetPosition}
             />
-            <HandleSource
-                id="execute"
-                nodeId={props.id}
-                position={props.sourcePosition}
-            />
-            <HandleSource
-                id="sequence"
-                nodeId={props.id}
-                position={props.sourcePosition}
-            />
+            {edgeTypes.map((value, index) => <HandleSource
+                    id={value}
+                    key={value}
+                    nodeId={props.id}
+                    order={index + 1}
+                    position={sourcePosition}
+                />
+            )}
             <EditorHeader
                 value={props.data.label}
                 onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}
