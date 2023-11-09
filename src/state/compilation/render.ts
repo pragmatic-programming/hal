@@ -20,7 +20,7 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
             }
         });
         const context: CompilationContext = iHGraphToFlow(ihGraph);
-        await context.compile();
+        await context.compileAsync();
         const flowState = context.getResult();
         const reactFlow = {
             ...getState().reactFlow,

@@ -13,7 +13,11 @@ export class SCChartProcessor extends CliqueProcessor {
         return "SCChart";
     }
 
-    async process(): Promise<void> {
+    isAsync(){
+        return true
+    }
+
+    async processAsync(): Promise<void> {
         const targetGraph = this.createTargetGraph();
         const targetNode = targetGraph.createSourceNode("Sequence");
         const cliqueNodes = this.getCliqueNodes();

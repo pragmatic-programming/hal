@@ -15,10 +15,10 @@ export function run(setState: StoreApi<State>["setState"], getState: () => State
             }
         });
         const preContext: CompilationContext = flowToIHGraph(state.reactFlow);
-        await preContext.compile();
+        await preContext.compileAsync();
         const context: CompilationContext = ihGraphToHalGraph(preContext.getResult());
         context.startEnvironment.setProperty(CliqueSelectionProcessor.CSP_LOG, false);
-        await context.compile();
+        await context.compileAsync();
         setState({
             ...state,
             compilation: {
