@@ -1,7 +1,7 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { SequenceProcessor } from "hal-kico";
-import { FlowState } from "../FlowState";
+import { FlowState } from "./FlowState";
 import { JSEvalProcessor } from "./edgeTypes/JSEvalProcessor";
 import { NodeData } from "../NodeData";
 import { SCChartProcessor } from "./edgeTypes/SCChartProcessor";

@@ -6,8 +6,8 @@ import { useStore } from "../../../state/Store";
 import { shallow } from "zustand/shallow";
 import { createNodeCreation } from "../../../model/createNode";
 import { createEdgeFromOnConnectStartParams } from "../../../model/createEdge";
-import { edgeTypesMapping } from "./EdgeTypes";
-import { nodeTypesMapping } from "./NodeTypes";
+import { edgeTypesMapping } from "../../../model/EdgeTypes";
+import { nodeTypesMapping } from "../../../model/NodeTypes";
 import { bottomHeight } from "../../bottom/Bottom";
 import { menuWidth } from "../../menu/Menu";
 

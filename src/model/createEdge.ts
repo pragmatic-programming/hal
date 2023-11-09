@@ -1,5 +1,5 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
-import { edgeType, isEdgeType } from "../ui/flow/flow/EdgeTypes";
+import { edgeType, isEdgeType } from "./EdgeTypes";
 
 export const markerEnd = {
     type: MarkerType.ArrowClosed,

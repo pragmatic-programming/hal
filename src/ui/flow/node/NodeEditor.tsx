@@ -10,7 +10,7 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
 import { NodeData } from "../../../model/NodeData";
-import { edgeType, edgeTypes } from "../flow/EdgeTypes";
+import { edgeType, edgeTypes } from "../../../model/EdgeTypes";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;

@@ -1,6 +1,5 @@
 import { EdgeTypes } from "reactflow";
-import EdgedStyled from "../edge/EdgedStyled";
-
+import EdgedStyled from "../ui/flow/edge/EdgedStyled";
 
 export const edgeTypes = [
     "sequence",
