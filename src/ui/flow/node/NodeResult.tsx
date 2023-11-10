@@ -3,7 +3,7 @@ import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import HandleTarget from "../handle/HandleTarget";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
-import { NodeDataResult } from "../../../model/NodeData";
+import { NodeDataResult } from "../../../model/node/NodeData";
 
 export default function NodeResult(props: NodeProps<NodeDataResult>): React.JSX.Element {
     if (!props.targetPosition) {

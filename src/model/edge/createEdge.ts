@@ -1,5 +1,5 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
-import { edgeType, isEdgeType } from "./EdgeTypes";
+import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
 
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
     if (!onConnectStartParams.nodeId) {
@@ -8,7 +8,7 @@ export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConne
     if (!onConnectStartParams.handleId) {
         throw new Error("OnConnectStartParams.handleId is null");
     }
-    if (!isEdgeType(onConnectStartParams.handleId)) {
+    if (!isEdgeTypeIndicator(onConnectStartParams.handleId)) {
         throw new Error("OnConnectStartParams.handleId is not a valid edgeType");
     }
     return createEdge(
@@ -18,11 +18,11 @@ export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConne
     );
 }
 
-export function createEdge(edgeType: edgeType, sourceId: string, targetId: string): Edge {
+export function createEdge(edgeType: EdgeTypeIndicator, sourceId: string, targetId: string): Edge {
     return edge(sourceId, targetId, edgeType, edgeType, "input");
 }
 
-function edge(source: string, target: string, type: edgeType, sourceHandle: string, targetHandle: string): Edge {
+function edge(source: string, target: string, type: EdgeTypeIndicator, sourceHandle: string, targetHandle: string): Edge {
     return {
         id: "e" + source + "-" + target + "-" + type,
         source: source,

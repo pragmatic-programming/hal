@@ -1,5 +1,5 @@
 import { CliqueProcessor } from "hal-kico";
-import { NodeDataImage } from "../../NodeData";
+import { NodeDataImage } from "../../node/NodeData";
 import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
 import { SourceNode } from "ihgraph";
 

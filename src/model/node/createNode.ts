@@ -1,7 +1,7 @@
 import { SourceNode } from "ihgraph";
 import { Node } from "reactflow";
-import { Language } from "./Languages";
-import { FlowToIHGraphProcessor } from "./processor/FlowToIHGraphProcessor";
+import { LanguageIndicator } from "./LanguageIndicator";
+import { FlowToIHGraphProcessor } from "../processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreation, NodeDataEditor, NodeDataImage, NodeDataResult } from "./NodeData";
 import {
     createNodeDataCreation,
@@ -83,7 +83,7 @@ function creatNodeEditor(
     id: string,
     content: string,
     label: string,
-    language: Language,
+    language: LanguageIndicator,
     x: number,
     y: number,
     width: number,

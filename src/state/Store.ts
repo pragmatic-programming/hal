@@ -5,7 +5,7 @@ import { onEdgesChange } from "./reactFlow/onEdgesChange";
 import { onConnect } from "./reactFlow/onConnect";
 import { run } from "./compilation/run";
 import { layout } from "./reactFlow/layout";
-import { render } from "./compilation/render";
+import { render } from "./reactFlow/render";
 import { switchMode } from "./ui/switchMode";
 import { setEdgeLabel } from "./reactFlow/setEdgeLabel";
 import { dialogOpen } from "./dialogNodeNew/dialogOpen";
@@ -25,7 +25,6 @@ import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
         context: new CompilationContext(new System("empty", [])),
-        render: render(setState, getState),
         run: run(setState, getState),
     },
     immediateCompilation: {
@@ -57,6 +56,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),
         onNodesChange: onNodesChange(setState, getState),
+        render: render(setState, getState),
         setConnectingSourceNodeId: setConnectingSourceNodeId(setState),
         setEdgeLabel: setEdgeLabel(setState, getState),
         setEdgePathStyle: setEdgePathStyle(setState, getState),

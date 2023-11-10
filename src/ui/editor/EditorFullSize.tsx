@@ -9,7 +9,7 @@ import { StateEditorOpen } from "../../state/editor/StateEditor";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "./EditorFooter";
 import { EditorBody } from "./EditorBody";
-import { NodeData } from "../../model/NodeData";
+import { NodeData } from "../../model/node/NodeData";
 
 interface Props {
     editorState: StateEditorOpen;

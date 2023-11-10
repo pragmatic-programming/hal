@@ -9,8 +9,9 @@ import EditorHeader, { editorHeaderHeight } from "../../editor/EditorHeader";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
-import { NodeData } from "../../../model/NodeData";
-import { edgeType, edgeTypes } from "../../../model/EdgeTypes";
+import { NodeData } from "../../../model/node/NodeData";
+import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
+import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
@@ -54,9 +55,9 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 nodeId={props.id}
                 position={props.targetPosition}
             />
-            {edgeTypes.map((value: edgeType, index) => <HandleSource
-                    id={value}
-                    key={value}
+            {edgeDefinitions.map((edgeDefinition: EdgeDefinition, index) => <HandleSource
+                    id={edgeDefinition.type}
+                    key={edgeDefinition.type}
                     nodeId={props.id}
                     order={index + 1}
                     position={sourcePosition}

@@ -3,7 +3,7 @@ import { IHGraph } from "ihgraph";
 import { SequenceProcessor } from "hal-kico";
 import { FlowState } from "./FlowState";
 import { JSEvalProcessor } from "./edgeTypes/JSEvalProcessor";
-import { NodeData } from "../NodeData";
+import { NodeData } from "../node/NodeData";
 import { SCChartProcessor } from "./edgeTypes/SCChartProcessor";
 
 

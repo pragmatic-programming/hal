@@ -16,7 +16,7 @@ export default function MenuExamples(): React.JSX.Element {
     const menuOpenToggle = useStore((state: State) => state.menuExamples.menuOpenToggle);
     const {fitView} = useReactFlow();
     const render = useStore((state: State) => (ihGraphAsJson: any) => {
-        state.compilation.render(
+        state.reactFlow.render(
             createIHGraphFromJSON(ihGraphAsJson),
             fitView,
         );

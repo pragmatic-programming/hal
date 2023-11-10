@@ -1,6 +1,6 @@
 import { State } from "../State";
 import { Node } from "reactflow";
-import { NodeData } from "../../model/NodeData";
+import { NodeData } from "../../model/node/NodeData";
 import { StoreApi } from "zustand";
 import { StateReactFlow } from "./StateReactFlow";
 

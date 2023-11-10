@@ -1,7 +1,6 @@
-import { Language } from "./Languages";
+import { LanguageIndicator } from "./LanguageIndicator";
 
 export type NodeData = NodeDataEditor | NodeDataResult | NodeDataCreation | NodeDataImage
-export type NodeDataTypeIdentifier = "editor" | "result" | "creation" | "image"
 
 interface NodeDataCommon {
     width: number,
@@ -13,7 +12,7 @@ export interface NodeDataEditor extends NodeDataCommon {
     //todo content is redundant
     content: string | undefined,
     label: string,
-    language: Language,
+    language: LanguageIndicator,
 }
 
 export interface NodeDataResult extends NodeDataCommon {

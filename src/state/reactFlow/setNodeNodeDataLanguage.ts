@@ -1,13 +1,13 @@
 import { State } from "../State";
 import { Node } from "reactflow";
-import { NodeData } from "../../model/NodeData";
+import { NodeData } from "../../model/node/NodeData";
 import { StoreApi } from "zustand";
 import { StateReactFlow } from "./StateReactFlow";
-import { Language } from "../../model/Languages";
+import { LanguageIndicator } from "../../model/node/LanguageIndicator";
 
 
 export function setNodeNodeDataLanguage(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (editorId: string, language: Language) => {
+    return async (editorId: string, language: LanguageIndicator) => {
         const reactFlow: StateReactFlow = getState().reactFlow;
         setState({
             reactFlow: {

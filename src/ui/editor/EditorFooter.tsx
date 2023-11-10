@@ -1,11 +1,11 @@
 import React from "react";
 import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
 import EditorFooterLanguageSelect from "./EditorFooterLanguageSelect";
-import { Language } from "../../model/Languages";
+import { LanguageIndicator } from "../../model/node/LanguageIndicator";
 
 interface Props {
     nodeId: string;
-    language: Language;
+    language: LanguageIndicator;
 }
 
 export const editorFooterHeight = 36;
