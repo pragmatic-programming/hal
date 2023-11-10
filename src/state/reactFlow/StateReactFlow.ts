@@ -17,7 +17,7 @@ export interface StateReactFlow {
     onConnect: OnConnect,
     onEdgesChange: OnEdgesChange,
     onNodesChange: OnNodesChange,
-    render: (ihGraph: IHGraph, fitView: () => void) => void,
+    render: (ihGraph: IHGraph, fitView: () => void, projectName?: string) => void,
     setConnectingSourceNodeId: (nodeId: string | null) => void,
     setEdgeLabel: (nodeId: string, label: string) => void,
     setEdgePathStyle: (edgePathStyle: EdgePathStyle) => void,

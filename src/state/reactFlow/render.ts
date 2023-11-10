@@ -8,10 +8,11 @@ import { StoreApi } from "zustand";
 import { layoutedNodes } from "../layoutedNodes";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void) => {
+    return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string) => {
         setState({
             ui: {
                 ...getState().ui,
+                projectName: projectName ? projectName : getState().ui.projectName,
                 busy: true,
             },
             menuExamples: {

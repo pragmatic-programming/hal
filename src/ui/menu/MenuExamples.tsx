@@ -7,7 +7,7 @@ import ButtonMenu from "./ButtonMenu";
 import { FormatListBulleted } from "@mui/icons-material";
 import { createIHGraphFromJSON } from "ihgraph";
 import { useReactFlow } from "reactflow";
-import { examples } from "../../model/examples/examples";
+import { Example, examples } from "../../model/examples/examples";
 
 const menuExamplesWidth = 300;
 
@@ -15,10 +15,11 @@ export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);
     const menuOpenToggle = useStore((state: State) => state.menuExamples.menuOpenToggle);
     const {fitView} = useReactFlow();
-    const render = useStore((state: State) => (ihGraphAsJson: any) => {
+    const render = useStore((state: State) => (example: Example) => {
         state.reactFlow.render(
-            createIHGraphFromJSON(ihGraphAsJson),
+            createIHGraphFromJSON(example.value),
             fitView,
+            example.name,
         );
     });
     return (
@@ -41,7 +42,7 @@ export default function MenuExamples(): React.JSX.Element {
                     {examples.map(example =>
                         <ListItem key={example.id}>
                             <ListItemButton
-                                onClick={() => render(example.value)}
+                                onClick={() => render(example)}
                             >
                                 <ListItemIcon>
                                     <AccountTreeIcon/>
