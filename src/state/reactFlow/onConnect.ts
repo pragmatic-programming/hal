@@ -1,9 +1,9 @@
 import { State } from "../State";
 import { addEdge, Connection } from "reactflow";
-import { createEdge } from "../../model/edge/createEdge";
 import { StoreApi } from "zustand";
 
 import { isEdgeTypeIndicator } from "../../model/edge/EdgeTypeIndicator";
+import { createEdgeFromEdgeType } from "../../model/edge/createEdge";
 
 export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {
     return (connection: Connection) => {
@@ -29,7 +29,7 @@ export function onConnect(setState: StoreApi<State>["setState"], getState: () =>
         setState({
             reactFlow: {
                 ...getState().reactFlow,
-                edges: addEdge(createEdge(connection.sourceHandle, source, target), getState().reactFlow.edges),
+                edges: addEdge(createEdgeFromEdgeType(connection.sourceHandle, source, target), getState().reactFlow.edges),
             }
         });
     };

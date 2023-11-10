@@ -1,5 +1,7 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
 import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
+import { edgeDefinitionExecute, edgeDefinitionSequence, edgeDefinitionSSChart } from "./edgeDefinitions";
+import { EdgeDefinition } from "./EdgeDefinition";
 
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
     if (!onConnectStartParams.nodeId) {
@@ -11,26 +13,39 @@ export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConne
     if (!isEdgeTypeIndicator(onConnectStartParams.handleId)) {
         throw new Error("OnConnectStartParams.handleId is not a valid edgeType");
     }
-    return createEdge(
+    return createEdgeFromEdgeType(
         onConnectStartParams.handleId,
         onConnectStartParams.nodeId,
         targetId
     );
 }
 
-export function createEdge(edgeType: EdgeTypeIndicator, sourceId: string, targetId: string): Edge {
-    return edge(sourceId, targetId, edgeType, edgeType, "input");
+export function createEdgeFromEdgeType(edgeType: EdgeTypeIndicator, sourceId: string, targetId: string): Edge {
+    switch (edgeType) {
+        case "sequence":
+            return createEdgeFromEdgeDefinition(edgeDefinitionSequence, sourceId, targetId,);
+        case "execute":
+            return createEdgeFromEdgeDefinition(edgeDefinitionExecute, sourceId, targetId);
+        case "scchart":
+            return createEdgeFromEdgeDefinition(edgeDefinitionSSChart, sourceId, targetId);
+    }
 }
 
-function edge(source: string, target: string, type: EdgeTypeIndicator, sourceHandle: string, targetHandle: string): Edge {
+
+function createEdgeFromEdgeDefinition(
+    edgeDefinition: EdgeDefinition,
+    source: string,
+    target: string,
+): Edge {
     return {
-        id: "e" + source + "-" + target + "-" + type,
+        id: "e" + source + "-" + target + "-" + edgeDefinition.type,
         source: source,
         target: target,
-        sourceHandle: sourceHandle,
-        targetHandle: targetHandle,
-        label: type,
-        type: type,
+        animated: edgeDefinition.animated,
+        sourceHandle: edgeDefinition.type,
+        targetHandle: "input",
+        label: edgeDefinition.type,
+        type: edgeDefinition.type,
         markerEnd: {
             type: MarkerType.ArrowClosed,
             width: 30,

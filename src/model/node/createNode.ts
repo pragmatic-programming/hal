@@ -68,7 +68,6 @@ export function createNodeCreation(
     x: number,
     y: number,
 ): Node<NodeDataCreation> {
-
     return {
         id: id,
         type: "creation",

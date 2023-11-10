@@ -1,11 +1,11 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { Edge, Node } from "reactflow";
-import { createEdge } from "../edge/createEdge";
 import { createNodeFromSourceNode } from "../node/createNode";
 import { FlowState } from "./FlowState";
 
 import { isEdgeTypeIndicator } from "../edge/EdgeTypeIndicator";
+import { createEdgeFromEdgeType } from "../edge/createEdge";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
@@ -29,7 +29,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
             if(!isEdgeTypeIndicator(edgeType)){
                 throw new Error("EdgeType is not a valid edgeType");
             }
-            edges.push(createEdge(edgeType, sourceId, targetId));
+            edges.push(createEdgeFromEdgeType(edgeType, sourceId, targetId));
         }
         this.setModel(new FlowState(nodes, edges));
     }

@@ -1,20 +1,34 @@
-import EdgedStyled from "../../ui/flow/edge/EdgedStyled";
 import { EdgeDefinition } from "./EdgeDefinition";
+import EdgeExecute from "../../ui/flow/edge/EdgeExecute";
+import EdgedSequence from "../../ui/flow/edge/EdgeSequence";
+import EdgeSCChart from "../../ui/flow/edge/EdgeSCChart";
 
 // new edge (step 2): add a new edge definition here
-export const edgeDefinitions: EdgeDefinition[] = [
-    {
-        type: "execute",
-        component: EdgedStyled
-    },
-    {
-        type: "sequence",
-        component: EdgedStyled
-    },
-    {
-        type: "scchart",
-        component: EdgedStyled
+export const edgeDefinitionExecute: EdgeDefinition = {
+    type: "execute",
+    component: EdgeExecute,
+    animated: true,
+};
+export const edgeDefinitionSequence: EdgeDefinition = {
+    type: "sequence",
+    component: EdgedSequence,
+    animated: false,
+    style: {
+        stroke: "green"
     }
+};
+export const edgeDefinitionSSChart: EdgeDefinition = {
+    type: "scchart",
+    component: EdgeSCChart,
+    animated: true,
+    style: {
+        stroke: "blue"
+    }
+};
+
+// new edge (step 3): add the new edge definition to the following array
+export const edgeDefinitions: EdgeDefinition[] = [
+    edgeDefinitionExecute,
+    edgeDefinitionSequence,
+    edgeDefinitionSSChart
 ];
-
-
