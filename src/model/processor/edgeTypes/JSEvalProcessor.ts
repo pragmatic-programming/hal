@@ -15,15 +15,14 @@ export class JSEvalProcessor extends EvalProcessor {
 
     process(): void {
         super.process();
-
         const node = this.getModel().getSourceNodes()[0];
         const nodeData: NodeData = {
             content: node.getContent(),
-            height: 100,
+            height: 200,
             label: "Eval",
             language: "JavaScript",
             type: "editor",
-            width: 100,
+            width: 200,
             status: SourceNodeStatus.UNDEFINED,
         };
         node.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, nodeData);
