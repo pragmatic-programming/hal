@@ -5,7 +5,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { InputBase } from "@mui/material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import { isLanguage, LanguageIndicator, languageIndicators } from "../../model/node/LanguageIndicator";
+import { isLanguageIndicator, LanguageIndicator, languageIndicators } from "../../model/node/LanguageIndicator";
 
 interface Props {
     nodeId: string,
@@ -25,7 +25,7 @@ export default function EditorFooterLanguageSelect(props: Props) {
             <Select
                 input={<InputBase/>}
                 onChange={(event: SelectChangeEvent<LanguageIndicator>) => {
-                    if (!isLanguage(event.target.value)) {
+                    if (!isLanguageIndicator(event.target.value)) {
                         throw new Error("Event.target.value is not of language type");
                     }
                     setNodeNodeDataLanguage(props.nodeId, event.target.value);

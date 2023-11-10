@@ -1,11 +1,4 @@
-import ReactFlow, {
-    Background,
-    Controls,
-    OnConnectStartParams,
-    Position,
-    ReactFlowInstance,
-    useReactFlow
-} from "reactflow";
+import ReactFlow, { Background, Controls, OnConnectStartParams, ReactFlowInstance, useReactFlow } from "reactflow";
 import "reactflow/dist/style.css";
 import { State } from "../../../state/State";
 import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef } from "react";
@@ -19,6 +12,7 @@ import { menuWidth } from "../../menu/Menu";
 import { createEdgeTypesMapping } from "../../../model/edge/createEdgeTypesMapping";
 import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
 import { nodeDefinitions } from "../../../model/node/nodeDefinitions";
+import { targetPosition } from "../../../state/reactFlow/LayoutDirectionIndicator";
 
 const selector = (state: State) => ({
     nodes: state.reactFlow.nodes,
@@ -82,8 +76,7 @@ export default function Flow(): React.JSX.Element {
                                     targetId,
                                     position.x,
                                     position.y - creationNodeHalfHeight,
-                                    // todo introduce function for this decision
-                                    layoutDirection === "DOWN" ? Position.Top : Position.Left,
+                                    targetPosition(layoutDirection),
                                 )
                             }]);
                             onEdgesChange([{

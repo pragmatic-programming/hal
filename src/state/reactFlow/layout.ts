@@ -4,9 +4,14 @@ import { LayoutOptions } from "elkjs/lib/elk-api";
 import { layoutedNodes } from "../layoutedNodes";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
+import { isLayoutDirectionIndicator } from "./LayoutDirectionIndicator";
 
 export function layout(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions = {}) => {
+        const layoutDirection = layoutOptions["elk.direction"];
+        if (!isLayoutDirectionIndicator(layoutDirection)) {
+            throw new Error("elk.direction is not a valid layout direction indicator");
+        }
         setState({
             ui: {
                 ...getState().ui,
@@ -17,7 +22,7 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
         setState({
             reactFlow: {
                 ...reactFlow,
-                layoutDirection: layoutOptions["elk.direction"],
+                layoutDirection: layoutDirection,
                 nodes: await layoutedNodes(reactFlow, layoutOptions),
             }
         });
