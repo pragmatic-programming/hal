@@ -3,10 +3,10 @@ import {
     NodeDataCreation,
     NodeDataEditor,
     NodeDataImage,
-    NodeDataResult,
-    NodeDataTypeIdentifier
+    NodeDataResult
 } from "./NodeData";
-import { Language } from "./Languages";
+import { LanguageIndicator } from "./LanguageIndicator";
+import { NodeDataTypeIdentifier } from "./NodeDataTypeIdentifier";
 
 export function createNodeDataCreation(): NodeDataCreation {
     return {
@@ -19,7 +19,7 @@ export function createNodeDataCreation(): NodeDataCreation {
 export function createNodeDataEditor(
     content: string,
     label: string,
-    language: Language,
+    language: LanguageIndicator,
     height: number,
     width: number,
 ): NodeDataEditor {
@@ -57,7 +57,7 @@ export function createNodeDataResult(
     };
 }
 
-export function createNodeDataFromCreationNode(creationNodeData: NodeDataCreation, newNodeDataTypeIdentifier: NodeDataTypeIdentifier): NodeData {
+export function createNodeDataFromCreationNode(newNodeDataTypeIdentifier: NodeDataTypeIdentifier): NodeData {
     switch (newNodeDataTypeIdentifier) {
         case "creation":
             throw new Error("Node is already a creation node");

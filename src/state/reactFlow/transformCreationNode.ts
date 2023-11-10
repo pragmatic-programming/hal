@@ -1,10 +1,10 @@
 import { State } from "../State";
 import { StoreApi } from "zustand";
-import { nodeType } from "../../model/NodeTypes";
-import { createNodeDataFromCreationNode } from "../../model/createNodeData";
+import { createNodeDataFromCreationNode } from "../../model/node/createNodeData";
+import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
 
 export function transformCreationNode(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (nodeId: string, type: nodeType) => {
+    return async (nodeId: string, type: NodeTypeIndicator) => {
         const reactFlow = getState().reactFlow;
         setState({
             dialog: {
@@ -19,7 +19,7 @@ export function transformCreationNode(setState: StoreApi<State>["setState"], get
                         if (node.data.type !== "creation") {
                             throw new Error("Node is not from typ creation");
                         }
-                        const data = createNodeDataFromCreationNode(node.data, type);
+                        const data = createNodeDataFromCreationNode(type);
                         node.data = data;
                         node.height = data.height;
                         node.width = data.width;

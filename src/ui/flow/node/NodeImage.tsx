@@ -1,7 +1,7 @@
 import React from "react";
 import { NodeProps } from "reactflow";
 import HandleTarget from "../handle/HandleTarget";
-import { NodeDataImage } from "../../../model/NodeData";
+import { NodeDataImage } from "../../../model/node/NodeData";
 import ImageIcon from "@mui/icons-material/Image";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 

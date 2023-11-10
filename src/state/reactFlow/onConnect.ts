@@ -1,8 +1,9 @@
 import { State } from "../State";
 import { addEdge, Connection } from "reactflow";
-import { createEdge } from "../../model/createEdge";
+import { createEdge } from "../../model/edge/createEdge";
 import { StoreApi } from "zustand";
-import { isEdgeType } from "../../model/EdgeTypes";
+
+import { isEdgeTypeIndicator } from "../../model/edge/EdgeTypeIndicator";
 
 export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {
     return (connection: Connection) => {
@@ -22,7 +23,7 @@ export function onConnect(setState: StoreApi<State>["setState"], getState: () =>
         if (!targetNode) {
             throw new Error("TargetNode is undefined");
         }
-        if (!isEdgeType(connection.sourceHandle)) {
+        if (!isEdgeTypeIndicator(connection.sourceHandle)) {
             throw new Error("Connection.sourceHandle is not a valid edgeType");
         }
         setState({

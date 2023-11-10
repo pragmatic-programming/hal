@@ -1,5 +1,5 @@
 import { Edge, Node } from "reactflow";
-import { NodeData } from "../NodeData";
+import { NodeData } from "../node/NodeData";
 
 export class FlowState {
     constructor(

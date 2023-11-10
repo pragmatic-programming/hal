@@ -4,7 +4,7 @@ import { InsertDriveFile } from "@mui/icons-material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { Node, useReactFlow } from "reactflow";
-import { NodeData } from "../../model/NodeData";
+import { NodeData } from "../../model/node/NodeData";
 import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
 
 interface Props {

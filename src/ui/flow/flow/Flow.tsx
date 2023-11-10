@@ -4,12 +4,14 @@ import { State } from "../../../state/State";
 import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef } from "react";
 import { useStore } from "../../../state/Store";
 import { shallow } from "zustand/shallow";
-import { createNodeCreation } from "../../../model/createNode";
-import { createEdgeFromOnConnectStartParams } from "../../../model/createEdge";
-import { edgeTypesMapping } from "../../../model/EdgeTypes";
-import { nodeTypesMapping } from "../../../model/NodeTypes";
+import { createNodeCreation } from "../../../model/node/createNode";
+import { createEdgeFromOnConnectStartParams } from "../../../model/edge/createEdge";
+import { createNodeTypesMapping } from "../../../model/node/createNodeTypesMapping";
 import { bottomHeight } from "../../bottom/Bottom";
 import { menuWidth } from "../../menu/Menu";
+import { createEdgeTypesMapping } from "../../../model/edge/createEdgeTypesMapping";
+import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
+import { nodeDefinitions } from "../../../model/node/nodeDefinitions";
 
 const selector = (state: State) => ({
     nodes: state.reactFlow.nodes,
@@ -21,6 +23,9 @@ const selector = (state: State) => ({
 });
 
 const creationNodeHalfHeight = 30;
+
+const edgeTypes = createEdgeTypesMapping(edgeDefinitions);
+const nodeTypes = createNodeTypesMapping(nodeDefinitions);
 
 export default function Flow(): React.JSX.Element {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
@@ -103,9 +108,9 @@ export default function Flow(): React.JSX.Element {
         >
             <ReactFlow
                 connectionRadius={0}
-                edgeTypes={edgeTypesMapping}
+                edgeTypes={edgeTypes}
                 edges={edges}
-                nodeTypes={nodeTypesMapping}
+                nodeTypes={nodeTypes}
                 nodes={nodes}
                 onConnect={onConnect}
                 onConnectEnd={onConnectEnd}

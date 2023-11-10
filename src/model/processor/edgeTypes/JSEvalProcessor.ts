@@ -1,6 +1,6 @@
 import { EvalProcessor } from "hal-kico";
 import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
-import { NodeData } from "../../NodeData";
+import { NodeData } from "../../node/NodeData";
 
 export class JSEvalProcessor extends EvalProcessor {
 
