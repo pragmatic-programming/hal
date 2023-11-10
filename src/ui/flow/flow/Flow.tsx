@@ -120,7 +120,7 @@ export default function Flow(): React.JSX.Element {
                 onConnectEnd={onConnectEnd}
                 onConnectStart={onConnectStart}
                 onEdgesChange={onEdgesChange}
-                onInit={(reactFlowInstance: ReactFlowInstance) => layout(reactFlowInstance.fitView, {})}
+                onInit={(reactFlowInstance: ReactFlowInstance) => layout(reactFlowInstance.fitView, {"elk.direction": "RIGHT"})}
                 onNodesChange={onNodesChange}
             >
                 <Background/>
