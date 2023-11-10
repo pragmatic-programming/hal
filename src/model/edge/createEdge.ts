@@ -1,6 +1,6 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
 import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
-import { edgeDefinitionExecute, edgeDefinitionSequence, edgeDefinitionSSChart, edgeDefintionWYTIWYG } from "./edgeDefinitions";
+import { edgeDefinitionExecute, edgeDefinitionSequence, edgeDefinitionSSChart, edgeDefinitionWYTIWYG } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
@@ -29,7 +29,7 @@ export function createEdgeFromEdgeType(edgeType: EdgeTypeIndicator, sourceId: st
         case "scchart":
             return createEdgeFromEdgeDefinition(edgeDefinitionSSChart, sourceId, targetId);
         case "wytiwyg":
-            return createEdgeFromEdgeDefinition(edgeDefintionWYTIWYG, sourceId, targetId);
+            return createEdgeFromEdgeDefinition(edgeDefinitionWYTIWYG, sourceId, targetId);
     }
 }
 

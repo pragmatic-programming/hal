@@ -18,7 +18,7 @@ function createStyle(props: Props, theme: Theme): React.CSSProperties | undefine
         zIndex: -1,
         padding: 5,
     };
-    const displaceFactor:number = 50;
+    const displaceFactor: number = 30;
     let displace: number = displaceFactor * (props.order ? props.order : 0);
     switch (props.position) {
         case Position.Bottom:

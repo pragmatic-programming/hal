@@ -27,7 +27,7 @@ export const edgeDefinitionSSChart: EdgeDefinition = {
         stroke: "blue"
     }
 };
-export const edgeDefintionWYTIWYG: EdgeDefinition = {
+export const edgeDefinitionWYTIWYG: EdgeDefinition = {
     type: "wytiwyg",
     component: EdgeWYTIWYG,
     animated: true
@@ -38,7 +38,7 @@ export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionExecute,
     edgeDefinitionSequence,
     edgeDefinitionSSChart,
-    edgeDefintionWYTIWYG
+    edgeDefinitionWYTIWYG
 ];
 
 
