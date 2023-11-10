@@ -5,7 +5,7 @@ import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 
 export default function ButtonImmediatePlay(): React.JSX.Element {
-    const runImmediate = useStore((state: State) => state.immediateCompilation.run);
+    const runImmediate = useStore((state: State) => state.immediateCompilation.runImmediate);
     return (
         <ButtonMenu
             onClick={runImmediate}

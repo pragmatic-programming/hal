@@ -12,7 +12,7 @@ export class JSEvalProcessor extends EvalProcessor {
         return "JS Eval";
     }
 
-    async process(): Promise<void> {
+    async processAsync(): Promise<void> {
         await super.process();
 
         const node = this.getModel().getSourceNodes()[0];

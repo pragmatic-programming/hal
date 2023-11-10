@@ -14,6 +14,10 @@ export const edgeDefinitions: EdgeDefinition[] = [
     {
         type: "scchart",
         component: EdgedStyled
+    },
+    {
+        type: "wytiwyg",
+        component: EdgedStyled
     }
 ];
 
