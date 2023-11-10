@@ -4,6 +4,7 @@ import { EdgePathStyle } from "./EdgePathStyle";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 import { LanguageIndicator } from "../../model/node/LanguageIndicator";
 import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
+import { IHGraph } from "ihgraph";
 
 export interface StateReactFlow {
     connectingSourceNodeId: string | null,
@@ -15,6 +16,7 @@ export interface StateReactFlow {
     onConnect: OnConnect,
     onEdgesChange: OnEdgesChange,
     onNodesChange: OnNodesChange,
+    render: (ihGraph: IHGraph, fitView: () => void) => void,
     setConnectingSourceNodeId: (nodeId: string | null) => void,
     setEdgeLabel: (nodeId: string, label: string) => void,
     setEdgePathStyle: (edgePathStyle: EdgePathStyle) => void,

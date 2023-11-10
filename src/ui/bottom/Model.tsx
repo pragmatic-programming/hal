@@ -15,7 +15,7 @@ interface Props {
 export default function Model(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
     const {fitView} = useReactFlow();
-    const renderIHGraph = useStore((state: State) => state.compilation.render);
+    const renderIHGraph = useStore((state: State) => state.reactFlow.render);
     let borderStyle: "dotted" | "solid" | "double";
     let borderWidth: number;
     let marginLeft: "-10px" | "0px" = "0px";
