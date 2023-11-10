@@ -25,7 +25,7 @@ function sum(n) {
             },
             {
                 id: "Test 3",
-                content: "sum(-1) == 0"
+                content: "sum(-1) == -1"
             }
         ],
         edgeTypes: [

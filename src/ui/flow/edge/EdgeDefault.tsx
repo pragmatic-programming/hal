@@ -5,8 +5,15 @@ import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 
 import { isEdgeTypeIndicator } from "../../../model/edge/EdgeTypeIndicator";
+import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 
-export default function EdgedStyled(props: EdgeProps): React.JSX.Element {
+interface Props extends EdgeProps {
+    edgeDefinition: EdgeDefinition;
+}
+
+// new edge (step 4): add a new edge component in the same folder of EdgeDefault, wrap EdgeDefault like in EdgeExecute
+// and add the component to the new EdgeDefinition of step 2
+export default function EdgeDefault(props: Props): React.JSX.Element {
     const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
     let edgePath, labelX, labelY;
     switch (edgePathStyle) {
@@ -27,6 +34,7 @@ export default function EdgedStyled(props: EdgeProps): React.JSX.Element {
                 id={props.id}
                 markerEnd={props.markerEnd}
                 path={edgePath}
+                style={props.edgeDefinition.style}
             />
             <EdgeLabelRenderer>
                 <div

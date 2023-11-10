@@ -27,7 +27,7 @@ export class WYTIWYGProcessor extends CliqueProcessor {
             const result: string = eval(content);
             console.log(result);
 
-            if (result === "false") {
+            
                 // const node = this.getModel().getSourceNodes()[0];
                 // const nodeData: NodeData = {
                 //     content: node.getContent(),
@@ -38,8 +38,14 @@ export class WYTIWYGProcessor extends CliqueProcessor {
                 //     width: 100,
                 // };
                 // node.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, nodeData);
-                node.setStatus(SourceNodeStatus.ERROR);
-            }
+            switch(result) {
+                case "true":
+                    node.setStatus(SourceNodeStatus.SUCCESS);
+                    break;
+                case "false":
+                    node.setStatus(SourceNodeStatus.ERROR);
+                    break;
+            } 
         };
 
     }
