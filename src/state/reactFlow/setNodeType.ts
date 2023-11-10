@@ -1,6 +1,6 @@
 import { State } from "../State";
 import { StoreApi } from "zustand";
-import { nodeType } from "../../ui/flow/flow/NodeTypes";
+import { nodeType } from "../../model/NodeTypes";
 
 export function setNodeType(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (nodeId: string, type: nodeType) => {

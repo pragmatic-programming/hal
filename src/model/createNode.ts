@@ -41,14 +41,13 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
                 sourceNode.getId(),
                 sourceNode.getContent(),
                 0,
-                0
+                0,
+                nodeData.width,
+                nodeData.height,
             );
         case "result":
             return createNodeResult(
                 sourceNode.getId(),
-                sourceNode.getContent(),
-                nodeData.label,
-                nodeData.language,
                 0,
                 0,
                 nodeData.width,
@@ -110,28 +109,26 @@ export function createNodeImage(
     content: string,
     x: number,
     y: number,
-    //todo introduce specific node type => NodeImage
+    width: number,
+    height: number,
 ): Node<NodeDataImage> {
     return {
         id: id,
         type: "image",
         data: {
             content: content,
-            height: 0,
+            height: height,
             type: "image",
-            width: 0,
+            width: width,
         },
         position: {x: x, y: y},
-        width: 0,
-        height: 0,
+        width: width,
+        height: height,
     };
 }
 
 export function createNodeResult(
     id: string,
-    content: string,
-    label: string,
-    language: Language,
     x: number,
     y: number,
     width: number,
@@ -142,10 +139,7 @@ export function createNodeResult(
         id: id,
         type: "result",
         data: {
-            content: content,
             height: height,
-            label: label,
-            language: language,
             type: "result",
             width: width,
         },

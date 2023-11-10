@@ -3,12 +3,12 @@ import { IHGraph } from "ihgraph";
 import { Edge, Node } from "reactflow";
 import { createEdge } from "../createEdge";
 import { createNodeFromSourceNode } from "../createNode";
-import { FlowState } from "../FlowState";
-import { isEdgeType } from "../../ui/flow/flow/EdgeTypes";
+import { FlowState } from "./FlowState";
+import { isEdgeType } from "../EdgeTypes";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
-    process() {
+    async process() {
         const ihGraph: IHGraph = this.getModel();
         const nodes: Node[] = [];
         for (const sourceNode of ihGraph.getSourceNodes()) {

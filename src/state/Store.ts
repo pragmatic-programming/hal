@@ -19,21 +19,14 @@ import { setNodeNodeDataLanguage } from "./reactFlow/setNodeNodeDataLanguage";
 import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
 import { nextNodeId } from "./reactFlow/nextNodeId";
 import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
-import { iHGraphToFlow } from "../model/processor/compilationContexts";
-import { createIHGraphFromJSON } from "ihgraph";
-import { examples } from "../model/examples/examples";
 import { setNodeNodeDataLabel } from "./reactFlow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
-
-const context: CompilationContext = iHGraphToFlow(createIHGraphFromJSON(examples[1].value));
-context.compile();
-const example = context.getResult();
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
         context: new CompilationContext(new System("empty", [])),
         render: render(setState, getState),
-        run: run(setState),
+        run: run(setState, getState),
     },
     dialog: {
         open: undefined,
@@ -52,10 +45,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     reactFlow: {
         connectingSourceNodeId: null,
         edgePathStyle: "Bezier",
-        edges: example.edges,
+        edges: [],
         layout: layout(setState, getState),
         nextNodeId: nextNodeId(getState),
-        nodes: example.nodes,
+        nodes: [],
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),
         onNodesChange: onNodesChange(setState, getState),
