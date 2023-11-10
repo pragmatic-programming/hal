@@ -1,6 +1,5 @@
 import React from "react";
 import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
-import { Theme, useTheme } from "@mui/material";
 import HandleTarget from "../handle/HandleTarget";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { NodeDataResult } from "../../../model/node/NodeData";
@@ -20,19 +19,15 @@ export default function NodeResult(props: NodeProps<NodeDataResult>): React.JSX.
     if (!node.width) {
         throw new Error("Node.width is undefined");
     }
-    const theme: Theme = useTheme();
     return (
         <>
-            <NodeResizer minWidth={100} minHeight={30} />
+            <NodeResizer minWidth={100} minHeight={30}/>
             <HandleTarget
                 nodeId={props.id}
                 position={props.targetPosition}
             />
             <BoxBackgroundMain
                 style={{
-                    borderColor: theme.palette.info.light,
-                    borderStyle: "solid",
-                    borderWidth: 1,
                     height: node.height,
                     width: node.width,
                 }}
