@@ -1,5 +1,5 @@
 import { SourceNode } from "ihgraph";
-import { Node } from "reactflow";
+import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreation, NodeDataEditor, NodeDataImage, NodeDataResult } from "./NodeData";
@@ -30,6 +30,7 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
                 sourceNode.getId(),
                 0,
                 0,
+                Position.Left
             );
         case "editor":
             return creatNodeEditor(
@@ -67,12 +68,14 @@ export function createNodeCreation(
     id: string,
     x: number,
     y: number,
+    targetPosition: Position
 ): Node<NodeDataCreation> {
     return {
         id: id,
         type: "creation",
         data: createNodeDataCreation(),
         position: {x: x, y: y},
+        targetPosition: targetPosition,
         width: 0,
         height: 0,
     };

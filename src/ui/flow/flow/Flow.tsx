@@ -1,4 +1,11 @@
-import ReactFlow, { Background, Controls, OnConnectStartParams, ReactFlowInstance, useReactFlow } from "reactflow";
+import ReactFlow, {
+    Background,
+    Controls,
+    OnConnectStartParams,
+    Position,
+    ReactFlowInstance,
+    useReactFlow
+} from "reactflow";
 import "reactflow/dist/style.css";
 import { State } from "../../../state/State";
 import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef } from "react";
@@ -40,6 +47,7 @@ export default function Flow(): React.JSX.Element {
         onConnect
     } = useStore(selector, shallow);
     const nextId = useStore((state: State) => state.reactFlow.nextNodeId);
+    const layoutDirection = useStore((state: State) => state.reactFlow.layoutDirection);
     const setConnectingSourceNodeId = useStore((state: State) => state.reactFlow.setConnectingSourceNodeId);
 
     const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {
@@ -73,7 +81,9 @@ export default function Flow(): React.JSX.Element {
                                 item: createNodeCreation(
                                     targetId,
                                     position.x,
-                                    position.y - creationNodeHalfHeight
+                                    position.y - creationNodeHalfHeight,
+                                    // todo introduce function for this decision
+                                    layoutDirection === "DOWN" ? Position.Top : Position.Left,
                                 )
                             }]);
                             onEdgesChange([{
@@ -86,6 +96,7 @@ export default function Flow(): React.JSX.Element {
             }
         },
         [
+            layoutDirection,
             nextId,
             onEdgesChange,
             onNodesChange,

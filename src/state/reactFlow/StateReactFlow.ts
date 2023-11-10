@@ -11,6 +11,8 @@ export interface StateReactFlow {
     edgePathStyle: EdgePathStyle
     edges: Edge[],
     layout: (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
+    // todo layoutDirection should be literal type
+    layoutDirection: string,
     nextNodeId: () => string,
     nodes: Node<NodeData>[],
     onConnect: OnConnect,

@@ -30,6 +30,7 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         setState({
             reactFlow: {
                 ...reactFlow,
+                layoutDirection: "RIGHT",
                 nodes: await layoutedNodes(reactFlow)
             }
         });

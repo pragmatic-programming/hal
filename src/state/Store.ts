@@ -46,6 +46,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         edgePathStyle: "Bezier",
         edges: [],
         layout: layout(setState, getState),
+        layoutDirection: "RIGHT",
         nextNodeId: nextNodeId(getState),
         nodes: [],
         onConnect: onConnect(setState, getState),

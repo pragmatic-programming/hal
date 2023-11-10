@@ -17,6 +17,7 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
         setState({
             reactFlow: {
                 ...reactFlow,
+                layoutDirection: layoutOptions["elk.direction"],
                 nodes: await layoutedNodes(reactFlow, layoutOptions),
             }
         });
