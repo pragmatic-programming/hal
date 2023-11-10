@@ -1,10 +1,11 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
-import { SequenceProcessor } from "hal-kico";
+import { SequenceProcessor, IdentityProcessor } from "hal-kico";
 import { FlowState } from "./FlowState";
 import { JSEvalProcessor } from "./edgeTypes/JSEvalProcessor";
 import { NodeData } from "../node/NodeData";
 import { SCChartProcessor } from "./edgeTypes/SCChartProcessor";
+import { WYTIWYGProcessor } from "./edgeTypes/WYTIWYGProcessor";
 
 
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
@@ -13,6 +14,7 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
 
     async process() {
         const graph = new IHGraph();
+        graph.createEdgeType("wytiwyg", 0).setImmediate(true);
         graph.createEdgeType("execute", 2);
         graph.createEdgeType("scchart", 3);
         graph.createEdgeType("sequence", 8);
@@ -61,6 +63,7 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
         graph.getTransformationConfiguration().setById("execute", JSEvalProcessor);
         graph.getTransformationConfiguration().setById("scchart", SCChartProcessor);
         graph.getTransformationConfiguration().setById("sequence", SequenceProcessor);
+        graph.getTransformationConfiguration().setById("wytiwyg", WYTIWYGProcessor);
         this.setModel(graph);
     }
 

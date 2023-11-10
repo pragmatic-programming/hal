@@ -2,6 +2,7 @@ import * as ihgraph from "ihgraph";
 import exampleJavaScriptSequence from "./static/example-javascript-sequence.json";
 import exampleSCChart from "./static/example-scchart.json";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
+import { exampleGraphsWYTIWYGSum } from "./graphs/20.wytiwyg-sum";
 
 export const examples = [
     {
@@ -17,6 +18,10 @@ export const examples = [
     {   id: 3,
         name: "Example 3",
         value: addDefaultAnnotations(exampleGraphsArduinoSequence())
+    },
+    {   id: 4,
+        name: "Unit Test",
+        value: addDefaultAnnotations(exampleGraphsWYTIWYGSum())
     }
 ];
 

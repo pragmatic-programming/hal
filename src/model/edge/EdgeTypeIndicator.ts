@@ -2,7 +2,8 @@
 const edgeTypeIndicators = [
     "sequence",
     "execute",
-    "scchart"
+    "scchart",
+    "wytiwyg"
 ] as const;
 
 export type EdgeTypeIndicator = typeof edgeTypeIndicators[number];

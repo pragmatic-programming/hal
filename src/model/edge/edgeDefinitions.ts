@@ -1,7 +1,9 @@
+
 import { EdgeDefinition } from "./EdgeDefinition";
 import EdgeExecute from "../../ui/flow/edge/EdgeExecute";
 import EdgedSequence from "../../ui/flow/edge/EdgeSequence";
 import EdgeSCChart from "../../ui/flow/edge/EdgeSCChart";
+import EdgeWYTIWYG from "../../ui/flow/edge/EdgeWYTIWYG";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionExecute: EdgeDefinition = {
@@ -25,10 +27,18 @@ export const edgeDefinitionSSChart: EdgeDefinition = {
         stroke: "blue"
     }
 };
+export const edgeDefintionWYTIWYG: EdgeDefinition = {
+    type: "wytiwyg",
+    component: EdgeWYTIWYG,
+    animated: true
+}
 
 // new edge (step 3): add the new edge definition to the following array
 export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionExecute,
     edgeDefinitionSequence,
-    edgeDefinitionSSChart
+    edgeDefinitionSSChart,
+    edgeDefintionWYTIWYG
 ];
+
+

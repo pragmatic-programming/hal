@@ -21,11 +21,17 @@ import { nextNodeId } from "./reactFlow/nextNodeId";
 import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
 import { setNodeNodeDataLabel } from "./reactFlow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
+import { runImmediate } from "./compilation/runImmediate";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
         context: new CompilationContext(new System("empty", [])),
         run: run(setState, getState),
+    },
+    immediateCompilation: {
+        context: new CompilationContext(new System("empty", [])),
+        render: render(setState, getState),
+        runImmediate: runImmediate(setState, getState),
     },
     dialog: {
         open: undefined,
