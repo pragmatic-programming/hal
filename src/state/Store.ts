@@ -28,6 +28,11 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         render: render(setState, getState),
         run: run(setState, getState),
     },
+    immediateCompilation: {
+        context: new CompilationContext(new System("empty", [])),
+        render: render(setState, getState),
+        run: run(setState, getState),
+    },
     dialog: {
         open: undefined,
         dialogOpen: dialogOpen(setState),
