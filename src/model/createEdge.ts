@@ -1,11 +1,5 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
-import { edgeType, isEdgeType } from "../ui/flow/flow/EdgeTypes";
-
-export const markerEnd = {
-    type: MarkerType.ArrowClosed,
-    width: 30,
-    height: 30,
-};
+import { edgeType, isEdgeType } from "./EdgeTypes";
 
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
     if (!onConnectStartParams.nodeId) {
@@ -28,7 +22,6 @@ export function createEdge(edgeType: edgeType, sourceId: string, targetId: strin
     return edge(sourceId, targetId, edgeType, edgeType, "input");
 }
 
-
 function edge(source: string, target: string, type: edgeType, sourceHandle: string, targetHandle: string): Edge {
     return {
         id: "e" + source + "-" + target + "-" + type,
@@ -38,7 +31,11 @@ function edge(source: string, target: string, type: edgeType, sourceHandle: stri
         targetHandle: targetHandle,
         label: type,
         type: type,
-        markerEnd: markerEnd,
-        data: {},
+        markerEnd: {
+            type: MarkerType.ArrowClosed,
+            width: 30,
+            height: 30,
+        },
+        data: {}
     };
 }

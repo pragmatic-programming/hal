@@ -12,24 +12,37 @@ interface Props {
 }
 
 export default function BottomBodyStep(props: Props) {
+    const modelStart = <ModelStart processor={props.processor}/>;
     const processor = <ModelProcessor processor={props.processor}/>;
-    const model = <InterModel processor={props.processor}/>;
-    if (props.index === 0) {
+    const interModel = <InterModel processor={props.processor}/>;
+    const modelEnd = <ModelEnd processor={props.processor}/>;
+    // only one processor, just one step
+    if (props.length === 1) {
         return <>
-            <ModelStart processor={props.processor}/>
+            {modelStart}
             {processor}
-            {model}
+            {modelEnd}
         </>;
     }
+    // more than one processor, first step
+    if (props.index === 0) {
+        return <>
+            {modelStart}
+            {processor}
+            {interModel}
+        </>;
+    }
+    // more than one processor, last step
     if (props.index === props.length - 1) {
         return <>
             {processor}
-            <ModelEnd processor={props.processor}/>
+            {modelEnd}
         </>;
     }
+    // more than one processor, intermediate step
     return <>
         {processor}
-        {model}
+        {interModel}
     </>;
 
 }

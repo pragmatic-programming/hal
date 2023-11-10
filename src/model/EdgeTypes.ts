@@ -1,6 +1,5 @@
 import { EdgeTypes } from "reactflow";
-import EdgedStyled from "../edge/EdgedStyled";
-
+import EdgedStyled from "../ui/flow/edge/EdgedStyled";
 
 export const edgeTypes = [
     "sequence",
@@ -17,5 +16,5 @@ export const edgeTypesMapping: EdgeTypes = {
 export type edgeType = typeof edgeTypes[number];
 
 export function isEdgeType(edgeType: unknown): edgeType is edgeType {
-    return typeof edgeType === "string" && edgeTypes.find(value => value === edgeType) !== undefined;
+    return typeof edgeType === "string" && edgeTypes.find((value: edgeType) => value === edgeType) !== undefined;
 }

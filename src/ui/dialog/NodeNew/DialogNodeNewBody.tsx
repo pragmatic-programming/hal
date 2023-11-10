@@ -10,11 +10,11 @@ interface Props {
 }
 
 export function DialogNodeNewBody(props: Props): React.JSX.Element {
-    const setNodeType = useStore((state: State) => state.reactFlow.setNodeType);
+    const transformCreationNode = useStore((state: State) => state.reactFlow.transformCreationNode);
     return (
         <List>
             <ListItemButton
-                onClick={() => setNodeType(props.nodeId, "editor")}
+                onClick={() => transformCreationNode(props.nodeId, "editor")}
             >
                 <ListItemIcon>
                     <InsertDriveFile/>
@@ -25,7 +25,7 @@ export function DialogNodeNewBody(props: Props): React.JSX.Element {
             </ListItemButton>
             <Divider/>
             <ListItemButton
-                onClick={() => setNodeType(props.nodeId, "result")}
+                onClick={() => transformCreationNode(props.nodeId, "result")}
             >
                 <ListItemIcon>
                     <DoneIcon/>

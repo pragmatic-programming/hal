@@ -18,7 +18,7 @@ export default function MenuExamples(): React.JSX.Element {
     const render = useStore((state: State) => (ihGraphAsJson: any) => {
         state.compilation.render(
             createIHGraphFromJSON(ihGraphAsJson),
-            fitView
+            fitView,
         );
     });
     return (

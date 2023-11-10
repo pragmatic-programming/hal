@@ -13,7 +13,7 @@ export function setNodeNodeDataLabel(setState: StoreApi<State>["setState"], getS
                 ...reactFlow,
                 nodes: reactFlow.nodes.map((node: Node<NodeData>) => {
                     if (node.id === editorId) {
-                        if (node.data.type !== "editor" && node.data.type !== "result") {
+                        if (node.data.type !== "editor") {
                             throw new Error("Node has wrong type");
                         }
                         node.data.label = label;

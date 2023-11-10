@@ -5,8 +5,9 @@ import { CliqueSelectionProcessor } from "hal-kico";
 import { StoreApi } from "zustand";
 
 
-export function run(setState: StoreApi<State>["setState"]) {
-    return async () => setState((state: State): State => {
+export function run(setState: StoreApi<State>["setState"], getState: () => State) {
+    return async () => {
+        const state = getState();
         setState({
             ui: {
                 ...state.ui,
@@ -14,11 +15,11 @@ export function run(setState: StoreApi<State>["setState"]) {
             }
         });
         const preContext: CompilationContext = flowToIHGraph(state.reactFlow);
-        preContext.compile();
+        await preContext.compileAsync();
         const context: CompilationContext = ihGraphToHalGraph(preContext.getResult());
         context.startEnvironment.setProperty(CliqueSelectionProcessor.CSP_LOG, false);
-        context.compile();
-        return {
+        await context.compileAsync();
+        setState({
             ...state,
             compilation: {
                 ...state.compilation,
@@ -28,6 +29,6 @@ export function run(setState: StoreApi<State>["setState"]) {
                 ...state.ui,
                 busy: false,
             }
-        };
-    });
+        });
+    };
 }

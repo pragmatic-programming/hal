@@ -2,7 +2,7 @@ import { State } from "../State";
 import { addEdge, Connection } from "reactflow";
 import { createEdge } from "../../model/createEdge";
 import { StoreApi } from "zustand";
-import { isEdgeType } from "../../ui/flow/flow/EdgeTypes";
+import { isEdgeType } from "../../model/EdgeTypes";
 
 export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {
     return (connection: Connection) => {

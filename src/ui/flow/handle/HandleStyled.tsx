@@ -5,7 +5,7 @@ import { Theme, useTheme } from "@mui/material";
 interface Props {
     id: string;
     order?: number;
-    position: Position;
+    position?: Position;
     style?: CSSProperties;
     type: "target" | "source";
 }
@@ -54,6 +54,9 @@ function createStyle(props: Props, theme: Theme): React.CSSProperties | undefine
 }
 
 export default function HandleStyled(props: Props): React.JSX.Element {
+    if (!props.position) {
+        throw new Error("Position is undefined");
+    }
     const theme: Theme = useTheme();
     return (
         <Handle

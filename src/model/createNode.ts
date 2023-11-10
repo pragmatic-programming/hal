@@ -3,6 +3,12 @@ import { Node } from "reactflow";
 import { Language } from "./Languages";
 import { FlowToIHGraphProcessor } from "./processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreation, NodeDataEditor, NodeDataImage, NodeDataResult } from "./NodeData";
+import {
+    createNodeDataCreation,
+    createNodeDataEditor,
+    createNodeDataImage,
+    createNodeDataResult
+} from "./createNodeData";
 
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
@@ -41,14 +47,13 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
                 sourceNode.getId(),
                 sourceNode.getContent(),
                 0,
-                0
+                0,
+                nodeData.width,
+                nodeData.height,
             );
         case "result":
             return createNodeResult(
                 sourceNode.getId(),
-                sourceNode.getContent(),
-                nodeData.label,
-                nodeData.language,
                 0,
                 0,
                 nodeData.width,
@@ -63,20 +68,16 @@ export function createNodeCreation(
     x: number,
     y: number,
 ): Node<NodeDataCreation> {
+
     return {
         id: id,
         type: "creation",
-        data: {
-            height: 0,
-            type: "creation",
-            width: 0,
-        },
+        data: createNodeDataCreation(),
         position: {x: x, y: y},
         width: 0,
         height: 0,
     };
 }
-
 
 function creatNodeEditor(
     id: string,
@@ -91,47 +92,35 @@ function creatNodeEditor(
     return {
         id: id,
         type: "editor",
-        data: {
-            content: content,
-            height: height,
-            label: label,
-            language: language,
-            type: "editor",
-            width: width,
-        },
+        data: createNodeDataEditor(content, label, language, height, width),
         position: {x: x, y: y},
         width: width,
         height: height,
     };
 }
 
+
 export function createNodeImage(
     id: string,
     content: string,
     x: number,
     y: number,
-    //todo introduce specific node type => NodeImage
+    width: number,
+    height: number,
 ): Node<NodeDataImage> {
     return {
         id: id,
         type: "image",
-        data: {
-            content: content,
-            height: 0,
-            type: "image",
-            width: 0,
-        },
+        data: createNodeDataImage(content, height, width),
         position: {x: x, y: y},
-        width: 0,
-        height: 0,
+        width: width,
+        height: height,
     };
 }
 
+
 export function createNodeResult(
     id: string,
-    content: string,
-    label: string,
-    language: Language,
     x: number,
     y: number,
     width: number,
@@ -141,14 +130,7 @@ export function createNodeResult(
     return {
         id: id,
         type: "result",
-        data: {
-            content: content,
-            height: height,
-            label: label,
-            language: language,
-            type: "result",
-            width: width,
-        },
+        data: createNodeDataResult(height, width),
         position: {x: x, y: y},
         width: width,
         height: height,

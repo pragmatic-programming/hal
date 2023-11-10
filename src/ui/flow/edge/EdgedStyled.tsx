@@ -3,7 +3,7 @@ import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath, getSmoothStepPat
 import { TextField, Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
-import { isEdgeType } from "../flow/EdgeTypes";
+import { isEdgeType } from "../../../model/EdgeTypes";
 
 export default function EdgedStyled(props: EdgeProps): React.JSX.Element {
     const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);

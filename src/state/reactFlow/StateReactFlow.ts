@@ -2,7 +2,7 @@ import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } f
 import { NodeData } from "../../model/NodeData";
 import { EdgePathStyle } from "./EdgePathStyle";
 import { LayoutOptions } from "elkjs/lib/elk-api";
-import { nodeType } from "../../ui/flow/flow/NodeTypes";
+import { nodeType } from "../../model/NodeTypes";
 import { Language } from "../../model/Languages";
 
 export interface StateReactFlow {
@@ -21,5 +21,5 @@ export interface StateReactFlow {
     setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,
     setNodeNodeDataLabel: (nodeId: string, label: string) => void,
     setNodeNodeDataLanguage: (nodeId: string, language: Language) => void,
-    setNodeType: (nodeId: string, type: nodeType) => void,
+    transformCreationNode: (nodeId: string, type: nodeType) => void,
 }
