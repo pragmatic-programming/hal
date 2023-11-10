@@ -1,6 +1,4 @@
-import { CliqueProcessor, EvalProcessor } from "hal-kico";
-import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
-import { NodeData } from "../../node/NodeData";
+import { CliqueProcessor } from "hal-kico";
 import { SourceNodeStatus } from "ihgraph";
 
 export class WYTIWYGProcessor extends CliqueProcessor {
@@ -24,29 +22,18 @@ export class WYTIWYGProcessor extends CliqueProcessor {
 
             const content = unit + "\n\n" + test;
 
-            const result: string = eval(content);
-            console.log(result);
+            // eslint-disable-next-line no-eval
+            const result: string = String(eval(content));
 
-            
-                // const node = this.getModel().getSourceNodes()[0];
-                // const nodeData: NodeData = {
-                //     content: node.getContent(),
-                //     height: 100,
-                //     label: "Eval",
-                //     language: "JavaScript",
-                //     type: "editor",
-                //     width: 100,
-                // };
-                // node.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, nodeData);
-            switch(result) {
+            switch (result) {
                 case "true":
                     node.setStatus(SourceNodeStatus.SUCCESS);
                     break;
                 case "false":
                     node.setStatus(SourceNodeStatus.ERROR);
                     break;
-            } 
-        };
+            }
+        }
 
     }
 

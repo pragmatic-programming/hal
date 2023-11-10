@@ -1,10 +1,9 @@
 import { State } from "../State";
-import { CompilationContext, Processor, createCompilationContextFromProcessors } from "kico";
-import { flowToIHGraph } from "../../model/processor/compilationContexts";
-import { CliqueSelectionProcessor } from "hal-kico";
-import { StoreApi, useStore } from "zustand";
+import { CompilationContext, createCompilationContextFromProcessors, Processor } from "kico";
+import { flowToIHGraph, iHGraphToFlow } from "../../model/processor/compilationContexts";
+import { StoreApi } from "zustand";
 import { IHGraph } from "ihgraph";
-import { useReactFlow } from "reactflow";
+import { layoutedNodes } from "../layoutedNodes";
 
 
 export function runImmediate(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -17,27 +16,29 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         const ihGraph = preContext.getResult() as IHGraph;
         const immediateCliques = ihGraph.getImmediateCliques();
 
-        for(const clique of immediateCliques) {
-            console.log(clique);
+        for (const clique of immediateCliques) {
             const edgeType = clique.getEdges()[0].getType();
             const transformationConfiguration = clique.getTransformationConfiguration();
             const processorType = transformationConfiguration.get(edgeType);
-            const immediateContext = createCompilationContextFromProcessors(clique,
-                processorType as typeof Processor);
-            console.log(processorType);
+            const immediateContext = createCompilationContextFromProcessors(clique, processorType as typeof Processor);
             await immediateContext.compileAsync();
-            // ihGraph.replaceClique(clique, immediateContext.getResult());
+
+            ihGraph.replaceClique(clique, immediateContext.getResult());
+        }
+
+        const context: CompilationContext = iHGraphToFlow(ihGraph);
+        await context.compileAsync();
+        const flowState = context.getResult();
+        const reactFlow = {
+            ...getState().reactFlow,
+            nodes: flowState.nodes,
+            edges: flowState.edges,
         };
-        // setState({
-        //     ...state,
-        //     compilation: {
-        //         ...state.compilation,
-        //         context: context,
-        //     },
-        //     ui: {
-        //         ...state.ui,
-        //         busy: false,
-        //     }
-        // });
+        setState({
+            reactFlow: {
+                ...reactFlow,
+                nodes: await layoutedNodes(reactFlow)
+            }
+        });
     };
 }

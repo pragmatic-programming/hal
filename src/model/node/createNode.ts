@@ -1,4 +1,4 @@
-import { SourceNode } from "ihgraph";
+import { SourceNode, SourceNodeStatus } from "ihgraph";
 import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../processor/FlowToIHGraphProcessor";
@@ -19,7 +19,8 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
         type: "editor",
         content: "",
         width: 0,
-        height: 0
+        height: 0,
+        status: SourceNodeStatus.UNDEFINED,
     };
     if (sourceNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
         nodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
@@ -42,6 +43,7 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
                 0,
                 nodeData.width,
                 nodeData.height,
+                sourceNode.getStatus(),
             );
         case "image":
             return createNodeImage(
@@ -90,11 +92,12 @@ function creatNodeEditor(
     y: number,
     width: number,
     height: number,
+    status: SourceNodeStatus,
 ): Node<NodeDataEditor> {
     return {
         id: id,
         type: "editor",
-        data: createNodeDataEditor(content, label, language, height, width),
+        data: createNodeDataEditor(content, label, language, height, width, status),
         position: {x: x, y: y},
         width: width,
         height: height,

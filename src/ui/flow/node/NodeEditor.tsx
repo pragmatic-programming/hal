@@ -12,6 +12,7 @@ import { EditorBody } from "../../editor/EditorBody";
 import { NodeData } from "../../../model/node/NodeData";
 import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
+import { SourceNodeStatus } from "ihgraph";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
@@ -39,10 +40,20 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     const setNodeNodeDataLabel = useStore((state: State) => state.reactFlow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.reactFlow.setNodeNodeDataContent);
 
+    let borderColor = theme.palette.info.light;
+    switch (props.data.status) {
+        case SourceNodeStatus.ERROR:
+            borderColor = theme.palette.error.main;
+            break;
+        case SourceNodeStatus.SUCCESS:
+            borderColor = theme.palette.success.main;
+            break;
+        case SourceNodeStatus.WARNING:
+            borderColor = theme.palette.warning.main;
+            break;
+
+    }
     const style: Partial<CSSProperties> = {
-        borderColor: theme.palette.info.light,
-        borderStyle: "solid",
-        borderWidth: 1,
         width: node.width,
         height: node.height,
     };
@@ -50,7 +61,13 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         <BoxBackgroundMain
             style={style}
         >
-            <NodeResizer minWidth={100} minHeight={30}/>
+            <NodeResizer
+                minWidth={100}
+                minHeight={30}
+                lineStyle={{
+                    borderColor: borderColor,
+            }}
+            />
             <HandleTarget
                 nodeId={props.id}
                 position={props.targetPosition}

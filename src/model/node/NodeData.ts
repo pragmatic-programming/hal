@@ -1,4 +1,5 @@
 import { LanguageIndicator } from "./LanguageIndicator";
+import { SourceNodeStatus } from "ihgraph";
 
 export type NodeData = NodeDataEditor | NodeDataResult | NodeDataCreation | NodeDataImage
 
@@ -13,6 +14,7 @@ export interface NodeDataEditor extends NodeDataCommon {
     content: string | undefined,
     label: string,
     language: LanguageIndicator,
+    status: SourceNodeStatus,
 }
 
 export interface NodeDataResult extends NodeDataCommon {
