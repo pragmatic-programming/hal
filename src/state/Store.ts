@@ -13,7 +13,7 @@ import { editorOpen } from "./editor/editorOpen";
 import { editorContentSet } from "./editor/editorContentSet";
 import { editorLabelSet } from "./editor/editorLabelSet";
 import { createWithEqualityFn } from "zustand/traditional";
-import { setNodeType } from "./reactFlow/setNodeType";
+import { transformCreationNode } from "./reactFlow/transformCreationNode";
 import { setConnectingSourceNodeId } from "./reactFlow/setConnectingSourceNodeId";
 import { setNodeNodeDataLanguage } from "./reactFlow/setNodeNodeDataLanguage";
 import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
@@ -58,7 +58,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
-        setNodeType: setNodeType(setState, getState),
+        transformCreationNode: transformCreationNode(setState, getState),
     },
     ui: {
         busy: false,

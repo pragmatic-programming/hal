@@ -16,9 +16,6 @@ const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
-    if (!props.targetPosition) {
-        throw new Error("TargetPosition is undefined");
-    }
     const sourcePosition = props.sourcePosition;
     if (!sourcePosition) {
         throw new Error("SourcePosition is undefined");

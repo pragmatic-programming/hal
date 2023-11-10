@@ -1,6 +1,7 @@
 import { Language } from "./Languages";
 
 export type NodeData = NodeDataEditor | NodeDataResult | NodeDataCreation | NodeDataImage
+export type NodeDataTypeIdentifier = "editor" | "result" | "creation" | "image"
 
 interface NodeDataCommon {
     width: number,

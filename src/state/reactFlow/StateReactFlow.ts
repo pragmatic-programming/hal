@@ -21,5 +21,5 @@ export interface StateReactFlow {
     setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,
     setNodeNodeDataLabel: (nodeId: string, label: string) => void,
     setNodeNodeDataLanguage: (nodeId: string, language: Language) => void,
-    setNodeType: (nodeId: string, type: nodeType) => void,
+    transformCreationNode: (nodeId: string, type: nodeType) => void,
 }

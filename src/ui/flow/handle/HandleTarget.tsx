@@ -7,7 +7,7 @@ import { Theme, useTheme } from "@mui/material";
 
 interface Props {
     nodeId: string;
-    position: Position;
+    position?: Position;
     style?: CSSProperties;
 }
 
