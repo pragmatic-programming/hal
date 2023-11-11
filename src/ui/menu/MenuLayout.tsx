@@ -25,12 +25,12 @@ export default function MenuLayout(): React.JSX.Element {
             />
             <ButtonMenu
                 icon={<DataUsageIcon/>}
-                onClick={() => layout(fitView, {"elk.algorithm": "org.eclipse.elk.radial"})}
+                onClick={() => layout(fitView, {"elk.algorithm": "org.eclipse.elk.radial", "elk.direction": "DOWN"})}
                 tooltip="Radial Layout"
             />
             <ButtonMenu
                 icon={<BoltIcon/>}
-                onClick={() => layout(fitView, {"elk.algorithm": "org.eclipse.elk.force"})}
+                onClick={() => layout(fitView, {"elk.algorithm": "org.eclipse.elk.force", "elk.direction": "DOWN"})}
                 tooltip="Force Layout"
             />
         </>

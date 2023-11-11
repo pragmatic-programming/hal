@@ -23,9 +23,10 @@
         "nodeData": {
           "id": "nodeData",
           "data": {
-            "type": "result",
-            "width": 300,
-            "height": 200
+            "type": "image",
+            "content": "",
+            "width": 32,
+            "height": 32
           }
         }
       },
