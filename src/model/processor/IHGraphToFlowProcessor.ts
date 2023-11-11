@@ -27,7 +27,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
                 throw new Error("Returned targetId is undefined");
             }
             if(!isEdgeTypeIndicator(edgeType)){
-                throw new Error("EdgeType is not a valid edgeType");
+                throw new Error("EdgeType is not a valid edgeTypeIndicator");
             }
             edges.push(createEdgeFromEdgeType(edgeType, sourceId, targetId));
         }

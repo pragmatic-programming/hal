@@ -1,14 +1,12 @@
 import { EdgeDefinition } from "./EdgeDefinition";
-import EdgeExecute from "../../ui/flow/edge/EdgeExecute";
-import EdgedSequence from "../../ui/flow/edge/EdgeSequence";
-import EdgeSCChart from "../../ui/flow/edge/EdgeSCChart";
-import EdgeWYTIWYG from "../../ui/flow/edge/EdgeWYTIWYG";
 import EdgeCreate from "../../ui/flow/edge/EdgeCreate";
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import BiotechIcon from '@mui/icons-material/Biotech';
-import AddIcon from '@mui/icons-material/Add';
-import TableChartIcon from '@mui/icons-material/TableChart';
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
+import BiotechIcon from "@mui/icons-material/Biotech";
+import AddIcon from "@mui/icons-material/Add";
+import TableChartIcon from "@mui/icons-material/TableChart";
+import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
+import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {
@@ -20,14 +18,14 @@ export const edgeDefinitionCreate: EdgeDefinition = {
 
 export const edgeDefinitionExecute: EdgeDefinition = {
     type: "execute",
-    component: EdgeExecute,
+    component: EdgeDefault,
     animated: true,
     icon: DirectionsRunIcon,
 };
 
 export const edgeDefinitionSequence: EdgeDefinition = {
     type: "sequence",
-    component: EdgedSequence,
+    component: EdgeDefault,
     animated: false,
     icon: KeyboardDoubleArrowRightIcon,
     style: {
@@ -37,7 +35,7 @@ export const edgeDefinitionSequence: EdgeDefinition = {
 
 export const edgeDefinitionSSChart: EdgeDefinition = {
     type: "scchart",
-    component: EdgeSCChart,
+    component: EdgeDefault,
     animated: true,
     icon: TableChartIcon,
     style: {
@@ -47,7 +45,7 @@ export const edgeDefinitionSSChart: EdgeDefinition = {
 
 export const edgeDefinitionWYTIWYG: EdgeDefinition = {
     type: "wytiwyg",
-    component: EdgeWYTIWYG,
+    component: EdgeDefault,
     icon: BiotechIcon,
     animated: true
 };
@@ -61,4 +59,17 @@ export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionWYTIWYG,
 ];
 
-
+export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): EdgeDefinition {
+    switch (edgeTypeIndicator) {
+        case "create":
+            return edgeDefinitionCreate;
+        case "execute":
+            return edgeDefinitionExecute;
+        case "scchart":
+            return edgeDefinitionSSChart;
+        case "sequence":
+            return edgeDefinitionSequence;
+        case "wytiwyg":
+            return edgeDefinitionWYTIWYG;
+    }
+}

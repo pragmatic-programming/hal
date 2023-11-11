@@ -6,12 +6,10 @@ import { useStore } from "../../../state/Store";
 import { shallow } from "zustand/shallow";
 import { createNodeCreation } from "../../../model/node/createNode";
 import { createEdgeFromOnConnectStartParams } from "../../../model/edge/createEdge";
-import { createNodeTypesMapping } from "../../../model/node/createNodeTypesMapping";
+import { nodeTypesMapping } from "../../../model/node/nodeTypesMapping";
 import { bottomHeight } from "../../bottom/Bottom";
 import { menuWidth } from "../../menu/Menu";
-import { createEdgeTypesMapping } from "../../../model/edge/createEdgeTypesMapping";
-import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
-import { nodeDefinitions } from "../../../model/node/nodeDefinitions";
+import { edgeTypesMapping } from "../../../model/edge/edgeTypesMapping";
 import { targetPosition } from "../../../state/reactFlow/LayoutDirectionIndicator";
 
 const selector = (state: State) => ({
@@ -25,8 +23,6 @@ const selector = (state: State) => ({
 
 const creationNodeHalfHeight = 30;
 
-const edgeTypes = createEdgeTypesMapping(edgeDefinitions);
-const nodeTypes = createNodeTypesMapping(nodeDefinitions);
 
 export default function Flow(): React.JSX.Element {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
@@ -112,9 +108,9 @@ export default function Flow(): React.JSX.Element {
         >
             <ReactFlow
                 connectionRadius={0}
-                edgeTypes={edgeTypes}
+                edgeTypes={edgeTypesMapping}
                 edges={edges}
-                nodeTypes={nodeTypes}
+                nodeTypes={nodeTypesMapping}
                 nodes={nodes}
                 onConnect={onConnect}
                 onConnectEnd={onConnectEnd}

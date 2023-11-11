@@ -1,8 +1,9 @@
 import { EdgeTypes } from "reactflow";
 
 import { EdgeDefinition } from "./EdgeDefinition";
+import { edgeDefinitions } from "./edgeDefinitions";
 
-export function createEdgeTypesMapping(edgeDefinitions: EdgeDefinition[]): EdgeTypes {
+function createEdgeTypesMapping(edgeDefinitions: EdgeDefinition[]): EdgeTypes {
     const edgeTypesMapping: EdgeTypes = {};
 
     for (const edgeTypesMappingKey of edgeDefinitions) {
@@ -10,3 +11,5 @@ export function createEdgeTypesMapping(edgeDefinitions: EdgeDefinition[]): EdgeT
     }
     return edgeTypesMapping;
 }
+
+export const edgeTypesMapping: EdgeTypes = createEdgeTypesMapping(edgeDefinitions);

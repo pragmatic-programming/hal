@@ -24,7 +24,7 @@ export function onConnect(setState: StoreApi<State>["setState"], getState: () =>
             throw new Error("TargetNode is undefined");
         }
         if (!isEdgeTypeIndicator(connection.sourceHandle)) {
-            throw new Error("Connection.sourceHandle is not a valid edgeType");
+            throw new Error("Connection.sourceHandle is not a valid edgeTypeIndicator");
         }
         setState({
             reactFlow: {

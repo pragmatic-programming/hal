@@ -1,12 +1,6 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
-import {
-    edgeDefinitionCreate,
-    edgeDefinitionExecute,
-    edgeDefinitionSequence,
-    edgeDefinitionSSChart,
-    edgeDefinitionWYTIWYG
-} from "./edgeDefinitions";
+import { edgeDefinitionCreate, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
@@ -25,18 +19,11 @@ export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConne
 }
 
 export function createEdgeFromEdgeType(edgeType: EdgeTypeIndicator, sourceId: string, targetId: string): Edge {
-    switch (edgeType) {
-        case "create":
-            return createEdgeFromEdgeDefinition(edgeDefinitionCreate, sourceId, targetId,);
-        case "sequence":
-            return createEdgeFromEdgeDefinition(edgeDefinitionSequence, sourceId, targetId,);
-        case "execute":
-            return createEdgeFromEdgeDefinition(edgeDefinitionExecute, sourceId, targetId);
-        case "scchart":
-            return createEdgeFromEdgeDefinition(edgeDefinitionSSChart, sourceId, targetId);
-        case "wytiwyg":
-            return createEdgeFromEdgeDefinition(edgeDefinitionWYTIWYG, sourceId, targetId);
-    }
+    return createEdgeFromEdgeDefinition(
+        retrieveEdgeDefinition(edgeType),
+        sourceId,
+        targetId
+    );
 }
 
 export function createEdgeCreate(

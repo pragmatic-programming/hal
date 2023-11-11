@@ -1,7 +1,8 @@
 import { NodeTypes } from "reactflow";
 import { NodeDefinition } from "./NodeDefinition";
+import { nodeDefinitions } from "./nodeDefinitions";
 
-export function createNodeTypesMapping(nodeDefinitions: NodeDefinition[]): NodeTypes {
+function createNodeTypesMapping(nodeDefinitions: NodeDefinition[]): NodeTypes {
     const nodeTypesMapping: NodeTypes = {};
 
     for (const edgeTypesMappingKey of nodeDefinitions) {
@@ -9,3 +10,5 @@ export function createNodeTypesMapping(nodeDefinitions: NodeDefinition[]): NodeT
     }
     return nodeTypesMapping;
 }
+
+export const nodeTypesMapping: NodeTypes = createNodeTypesMapping(nodeDefinitions);

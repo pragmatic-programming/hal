@@ -20,7 +20,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     if (!sourcePosition) {
         throw new Error("SourcePosition is undefined");
     }
-    const {getNode} = useReactFlow();
+    const {getNode, } = useReactFlow();
     const node = getNode(props.id);
     if (!node) {
         throw new Error("Node is undefined");
