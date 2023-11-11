@@ -16,7 +16,13 @@ export function setNodeNodeDataContent(setState: StoreApi<State>["setState"], ge
                         if (node.data.type === "create" || node.data.type === "result") {
                             throw new Error("Node has wrong type");
                         }
-                        node.data.content = content;
+                        return {
+                            ...node,
+                            data: {
+                                ...node.data,
+                                content: content,
+                            }
+                        };
                     }
                     return node;
                 })

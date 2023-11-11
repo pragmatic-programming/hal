@@ -16,7 +16,13 @@ export function setNodeNodeDataLabel(setState: StoreApi<State>["setState"], getS
                         if (node.data.type !== "editor") {
                             throw new Error("Node has wrong type");
                         }
-                        node.data.label = label;
+                        return {
+                            ...node,
+                            data: {
+                                ...node.data,
+                                label: label,
+                            }
+                        };
                     }
                     return node;
                 })

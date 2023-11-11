@@ -17,7 +17,13 @@ export function setNodeNodeDataLanguage(setState: StoreApi<State>["setState"], g
                         if (node.data.type !== "editor") {
                             throw new Error("Node has wrong type");
                         }
-                        node.data.language = language;
+                        return {
+                            ...node,
+                            data: {
+                                ...node.data,
+                                language: language,
+                            }
+                        };
                     }
                     return node;
                 })
