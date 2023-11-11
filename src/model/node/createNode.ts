@@ -27,7 +27,7 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
     }
     switch (nodeData.type) {
         case "create":
-            return createNodeCreation(
+            return createNodeCreate(
                 sourceNode.getId(),
                 0,
                 0,
@@ -66,7 +66,7 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
 }
 
 
-export function createNodeCreation(
+export function createNodeCreate(
     id: string,
     x: number,
     y: number,

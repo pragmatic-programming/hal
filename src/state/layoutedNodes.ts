@@ -1,7 +1,7 @@
 import { Edge, Node } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
-import { StateReactFlow } from "./reactFlow/StateReactFlow";
 import { isLayoutDirectionIndicator, sourcePosition, targetPosition } from "./reactFlow/LayoutDirectionIndicator";
+import { FlowState } from "../model/processor/FlowState";
 
 const elk = new ELK({
     workerFactory: function (url) { // the value of 'url' is irrelevant here
@@ -10,7 +10,7 @@ const elk = new ELK({
     }
 });
 
-export async function layoutedNodes(stateReactFlow: StateReactFlow, layoutOptions: LayoutOptions = {}) {
+export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutOptions = {}) {
     const options: LayoutOptions = {
         "elk.algorithm": "layered",
         "elk.direction": "RIGHT",
@@ -30,7 +30,7 @@ export async function layoutedNodes(stateReactFlow: StateReactFlow, layoutOption
     const graph: ElkNode = {
         id: "root",
         layoutOptions: options,
-        children: stateReactFlow.nodes.map((node: Node): ElkNode => {
+        children: flowState.nodes.map((node: Node): ElkNode => {
             nodeMap.set(node.id, node);
             return {
                 id: node.id,
@@ -38,7 +38,7 @@ export async function layoutedNodes(stateReactFlow: StateReactFlow, layoutOption
                 height: node.height ? node.height : 100,
             };
         }),
-        edges: stateReactFlow.edges.map((edge: Edge): ElkExtendedEdge => ({
+        edges: flowState.edges.map((edge: Edge): ElkExtendedEdge => ({
             id: edge.id,
             sources: [edge.source],
             targets: [edge.target]

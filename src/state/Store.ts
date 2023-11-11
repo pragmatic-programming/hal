@@ -17,12 +17,14 @@ import { transformCreateNode } from "./reactFlow/transformCreateNode";
 import { setConnectingSourceNodeId } from "./reactFlow/setConnectingSourceNodeId";
 import { setNodeNodeDataLanguage } from "./reactFlow/setNodeNodeDataLanguage";
 import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
-import { nextNodeId } from "./reactFlow/nextNodeId";
 import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
 import { setNodeNodeDataLabel } from "./reactFlow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
 import { runImmediate } from "./compilation/runImmediate";
 import { transformCreateEdge } from "./reactFlow/transformCreateEdge";
+import { createNodeCreate } from "../model/node/createNode";
+import { Position } from "@reactflow/core";
+import { nextNodeId } from "./reactFlow/nextNodeId";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -54,7 +56,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         layout: layout(setState, getState),
         layoutDirection: "RIGHT",
         nextNodeId: nextNodeId(getState),
-        nodes: [],
+        nodes: [
+            // crate first node
+            createNodeCreate("1", 100, 100, Position.Left)
+        ],
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),
         onNodesChange: onNodesChange(setState, getState),
