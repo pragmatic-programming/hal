@@ -29,7 +29,7 @@ export function createEdgeFromEdgeType(edgeType: EdgeTypeIndicator, sourceId: st
 export function createEdgeCreate(
     sourceId: string,
     targetId: string,
-) {
+): Edge {
     return createEdgeFromEdgeDefinition(edgeDefinitionCreate, sourceId, targetId);
 }
 
