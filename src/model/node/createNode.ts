@@ -12,19 +12,7 @@ import {
 
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
-    //todo
-    let nodeData: NodeData = {
-        label: "unknown",
-        language: "JavaScript",
-        type: "editor",
-        content: "",
-        width: 0,
-        height: 0,
-        status: SourceNodeStatus.UNDEFINED,
-    };
-    if (sourceNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
-        nodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
-    }
+    const nodeData: NodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
     switch (nodeData.type) {
         case "create":
             return createNodeCreate(
