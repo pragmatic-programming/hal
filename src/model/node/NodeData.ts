@@ -10,7 +10,6 @@ interface NodeDataCommon {
 
 export interface NodeDataEditor extends NodeDataCommon {
     type: "editor",
-    //todo content is redundant
     content: string | undefined,
     label: string,
     language: LanguageIndicator,
@@ -27,6 +26,5 @@ export interface NodeDataCreate extends NodeDataCommon {
 
 export interface NodeDataImage extends NodeDataCommon {
     type: "image",
-    //todo content is redundant
     content: string | undefined,
 }

@@ -130,7 +130,6 @@ export function createNodeResult(
     y: number,
     width: number,
     height: number,
-    //todo introduce specific node type => NodeImage
 ): Node<NodeDataResult> {
     return {
         id: id,

@@ -15,8 +15,7 @@
           }
         }
       },
-      "id": "1",
-      "content": "var x = 1;"
+      "id": "1"
     },
     {
       "annotations": {
@@ -32,8 +31,7 @@
           }
         }
       },
-      "id": "2",
-      "content": "x + 2;"
+      "id": "2"
     },
     {
       "annotations": {
@@ -49,8 +47,7 @@
           }
         }
       },
-      "id": "3",
-      "content": ""
+      "id": "3"
     }
   ],
   "edgeTypes": [

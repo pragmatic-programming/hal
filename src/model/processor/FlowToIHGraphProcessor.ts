@@ -33,10 +33,13 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
                 width: width,
                 height: height,
             };
-            // todo node.data.content is redundant
+            // set content from node data,
+            // because reactFlow has no content field and
+            // ihgraph processors don't work with node data annotation
             if (data.type !== "create" && data.type !== "result") {
                 sourceNode.setContent(data.content ? data.content : "");
             }
+            // set node data annotation in case the ihgraph will be rendered
             sourceNode.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, data);
         }
         for (const edge of model.edges) {
