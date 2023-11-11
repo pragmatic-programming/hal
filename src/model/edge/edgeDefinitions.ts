@@ -20,7 +20,7 @@ export const edgeDefinitionCreate: EdgeDefinition = {
     component: EdgeCreate,
     icon: AddIcon,
     immediate: false,
-    priority: 0,
+    priority: 1,
     processor: CreateProcessor,
 };
 

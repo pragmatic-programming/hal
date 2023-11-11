@@ -11,8 +11,7 @@ export class CreateProcessor extends CliqueProcessor {
     }
 
     process(): void {
-        //todo Steven: why is this error not thrown?
-        throw new Error("Create edge can't be compiled");
+        this.addError("Create edge can't be compiled");
     }
 
 }
