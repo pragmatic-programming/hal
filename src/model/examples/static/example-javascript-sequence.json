@@ -41,7 +41,7 @@
           "id": "nodeData",
           "data": {
             "content": "",
-            "type": "result",
+            "type": "editor",
             "label": "Result",
             "language": "JavaScript",
             "width": 300,

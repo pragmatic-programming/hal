@@ -5,9 +5,8 @@ export function exampleGraphsWYTIWYGSum(): ihgraph.IHGraphFactoryInterface {
         nodes: [
             {
                 id: "Function",
-                content: 
-`
-function sum(n) {
+                content:
+`function sum(n) {
     if (n > 0) {
         return n + sum(n - 1);
     } else {
