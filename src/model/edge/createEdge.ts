@@ -1,6 +1,12 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
-import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
-import { edgeDefinitionExecute, edgeDefinitionSequence, edgeDefinitionSSChart, edgeDefinitionWYTIWYG } from "./edgeDefinitions";
+import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
+import {
+    edgeDefinitionCreate,
+    edgeDefinitionExecute,
+    edgeDefinitionSequence,
+    edgeDefinitionSSChart,
+    edgeDefinitionWYTIWYG
+} from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
@@ -10,11 +16,9 @@ export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConne
     if (!onConnectStartParams.handleId) {
         throw new Error("OnConnectStartParams.handleId is null");
     }
-    if (!isEdgeTypeIndicator(onConnectStartParams.handleId)) {
-        throw new Error("OnConnectStartParams.handleId is not a valid edgeType");
-    }
+    // todo
     return createEdgeFromEdgeType(
-        onConnectStartParams.handleId,
+        "create",
         onConnectStartParams.nodeId,
         targetId
     );
@@ -22,6 +26,8 @@ export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConne
 
 export function createEdgeFromEdgeType(edgeType: EdgeTypeIndicator, sourceId: string, targetId: string): Edge {
     switch (edgeType) {
+        case "create":
+            return createEdgeFromEdgeDefinition(edgeDefinitionCreate, sourceId, targetId,);
         case "sequence":
             return createEdgeFromEdgeDefinition(edgeDefinitionSequence, sourceId, targetId,);
         case "execute":
@@ -33,16 +39,27 @@ export function createEdgeFromEdgeType(edgeType: EdgeTypeIndicator, sourceId: st
     }
 }
 
+export function createEdgeCreate(
+    sourceId: string,
+    targetId: string,
+) {
+    return createEdgeFromEdgeDefinition(edgeDefinitionCreate, sourceId, targetId);
+}
+
+
+export function createEdgeId(sourceId: string, targetId: string, edgeTypeIndication: EdgeTypeIndicator) {
+    return "e" + sourceId + "-" + targetId + "-" + edgeTypeIndication;
+}
 
 function createEdgeFromEdgeDefinition(
     edgeDefinition: EdgeDefinition,
-    source: string,
-    target: string,
+    sourceId: string,
+    targetId: string,
 ): Edge {
     return {
-        id: "e" + source + "-" + target + "-" + edgeDefinition.type,
-        source: source,
-        target: target,
+        id: createEdgeId(sourceId, targetId, edgeDefinition.type),
+        source: sourceId,
+        target: targetId,
         animated: edgeDefinition.animated,
         sourceHandle: edgeDefinition.type,
         targetHandle: "input",

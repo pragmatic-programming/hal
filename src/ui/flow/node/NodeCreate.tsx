@@ -8,9 +8,9 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import DoneIcon from "@mui/icons-material/Done";
 import HandleTarget from "../handle/HandleTarget";
 
-export default function NodeCreation(props: NodeProps): React.JSX.Element {
+export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const dialogOpen = useStore((state: State) => state.dialog.dialogOpen);
-    const transformCreationNode = useStore((state: State) => state.reactFlow.transformCreationNode);
+    const transformCreationNode = useStore((state: State) => state.reactFlow.transformCreateNode);
     return (
         <>
             <HandleTarget

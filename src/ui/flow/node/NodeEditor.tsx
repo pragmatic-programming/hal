@@ -10,8 +10,6 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
 import { NodeData } from "../../../model/node/NodeData";
-import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
-import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import { SourceNodeStatus } from "ihgraph";
 
 const editorBodyReducedWidth = 2;
@@ -66,20 +64,16 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 minHeight={30}
                 lineStyle={{
                     borderColor: borderColor,
-            }}
+                }}
             />
             <HandleTarget
                 nodeId={props.id}
                 position={props.targetPosition}
             />
-            {edgeDefinitions.map((edgeDefinition: EdgeDefinition, index) => <HandleSource
-                    key={edgeDefinition.type}
-                    edgeDefinition={edgeDefinition}
-                    nodeId={props.id}
-                    order={index + 1}
-                    position={sourcePosition}
-                />
-            )}
+            <HandleSource
+                nodeId={props.id}
+                position={sourcePosition}
+            />
             <EditorHeader
                 value={props.data.label}
                 onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}

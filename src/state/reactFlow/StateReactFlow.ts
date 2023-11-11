@@ -5,6 +5,7 @@ import { LayoutOptions } from "elkjs/lib/elk-api";
 import { LanguageIndicator } from "../../model/node/LanguageIndicator";
 import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
 import { IHGraph } from "ihgraph";
+import { EdgeTypeIndicator } from "../../model/edge/EdgeTypeIndicator";
 
 export interface StateReactFlow {
     connectingSourceNodeId: string | null,
@@ -24,5 +25,6 @@ export interface StateReactFlow {
     setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,
     setNodeNodeDataLabel: (nodeId: string, label: string) => void,
     setNodeNodeDataLanguage: (nodeId: string, language: LanguageIndicator) => void,
-    transformCreationNode: (nodeId: string, type: NodeTypeIndicator) => void,
+    transformCreateNode: (nodeId: string, type: NodeTypeIndicator) => void,
+    transformCreateEdge: (edgeId: string, type: EdgeTypeIndicator) => void,
 }

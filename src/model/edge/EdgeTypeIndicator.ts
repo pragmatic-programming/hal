@@ -1,9 +1,10 @@
 // new edge (step 1): add a new edge type indicator here
 const edgeTypeIndicators = [
-    "sequence",
+    "create",
     "execute",
     "scchart",
-    "wytiwyg"
+    "sequence",
+    "wytiwyg",
 ] as const;
 
 export type EdgeTypeIndicator = typeof edgeTypeIndicators[number];

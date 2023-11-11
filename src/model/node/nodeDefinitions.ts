@@ -1,4 +1,4 @@
-import NodeCreation from "../../ui/flow/node/NodeCreation";
+import NodeCreate from "../../ui/flow/node/NodeCreate";
 import NodeEditor from "../../ui/flow/node/NodeEditor";
 import NodeResult from "../../ui/flow/node/NodeResult";
 import NodeImage from "../../ui/flow/node/NodeImage";
@@ -8,9 +8,9 @@ import { Done, Image, InsertDriveFile } from "@mui/icons-material";
 // new node (step 2): add a new node definition here
 export const nodeDefinitions: NodeDefinition[] = [
     {
-        type: "creation",
+        type: "create",
         icon: InsertDriveFile,
-        component: NodeCreation,
+        component: NodeCreate,
     },
     {
         type: "editor",

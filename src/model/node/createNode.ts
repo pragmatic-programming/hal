@@ -2,7 +2,7 @@ import { SourceNode, SourceNodeStatus } from "ihgraph";
 import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../processor/FlowToIHGraphProcessor";
-import { NodeData, NodeDataCreation, NodeDataEditor, NodeDataImage, NodeDataResult } from "./NodeData";
+import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, NodeDataResult } from "./NodeData";
 import {
     createNodeDataCreation,
     createNodeDataEditor,
@@ -26,7 +26,7 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
         nodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
     }
     switch (nodeData.type) {
-        case "creation":
+        case "create":
             return createNodeCreation(
                 sourceNode.getId(),
                 0,
@@ -71,10 +71,10 @@ export function createNodeCreation(
     x: number,
     y: number,
     targetPosition: Position
-): Node<NodeDataCreation> {
+): Node<NodeDataCreate> {
     return {
         id: id,
-        type: "creation",
+        type: "create",
         data: createNodeDataCreation(),
         position: {x: x, y: y},
         targetPosition: targetPosition,

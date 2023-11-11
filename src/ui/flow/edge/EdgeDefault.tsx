@@ -1,11 +1,12 @@
 import React from "react";
-import { BaseEdge, EdgeLabelRenderer, EdgeProps, getBezierPath, getSmoothStepPath, getStraightPath } from "reactflow";
+import { BaseEdge, EdgeLabelRenderer, EdgeProps } from "reactflow";
 import { TextField, Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 
 import { isEdgeTypeIndicator } from "../../../model/edge/EdgeTypeIndicator";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
+import { getEdgePath } from "../../../util";
 
 interface Props extends EdgeProps {
     edgeDefinition: EdgeDefinition;
@@ -15,17 +16,7 @@ interface Props extends EdgeProps {
 // and add the component to the new EdgeDefinition of step 2
 export default function EdgeDefault(props: Props): React.JSX.Element {
     const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
-    let edgePath, labelX, labelY;
-    switch (edgePathStyle) {
-        case "Straight":
-            [edgePath, labelX, labelY] = getStraightPath(props);
-            break;
-        case "Smooth":
-            [edgePath, labelX, labelY] = getSmoothStepPath(props);
-            break;
-        default:
-            [edgePath, labelX, labelY] = getBezierPath(props);
-    }
+    let {edgePath, labelX, labelY} = getEdgePath(edgePathStyle, props);
     const setEdgeLabel = useStore((state: State) => state.reactFlow.setEdgeLabel);
     const theme: Theme = useTheme();
     return (

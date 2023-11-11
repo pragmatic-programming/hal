@@ -3,17 +3,18 @@ import React from "react";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { nodeDefinitions } from "../../../model/node/nodeDefinitions";
+import { firstCharUpperCase } from "../../../util";
 
 interface Props {
     nodeId: string;
 }
 
 export function DialogNodeNewBody(props: Props): React.JSX.Element {
-    const transformCreationNode = useStore((state: State) => state.reactFlow.transformCreationNode);
+    const transformCreationNode = useStore((state: State) => state.reactFlow.transformCreateNode);
     return (
         <List>
             {nodeDefinitions
-                .filter(nodeDefinition => nodeDefinition.type !== "creation")
+                .filter(nodeDefinition => nodeDefinition.type !== "create")
                 .map(nodeDefinition =>
                     <>
                         <ListItemButton
@@ -24,7 +25,7 @@ export function DialogNodeNewBody(props: Props): React.JSX.Element {
                                 <SvgIcon component={nodeDefinition.icon}></SvgIcon>
                             </ListItemIcon>
                             <ListItemText
-                                primary={nodeDefinition.type.charAt(0).toUpperCase() + nodeDefinition.type.slice(1)}
+                                primary={firstCharUpperCase(nodeDefinition.type)}
                             />
                         </ListItemButton>
                         <Divider/>

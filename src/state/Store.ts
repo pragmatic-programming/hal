@@ -13,7 +13,7 @@ import { editorOpen } from "./editor/editorOpen";
 import { editorContentSet } from "./editor/editorContentSet";
 import { editorLabelSet } from "./editor/editorLabelSet";
 import { createWithEqualityFn } from "zustand/traditional";
-import { transformCreationNode } from "./reactFlow/transformCreationNode";
+import { transformCreateNode } from "./reactFlow/transformCreateNode";
 import { setConnectingSourceNodeId } from "./reactFlow/setConnectingSourceNodeId";
 import { setNodeNodeDataLanguage } from "./reactFlow/setNodeNodeDataLanguage";
 import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
@@ -22,6 +22,7 @@ import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
 import { setNodeNodeDataLabel } from "./reactFlow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
 import { runImmediate } from "./compilation/runImmediate";
+import { transformCreateEdge } from "./reactFlow/transformCreateEdge";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -64,7 +65,8 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
-        transformCreationNode: transformCreationNode(setState, getState),
+        transformCreateNode: transformCreateNode(setState, getState),
+        transformCreateEdge: transformCreateEdge(setState, getState),
     },
     ui: {
         busy: false,

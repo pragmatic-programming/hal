@@ -1,6 +1,6 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
-import { SequenceProcessor, IdentityProcessor } from "hal-kico";
+import { SequenceProcessor } from "hal-kico";
 import { FlowState } from "./FlowState";
 import { JSEvalProcessor } from "./edgeTypes/JSEvalProcessor";
 import { NodeData } from "../node/NodeData";
@@ -36,7 +36,7 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
                 height: height,
             };
             // todo node.data.content is redundant
-            if (data.type !== "creation" && data.type !== "result") {
+            if (data.type !== "create" && data.type !== "result") {
                 sourceNode.setContent(data.content ? data.content : "");
             }
             sourceNode.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, data);
