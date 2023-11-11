@@ -7,47 +7,63 @@ import AddIcon from "@mui/icons-material/Add";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
+import { JSEvalProcessor } from "../processor/edgeTypes/JSEvalProcessor";
+import { SCChartProcessor } from "../processor/edgeTypes/SCChartProcessor";
+import { SequenceProcessor } from "hal-kico";
+import { WYTIWYGProcessor } from "../processor/edgeTypes/WYTIWYGProcessor";
+import { CreateProcessor } from "../processor/edgeTypes/CreateProcessor";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {
     type: "create",
-    component: EdgeCreate,
     animated: true,
+    component: EdgeCreate,
     icon: AddIcon,
+    immediate: false,
+    priority: 0,
+    processor: CreateProcessor,
 };
 
 export const edgeDefinitionExecute: EdgeDefinition = {
     type: "execute",
-    component: EdgeDefault,
     animated: true,
+    component: EdgeDefault,
     icon: DirectionsRunIcon,
+    immediate: false,
+    priority: 2,
+    processor: JSEvalProcessor,
 };
 
 export const edgeDefinitionSequence: EdgeDefinition = {
     type: "sequence",
-    component: EdgeDefault,
     animated: false,
+    component: EdgeDefault,
     icon: KeyboardDoubleArrowRightIcon,
-    style: {
-        stroke: "green"
-    }
+    immediate: false,
+    priority: 8,
+    processor: SequenceProcessor,
+    style: {stroke: "green"}
 };
 
 export const edgeDefinitionSSChart: EdgeDefinition = {
     type: "scchart",
-    component: EdgeDefault,
     animated: true,
+    component: EdgeDefault,
     icon: TableChartIcon,
-    style: {
-        stroke: "blue"
-    }
+    immediate: false,
+    priority: 3,
+    processor: SCChartProcessor,
+    style: {stroke: "blue"},
 };
 
 export const edgeDefinitionWYTIWYG: EdgeDefinition = {
     type: "wytiwyg",
+    animated: true,
     component: EdgeDefault,
     icon: BiotechIcon,
-    animated: true
+    immediate: true,
+    priority: 0,
+    processor: WYTIWYGProcessor,
 };
 
 // new edge (step 3): add the new edge definition to the following array
@@ -59,6 +75,7 @@ export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionWYTIWYG,
 ];
 
+// new edge (step 4): add the edge type indicator as case to return new edge definition
 export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): EdgeDefinition {
     switch (edgeTypeIndicator) {
         case "create":

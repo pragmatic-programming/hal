@@ -1,11 +1,8 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
-import { SequenceProcessor } from "hal-kico";
 import { FlowState } from "./FlowState";
-import { JSEvalProcessor } from "./edgeTypes/JSEvalProcessor";
 import { NodeData } from "../node/NodeData";
-import { SCChartProcessor } from "./edgeTypes/SCChartProcessor";
-import { WYTIWYGProcessor } from "./edgeTypes/WYTIWYGProcessor";
+import { edgeDefinitions } from "../edge/edgeDefinitions";
 
 
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
@@ -14,10 +11,11 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
 
     async process() {
         const graph = new IHGraph();
-        graph.createEdgeType("wytiwyg", 0).setImmediate(true);
-        graph.createEdgeType("execute", 2);
-        graph.createEdgeType("scchart", 3);
-        graph.createEdgeType("sequence", 8);
+
+        for (const edgeDefinition of edgeDefinitions) {
+            graph.createEdgeType(edgeDefinition.type, edgeDefinition.priority).setImmediate(edgeDefinition.immediate);
+            graph.getTransformationConfiguration().setById(edgeDefinition.type, edgeDefinition.processor);
+        }
 
         const model = this.getModel();
         for (const node of model.nodes) {
@@ -60,10 +58,8 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
                 target
             );
         }
-        graph.getTransformationConfiguration().setById("execute", JSEvalProcessor);
-        graph.getTransformationConfiguration().setById("scchart", SCChartProcessor);
-        graph.getTransformationConfiguration().setById("sequence", SequenceProcessor);
-        graph.getTransformationConfiguration().setById("wytiwyg", WYTIWYGProcessor);
+
+
         this.setModel(graph);
     }
 
