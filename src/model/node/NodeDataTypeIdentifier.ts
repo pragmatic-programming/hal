@@ -1,1 +1,1 @@
-export type NodeDataTypeIdentifier = "editor" | "result" | "create" | "image"
+export type NodeDataTypeIdentifier = "editor" | "create" | "image"

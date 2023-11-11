@@ -13,7 +13,7 @@ export function setNodeNodeDataContent(setState: StoreApi<State>["setState"], ge
                 ...reactFlow,
                 nodes: reactFlow.nodes.map((node: Node<NodeData>) => {
                     if (node.id === editorId) {
-                        if (node.data.type === "create" || node.data.type === "result") {
+                        if (node.data.type === "create") {
                             throw new Error("Node has wrong type");
                         }
                         return {

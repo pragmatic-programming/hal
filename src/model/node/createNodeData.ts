@@ -1,4 +1,4 @@
-import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, NodeDataResult } from "./NodeData";
+import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage } from "./NodeData";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { NodeDataTypeIdentifier } from "./NodeDataTypeIdentifier";
 import { SourceNodeStatus } from "ihgraph";
@@ -43,17 +43,6 @@ export function createNodeDataImage(
     };
 }
 
-export function createNodeDataResult(
-    height: number,
-    width: number
-): NodeDataResult {
-    return {
-        height: height,
-        type: "result",
-        width: width,
-    };
-}
-
 export function createNodeDataFromCreationNode(newNodeDataTypeIdentifier: NodeDataTypeIdentifier): NodeData {
     switch (newNodeDataTypeIdentifier) {
         case "create":
@@ -72,11 +61,6 @@ export function createNodeDataFromCreationNode(newNodeDataTypeIdentifier: NodeDa
                 "",
                 64,
                 64,
-            );
-        case "result":
-            return createNodeDataResult(
-                128,
-                128,
             );
     }
 }

@@ -2,13 +2,8 @@ import { SourceNode, SourceNodeStatus } from "ihgraph";
 import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../processor/FlowToIHGraphProcessor";
-import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, NodeDataResult } from "./NodeData";
-import {
-    createNodeDataCreation,
-    createNodeDataEditor,
-    createNodeDataImage,
-    createNodeDataResult
-} from "./createNodeData";
+import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, } from "./NodeData";
+import { createNodeDataCreation, createNodeDataEditor, createNodeDataImage } from "./createNodeData";
 
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
@@ -37,14 +32,6 @@ export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData>
             return createNodeImage(
                 sourceNode.getId(),
                 sourceNode.getContent(),
-                0,
-                0,
-                nodeData.width,
-                nodeData.height,
-            );
-        case "result":
-            return createNodeResult(
-                sourceNode.getId(),
                 0,
                 0,
                 nodeData.width,
@@ -105,24 +92,6 @@ export function createNodeImage(
         id: id,
         type: "image",
         data: createNodeDataImage(content, height, width),
-        position: {x: x, y: y},
-        width: width,
-        height: height,
-    };
-}
-
-
-export function createNodeResult(
-    id: string,
-    x: number,
-    y: number,
-    width: number,
-    height: number,
-): Node<NodeDataResult> {
-    return {
-        id: id,
-        type: "result",
-        data: createNodeDataResult(height, width),
         position: {x: x, y: y},
         width: width,
         height: height,
