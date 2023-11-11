@@ -2,6 +2,7 @@ import * as ihgraph from "ihgraph";
 import { IHGraphFactoryInterface } from "ihgraph";
 import exampleJavaScriptSequence from "./static/example-javascript-sequence.json";
 import exampleSCChart from "./static/example-scchart.json";
+import examplePython from "./static/example-python.json";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 import { exampleGraphsWYTIWYGSum } from "./graphs/20.wytiwyg-sum";
 import { LanguageIndicator } from "../node/LanguageIndicator";
@@ -10,6 +11,7 @@ import TableChartIcon from "@mui/icons-material/TableChart";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
+import GestureIcon from "@mui/icons-material/Gesture";
 
 export const examples: Example[] = [
     {
@@ -35,6 +37,12 @@ export const examples: Example[] = [
         name: "Unit Test",
         value: addDefaultAnnotations(exampleGraphsWYTIWYGSum(), "JavaScript"),
         icon: BiotechIcon,
+    },
+    {
+        id: 5,
+        name: "Python",
+        value: examplePython,
+        icon: GestureIcon,
     }
 ];
 

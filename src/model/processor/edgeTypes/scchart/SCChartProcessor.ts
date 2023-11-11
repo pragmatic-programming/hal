@@ -1,7 +1,7 @@
 import { CliqueProcessor } from "hal-kico";
-import { NodeDataImage } from "../../node/NodeData";
-import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
-import { SourceNode } from "ihgraph";
+import { NodeDataImage } from "../../../node/NodeData";
+import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
+import { SCChartImage } from "./SCChartImage";
 
 export class SCChartProcessor extends CliqueProcessor {
 
@@ -23,8 +23,9 @@ export class SCChartProcessor extends CliqueProcessor {
         const cliqueNodes = this.getCliqueNodes();
 
         try {
+            const scChartImage = new SCChartImage(cliqueNodes[0]);
             const image: HTMLImageElement = await this.htmlImageElement(
-                await this.fetchSCChartImage(cliqueNodes[0])
+                await scChartImage.image()
             );
             targetNode.createAnnotation(
                 FlowToIHGraphProcessor.ANNOTATION_NODE_DATA,
@@ -37,28 +38,6 @@ export class SCChartProcessor extends CliqueProcessor {
         }
     }
 
-    private async fetchSCChartImage(sourceNode: SourceNode): Promise<string> {
-        const response: Response = await fetch(
-            "http://localhost:8080/kicodia/",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    payload: sourceNode.getContent()
-                })
-            }
-        );
-        await this.handleResponseNotOk(response);
-        return URL.createObjectURL(await response.blob());
-    }
-
-    private async handleResponseNotOk(response: Response) {
-        if (!response.ok) {
-            throw new Error(await response.text());
-        }
-    }
 
     private async htmlImageElement(image64: string): Promise<HTMLImageElement> {
         let img = new Image();

@@ -43,7 +43,7 @@
             "content": "",
             "type": "editor",
             "label": "Result",
-            "language": "JavaScript",
+            "language": "PlainText",
             "width": 300,
             "height": 200
           }

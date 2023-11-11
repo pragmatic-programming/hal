@@ -7,8 +7,8 @@ import AddIcon from "@mui/icons-material/Add";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
-import { JSEvalProcessor } from "../processor/edgeTypes/JSEvalProcessor";
-import { SCChartProcessor } from "../processor/edgeTypes/SCChartProcessor";
+import { ExecuteProcessor } from "../processor/edgeTypes/execute/ExecuteProcessor";
+import { SCChartProcessor } from "../processor/edgeTypes/scchart/SCChartProcessor";
 import { SequenceProcessor } from "hal-kico";
 import { WYTIWYGProcessor } from "../processor/edgeTypes/WYTIWYGProcessor";
 import { CreateProcessor } from "../processor/edgeTypes/CreateProcessor";
@@ -31,7 +31,7 @@ export const edgeDefinitionExecute: EdgeDefinition = {
     icon: DirectionsRunIcon,
     immediate: false,
     priority: 2,
-    processor: JSEvalProcessor,
+    processor: ExecuteProcessor,
 };
 
 export const edgeDefinitionSequence: EdgeDefinition = {
