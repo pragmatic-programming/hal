@@ -53,18 +53,20 @@ export default function MenuExamples(): React.JSX.Element {
                     }
                 >
                     <Divider/>
-                    {examples.map((example: Example) =>
-                        <ListItem key={example.id}>
-                            <ListItemButton
-                                onClick={() => render(example)}
-                            >
-                                <ListItemIcon>
-                                    <SvgIcon component={example.icon}></SvgIcon>
-                                </ListItemIcon>
-                                <ListItemText primary={example.name}/>
-                            </ListItemButton>
-                        </ListItem>
-                    )}
+                    {examples
+                        .sort((e1: Example, e2: Example) => e1.name.localeCompare(e2.name))
+                        .map((example: Example) =>
+                            <ListItem key={example.id}>
+                                <ListItemButton
+                                    onClick={() => render(example)}
+                                >
+                                    <ListItemIcon>
+                                        <SvgIcon component={example.icon}></SvgIcon>
+                                    </ListItemIcon>
+                                    <ListItemText primary={example.name}/>
+                                </ListItemButton>
+                            </ListItem>
+                        )}
                 </List>
             </Drawer>
         </>
