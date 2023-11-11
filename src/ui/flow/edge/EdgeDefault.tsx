@@ -9,8 +9,6 @@ import { getEdgePath } from "../../../util";
 import { retrieveEdgeDefinition } from "../../../model/edge/edgeDefinitions";
 
 
-// new edge (step 4): add a new edge component in the same folder of EdgeDefault, wrap EdgeDefault like in EdgeExecute
-// and add the component to the new EdgeDefinition of step 2
 export default function EdgeDefault(props: EdgeProps): React.JSX.Element {
     const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
     let {edgePath, labelX, labelY} = getEdgePath(edgePathStyle, props);
