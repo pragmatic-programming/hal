@@ -41,7 +41,7 @@ export function borderColor(
 
     }
     if (props.selected) {
-        borderColor = theme.palette.info.dark;
+        borderColor = theme.palette.info.light;
     }
     return borderColor;
 }
