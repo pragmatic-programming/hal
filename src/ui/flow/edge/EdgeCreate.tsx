@@ -30,15 +30,6 @@ export default function EdgeCreate(props: EdgeProps): React.JSX.Element {
                     className="nopan nodrag"
                 >
                     <BoxBackgroundMain>
-                        <Tooltip
-                            placement="top"
-                            title={"Open new Edge Dialog"}
-                        >
-                            <IconButton
-                            >
-                                <Add/>
-                            </IconButton>
-                        </Tooltip>
                         {edgeDefinitions
                             .filter((edgeDefinition: EdgeDefinition) => edgeDefinition.type !== "create")
                             .map((edgeDefinition: EdgeDefinition) =>
@@ -55,6 +46,15 @@ export default function EdgeCreate(props: EdgeProps): React.JSX.Element {
                                 </Tooltip>
                             )
                         }
+                        <Tooltip
+                            placement="top"
+                            title={"Open new Edge Dialog"}
+                        >
+                            <IconButton
+                            >
+                                <Add/>
+                            </IconButton>
+                        </Tooltip>
                     </BoxBackgroundMain>
                 </div>
             </EdgeLabelRenderer>

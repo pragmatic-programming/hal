@@ -30,7 +30,6 @@ function button(
 }
 
 export default function NodeCreate(props: NodeProps): React.JSX.Element {
-    const dialogOpen = useStore((state: State) => state.dialog.dialogOpen);
     const transformCreationNode = useStore((state: State) => state.reactFlow.transformCreateNode);
     return (
         <>
@@ -44,20 +43,20 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                 }}
             >
                 <div>
-                    <Tooltip
-                        placement="top"
-                        title={"Open new Node Dialog"}
-                    >
-                        <IconButton
-                            onClick={() => dialogOpen(props.id)}
-                        >
-                            <Add/>
-                        </IconButton>
-                    </Tooltip>
                     {button(transformCreationNode, props.id, nodeDefinitionEditor, "top",)}
                 </div>
                 <div>
                     {button(transformCreationNode, props.id, nodeDefinitionImage, "bottom",)}
+                    <Tooltip
+                        placement="top"
+                        title={"Show more options"}
+                    >
+                        <IconButton
+                            onClick={() => console.log("To be implemented")}
+                        >
+                            <Add/>
+                        </IconButton>
+                    </Tooltip>
                 </div>
             </BoxBackgroundMain>
         </>

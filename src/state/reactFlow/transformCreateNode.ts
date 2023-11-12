@@ -8,10 +8,6 @@ export function transformCreateNode(setState: StoreApi<State>["setState"], getSt
     return async (nodeId: string, type: NodeTypeIndicator) => {
         const reactFlow = getState().reactFlow;
         setState({
-            dialog: {
-                ...getState().dialog,
-                open: undefined
-            },
             reactFlow: {
                 ...reactFlow,
                 nodes: reactFlow.nodes.map((node: Node) => {

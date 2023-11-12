@@ -8,7 +8,6 @@ import { layout } from "./reactFlow/layout";
 import { render } from "./reactFlow/render";
 import { switchMode } from "./ui/switchMode";
 import { setEdgeLabel } from "./reactFlow/setEdgeLabel";
-import { dialogOpen } from "./dialogNodeNew/dialogOpen";
 import { editorOpen } from "./editor/editorOpen";
 import { editorContentSet } from "./editor/editorContentSet";
 import { editorLabelSet } from "./editor/editorLabelSet";
@@ -34,10 +33,6 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     immediateCompilation: {
         context: new CompilationContext(new System("empty", [])),
         runImmediate: runImmediate(setState, getState),
-    },
-    dialog: {
-        open: undefined,
-        dialogOpen: dialogOpen(setState),
     },
     editor: {
         open: undefined,

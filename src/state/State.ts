@@ -1,4 +1,3 @@
-import { StateDialogNodeNew } from "./dialogNodeNew/StateDialogNodeNew";
 import { StateEditor } from "./editor/StateEditor";
 import { StateReactFlow } from "./reactFlow/StateReactFlow";
 import { StateCompilation } from "./compilation/StateCompilation";
@@ -9,7 +8,6 @@ import { StateCompilationImmediate } from "./compilation/StateCompilationImmedia
 export interface State {
     compilation: StateCompilation,
     immediateCompilation: StateCompilationImmediate,
-    dialog: StateDialogNodeNew,
     editor: StateEditor,
     menuExamples: StateMenuExamples,
     reactFlow: StateReactFlow
