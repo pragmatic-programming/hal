@@ -10,17 +10,18 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
 import { NodeData } from "../../../model/node/NodeData";
-import { SourceNodeStatus } from "ihgraph";
+import { borderColor } from "../../../util";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
+
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const sourcePosition = props.sourcePosition;
     if (!sourcePosition) {
         throw new Error("SourcePosition is undefined");
     }
-    const {getNode, } = useReactFlow();
+    const {getNode,} = useReactFlow();
     const node = getNode(props.id);
     if (!node) {
         throw new Error("Node is undefined");
@@ -34,37 +35,34 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     if (props.data.type !== "editor") {
         throw new Error("Node.data has wrong type");
     }
-    const theme: Theme = useTheme();
     const setNodeNodeDataLabel = useStore((state: State) => state.reactFlow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.reactFlow.setNodeNodeDataContent);
-
-    let borderColor = theme.palette.info.light;
-    switch (props.data.status) {
-        case SourceNodeStatus.ERROR:
-            borderColor = theme.palette.error.main;
-            break;
-        case SourceNodeStatus.SUCCESS:
-            borderColor = theme.palette.success.main;
-            break;
-        case SourceNodeStatus.WARNING:
-            borderColor = theme.palette.warning.main;
-            break;
-
+    const theme: Theme = useTheme();
+    let handeStyle: CSSProperties = {};
+    let lineStyle: CSSProperties = {
+    borderColor: borderColor(props, theme, theme.palette.primary.dark),
     }
-    const style: Partial<CSSProperties> = {
-        width: node.width,
-        height: node.height,
-    };
+    // todo find a better solution than set the handleStyle
+    if (!props.selected) {
+        handeStyle = {
+            width: 2,
+            height: 2,
+            backgroundColor: borderColor(props, theme, theme.palette.primary.dark),
+            border: "none",
+        };
+    }
     return (
         <BoxBackgroundMain
-            style={style}
+            style={{
+                width: node.width,
+                height: node.height,
+            }}
         >
             <NodeResizer
-                minWidth={100}
+                handleStyle={handeStyle}
+                lineStyle={lineStyle}
                 minHeight={30}
-                lineStyle={{
-                    borderColor: borderColor,
-                }}
+                minWidth={100}
             />
             <HandleTarget
                 nodeId={props.id}
