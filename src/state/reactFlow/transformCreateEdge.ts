@@ -11,12 +11,14 @@ import { transformNodes } from "./transformCreateNode";
 export function transformCreateEdge(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (edgeId: string, edgeDefinition: EdgeDefinition, targetNodeId: string): Promise<void> => {
         const reactFlow: StateReactFlow = getState().reactFlow;
+        const edges: Edge[] = transformEdges(reactFlow, edgeDefinition, edgeId);
         let nodes: Node[] = reactFlow.nodes;
+        // if only one targetNodeType exist,
+        // we can transform the target node
         if (edgeDefinition.targetNodeTypes.length === 1) {
             const firstTargetNodeType: NodeTypeIndicator = edgeDefinition.targetNodeTypes[0];
-            nodes = transformNodes(reactFlow, targetNodeId, firstTargetNodeType);
+            nodes = transformNodes(reactFlow, firstTargetNodeType, targetNodeId);
         }
-        const edges = transformEdges(reactFlow, edgeId, edgeDefinition);
         setState({
             reactFlow: {
                 ...reactFlow,
@@ -28,7 +30,7 @@ export function transformCreateEdge(setState: StoreApi<State>["setState"], getSt
 }
 
 // todo function name
-export function transformEdges(reactFlow: StateReactFlow, edgeId: string, edgeDefinition: EdgeDefinition): Edge[] {
+function transformEdges(reactFlow: StateReactFlow, edgeDefinition: EdgeDefinition, edgeId: string): Edge[] {
     return reactFlow.edges.map((edge: Edge) => {
         if (edge.id === edgeId) {
             if (edge.type !== "create") {

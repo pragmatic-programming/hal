@@ -8,11 +8,16 @@ import { Add } from "@mui/icons-material";
 import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import { firstCharUpperCase, getEdgePath } from "../../../util";
+import { EdgeDataCreate } from "../../../model/edge/EdgeData";
 
-export default function EdgeCreate(props: EdgeProps): React.JSX.Element {
+export default function EdgeCreate(props: EdgeProps<EdgeDataCreate>): React.JSX.Element {
     const transformCreationEdge = useStore((state: State) => state.reactFlow.transformCreateEdge);
     const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
     let {edgePath, labelX, labelY} = getEdgePath(edgePathStyle, props);
+    const edgeData: EdgeDataCreate | undefined = props.data;
+    if (!edgeData) {
+        throw new Error("Props.edgeData is undefined");
+    }
     return (
         <>
             <BaseEdge
@@ -31,7 +36,7 @@ export default function EdgeCreate(props: EdgeProps): React.JSX.Element {
                 >
                     <BoxBackgroundMain>
                         {edgeDefinitions
-                            .filter((edgeDefinition: EdgeDefinition): boolean => edgeDefinition.type !== "create")
+                            .filter((edgeDefinition: EdgeDefinition): boolean => edgeDefinition.type !== "create" && !edgeData.deniedEdgeTypes.includes(edgeDefinition.type))
                             .map((edgeDefinition: EdgeDefinition) =>
                                 <Tooltip
                                     key={edgeDefinition.type}

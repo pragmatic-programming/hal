@@ -2,6 +2,8 @@ import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import { edgeDefinitionCreate, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
+import { EdgeData } from "./EdgeData";
+import { createEdgeDataFromCreationEdge } from "./createEdgeData";
 
 export function createEdgeFromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
     if (!onConnectStartParams.nodeId) {
@@ -42,7 +44,7 @@ function createEdgeFromEdgeDefinition(
     edgeDefinition: EdgeDefinition,
     sourceId: string,
     targetId: string,
-): Edge {
+): Edge<EdgeData> {
     return {
         id: createEdgeId(sourceId, targetId, edgeDefinition.type),
         source: sourceId,
@@ -57,6 +59,6 @@ function createEdgeFromEdgeDefinition(
             width: 30,
             height: 30,
         },
-        data: {}
+        data: createEdgeDataFromCreationEdge(edgeDefinition.type)
     };
 }

@@ -9,18 +9,29 @@ export const nodeDefinitionCreate: NodeDefinition = {
     type: "create",
     icon: InsertDriveFile,
     component: NodeCreate,
+    sourceEdgeTypes: []
 };
 
 export const nodeDefinitionEditor: NodeDefinition = {
     type: "editor",
     icon: InsertDriveFile,
-    component: NodeEditor
+    component: NodeEditor,
+    sourceEdgeTypes: [
+        "execute",
+        "scchartcode",
+        "sequence",
+        "sequence",
+        "test",
+    ]
 };
 
 export const nodeDefinitionImage: NodeDefinition = {
     type: "image",
     icon: Image,
-    component: NodeImage
+    component: NodeImage,
+    sourceEdgeTypes: [
+        "scchartdiagram"
+    ]
 };
 
 // new node (step 3): add the new node definition to the following array

@@ -1,20 +1,20 @@
 import React from "react";
-import { NodeProps } from "reactflow";
+import { NodeProps, useReactFlow } from "reactflow";
 import { IconButton, SvgIcon, Theme, Tooltip, useTheme } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import HandleTarget from "../handle/HandleTarget";
-import { NodeTypeIndicator } from "../../../model/node/NodeTypeIndicator";
 import { NodeDefinition } from "../../../model/node/NodeDefinition";
 import { borderColor, firstCharUpperCase } from "../../../util";
 import { nodeDefinitionEditor, nodeDefinitionImage } from "../../../model/node/nodeDefinitions";
 import { BoxBorder } from "../../util/BoxBorder";
 
 function button(
-    transformCreationNode: (nodeId: string, type: NodeTypeIndicator) => void,
+    transformCreationNode: (nodeId: string, nodeDefinition: NodeDefinition, targetEdeId: string | undefined) => void,
     nodeId: string,
+    targetEdgeId: string | undefined,
     nodeDefinition: NodeDefinition,
     placement: "bottom" | "top",
 ): React.JSX.Element {
@@ -23,7 +23,7 @@ function button(
         title={"Create new " + firstCharUpperCase(nodeDefinition.type) + " Node"}
     >
         <IconButton
-            onClick={() => transformCreationNode(nodeId, nodeDefinition.type)}
+            onClick={() => transformCreationNode(nodeId, nodeDefinition, targetEdgeId)}
         >
             <SvgIcon component={nodeDefinition.icon}></SvgIcon>
         </IconButton>
@@ -33,6 +33,12 @@ function button(
 export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const transformCreationNode = useStore((state: State) => state.reactFlow.transformCreateNode);
     const theme: Theme = useTheme();
+    const {getEdges} = useReactFlow();
+    const targetEdge = getEdges().find(edge => edge.target === props.id);
+    let targetEdgeId: string | undefined = undefined;
+    if (targetEdge) {
+        targetEdgeId = targetEdge.id;
+    }
     return (
         <BoxBorder
             borderColor={borderColor(props, theme, theme.palette.primary.main)}
@@ -47,10 +53,10 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                 }}
             >
                 <div>
-                    {button(transformCreationNode, props.id, nodeDefinitionEditor, "top",)}
+                    {button(transformCreationNode, props.id, targetEdgeId, nodeDefinitionEditor, "top",)}
                 </div>
                 <div>
-                    {button(transformCreationNode, props.id, nodeDefinitionImage, "bottom",)}
+                    {button(transformCreationNode, props.id, targetEdgeId, nodeDefinitionImage, "bottom",)}
                     <Tooltip
                         placement="top"
                         title={"Show more options"}

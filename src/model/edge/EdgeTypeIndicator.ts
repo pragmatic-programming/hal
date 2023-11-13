@@ -1,5 +1,5 @@
 // new edge (step 1): add a new edge type indicator here
-const edgeTypeIndicators = [
+export const edgeTypeIndicators = [
     "create",
     "execute",
     "scchartdiagram",
