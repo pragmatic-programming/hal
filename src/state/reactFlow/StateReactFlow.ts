@@ -26,5 +26,5 @@ export interface StateReactFlow {
     setNodeNodeDataLabel: (nodeId: string, label: string) => void,
     setNodeNodeDataLanguage: (nodeId: string, language: LanguageIndicator) => void,
     transformCreateNode: (nodeId: string, type: NodeTypeIndicator) => void,
-    transformCreateEdge: (edgeId: string, type: EdgeTypeIndicator) => void,
+    transformCreateEdge: (edgeId: string, edgeType: EdgeTypeIndicator, targetNodeId: string, targetNodeType: NodeTypeIndicator[]) => void,
 }

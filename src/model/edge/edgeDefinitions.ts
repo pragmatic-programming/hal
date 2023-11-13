@@ -25,6 +25,7 @@ export const edgeDefinitionCreate: EdgeDefinition = {
     priority: 1,
     processor: CreateProcessor,
     requiresLabel: false,
+    targetNodeTypes: []
 };
 
 export const edgeDefinitionExecute: EdgeDefinition = {
@@ -36,6 +37,7 @@ export const edgeDefinitionExecute: EdgeDefinition = {
     priority: 2,
     processor: ExecuteProcessor,
     requiresLabel: false,
+    targetNodeTypes: ["editor"]
 };
 
 export const edgeDefinitionSequence: EdgeDefinition = {
@@ -47,6 +49,7 @@ export const edgeDefinitionSequence: EdgeDefinition = {
     priority: 8,
     processor: SequenceProcessor,
     requiresLabel: false,
+    targetNodeTypes: ["editor"]
 };
 
 export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
@@ -58,6 +61,7 @@ export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
     priority: 0,
     processor: SCChartDiagramProcessor,
     requiresLabel: false,
+    targetNodeTypes: ["image"]
 };
 
 export const edgeDefinitionSCChartCode: EdgeDefinition = {
@@ -69,6 +73,7 @@ export const edgeDefinitionSCChartCode: EdgeDefinition = {
     priority: 3,
     processor: SCChartCodeProcessor,
     requiresLabel: false,
+    targetNodeTypes: ["editor"]
 };
 
 export const edgeDefinitionWYTIWYG: EdgeDefinition = {
@@ -80,6 +85,7 @@ export const edgeDefinitionWYTIWYG: EdgeDefinition = {
     priority: 0,
     processor: TestProcessor,
     requiresLabel: true,
+    targetNodeTypes: ["editor"]
 };
 
 // new edge (step 3): add the new edge definition to the following array
