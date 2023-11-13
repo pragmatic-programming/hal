@@ -39,7 +39,7 @@ export default function EdgeCreate(props: EdgeProps): React.JSX.Element {
                                     title={"Create new " + firstCharUpperCase(edgeDefinition.type) + " Edge"}
                                 >
                                     <IconButton
-                                        onClick={() => transformCreationEdge(props.id, edgeDefinition.type, props.target, edgeDefinition.targetNodeTypes)}
+                                        onClick={() => transformCreationEdge(props.id, edgeDefinition, props.target,)}
                                     >
                                         <SvgIcon component={edgeDefinition.icon}></SvgIcon>
                                     </IconButton>

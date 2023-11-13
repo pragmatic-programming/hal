@@ -30,7 +30,7 @@ export const edgeDefinitionCreate: EdgeDefinition = {
 
 export const edgeDefinitionExecute: EdgeDefinition = {
     type: "execute",
-    animated: true,
+    animated: false,
     component: EdgeDefault,
     icon: DirectionsRunIcon,
     immediate: false,
@@ -66,7 +66,7 @@ export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
 
 export const edgeDefinitionSCChartCode: EdgeDefinition = {
     type: "scchartcode",
-    animated: true,
+    animated: false,
     component: EdgeDefault,
     icon: EngineeringIcon,
     immediate: false,

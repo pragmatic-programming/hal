@@ -1,42 +1,22 @@
 import { State } from "../State";
 import { StoreApi } from "zustand";
-import { EdgeTypeIndicator } from "../../model/edge/EdgeTypeIndicator";
 import { createEdgeId } from "../../model/edge/createEdge";
 import { Edge, Node } from "reactflow";
-import { createNodeDataFromCreationNode } from "../../model/node/createNodeData";
+import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
+import { StateReactFlow } from "./StateReactFlow";
 import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
-import { NodeData } from "../../model/node/NodeData";
+import { transformNodes } from "./transformCreateNode";
+
 
 export function transformCreateEdge(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (edgeId: string, edgeType: EdgeTypeIndicator, targetNodeId: string, targetNodeTypes: NodeTypeIndicator[]) => {
-        const reactFlow = getState().reactFlow;
-        let nodes = reactFlow.nodes;
-        if (targetNodeTypes.length === 1) {
-            nodes = reactFlow.nodes.map((node: Node) => {
-                if (node.id === targetNodeId) {
-                    node.type = targetNodeTypes[0];
-                    if (node.data.type !== "create") {
-                        throw new Error("Node is not from typ create");
-                    }
-                    const data: NodeData = createNodeDataFromCreationNode(targetNodeTypes[0]);
-                    node.data = data;
-                    node.height = data.height;
-                    node.width = data.width;
-                }
-                return node;
-            });
+    return async (edgeId: string, edgeDefinition: EdgeDefinition, targetNodeId: string): Promise<void> => {
+        const reactFlow: StateReactFlow = getState().reactFlow;
+        let nodes: Node[] = reactFlow.nodes;
+        if (edgeDefinition.targetNodeTypes.length === 1) {
+            const firstTargetNodeType: NodeTypeIndicator = edgeDefinition.targetNodeTypes[0];
+            nodes = transformNodes(reactFlow, targetNodeId, firstTargetNodeType);
         }
-        const edges = reactFlow.edges.map((edge: Edge) => {
-            if (edge.id === edgeId) {
-                if (edge.type !== "create") {
-                    throw new Error("Edge is not from typ create");
-                }
-                edge.id = createEdgeId(edge.source, edge.target, edgeType);
-                edge.type = edgeType;
-                edge.label = edgeType;
-            }
-            return edge;
-        });
+        const edges = transformEdges(reactFlow, edgeId, edgeDefinition);
         setState({
             reactFlow: {
                 ...reactFlow,
@@ -45,4 +25,20 @@ export function transformCreateEdge(setState: StoreApi<State>["setState"], getSt
             }
         });
     };
+}
+
+// todo function name
+export function transformEdges(reactFlow: StateReactFlow, edgeId: string, edgeDefinition: EdgeDefinition): Edge[] {
+    return reactFlow.edges.map((edge: Edge) => {
+        if (edge.id === edgeId) {
+            if (edge.type !== "create") {
+                throw new Error("Edge is not from typ create");
+            }
+            edge.id = createEdgeId(edge.source, edge.target, edgeDefinition.type);
+            edge.type = edgeDefinition.type;
+            edge.animated = edgeDefinition.animated;
+            edge.label = edgeDefinition.type;
+        }
+        return edge;
+    });
 }
