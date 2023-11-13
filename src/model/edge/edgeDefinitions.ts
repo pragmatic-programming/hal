@@ -8,10 +8,12 @@ import TableChartIcon from "@mui/icons-material/TableChart";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
 import { ExecuteProcessor } from "../processor/edgeTypes/execute/ExecuteProcessor";
-import { SCChartProcessor } from "../processor/edgeTypes/scchart/SCChartProcessor";
+import { SCChartDiagramProcessor } from "../processor/edgeTypes/scchart/SCChartDiagramProcessor";
 import { SequenceProcessor } from "hal-kico";
 import { TestProcessor } from "../processor/edgeTypes/TestProcessor";
 import { CreateProcessor } from "../processor/edgeTypes/CreateProcessor";
+import { SCChartCodeProcessor } from "../processor/edgeTypes/scchart/SCChartCodeProcessor";
+import EngineeringIcon from '@mui/icons-material/Engineering';
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {
@@ -45,15 +47,25 @@ export const edgeDefinitionSequence: EdgeDefinition = {
     style: {stroke: "green"}
 };
 
-export const edgeDefinitionSSChart: EdgeDefinition = {
-    type: "scchart",
+export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
+    type: "scchartdiagram",
     animated: true,
     component: EdgeDefault,
     icon: TableChartIcon,
     immediate: false,
     priority: 3,
-    processor: SCChartProcessor,
+    processor: SCChartDiagramProcessor,
     style: {stroke: "blue"},
+};
+
+export const edgeDefinitionSCChartCode: EdgeDefinition = {
+    type: "scchartcode",
+    animated: true,
+    component: EdgeDefault,
+    icon: EngineeringIcon,
+    immediate: false,
+    priority: 3,
+    processor: SCChartCodeProcessor,
 };
 
 export const edgeDefinitionWYTIWYG: EdgeDefinition = {
@@ -70,7 +82,8 @@ export const edgeDefinitionWYTIWYG: EdgeDefinition = {
 export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionCreate,
     edgeDefinitionExecute,
-    edgeDefinitionSSChart,
+    edgeDefinitionSCChartCode,
+    edgeDefinitionSCChartDiagram,
     edgeDefinitionSequence,
     edgeDefinitionWYTIWYG,
 ];
@@ -82,8 +95,10 @@ export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): Ed
             return edgeDefinitionCreate;
         case "execute":
             return edgeDefinitionExecute;
-        case "scchart":
-            return edgeDefinitionSSChart;
+        case "scchartdiagram":
+            return edgeDefinitionSCChartDiagram;
+        case "scchartcode":
+            return edgeDefinitionSCChartCode;
         case "sequence":
             return edgeDefinitionSequence;
         case "test":

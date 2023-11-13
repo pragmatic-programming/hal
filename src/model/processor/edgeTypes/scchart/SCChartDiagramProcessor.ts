@@ -1,9 +1,9 @@
 import { CliqueProcessor } from "hal-kico";
 import { NodeDataImage } from "../../../node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
-import { SCChartImage } from "./SCChartImage";
+import { SCChartDiagram } from "./SCChartDiagram";
 
-export class SCChartProcessor extends CliqueProcessor {
+export class SCChartDiagramProcessor extends CliqueProcessor {
 
     getId() {
         return "hal.scchart";
@@ -13,19 +13,20 @@ export class SCChartProcessor extends CliqueProcessor {
         return "SCChart";
     }
 
-    isAsync(){
-        return true
+    isAsync() {
+        return true;
     }
 
     async processAsync(): Promise<void> {
         const targetGraph = this.createTargetGraph();
+        // todo why Sequence?
         const targetNode = targetGraph.createSourceNode("Sequence");
         const cliqueNodes = this.getCliqueNodes();
 
         try {
-            const scChartImage = new SCChartImage(cliqueNodes[0]);
+            const scChartImage: SCChartDiagram = new SCChartDiagram(cliqueNodes[0]);
             const image: HTMLImageElement = await this.htmlImageElement(
-                await scChartImage.image()
+                await scChartImage.diagram()
             );
             targetNode.createAnnotation(
                 FlowToIHGraphProcessor.ANNOTATION_NODE_DATA,

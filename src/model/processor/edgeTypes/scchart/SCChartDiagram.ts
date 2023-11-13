@@ -1,15 +1,15 @@
 import { SourceNode } from "ihgraph";
 
-export class SCChartImage {
+export class SCChartDiagram {
     private sourceNode: SourceNode;
 
     constructor(sourceNode: SourceNode) {
         this.sourceNode = sourceNode;
     }
 
-    async image(): Promise<string> {
+    async diagram(): Promise<string> {
         const response: Response = await fetch(
-            "http://localhost:8080/kicodia/",
+            "http://localhost:8080/kico/diagram/",
             {
                 method: "POST",
                 headers: {

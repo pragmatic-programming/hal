@@ -2,7 +2,8 @@
 const edgeTypeIndicators = [
     "create",
     "execute",
-    "scchart",
+    "scchartdiagram",
+    "scchartcode",
     "sequence",
     "test",
 ] as const;
