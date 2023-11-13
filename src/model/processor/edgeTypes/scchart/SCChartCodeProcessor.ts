@@ -41,11 +41,11 @@ export class SCChartCodeProcessor extends CliqueProcessor {
     private nodeData(code: string): NodeDataEditor {
         return {
             content: code,
-            height: 300,
+            height: 480,
             language: "C",
             label: "Generated Code",
             type: "editor",
-            width: 200,
+            width: 640,
             status: SourceNodeStatus.UNDEFINED,
         };
     }
