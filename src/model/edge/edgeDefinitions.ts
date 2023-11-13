@@ -13,7 +13,7 @@ import { SequenceProcessor } from "hal-kico";
 import { TestProcessor } from "../processor/edgeTypes/TestProcessor";
 import { CreateProcessor } from "../processor/edgeTypes/CreateProcessor";
 import { SCChartCodeProcessor } from "../processor/edgeTypes/scchart/SCChartCodeProcessor";
-import EngineeringIcon from '@mui/icons-material/Engineering';
+import EngineeringIcon from "@mui/icons-material/Engineering";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {
@@ -24,6 +24,7 @@ export const edgeDefinitionCreate: EdgeDefinition = {
     immediate: false,
     priority: 1,
     processor: CreateProcessor,
+    requiresLabel: false,
 };
 
 export const edgeDefinitionExecute: EdgeDefinition = {
@@ -34,6 +35,7 @@ export const edgeDefinitionExecute: EdgeDefinition = {
     immediate: false,
     priority: 2,
     processor: ExecuteProcessor,
+    requiresLabel: false,
 };
 
 export const edgeDefinitionSequence: EdgeDefinition = {
@@ -44,6 +46,7 @@ export const edgeDefinitionSequence: EdgeDefinition = {
     immediate: false,
     priority: 8,
     processor: SequenceProcessor,
+    requiresLabel: false,
 };
 
 export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
@@ -54,6 +57,7 @@ export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
     immediate: true,
     priority: 0,
     processor: SCChartDiagramProcessor,
+    requiresLabel: false,
 };
 
 export const edgeDefinitionSCChartCode: EdgeDefinition = {
@@ -64,6 +68,7 @@ export const edgeDefinitionSCChartCode: EdgeDefinition = {
     immediate: false,
     priority: 3,
     processor: SCChartCodeProcessor,
+    requiresLabel: false,
 };
 
 export const edgeDefinitionWYTIWYG: EdgeDefinition = {
@@ -74,6 +79,7 @@ export const edgeDefinitionWYTIWYG: EdgeDefinition = {
     immediate: true,
     priority: 0,
     processor: TestProcessor,
+    requiresLabel: false,
 };
 
 // new edge (step 3): add the new edge definition to the following array

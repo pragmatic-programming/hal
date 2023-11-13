@@ -12,5 +12,6 @@ export interface EdgeDefinition {
     immediate: boolean;
     processor: typeof TransformationProcessor;
     priority: number;
+    requiresLabel: boolean;
     style?: CSSProperties;
 }

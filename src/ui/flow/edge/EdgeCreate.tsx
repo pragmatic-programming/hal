@@ -31,7 +31,7 @@ export default function EdgeCreate(props: EdgeProps): React.JSX.Element {
                 >
                     <BoxBackgroundMain>
                         {edgeDefinitions
-                            .filter((edgeDefinition: EdgeDefinition) => edgeDefinition.type !== "create")
+                            .filter((edgeDefinition: EdgeDefinition): boolean => edgeDefinition.type !== "create")
                             .map((edgeDefinition: EdgeDefinition) =>
                                 <Tooltip
                                     key={edgeDefinition.type}
@@ -50,8 +50,7 @@ export default function EdgeCreate(props: EdgeProps): React.JSX.Element {
                             placement="top"
                             title={"Open new Edge Dialog"}
                         >
-                            <IconButton
-                            >
+                            <IconButton>
                                 <Add/>
                             </IconButton>
                         </Tooltip>
