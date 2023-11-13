@@ -10,7 +10,7 @@ import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
 import { ExecuteProcessor } from "../processor/edgeTypes/execute/ExecuteProcessor";
 import { SCChartProcessor } from "../processor/edgeTypes/scchart/SCChartProcessor";
 import { SequenceProcessor } from "hal-kico";
-import { WYTIWYGProcessor } from "../processor/edgeTypes/WYTIWYGProcessor";
+import { TestProcessor } from "../processor/edgeTypes/TestProcessor";
 import { CreateProcessor } from "../processor/edgeTypes/CreateProcessor";
 
 // new edge (step 2): add a new edge definition here
@@ -57,13 +57,13 @@ export const edgeDefinitionSSChart: EdgeDefinition = {
 };
 
 export const edgeDefinitionWYTIWYG: EdgeDefinition = {
-    type: "wytiwyg",
+    type: "test",
     animated: true,
     component: EdgeDefault,
     icon: BiotechIcon,
     immediate: true,
     priority: 0,
-    processor: WYTIWYGProcessor,
+    processor: TestProcessor,
 };
 
 // new edge (step 3): add the new edge definition to the following array
@@ -86,7 +86,7 @@ export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): Ed
             return edgeDefinitionSSChart;
         case "sequence":
             return edgeDefinitionSequence;
-        case "wytiwyg":
+        case "test":
             return edgeDefinitionWYTIWYG;
     }
 }

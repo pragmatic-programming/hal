@@ -29,24 +29,24 @@ export function exampleGraphsWYTIWYGSum(): ihgraph.IHGraphFactoryInterface {
         ],
         edgeTypes: [
             {
-                id: "wytiwyg",
+                id: "test",
                 priority: 0,
                 immediate: true
             }
         ],
         edges: [
             {
-                edgeType: "wytiwyg",
+                edgeType: "test",
                 sourceNode: "Test 1",
                 targetNode: "Function"
             },
             {
-                edgeType: "wytiwyg",
+                edgeType: "test",
                 sourceNode: "Test 2",
                 targetNode: "Function"
             },
             {
-                edgeType: "wytiwyg",
+                edgeType: "test",
                 sourceNode: "Test 3",
                 targetNode: "Function"
             },

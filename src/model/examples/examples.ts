@@ -4,7 +4,7 @@ import exampleJavaScriptSequence from "./static/example-javascript-sequence.json
 import exampleSCChart from "./static/example-scchart.json";
 import examplePython from "./static/example-python.json";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
-import { exampleGraphsWYTIWYGSum } from "./graphs/20.wytiwyg-sum";
+import { exampleGraphsWYTIWYGSum } from "./graphs/20.test-sum";
 import { LanguageIndicator } from "../node/LanguageIndicator";
 import { Example } from "./Example";
 import TableChartIcon from "@mui/icons-material/TableChart";

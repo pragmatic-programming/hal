@@ -1,14 +1,14 @@
 import { CliqueProcessor } from "hal-kico";
 import { SourceNodeStatus } from "ihgraph";
 
-export class WYTIWYGProcessor extends CliqueProcessor {
+export class TestProcessor extends CliqueProcessor {
 
     getId() {
         return "hal.js.wytiwyg";
     }
 
     getName() {
-        return "WYTIWYG";
+        return "test";
     }
 
     process() {
