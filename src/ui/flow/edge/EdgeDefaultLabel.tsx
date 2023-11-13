@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IconButton, SvgIcon, TextField, Theme, Tooltip, useTheme } from "@mui/material";
+import { IconButton, InputAdornment, SvgIcon, TextField, Theme, Tooltip, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { firstCharUpperCase } from "../../../util";
@@ -19,18 +19,21 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     const {deleteElements} = useReactFlow();
     const [inputValue, setInputValue] = useState<SvgIconComponent>(props.edgeDefinition.icon);
     const theme: Theme = useTheme();
+    const iconButton: React.JSX.Element = (
+        <IconButton
+            onClick={() => deleteElements({edges: [{id: props.id}]})}
+            onMouseEnter={() => setInputValue(DeleteIcon)}
+            onMouseLeave={() => setInputValue(props.edgeDefinition.icon)}
+        >
+            <SvgIcon component={inputValue}></SvgIcon>
+        </IconButton>
+    );
     let content: React.JSX.Element = (
         <Tooltip
             placement="top"
             title={"Delete " + firstCharUpperCase(props.edgeDefinition.type) + " Edge"}
         >
-            <IconButton
-                onClick={() => deleteElements({edges: [{id: props.id}]})}
-                onMouseEnter={() => setInputValue(DeleteIcon)}
-                onMouseLeave={() => setInputValue(props.edgeDefinition.icon)}
-            >
-                <SvgIcon component={inputValue}></SvgIcon>
-            </IconButton>
+            {iconButton}
         </Tooltip>
     );
     if (props.edgeDefinition.requiresLabel) {
@@ -43,13 +46,18 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
                         style: {
                             textAlign: "center",
                         }
-                    }
+                    },
+                    startAdornment: (
+                        <InputAdornment position="start">
+                            {iconButton}
+                        </InputAdornment>
+                    ),
                 }}
                 value={props.label}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
                 style={{
                     backgroundColor: theme.palette.primary.light,
-                    width: 100,
+                    width: 130,
                 }}
             />
         );

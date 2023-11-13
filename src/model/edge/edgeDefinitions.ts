@@ -79,7 +79,7 @@ export const edgeDefinitionWYTIWYG: EdgeDefinition = {
     immediate: true,
     priority: 0,
     processor: TestProcessor,
-    requiresLabel: false,
+    requiresLabel: true,
 };
 
 // new edge (step 3): add the new edge definition to the following array
