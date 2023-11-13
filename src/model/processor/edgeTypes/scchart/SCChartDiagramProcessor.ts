@@ -18,22 +18,19 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
     }
 
     async processAsync(): Promise<void> {
-        const targetGraph = this.createTargetGraph();
-        // todo why Sequence?
-        const targetNode = targetGraph.createSourceNode("Sequence");
         const cliqueNodes = this.getCliqueNodes();
-
         try {
             const scChartImage: SCChartDiagram = new SCChartDiagram(cliqueNodes[0]);
             const image: HTMLImageElement = await this.htmlImageElement(
                 await scChartImage.diagram()
             );
-            targetNode.createAnnotation(
-                FlowToIHGraphProcessor.ANNOTATION_NODE_DATA,
-                this.nodeData(image)
-            );
-            targetNode.setContent(image.src);
-            this.setNewClique(targetGraph);
+            for (const targetNode of cliqueNodes.slice(1)) {
+                targetNode.createAnnotation(
+                    FlowToIHGraphProcessor.ANNOTATION_NODE_DATA,
+                    this.nodeData(image)
+                );
+                targetNode.setContent(image.src);
+            }
         } catch (e) {
             this.addError(String(e));
         }

@@ -44,7 +44,6 @@ export const edgeDefinitionSequence: EdgeDefinition = {
     immediate: false,
     priority: 8,
     processor: SequenceProcessor,
-    style: {stroke: "green"}
 };
 
 export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
@@ -52,10 +51,9 @@ export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
     animated: true,
     component: EdgeDefault,
     icon: TableChartIcon,
-    immediate: false,
-    priority: 3,
+    immediate: true,
+    priority: 0,
     processor: SCChartDiagramProcessor,
-    style: {stroke: "blue"},
 };
 
 export const edgeDefinitionSCChartCode: EdgeDefinition = {
