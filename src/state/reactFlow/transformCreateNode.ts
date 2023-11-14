@@ -72,7 +72,7 @@ function transformEdges(reactFlow: StateReactFlow, nodeDefinition: NodeDefinitio
             if (edge.type !== "create") {
                 throw new Error("Edge is not from type create");
             }
-            edge.data = createEdgeDataCreate(deniedEdgeTypes(nodeDefinition));
+            edge.data = createEdgeDataCreate(edge.data, deniedEdgeTypes(nodeDefinition));
         }
         return edge;
     });

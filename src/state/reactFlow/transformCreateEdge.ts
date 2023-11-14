@@ -33,7 +33,7 @@ export function transformCreateEdgeByEdgeDefinition(edge: Edge, edgeDefinition: 
     if (edge.type !== "create") {
         throw new Error("Edge is not from typ create");
     }
-    edge.id = createEdgeId(edge.source, edge.target, edgeDefinition.type);
+    edge.id = createEdgeId(edge.source, edge.target, edge.data.sourceHandle, edge.data.targetHandle, edgeDefinition.type);
     edge.type = edgeDefinition.type;
     edge.animated = edgeDefinition.animated;
     edge.label = edgeDefinition.type;

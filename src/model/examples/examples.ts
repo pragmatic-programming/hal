@@ -1,8 +1,5 @@
 import * as ihgraph from "ihgraph";
 import { IHGraphFactoryInterface } from "ihgraph";
-import exampleJavaScriptSequence from "./static/example-javascript-sequence.json";
-import exampleSCChart from "./static/example-scchart.json";
-import examplePython from "./static/example-python.json";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 import { exampleGraphsWYTIWYGSum } from "./graphs/20.test-sum";
 import { LanguageIndicator } from "../node/LanguageIndicator";
@@ -12,18 +9,21 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import GestureIcon from "@mui/icons-material/Gesture";
+import { exampleGraphsSCChart } from "./graphs/30.scchart";
+import { exampleGraphsPython } from "./graphs/40.python";
+import { exampleGraphsJavaScriptSequence } from "./graphs/50.javascript-sequence";
 
 export const examples: Example[] = [
     {
         id: 1,
         name: "JavaScript Sequence",
-        value: exampleJavaScriptSequence,
+        value: addDefaultAnnotations(exampleGraphsJavaScriptSequence(), "JavaScript"),
         icon: KeyboardDoubleArrowRightIcon,
     },
     {
         id: 2,
         name: "SCChart",
-        value: exampleSCChart,
+        value: addDefaultAnnotations(exampleGraphsSCChart(), "C"),
         icon: TableChartIcon,
     },
     {
@@ -41,7 +41,7 @@ export const examples: Example[] = [
     {
         id: 5,
         name: "Python",
-        value: examplePython,
+        value: addDefaultAnnotations(exampleGraphsPython(), "Python"),
         icon: GestureIcon,
     }
 ];
@@ -60,6 +60,18 @@ function addDefaultAnnotations(example: ihgraph.IHGraphFactoryInterface, languag
                 language: languageIndicator,
                 width: 300,
                 height: 200
+            }
+        };
+    });
+    example.edges.forEach(edge => {
+        if (!edge.annotations) {
+            edge.annotations = {} as ihgraph.AnnotationFactoryType;
+        }
+        edge.annotations["edgeData"] = {
+            id: "edgeData",
+            data: {
+                sourceHandle: "right",
+                targetHandle: "left",
             }
         };
     });

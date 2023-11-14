@@ -3,24 +3,22 @@ import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
-import HandleTarget from "../handle/HandleTarget";
-import HandleSource from "../handle/HandleSource";
 import EditorHeader, { editorHeaderHeight } from "../../editor/EditorHeader";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
 import { EditorBody } from "../../editor/EditorBody";
 import { NodeData } from "../../../model/node/NodeData";
 import { borderColor } from "../../../util";
+import HandleTargetTop from "../handle/HandleTargetTop";
+import HandleTargetLeft from "../handle/HandleTargetLeft";
+import HandleSourceRight from "../handle/HandleSourceRight";
+import HandleSourceBottom from "../handle/HandleSourceBottom";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
-    const sourcePosition = props.sourcePosition;
-    if (!sourcePosition) {
-        throw new Error("SourcePosition is undefined");
-    }
     const {getNode,} = useReactFlow();
     const node = getNode(props.id);
     if (!node) {
@@ -40,8 +38,8 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     const theme: Theme = useTheme();
     let handeStyle: CSSProperties = {};
     let lineStyle: CSSProperties = {
-    borderColor: borderColor(props, theme, theme.palette.primary.dark),
-    }
+        borderColor: borderColor(props, theme, theme.palette.primary.dark),
+    };
     // todo find a better solution than set the handleStyle
     if (!props.selected) {
         handeStyle = {
@@ -64,14 +62,14 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 minHeight={30}
                 minWidth={100}
             />
-            <HandleTarget
+            <HandleTargetTop
                 nodeId={props.id}
-                position={props.targetPosition}
             />
-            <HandleSource
+            <HandleTargetLeft
                 nodeId={props.id}
-                position={sourcePosition}
             />
+            <HandleSourceRight/>
+            <HandleSourceBottom/>
             <EditorHeader
                 value={props.data.label}
                 onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}

@@ -1,17 +1,14 @@
 import React, { CSSProperties } from "react";
 import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
-import HandleTarget from "../handle/HandleTarget";
 import { NodeDataImage } from "../../../model/node/NodeData";
 import ImageIcon from "@mui/icons-material/Image";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { IconButton, Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
 import { BoxBorder } from "../../util/BoxBorder";
+import HandleTargetLeft from "../handle/HandleTargetLeft";
 
 export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.Element {
-    if (!props.targetPosition) {
-        throw new Error("TargetPosition is undefined");
-    }
     const {getNode,} = useReactFlow();
     const node = getNode(props.id);
     if (!node) {
@@ -61,9 +58,8 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
     }
     return (
         <>
-            <HandleTarget
+            <HandleTargetLeft
                 nodeId={props.id}
-                position={props.targetPosition}
             />
             {img}
         </>

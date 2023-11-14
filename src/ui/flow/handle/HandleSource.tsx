@@ -4,11 +4,12 @@ import HandleStyled from "./HandleStyled";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { Theme, useTheme } from "@mui/material";
+import { SourceHandleId } from "../../../model/edge/SourceHandleId";
 
 interface Props {
-    nodeId: string;
     style?: CSSProperties;
     position: Position;
+    id: SourceHandleId;
 }
 
 
@@ -24,7 +25,7 @@ export default function HandleSource(props: Props): React.JSX.Element {
     }
     return (
         <HandleStyled
-            id={"output"}
+            id={props.id}
             position={props.position}
             style={style}
             type="source"

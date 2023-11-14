@@ -7,7 +7,6 @@ import { layoutOptions, LayoutOptionTypeIndicator } from "../../util";
 
 export function layout(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (fitView: (fitViewOptions: FitViewOptions) => void, layoutOption: LayoutOptionTypeIndicator) => {
-        console.log(layoutOption)
         const state = getState();
         setState({
             ui: {

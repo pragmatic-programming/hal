@@ -8,6 +8,7 @@ import { edgeDefinitions } from "../edge/edgeDefinitions";
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
 
     public static readonly ANNOTATION_NODE_DATA = "nodeData";
+    public static readonly ANNOTATION_EDGE_DATA = "edgeData";
 
     async process() {
         const graph = new IHGraph();
@@ -58,11 +59,8 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             if (!edgeType) {
                 throw new Error("Returned EdgeType is undefined: " + edge.label + "");
             }
-            graph.createTransformationEdge(
-                edgeType,
-                source,
-                target
-            );
+            const transformationEdge = graph.createTransformationEdge(edgeType, source, target);
+            transformationEdge.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA, edge.data)
         }
 
 

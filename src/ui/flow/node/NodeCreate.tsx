@@ -5,11 +5,12 @@ import { Add } from "@mui/icons-material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
-import HandleTarget from "../handle/HandleTarget";
 import { NodeDefinition } from "../../../model/node/NodeDefinition";
 import { borderColor, firstCharUpperCase } from "../../../util";
 import { nodeDefinitionEditor, nodeDefinitionImage } from "../../../model/node/nodeDefinitions";
 import { BoxBorder } from "../../util/BoxBorder";
+import HandleTargetTop from "../handle/HandleTargetTop";
+import HandleTargetLeft from "../handle/HandleTargetLeft";
 
 function button(
     transformCreationNode: (nodeId: string, nodeDefinition: NodeDefinition, targetEdeId: string | undefined) => void,
@@ -43,9 +44,11 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
         <BoxBorder
             borderColor={borderColor(props, theme, theme.palette.primary.main)}
         >
-            <HandleTarget
+            <HandleTargetTop
                 nodeId={props.id}
-                position={props.targetPosition}
+            />
+            <HandleTargetLeft
+                nodeId={props.id}
             />
             <BoxBackgroundMain
                 style={{

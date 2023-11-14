@@ -54,9 +54,9 @@ export default function HandleStyled(props: Props): React.JSX.Element {
     return (
         <Handle
             id={props.id}
+            position={props.position}
             style={createStyle(props, theme)}
             type={props.type}
-            position={props.position}
         />
     );
 }
