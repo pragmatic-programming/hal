@@ -1,7 +1,7 @@
 import { State } from "../State";
 import { StoreApi } from "zustand";
 
-export function menuOpenToggle(setState: StoreApi<State>["setState"]) {
+export function menuExamplesOpenToggle(setState: StoreApi<State>["setState"]) {
     return () => setState((state: State): State => {
             return {
                 ...state,

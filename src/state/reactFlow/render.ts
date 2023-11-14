@@ -6,6 +6,7 @@ import { iHGraphToFlow } from "../../model/processor/compilationContexts";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 import { layoutedNodes } from "../layoutedNodes";
+import { layoutOptions } from "../../util";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string) => {
@@ -31,8 +32,7 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         setState({
             reactFlow: {
                 ...reactFlow,
-                layoutDirection: "RIGHT",
-                nodes: await layoutedNodes(reactFlow)
+                nodes: await layoutedNodes(reactFlow, layoutOptions(getState().reactFlow.layoutOption))
             }
         });
         window.requestAnimationFrame(() => {

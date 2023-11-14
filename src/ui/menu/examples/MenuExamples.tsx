@@ -1,6 +1,6 @@
 import React from "react";
-import { State } from "../../state/State";
-import { useStore } from "../../state/Store";
+import { State } from "../../../state/State";
+import { useStore } from "../../../state/Store";
 import {
     Divider,
     Drawer,
@@ -12,18 +12,18 @@ import {
     ListSubheader,
     SvgIcon
 } from "@mui/material";
-import ButtonMenu from "./ButtonMenu";
+import ButtonMenu from "../ButtonMenu";
 import { FormatListBulleted } from "@mui/icons-material";
 import { createIHGraphFromJSON } from "ihgraph";
 import { useReactFlow } from "reactflow";
-import { examples } from "../../model/examples/examples";
-import { Example } from "../../model/examples/Example";
+import { examples } from "../../../model/examples/examples";
+import { Example } from "../../../model/examples/Example";
 
 const menuExamplesWidth = 300;
 
 export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);
-    const menuOpenToggle = useStore((state: State) => state.menuExamples.menuOpenToggle);
+    const menuOpenToggle = useStore((state: State) => state.menuExamples.menuExampleOpenToggle);
     const {fitView} = useReactFlow();
     const render = useStore((state: State) => (example: Example) => {
         state.reactFlow.render(

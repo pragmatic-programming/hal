@@ -1,18 +1,18 @@
 import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
 import { NodeData } from "../../model/node/NodeData";
 import { EdgePathStyle } from "./EdgePathStyle";
-import { LayoutOptions } from "elkjs/lib/elk-api";
 import { LanguageIndicator } from "../../model/node/LanguageIndicator";
 import { IHGraph } from "ihgraph";
 import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
 import { NodeDefinition } from "../../model/node/NodeDefinition";
+import { LayoutOptionTypeIndicator } from "../../util";
 
 export interface StateReactFlow {
     connectingSourceNodeId: string | null,
     edgePathStyle: EdgePathStyle
     edges: Edge[],
-    layout: (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
-    layoutDirection: "DOWN" | "RIGHT",
+    layout: (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptionTypeIndicator) => void,
+    layoutOption: LayoutOptionTypeIndicator,
     nextNodeId: () => string,
     nodes: Node<NodeData>[],
     onConnect: OnConnect,

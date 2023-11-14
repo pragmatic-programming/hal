@@ -1,4 +1,4 @@
 export interface StateMenuExamples {
     open: boolean;
-    menuOpenToggle: () => void,
+    menuExampleOpenToggle: () => void,
 }

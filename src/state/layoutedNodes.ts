@@ -1,6 +1,6 @@
 import { Edge, Node } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
-import { isLayoutDirectionIndicator, sourcePosition, targetPosition } from "./reactFlow/LayoutDirectionIndicator";
+import { sourcePosition, targetPosition } from "./reactFlow/LayoutDirectionIndicator";
 import { FlowState } from "../model/processor/FlowState";
 
 const elk = new ELK({
@@ -10,26 +10,11 @@ const elk = new ELK({
     }
 });
 
-export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutOptions = {}) {
-    const options: LayoutOptions = {
-        "elk.algorithm": "layered",
-        "elk.direction": "RIGHT",
-        "elk.layered.spacing.nodeNodeBetweenLayers": "400",
-        "elk.spacing.nodeNode": "400",
-        "org.eclipse.elk.spacing.nodeNode": "30",
-        ...layoutOptions,
-    };
-
-    const layoutDirection = options["elk.direction"];
-    if (!isLayoutDirectionIndicator(layoutDirection)) {
-        throw new Error("elk.direction is not a valid layout direction indicator");
-    }
-
+export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutOptions) {
     const nodeMap = new Map<string, Node>();
-
     const graph: ElkNode = {
         id: "root",
-        layoutOptions: options,
+        layoutOptions: layoutOptions,
         children: flowState.nodes.map((node: Node): ElkNode => {
             nodeMap.set(node.id, node);
             return {
@@ -63,8 +48,8 @@ export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutO
         if (!child.y) {
             throw new Error("Child.y is undefined");
         }
-        node.sourcePosition = sourcePosition(layoutDirection);
-        node.targetPosition = targetPosition(layoutDirection);
+        node.sourcePosition = sourcePosition(layoutOptions);
+        node.targetPosition = targetPosition(layoutOptions);
         node.position = {
             x: child.x,
             y: child.y,

@@ -4,11 +4,16 @@ import { EdgePathStyle } from "./EdgePathStyle";
 
 export function setEdgePathStyle(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (edgePathStyle: EdgePathStyle) => {
+        const state = getState();
         setState({
+            menuLayout: {
+               ...state.menuLayout,
+               open: false,
+            },
             reactFlow: {
-                ...getState().reactFlow,
+                ...state.reactFlow,
                 edgePathStyle: edgePathStyle,
-            }
+            },
         });
     };
 }

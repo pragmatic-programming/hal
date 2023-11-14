@@ -16,7 +16,7 @@ import { transformCreateNode } from "./reactFlow/transformCreateNode";
 import { setConnectingSourceNodeId } from "./reactFlow/setConnectingSourceNodeId";
 import { setNodeNodeDataLanguage } from "./reactFlow/setNodeNodeDataLanguage";
 import { setEdgePathStyle } from "./reactFlow/setEdgePathStyle";
-import { menuOpenToggle } from "./menuExamples/menuOpenToggle";
+import { menuExamplesOpenToggle } from "./menuExamples/menuExamplesOpenToggle";
 import { setNodeNodeDataLabel } from "./reactFlow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
 import { runImmediate } from "./compilation/runImmediate";
@@ -24,6 +24,7 @@ import { transformCreateEdge } from "./reactFlow/transformCreateEdge";
 import { createNodeCreate } from "../model/node/createNode";
 import { Position } from "@reactflow/core";
 import { nextNodeId } from "./reactFlow/nextNodeId";
+import { menuLayoutOpenToggle } from "./menuLayout/menuLayoutOpenToggle";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -42,14 +43,18 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     },
     menuExamples: {
         open: false,
-        menuOpenToggle: menuOpenToggle(setState),
+        menuExampleOpenToggle: menuExamplesOpenToggle(setState),
+    },
+    menuLayout: {
+        open: false,
+        menuLayoutOpenToggle: menuLayoutOpenToggle(setState),
     },
     reactFlow: {
         connectingSourceNodeId: null,
         edgePathStyle: "Bezier",
         edges: [],
         layout: layout(setState, getState),
-        layoutDirection: "RIGHT",
+        layoutOption: "horizontal",
         nextNodeId: nextNodeId(getState),
         nodes: [
             // crate first node
@@ -65,12 +70,13 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
-        transformCreateNode: transformCreateNode(setState, getState),
         transformCreateEdge: transformCreateEdge(setState, getState),
+        transformCreateNode: transformCreateNode(setState, getState),
     },
     ui: {
         busy: false,
         mode: "light",
+        // todo what should we do with the project name
         projectName: "hello-world.hal",
         switchMode: switchMode(setState),
     },

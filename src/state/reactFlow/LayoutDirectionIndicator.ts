@@ -1,4 +1,5 @@
 import { Position } from "reactflow";
+import { LayoutOptions } from "elkjs/lib/elk-api";
 
 export const layoutDirectionIndicators = [
     "DOWN",
@@ -11,10 +12,18 @@ export function isLayoutDirectionIndicator(layoutDirectionIndicator: unknown): l
     return typeof layoutDirectionIndicator === "string" && layoutDirectionIndicators.find((value: LayoutDirectionIndicator): boolean => value === layoutDirectionIndicator) !== undefined;
 }
 
-export function sourcePosition(layoutDirectionIndicator: LayoutDirectionIndicator): Position {
-    return layoutDirectionIndicator === "DOWN" ? Position.Bottom : Position.Right;
+function layoutDirection(layoutOptions: LayoutOptions): LayoutDirectionIndicator {
+    const layoutDirection = layoutOptions["elk.direction"];
+    if (!isLayoutDirectionIndicator(layoutDirection)) {
+        throw new Error("elk.direction is not a valid layout direction indicator");
+    }
+    return layoutDirection;
 }
 
-export function targetPosition(layoutDirectionIndicator: LayoutDirectionIndicator): Position {
-    return layoutDirectionIndicator === "DOWN" ? Position.Top : Position.Left;
+export function sourcePosition(layoutOptions: LayoutOptions): Position {
+    return layoutDirection(layoutOptions) === "DOWN" ? Position.Bottom : Position.Right;
+}
+
+export function targetPosition(layoutOptions: LayoutOptions): Position {
+    return layoutDirection(layoutOptions) === "DOWN" ? Position.Top : Position.Left;
 }

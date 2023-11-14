@@ -4,6 +4,7 @@ import { flowToIHGraph, iHGraphToFlow } from "../../model/processor/compilationC
 import { StoreApi } from "zustand";
 import { IHGraph } from "ihgraph";
 import { layoutedNodes } from "../layoutedNodes";
+import { layoutOptions } from "../../util";
 
 
 export function runImmediate(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -37,7 +38,7 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         setState({
             reactFlow: {
                 ...reactFlow,
-                nodes: await layoutedNodes(flowState)
+                nodes: await layoutedNodes(flowState, layoutOptions(getState().reactFlow.layoutOption)),
             }
         });
     };

@@ -1,29 +1,26 @@
 import { State } from "../State";
 import { FitViewOptions } from "reactflow";
-import { LayoutOptions } from "elkjs/lib/elk-api";
 import { layoutedNodes } from "../layoutedNodes";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
-import { isLayoutDirectionIndicator } from "./LayoutDirectionIndicator";
+import { layoutOptions, LayoutOptionTypeIndicator } from "../../util";
 
 export function layout(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptions = {}) => {
-        const layoutDirection = layoutOptions["elk.direction"];
-        if (!isLayoutDirectionIndicator(layoutDirection)) {
-            throw new Error("elk.direction is not a valid layout direction indicator");
-        }
+    return async (fitView: (fitViewOptions: FitViewOptions) => void, layoutOption: LayoutOptionTypeIndicator) => {
+        console.log(layoutOption)
+        const state = getState();
         setState({
             ui: {
-                ...getState().ui,
+                ...state.ui,
                 busy: true,
-            }
+            },
         });
-        const reactFlow = getState().reactFlow;
+        const reactFlow = state.reactFlow;
         setState({
             reactFlow: {
                 ...reactFlow,
-                layoutDirection: layoutDirection,
-                nodes: await layoutedNodes(reactFlow, layoutOptions),
+                layoutOption: layoutOption,
+                nodes: await layoutedNodes(reactFlow, layoutOptions(layoutOption)),
             }
         });
         window.requestAnimationFrame(() => {
@@ -31,8 +28,12 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
         });
         setState({
             ui: {
-                ...getState().ui,
+                ...state.ui,
                 busy: false,
+            },
+            menuLayout: {
+                ...state.menuLayout,
+                open: false,
             }
         });
     };

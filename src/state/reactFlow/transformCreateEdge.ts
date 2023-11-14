@@ -5,7 +5,7 @@ import { Edge, Node } from "reactflow";
 import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
 import { StateReactFlow } from "./StateReactFlow";
 import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
-import { transformNodes } from "./transformCreateNode";
+import { transformCreateNodeByNodeTypeIndicator } from "./transformCreateNode";
 
 
 export function transformCreateEdge(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -29,18 +29,33 @@ export function transformCreateEdge(setState: StoreApi<State>["setState"], getSt
     };
 }
 
-// todo function name
+export function transformCreateEdgeByEdgeDefinition(edge: Edge, edgeDefinition: EdgeDefinition): Edge {
+    if (edge.type !== "create") {
+        throw new Error("Edge is not from typ create");
+    }
+    edge.id = createEdgeId(edge.source, edge.target, edgeDefinition.type);
+    edge.type = edgeDefinition.type;
+    edge.animated = edgeDefinition.animated;
+    edge.label = edgeDefinition.type;
+    return edge;
+}
+
+function transformNodes(reactFlow: StateReactFlow, type: NodeTypeIndicator, nodeId: string): Node[] {
+    return reactFlow.nodes.map((node: Node) => {
+        if (node.id === nodeId) {
+            node = transformCreateNodeByNodeTypeIndicator(node, type);
+        }
+        return node;
+    });
+}
+
+
 function transformEdges(reactFlow: StateReactFlow, edgeDefinition: EdgeDefinition, edgeId: string): Edge[] {
     return reactFlow.edges.map((edge: Edge) => {
         if (edge.id === edgeId) {
-            if (edge.type !== "create") {
-                throw new Error("Edge is not from typ create");
-            }
-            edge.id = createEdgeId(edge.source, edge.target, edgeDefinition.type);
-            edge.type = edgeDefinition.type;
-            edge.animated = edgeDefinition.animated;
-            edge.label = edgeDefinition.type;
+            edge = transformCreateEdgeByEdgeDefinition(edge, edgeDefinition);
         }
         return edge;
     });
 }
+
