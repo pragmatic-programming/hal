@@ -54,7 +54,13 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         edgePathStyle: "Bezier",
         edges: [],
         layout: layout(setState, getState),
-        layoutDirection: "RIGHT",
+        layoutOptions: {
+            "elk.algorithm": "layered",
+            "elk.direction": "RIGHT",
+            "elk.layered.spacing.nodeNodeBetweenLayers": "400",
+            "elk.spacing.nodeNode": "400",
+            "org.eclipse.elk.spacing.nodeNode": "30",
+        },
         nextNodeId: nextNodeId(getState),
         nodes: [
             // crate first node

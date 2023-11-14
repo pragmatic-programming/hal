@@ -37,7 +37,7 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         setState({
             reactFlow: {
                 ...reactFlow,
-                nodes: await layoutedNodes(flowState)
+                nodes: await layoutedNodes(flowState, getState().reactFlow.layoutOptions)
             }
         });
     };

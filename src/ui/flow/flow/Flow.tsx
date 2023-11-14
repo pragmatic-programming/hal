@@ -10,7 +10,7 @@ import { nodeTypesMapping } from "../../../model/node/nodeTypesMapping";
 import { bottomHeight } from "../../bottom/Bottom";
 import { menuWidth } from "../../menu/Menu";
 import { edgeTypesMapping } from "../../../model/edge/edgeTypesMapping";
-import { targetPosition } from "../../../state/reactFlow/LayoutDirectionIndicator";
+import { isLayoutDirectionIndicator, targetPosition } from "../../../state/reactFlow/LayoutDirectionIndicator";
 
 const selector = (state: State) => ({
     nodes: state.reactFlow.nodes,
@@ -37,7 +37,10 @@ export default function Flow(): React.JSX.Element {
         onConnect
     } = useStore(selector, shallow);
     const nextId = useStore((state: State) => state.reactFlow.nextNodeId);
-    const layoutDirection = useStore((state: State) => state.reactFlow.layoutDirection);
+    const layoutDirection = useStore((state: State) => state.reactFlow.layoutOptions['elk.direction']);
+    if (!isLayoutDirectionIndicator(layoutDirection)) {
+        throw new Error("elk.direction is not a valid layout direction indicator");
+    }
     const setConnectingSourceNodeId = useStore((state: State) => state.reactFlow.setConnectingSourceNodeId);
 
     const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {

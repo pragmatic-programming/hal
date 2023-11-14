@@ -12,7 +12,7 @@ export interface StateReactFlow {
     edgePathStyle: EdgePathStyle
     edges: Edge[],
     layout: (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions?: LayoutOptions) => void,
-    layoutDirection: "DOWN" | "RIGHT",
+    layoutOptions: LayoutOptions,
     nextNodeId: () => string,
     nodes: Node<NodeData>[],
     onConnect: OnConnect,

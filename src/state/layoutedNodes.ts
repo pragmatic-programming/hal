@@ -10,17 +10,8 @@ const elk = new ELK({
     }
 });
 
-export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutOptions = {}) {
-    const options: LayoutOptions = {
-        "elk.algorithm": "layered",
-        "elk.direction": "RIGHT",
-        "elk.layered.spacing.nodeNodeBetweenLayers": "400",
-        "elk.spacing.nodeNode": "400",
-        "org.eclipse.elk.spacing.nodeNode": "30",
-        ...layoutOptions,
-    };
-
-    const layoutDirection = options["elk.direction"];
+export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutOptions) {
+    const layoutDirection = layoutOptions["elk.direction"];
     if (!isLayoutDirectionIndicator(layoutDirection)) {
         throw new Error("elk.direction is not a valid layout direction indicator");
     }
@@ -29,7 +20,7 @@ export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutO
 
     const graph: ElkNode = {
         id: "root",
-        layoutOptions: options,
+        layoutOptions: layoutOptions,
         children: flowState.nodes.map((node: Node): ElkNode => {
             nodeMap.set(node.id, node);
             return {

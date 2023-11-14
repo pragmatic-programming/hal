@@ -31,8 +31,7 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         setState({
             reactFlow: {
                 ...reactFlow,
-                layoutDirection: "RIGHT",
-                nodes: await layoutedNodes(reactFlow)
+                nodes: await layoutedNodes(reactFlow, getState().reactFlow.layoutOptions)
             }
         });
         window.requestAnimationFrame(() => {
