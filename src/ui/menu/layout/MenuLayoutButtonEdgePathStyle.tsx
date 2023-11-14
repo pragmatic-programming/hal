@@ -1,0 +1,29 @@
+import React from "react";
+import { State } from "../../../state/State";
+import { useStore } from "../../../state/Store";
+import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
+import { firstCharUpperCase } from "../../../util";
+import { EdgePathStyle } from "../../../state/reactFlow/EdgePathStyle";
+
+interface Props {
+    edgePathStyle: EdgePathStyle;
+    icon: React.JSX.Element;
+}
+
+export default function MenuLayoutButtonEdgePathStyle(props: Props): React.JSX.Element {
+    const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
+    const setEdgePathStyle = useStore((state: State) => state.reactFlow.setEdgePathStyle);
+    return (
+        <ListItem>
+            <ListItemButton
+                selected={edgePathStyle === props.edgePathStyle}
+                onClick={() => setEdgePathStyle(props.edgePathStyle)}
+            >
+                <ListItemIcon>
+                    {props.icon}
+                </ListItemIcon>
+                {firstCharUpperCase(props.edgePathStyle)}
+            </ListItemButton>
+        </ListItem>
+    );
+}

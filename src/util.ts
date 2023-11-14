@@ -2,6 +2,7 @@ import { EdgeProps, getBezierPath, getSmoothStepPath, getStraightPath, NodeProps
 import { EdgePathStyle } from "./state/reactFlow/EdgePathStyle";
 import { Theme } from "@mui/material";
 import { SourceNodeStatus } from "ihgraph";
+import { LayoutOptions } from "elkjs/lib/elk-api";
 
 export function firstCharUpperCase(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1);
@@ -46,3 +47,40 @@ export function borderColor(
     return borderColor;
 }
 
+export type LayoutOptionTypeIndicator = "horizontal" | "vertical" | "radial" | "force"
+
+export function layoutOptions(layoutOptionType: LayoutOptionTypeIndicator): LayoutOptions {
+    const layoutOption: LayoutOptions = {
+        "elk.algorithm": "layered",
+        "elk.direction": "RIGHT",
+        "elk.layered.spacing.nodeNodeBetweenLayers": "400",
+        "elk.spacing.nodeNode": "400",
+        "org.eclipse.elk.spacing.nodeNode": "30",
+    };
+    switch (layoutOptionType) {
+        case "horizontal":
+            return {
+                ...layoutOption,
+                "elk.algorithm": "layered",
+                "elk.direction": "RIGHT"
+            };
+        case "vertical":
+            return {
+                ...layoutOption,
+                "elk.algorithm": "layered",
+                "elk.direction": "DOWN"
+            };
+        case "radial":
+            return {
+                ...layoutOption,
+                "elk.algorithm": "org.eclipse.elk.radial",
+                "elk.direction": "DOWN"
+            };
+        case "force":
+            return {
+                ...layoutOption,
+                "elk.algorithm": "org.eclipse.elk.force",
+                "elk.direction": "DOWN"
+            };
+    }
+}

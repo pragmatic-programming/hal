@@ -1,9 +1,8 @@
 import React from "react";
 import { State } from "../../../state/State";
 import { useStore } from "../../../state/Store";
-import { Divider, Drawer, List, ListSubheader } from "@mui/material";
+import { Drawer, List, ListSubheader } from "@mui/material";
 import ButtonMenu from "../ButtonMenu";
-import { useReactFlow } from "reactflow";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DataUsageIcon from "@mui/icons-material/DataUsage";
@@ -11,21 +10,19 @@ import BoltIcon from "@mui/icons-material/Bolt";
 import RedoIcon from "@mui/icons-material/Redo";
 import CallMadeIcon from "@mui/icons-material/CallMade";
 import MovingIcon from "@mui/icons-material/Moving";
-import MenuDivider from "../MenuDivider";
-import Grid4x4Icon from "@mui/icons-material/Grid4x4";
+import MenuLayoutButtonLayout from "./MenuLayoutButtonLayout";
+import MenuLayoutButtonEdgePathStyle from "./MenuLayoutButtonEdgePathStyle";
+import { Polyline } from "@mui/icons-material";
 
-const menuExamplesWidth = 300;
+const menuExamplesWidth = 200;
 
 export default function MenuLayout(): React.JSX.Element {
-    const {fitView} = useReactFlow();
-    const layout = useStore((state: State) => state.reactFlow.layout);
-    const setEdgePathStyle = useStore((state: State) => state.reactFlow.setEdgePathStyle);
-    const open: boolean = useStore((state: State) => state.menuLayout.open);
     const menuOpenToggle = useStore((state: State) => state.menuLayout.menuLayoutOpenToggle);
+    const open: boolean = useStore((state: State) => state.menuLayout.open);
     return (
         <>
             <ButtonMenu
-                icon={<Grid4x4Icon/>}
+                icon={<Polyline/>}
                 onClick={menuOpenToggle}
                 tooltip={"Layout Settings"}
             />
@@ -42,48 +39,42 @@ export default function MenuLayout(): React.JSX.Element {
                         <ListSubheader>Layout Settings</ListSubheader>
                     }
                 >
-                    <Divider/>
-                    <ButtonMenu
+                    <MenuLayoutButtonLayout
                         icon={<MoreVertIcon/>}
-                        onClick={() => layout(fitView, {"elk.algorithm": "layered", "elk.direction": "DOWN"})}
-                        tooltip="Vertical Layout"
+                        layoutOption={"vertical"}
                     />
-                    <ButtonMenu
+                    <MenuLayoutButtonLayout
                         icon={<MoreHorizIcon/>}
-                        onClick={() => layout(fitView, {"elk.algorithm": "layered", "elk.direction": "RIGHT"})}
-                        tooltip="Horizontal Layout"
+                        layoutOption={"horizontal"}
                     />
-                    <ButtonMenu
+                    <MenuLayoutButtonLayout
                         icon={<DataUsageIcon/>}
-                        onClick={() => layout(fitView, {
-                            "elk.algorithm": "org.eclipse.elk.radial",
-                            "elk.direction": "DOWN"
-                        })}
-                        tooltip="Radial Layout"
+                        layoutOption={"radial"}
                     />
-                    <ButtonMenu
+                    <MenuLayoutButtonLayout
                         icon={<BoltIcon/>}
-                        onClick={() => layout(fitView, {
-                            "elk.algorithm": "org.eclipse.elk.force",
-                            "elk.direction": "DOWN"
-                        })}
-                        tooltip="Force Layout"
+                        layoutOption={"force"}
                     />
-                    <MenuDivider/>
-                    <ButtonMenu
+                </List>
+                <List
+                    style={{
+                        width: menuExamplesWidth
+                    }}
+                    subheader={
+                        <ListSubheader>Edge Settings</ListSubheader>
+                    }
+                >
+                    <MenuLayoutButtonEdgePathStyle
+                        edgePathStyle={"Bezier"}
                         icon={<RedoIcon/>}
-                        onClick={() => setEdgePathStyle("Bezier")}
-                        tooltip="Bezier"
                     />
-                    <ButtonMenu
+                    <MenuLayoutButtonEdgePathStyle
+                        edgePathStyle={"Straight"}
                         icon={<CallMadeIcon/>}
-                        onClick={() => setEdgePathStyle("Straight")}
-                        tooltip="Straight"
                     />
-                    <ButtonMenu
+                    <MenuLayoutButtonEdgePathStyle
+                        edgePathStyle={"Smooth"}
                         icon={<MovingIcon/>}
-                        onClick={() => setEdgePathStyle("Smooth")}
-                        tooltip="Smooth"
                     />
                 </List>
             </Drawer>

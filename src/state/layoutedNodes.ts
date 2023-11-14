@@ -1,6 +1,6 @@
 import { Edge, Node } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
-import { isLayoutDirectionIndicator, sourcePosition, targetPosition } from "./reactFlow/LayoutDirectionIndicator";
+import { sourcePosition, targetPosition } from "./reactFlow/LayoutDirectionIndicator";
 import { FlowState } from "../model/processor/FlowState";
 
 const elk = new ELK({
@@ -11,13 +11,7 @@ const elk = new ELK({
 });
 
 export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutOptions) {
-    const layoutDirection = layoutOptions["elk.direction"];
-    if (!isLayoutDirectionIndicator(layoutDirection)) {
-        throw new Error("elk.direction is not a valid layout direction indicator");
-    }
-
     const nodeMap = new Map<string, Node>();
-
     const graph: ElkNode = {
         id: "root",
         layoutOptions: layoutOptions,
@@ -54,8 +48,8 @@ export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutO
         if (!child.y) {
             throw new Error("Child.y is undefined");
         }
-        node.sourcePosition = sourcePosition(layoutDirection);
-        node.targetPosition = targetPosition(layoutDirection);
+        node.sourcePosition = sourcePosition(layoutOptions);
+        node.targetPosition = targetPosition(layoutOptions);
         node.position = {
             x: child.x,
             y: child.y,

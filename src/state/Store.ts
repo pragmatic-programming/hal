@@ -54,13 +54,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         edgePathStyle: "Bezier",
         edges: [],
         layout: layout(setState, getState),
-        layoutOptions: {
-            "elk.algorithm": "layered",
-            "elk.direction": "RIGHT",
-            "elk.layered.spacing.nodeNodeBetweenLayers": "400",
-            "elk.spacing.nodeNode": "400",
-            "org.eclipse.elk.spacing.nodeNode": "30",
-        },
+        layoutOption: "horizontal",
         nextNodeId: nextNodeId(getState),
         nodes: [
             // crate first node
@@ -76,12 +70,13 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
-        transformCreateNode: transformCreateNode(setState, getState),
         transformCreateEdge: transformCreateEdge(setState, getState),
+        transformCreateNode: transformCreateNode(setState, getState),
     },
     ui: {
         busy: false,
         mode: "light",
+        // todo what should we do with the project name
         projectName: "hello-world.hal",
         switchMode: switchMode(setState),
     },

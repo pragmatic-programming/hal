@@ -10,7 +10,8 @@ import { nodeTypesMapping } from "../../../model/node/nodeTypesMapping";
 import { bottomHeight } from "../../bottom/Bottom";
 import { menuWidth } from "../../menu/Menu";
 import { edgeTypesMapping } from "../../../model/edge/edgeTypesMapping";
-import { isLayoutDirectionIndicator, targetPosition } from "../../../state/reactFlow/LayoutDirectionIndicator";
+import { targetPosition } from "../../../state/reactFlow/LayoutDirectionIndicator";
+import { layoutOptions, LayoutOptionTypeIndicator } from "../../../util";
 
 const selector = (state: State) => ({
     nodes: state.reactFlow.nodes,
@@ -37,10 +38,7 @@ export default function Flow(): React.JSX.Element {
         onConnect
     } = useStore(selector, shallow);
     const nextId = useStore((state: State) => state.reactFlow.nextNodeId);
-    const layoutDirection = useStore((state: State) => state.reactFlow.layoutOptions['elk.direction']);
-    if (!isLayoutDirectionIndicator(layoutDirection)) {
-        throw new Error("elk.direction is not a valid layout direction indicator");
-    }
+    const layoutOption: LayoutOptionTypeIndicator = useStore((state: State) => state.reactFlow.layoutOption);
     const setConnectingSourceNodeId = useStore((state: State) => state.reactFlow.setConnectingSourceNodeId);
 
     const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {
@@ -75,7 +73,7 @@ export default function Flow(): React.JSX.Element {
                                     targetId,
                                     position.x,
                                     position.y - creationNodeHalfHeight,
-                                    targetPosition(layoutDirection),
+                                    targetPosition(layoutOptions(layoutOption)),
                                 )
                             }]);
                             onEdgesChange([{
@@ -88,7 +86,7 @@ export default function Flow(): React.JSX.Element {
             }
         },
         [
-            layoutDirection,
+            layoutOption,
             nextId,
             onEdgesChange,
             onNodesChange,
@@ -119,7 +117,7 @@ export default function Flow(): React.JSX.Element {
                 onConnectEnd={onConnectEnd}
                 onConnectStart={onConnectStart}
                 onEdgesChange={onEdgesChange}
-                onInit={(reactFlowInstance: ReactFlowInstance) => layout(reactFlowInstance.fitView, {"elk.direction": "RIGHT"})}
+                onInit={(reactFlowInstance: ReactFlowInstance) => layout(reactFlowInstance.fitView, layoutOption)}
                 onNodesChange={onNodesChange}
             >
                 <Background/>

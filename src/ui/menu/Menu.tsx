@@ -7,6 +7,7 @@ import { bottomHeight } from "../bottom/Bottom";
 import MenuExamples from "./examples/MenuExamples";
 import ButtonImmediatePlay from "./ButtonImmediatePlay";
 import MenuLayout from "./layout/MenuLayout";
+import ButtonLayout from "./ButtonLayout";
 
 export const menuWidth = 100;
 
@@ -26,6 +27,7 @@ export default function Menu(): React.JSX.Element {
             <ButtonPlay/>
             <ButtonImmediatePlay/>
             <MenuDivider/>
+            <ButtonLayout/>
             <MenuLayout/>
             <MenuDivider/>
             <MenuExamples/>
