@@ -12,13 +12,14 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
         if (!isLayoutDirectionIndicator(layoutDirection)) {
             throw new Error("elk.direction is not a valid layout direction indicator");
         }
+        const state = getState();
         setState({
             ui: {
-                ...getState().ui,
+                ...state.ui,
                 busy: true,
             }
         });
-        const reactFlow = getState().reactFlow;
+        const reactFlow = state.reactFlow;
         setState({
             reactFlow: {
                 ...reactFlow,
@@ -31,8 +32,12 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
         });
         setState({
             ui: {
-                ...getState().ui,
+                ...state.ui,
                 busy: false,
+            },
+            menuLayout: {
+                ...state.menuLayout,
+                open: false,
             }
         });
     };
