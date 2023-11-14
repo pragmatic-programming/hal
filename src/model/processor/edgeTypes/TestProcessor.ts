@@ -1,5 +1,5 @@
 import { CliqueProcessor } from "hal-kico";
-import { SourceNodeStatus } from "ihgraph";
+import { SourceNodeStatus, TransformationDirection } from "ihgraph";
 
 export class TestProcessor extends CliqueProcessor {
 
@@ -9,6 +9,10 @@ export class TestProcessor extends CliqueProcessor {
 
     getName() {
         return "test";
+    }
+
+    getTransformationDirection(): TransformationDirection {
+        return TransformationDirection.DEPENDENCY;
     }
 
     process() {

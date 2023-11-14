@@ -1,5 +1,5 @@
 import { Processor } from "kico";
-import { IHGraph } from "ihgraph";
+import { IHGraph, TransformationDirection } from "ihgraph";
 import { FlowState } from "./FlowState";
 import { NodeData } from "../node/NodeData";
 import { edgeDefinitions } from "../edge/edgeDefinitions";
@@ -13,7 +13,10 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
         const graph = new IHGraph();
 
         for (const edgeDefinition of edgeDefinitions) {
-            graph.createEdgeType(edgeDefinition.type, edgeDefinition.priority).setImmediate(edgeDefinition.immediate);
+            const edgeType = graph.createEdgeType(edgeDefinition.type, edgeDefinition.priority).setImmediate(edgeDefinition.immediate);
+            if (edgeDefinition.transformationDirection === "dependency") {
+                edgeType.setTransformationDirection(TransformationDirection.DEPENDENCY);
+            }
             graph.getTransformationConfiguration().setById(edgeDefinition.type, edgeDefinition.processor);
         }
 

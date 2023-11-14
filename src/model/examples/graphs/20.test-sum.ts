@@ -25,6 +25,17 @@ export function exampleGraphsWYTIWYGSum(): ihgraph.IHGraphFactoryInterface {
             {
                 id: "Test 3",
                 content: "sum(-1) == -1"
+            },
+            {
+                id: "Usage",
+                content: 
+`
+sum(3) + sum(1);
+`                
+            },
+            {
+                id: "Result",
+                content: ""
             }
         ],
         edgeTypes: [
@@ -32,6 +43,16 @@ export function exampleGraphsWYTIWYGSum(): ihgraph.IHGraphFactoryInterface {
                 id: "test",
                 priority: 0,
                 immediate: true
+            },
+            {
+                id: "sequence",
+                priority: 2,
+                immediate: false
+            },
+            {
+                id: "execute",
+                priority: 1,
+                immediate: false
             }
         ],
         edges: [
@@ -50,6 +71,16 @@ export function exampleGraphsWYTIWYGSum(): ihgraph.IHGraphFactoryInterface {
                 sourceNode: "Test 3",
                 targetNode: "Function"
             },
+            {
+                edgeType: "sequence",
+                sourceNode: "Function",
+                targetNode: "Usage"
+            },
+            {
+                edgeType: "execute",
+                sourceNode: "Usage",
+                targetNode: "Result"
+            }
         ]
     };
 }

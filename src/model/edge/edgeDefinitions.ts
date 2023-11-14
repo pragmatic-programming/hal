@@ -85,7 +85,8 @@ export const edgeDefinitionWYTIWYG: EdgeDefinition = {
     priority: 0,
     processor: TestProcessor,
     requiresLabel: true,
-    targetNodeTypes: ["editor"]
+    targetNodeTypes: ["editor"],
+    transformationDirection: "dependency"
 };
 
 // new edge (step 3): add the new edge definition to the following array

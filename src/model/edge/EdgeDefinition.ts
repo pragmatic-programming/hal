@@ -16,4 +16,5 @@ export interface EdgeDefinition {
     requiresLabel: boolean;
     style?: CSSProperties;
     targetNodeTypes: NodeTypeIndicator[]
+    transformationDirection?: "controlflow" | "dependency";
 }
