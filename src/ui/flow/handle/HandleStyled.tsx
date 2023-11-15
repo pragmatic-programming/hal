@@ -3,6 +3,7 @@ import React, { CSSProperties } from "react";
 import { Theme, useTheme } from "@mui/material";
 
 interface Props {
+    hidden?: boolean
     id: string;
     position?: Position;
     style?: CSSProperties;
@@ -53,6 +54,7 @@ export default function HandleStyled(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
     return (
         <Handle
+            hidden={props.hidden}
             id={props.id}
             position={props.position}
             style={createStyle(props, theme)}

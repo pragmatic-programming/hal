@@ -9,7 +9,7 @@ interface Props {
     nodeId: string,
     nodeDefinition: NodeDefinition,
     placement: "bottom" | "top",
-    targetEdgeId: string | undefined,
+    targetEdgeId: string | null | undefined,
 }
 
 export default function NodeCreateButton(props: Props): React.JSX.Element {

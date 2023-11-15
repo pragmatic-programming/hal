@@ -11,7 +11,7 @@ import { HalEdge } from "../../model/edge/HalEdge";
 
 
 export function transformCreateNode(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | undefined): Promise<void> => {
+    return async (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | null | undefined): Promise<void> => {
         const reactFlow: StateReactFlow = getState().reactFlow;
         const nodes: Node[] = transformNodes(reactFlow, nodeDefinition, nodeId);
         let edges: Edge[] = reactFlow.edges;

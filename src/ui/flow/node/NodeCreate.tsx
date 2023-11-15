@@ -13,26 +13,18 @@ import NodeCreateButton from "./NodeCreateButton";
 export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
     const targetEdge: Edge | undefined = useReactFlow().getEdges().find(edge => edge.target === props.id);
-    let handleTop;
-    let handleLeft;
-    let targetEdgeId;
-    if (targetEdge) {
-        targetEdgeId = targetEdge.id;
-        switch (targetEdge.targetHandle) {
-            case "top":
-                handleTop = <HandleTargetTop nodeId={props.id}/>;
-                break;
-            case "left":
-                handleLeft = <HandleTargetLeft nodeId={props.id}/>;
-                break;
-        }
-    }
     return (
         <BoxBorder
             borderColor={borderColor(props, theme, theme.palette.primary.main)}
         >
-            {handleLeft}
-            {handleTop}
+            <HandleTargetTop
+                hidden={targetEdge?.targetHandle !== "top"}
+                nodeId={props.id}
+            />
+            <HandleTargetLeft
+                hidden={targetEdge?.targetHandle !== "left"}
+                nodeId={props.id}
+            />
             <BoxBackgroundMain
                 style={{
                     padding: 10,
@@ -43,7 +35,7 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         nodeId={props.id}
                         nodeDefinition={nodeDefinitionEditor}
                         placement={"top"}
-                        targetEdgeId={targetEdgeId}
+                        targetEdgeId={targetEdge?.targetHandle}
                     />
                 </div>
                 <div>
@@ -51,7 +43,7 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         nodeId={props.id}
                         nodeDefinition={nodeDefinitionImage}
                         placement={"bottom"}
-                        targetEdgeId={targetEdgeId}
+                        targetEdgeId={targetEdge?.targetHandle}
                     />
                     <Tooltip
                         placement="top"
