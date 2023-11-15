@@ -1,17 +1,17 @@
 import ReactFlow, { Background, Controls, OnConnectStartParams, ReactFlowInstance, useReactFlow } from "reactflow";
 import "reactflow/dist/style.css";
-import { State } from "../../../state/State";
+import { State } from "../../state/State";
 import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef } from "react";
-import { useStore } from "../../../state/Store";
+import { useStore } from "../../state/Store";
 import { shallow } from "zustand/shallow";
-import { createNodeCreate } from "../../../model/node/createNode";
-import { createEdgeFromOnConnectStartParams } from "../../../model/edge/createEdge";
-import { nodeTypesMapping } from "../../../model/node/nodeTypesMapping";
-import { bottomHeight } from "../../bottom/Bottom";
-import { menuWidth } from "../../menu/Menu";
-import { edgeTypesMapping } from "../../../model/edge/edgeTypesMapping";
-import { targetPosition } from "../../../state/reactFlow/LayoutDirectionIndicator";
-import { layoutOptions, LayoutOptionTypeIndicator } from "../../../util";
+import { createNodeCreate } from "../../model/node/createNode";
+import { createEdgeFromOnConnectStartParams } from "../../model/edge/createEdge";
+import { nodeTypesMapping } from "../../model/node/nodeTypesMapping";
+import { bottomHeight } from "../bottom/Bottom";
+import { menuWidth } from "../menu/Menu";
+import { edgeTypesMapping } from "../../model/edge/edgeTypesMapping";
+import { targetPosition } from "../../state/reactFlow/LayoutDirectionIndicator";
+import { layoutOptions, LayoutOptionTypeIndicator } from "../../util";
 
 const selector = (state: State) => ({
     nodes: state.reactFlow.nodes,
