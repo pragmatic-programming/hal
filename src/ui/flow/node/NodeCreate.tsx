@@ -1,5 +1,5 @@
 import React from "react";
-import { NodeProps } from "reactflow";
+import { Edge, NodeProps, useReactFlow } from "reactflow";
 import { IconButton, Theme, Tooltip, useTheme } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
@@ -12,26 +12,47 @@ import NodeCreateButton from "./NodeCreateButton";
 
 export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
+    const targetEdge: Edge | undefined = useReactFlow().getEdges().find(edge => edge.target === props.id);
+    let handleTop;
+    let handleLeft;
+    let targetEdgeId;
+    if (targetEdge) {
+        targetEdgeId = targetEdge.id;
+        switch (targetEdge.targetHandle) {
+            case "top":
+                handleTop = <HandleTargetTop nodeId={props.id}/>;
+                break;
+            case "left":
+                handleLeft = <HandleTargetLeft nodeId={props.id}/>;
+                break;
+        }
+    }
     return (
         <BoxBorder
             borderColor={borderColor(props, theme, theme.palette.primary.main)}
         >
-            <HandleTargetTop
-                nodeId={props.id}
-            />
-            <HandleTargetLeft
-                nodeId={props.id}
-            />
+            {handleLeft}
+            {handleTop}
             <BoxBackgroundMain
                 style={{
                     padding: 10,
                 }}
             >
                 <div>
-                    <NodeCreateButton nodeId={props.id} nodeDefinition={nodeDefinitionEditor} placement={"top"}/>
+                    <NodeCreateButton
+                        nodeId={props.id}
+                        nodeDefinition={nodeDefinitionEditor}
+                        placement={"top"}
+                        targetEdgeId={targetEdgeId}
+                    />
                 </div>
                 <div>
-                    <NodeCreateButton nodeId={props.id} nodeDefinition={nodeDefinitionImage} placement={"bottom"}/>
+                    <NodeCreateButton
+                        nodeId={props.id}
+                        nodeDefinition={nodeDefinitionImage}
+                        placement={"bottom"}
+                        targetEdgeId={targetEdgeId}
+                    />
                     <Tooltip
                         placement="top"
                         title={"Show more options"}
