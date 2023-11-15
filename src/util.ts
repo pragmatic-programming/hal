@@ -1,5 +1,5 @@
 import { EdgeProps, getBezierPath, getSmoothStepPath, getStraightPath, NodeProps } from "reactflow";
-import { EdgePathStyle } from "./state/reactFlow/EdgePathStyle";
+import { EdgePathStyle } from "./model/edge/EdgePathStyle";
 import { Theme } from "@mui/material";
 import { SourceNodeStatus } from "ihgraph";
 import { LayoutOptions } from "elkjs/lib/elk-api";

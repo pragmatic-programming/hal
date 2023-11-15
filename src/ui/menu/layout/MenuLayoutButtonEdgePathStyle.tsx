@@ -3,7 +3,7 @@ import { State } from "../../../state/State";
 import { useStore } from "../../../state/Store";
 import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
 import { firstCharUpperCase } from "../../../util";
-import { EdgePathStyle } from "../../../state/reactFlow/EdgePathStyle";
+import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
 
 interface Props {
     edgePathStyle: EdgePathStyle;

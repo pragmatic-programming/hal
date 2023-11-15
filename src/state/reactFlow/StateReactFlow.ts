@@ -1,6 +1,6 @@
 import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } from "reactflow";
 import { NodeData } from "../../model/node/NodeData";
-import { EdgePathStyle } from "./EdgePathStyle";
+import { EdgePathStyle } from "../../model/edge/EdgePathStyle";
 import { LanguageIndicator } from "../../model/node/LanguageIndicator";
 import { IHGraph } from "ihgraph";
 import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
