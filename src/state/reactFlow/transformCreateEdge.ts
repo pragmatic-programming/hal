@@ -1,11 +1,11 @@
 import { State } from "../State";
 import { StoreApi } from "zustand";
-import { createEdgeId } from "../../model/edge/createEdge";
 import { Edge, Node } from "reactflow";
 import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
 import { StateReactFlow } from "./StateReactFlow";
 import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
-import { transformCreateNodeByNodeTypeIndicator } from "./transformCreateNode";
+import { HalNode } from "../../model/node/HalNode";
+import { HalEdge } from "../../model/edge/HalEdge";
 
 
 export function transformCreateEdge(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -29,21 +29,13 @@ export function transformCreateEdge(setState: StoreApi<State>["setState"], getSt
     };
 }
 
-export function transformCreateEdgeByEdgeDefinition(edge: Edge, edgeDefinition: EdgeDefinition): Edge {
-    if (edge.type !== "create") {
-        throw new Error("Edge is not from typ create");
-    }
-    edge.id = createEdgeId(edge.source, edge.target, edge.data.sourceHandle, edge.data.targetHandle, edgeDefinition.type);
-    edge.type = edgeDefinition.type;
-    edge.animated = edgeDefinition.animated;
-    edge.label = edgeDefinition.type;
-    return edge;
-}
 
 function transformNodes(reactFlow: StateReactFlow, type: NodeTypeIndicator, nodeId: string): Node[] {
     return reactFlow.nodes.map((node: Node) => {
         if (node.id === nodeId) {
-            node = transformCreateNodeByNodeTypeIndicator(node, type);
+            if (node.type === "create") {
+                node = new HalNode(node).transformByNodeTypeIndicator(type);
+            }
         }
         return node;
     });
@@ -53,7 +45,7 @@ function transformNodes(reactFlow: StateReactFlow, type: NodeTypeIndicator, node
 function transformEdges(reactFlow: StateReactFlow, edgeDefinition: EdgeDefinition, edgeId: string): Edge[] {
     return reactFlow.edges.map((edge: Edge) => {
         if (edge.id === edgeId) {
-            edge = transformCreateEdgeByEdgeDefinition(edge, edgeDefinition);
+            edge = new HalEdge(edge).transformByEdgeDefinition(edgeDefinition);
         }
         return edge;
     });

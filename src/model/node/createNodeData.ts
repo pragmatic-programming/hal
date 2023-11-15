@@ -1,15 +1,8 @@
-import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage } from "./NodeData";
+import { NodeData, NodeDataEditor, NodeDataImage } from "./NodeData";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { NodeDataTypeIdentifier } from "./NodeDataTypeIdentifier";
 import { SourceNodeStatus } from "ihgraph";
 
-export function createNodeDataCreation(): NodeDataCreate {
-    return {
-        height: 0,
-        type: "create",
-        width: 0,
-    };
-}
 
 export function createNodeDataEditor(
     content: string,

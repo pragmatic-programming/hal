@@ -85,7 +85,7 @@ export function createEdgeId(sourceId: string, targetId: string, sourceHandleId:
     return "e-" + sourceId + "-" + targetId + "-" + sourceHandleId + "-" + targetHandleId + "-" + edgeTypeIndication;
 }
 
-function createEdgeFromEdgeDefinition(
+export function createEdgeFromEdgeDefinition(
     edgeDefinition: EdgeDefinition,
     sourceId: string,
     targetId: string,

@@ -2,14 +2,12 @@ import { State } from "../State";
 import { StoreApi } from "zustand";
 import { Edge, Node } from "reactflow";
 import { StateReactFlow } from "./StateReactFlow";
-import { NodeData } from "../../model/node/NodeData";
-import { createNodeDataFromCreationNode } from "../../model/node/createNodeData";
 import { createEdgeDataCreate } from "../../model/edge/createEdgeData";
 import { EdgeTypeIndicator, edgeTypeIndicators } from "../../model/edge/EdgeTypeIndicator";
 import { NodeDefinition } from "../../model/node/NodeDefinition";
-import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
-import { transformCreateEdgeByEdgeDefinition } from "./transformCreateEdge";
 import { retrieveEdgeDefinition } from "../../model/edge/edgeDefinitions";
+import { HalNode } from "../../model/node/HalNode";
+import { HalEdge } from "../../model/edge/HalEdge";
 
 
 export function transformCreateNode(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -32,21 +30,12 @@ export function transformCreateNode(setState: StoreApi<State>["setState"], getSt
     };
 }
 
-export function transformCreateNodeByNodeTypeIndicator(node: Node, type: NodeTypeIndicator): Node {
-    if (node.type === "create") {
-        const data: NodeData = createNodeDataFromCreationNode(type);
-        node.type = type;
-        node.data = data;
-        node.height = data.height;
-        node.width = data.width;
-    }
-    return node;
-}
-
 function transformNodes(reactFlow: StateReactFlow, nodeDefinition: NodeDefinition, nodeId: string): Node[] {
     return reactFlow.nodes.map((node: Node) => {
         if (node.id === nodeId) {
-            node = transformCreateNodeByNodeTypeIndicator(node, nodeDefinition.type);
+            if (node.type === "create") {
+                node = new HalNode(node).transformByNodeTypeIndicator(nodeDefinition.type);
+            }
         }
         return node;
     });
@@ -59,8 +48,7 @@ function transformEdges(reactFlow: StateReactFlow, nodeDefinition: NodeDefinitio
         return reactFlow.edges.map((edge: Edge) => {
             if (edge.id === edgeId) {
                 const firstSourceEdgeType: EdgeTypeIndicator = nodeDefinition.sourceEdgeTypes[0];
-                edge = transformCreateEdgeByEdgeDefinition(
-                    edge,
+                edge = new HalEdge(edge).transformByEdgeDefinition(
                     retrieveEdgeDefinition(firstSourceEdgeType)
                 );
             }

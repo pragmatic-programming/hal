@@ -3,7 +3,7 @@ import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, } from "./NodeData";
-import { createNodeDataCreation, createNodeDataEditor, createNodeDataImage } from "./createNodeData";
+import { createNodeDataEditor, createNodeDataImage } from "./createNodeData";
 
 
 export function createNodeFromSourceNode(sourceNode: SourceNode): Node<NodeData> {
@@ -50,7 +50,12 @@ export function createNodeCreate(
     return {
         id: id,
         type: "create",
-        data: createNodeDataCreation(),
+        // todo this should be a create method
+        data: {
+            height: 0,
+            type: "create",
+            width: 0,
+        },
         position: {x: x, y: y},
         targetPosition: targetPosition,
         width: 0,
