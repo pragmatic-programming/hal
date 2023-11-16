@@ -1,12 +1,10 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
 import { NodeDataImage } from "../../../model/node/NodeData";
-import ImageIcon from "@mui/icons-material/Image";
-import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
-import { IconButton, Theme, useTheme } from "@mui/material";
+import { Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
-import { BoxBorder } from "../../util/BoxBorder";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
+import NodeImageDefault from "./NodeImageDefault";
 
 export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.Element {
     const reactFlow = useReactFlow();
@@ -20,18 +18,13 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
     if (!node.width) {
         throw new Error("Node.width is undefined");
     }
-    const padding: CSSProperties = {padding: 10};
     const theme: Theme = useTheme();
     let img: React.JSX.Element = (
-        <BoxBorder
+        <NodeImageDefault
             borderColor={borderColor(props, theme, theme.palette.primary.main)}
-        >
-            <BoxBackgroundMain style={padding}>
-                <IconButton style={padding}>
-                    <ImageIcon style={{width: props.data.width, height: props.data.height}}/>
-                </IconButton>
-            </BoxBackgroundMain>
-        </BoxBorder>
+            width={props.data.width}
+            height={props.data.height}
+        />
     );
     if (props.data.content && props.data.content.length > 0) {
         img = (
