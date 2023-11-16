@@ -3,7 +3,7 @@ import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, } from "./NodeData";
-import { createNodeDataEditor, createNodeDataImage } from "./createNodeData";
+import { NodeDataFactory } from "./NodeDataFactory";
 
 export class NodeFactory {
 
@@ -53,7 +53,7 @@ export class NodeFactory {
         return {
             id: id,
             type: "image",
-            data: createNodeDataImage(content, height, width),
+            data: NodeDataFactory.nodeDataImage(content, height, width),
             position: {x: x, y: y},
             width: width,
             height: height,
@@ -97,7 +97,7 @@ export class NodeFactory {
         return {
             id: id,
             type: "editor",
-            data: createNodeDataEditor(content, label, language, height, width, status),
+            data: NodeDataFactory.nodeDataEditor(content, label, language, height, width, status),
             position: {x: x, y: y},
             width: width,
             height: height,

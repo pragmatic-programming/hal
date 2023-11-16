@@ -1,7 +1,7 @@
 import { Node } from "reactflow";
 import { NodeTypeIndicator } from "./NodeTypeIndicator";
 import { NodeData } from "./NodeData";
-import { createNodeDataFromCreationNode } from "./createNodeData";
+import { NodeDataFactory } from "./NodeDataFactory";
 
 export class HalNode {
     private readonly node: Node;
@@ -14,7 +14,7 @@ export class HalNode {
         const node = {
             ...this.node
         };
-        const data: NodeData = createNodeDataFromCreationNode(type);
+        const data: NodeData = NodeDataFactory.fromCreationNode(type);
         node.type = type;
         node.data = data;
         node.height = data.height;
