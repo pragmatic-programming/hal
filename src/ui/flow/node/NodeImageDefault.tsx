@@ -10,7 +10,7 @@ interface Props {
     width: number,
 }
 
-const padding: CSSProperties = {padding: 10};
+const padding: CSSProperties = {padding: 9};
 
 export default function NodeImageDefault(props: Props): React.JSX.Element {
     return (
