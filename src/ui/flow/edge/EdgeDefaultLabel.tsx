@@ -7,6 +7,7 @@ import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { SvgIconComponent } from "@mui/icons-material";
 import { useReactFlow } from "reactflow";
+import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
@@ -38,8 +39,7 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     );
     if (props.edgeDefinition.requiresLabel) {
         content = (
-            <TextField
-                variant="outlined"
+            <EdgeDefaultLabelTextField
                 size="small"
                 InputProps={{
                     inputProps: {
@@ -56,7 +56,7 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
                 value={props.label}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
                 style={{
-                    backgroundColor: theme.palette.primary.light,
+                    backgroundColor: theme.palette.primary.main,
                     width: 130,
                 }}
             />
