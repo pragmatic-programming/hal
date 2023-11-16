@@ -1,7 +1,6 @@
 import React from "react";
 import ButtonPlay from "./ButtonPlay";
 import MenuDivider from "./MenuDivider";
-import ButtonSwitchMode from "./ButtonSwitchMode";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import { bottomHeight } from "../bottom/Bottom";
 import MenuExamples from "./examples/MenuExamples";
@@ -22,15 +21,13 @@ export default function Menu(): React.JSX.Element {
                 width: menuWidth - 1, // subtract 1px which is added by borderRight
                 height: "calc(100vh - " + bottomHeight + "px)",
             }}>
-            <ButtonSwitchMode/>
+            <MenuExamples/>
             <MenuDivider/>
             <ButtonPlay/>
             <ButtonImmediatePlay/>
             <MenuDivider/>
             <ButtonLayout/>
             <MenuLayout/>
-            <MenuDivider/>
-            <MenuExamples/>
         </BoxBackgroundMain>
     );
 }

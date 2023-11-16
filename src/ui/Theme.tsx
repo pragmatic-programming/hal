@@ -1,14 +1,12 @@
 import React from "react";
-import { createTheme, Palette, PaletteMode, ThemeProvider } from "@mui/material";
-import { useStore } from "../state/Store";
-import { State } from "../state/State";
+import { createTheme, Palette, ThemeProvider } from "@mui/material";
 
 interface Props {
     children: React.JSX.Element[] | React.JSX.Element;
 }
 
 
-function theme(mode: PaletteMode) {
+function theme() {
     let palette: Partial<Palette> = {
         primary: {
             main: "#eeeeee",
@@ -23,34 +21,17 @@ function theme(mode: PaletteMode) {
             contrastText: "",
         }
     };
-    if (mode === "dark") {
-        palette = {
-            secondary: {
-                main: "#eeeeee",
-                light: "#f0f0f0",
-                dark: "#dcdcdc",
-                contrastText: "rgba(0, 0, 0, 0.87)",
-            },
-            primary: {
-                main: "rgba(0, 0, 0, 0.87)",
-                light: "#f0f0f0",
-                dark: "#dcdcdc",
-                contrastText: "",
-            }
-        };
-    }
     return createTheme({
         palette: {
             ...palette,
-            mode: mode,
+            mode: "light",
         },
     });
 }
 
 export default function Theme(props: Props): React.JSX.Element {
-    const mode: PaletteMode = useStore((state: State) => state.ui.mode);
     return (
-        <ThemeProvider theme={React.useMemo(() => theme(mode), [mode])}>
+        <ThemeProvider theme={React.useMemo(() => theme(), [])}>
             {props.children}
         </ThemeProvider>
     );

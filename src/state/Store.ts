@@ -6,7 +6,6 @@ import { onConnect } from "./flow/onConnect";
 import { run } from "./compilation/run";
 import { layout } from "./flow/layout";
 import { render } from "./flow/render";
-import { switchMode } from "./ui/switchMode";
 import { setEdgeLabel } from "./flow/setEdgeLabel";
 import { editorOpen } from "./editor/editorOpen";
 import { editorContentSet } from "./editor/editorContentSet";
@@ -78,6 +77,5 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         mode: "light",
         // todo what should we do with the project name
         projectName: "hello-world.hal",
-        switchMode: switchMode(setState),
     },
 }));
