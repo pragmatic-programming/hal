@@ -16,12 +16,12 @@ interface Props {
 
 export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     const setEdgeLabel = useStore((state: State) => state.reactFlow.setEdgeLabel);
-    const {deleteElements} = useReactFlow();
+    const reactFlow = useReactFlow();
     const [inputValue, setInputValue] = useState<SvgIconComponent>(props.edgeDefinition.icon);
     const theme: Theme = useTheme();
     const iconButton: React.JSX.Element = (
         <IconButton
-            onClick={() => deleteElements({edges: [{id: props.id}]})}
+            onClick={() => reactFlow.deleteElements({edges: [{id: props.id}]})}
             onMouseEnter={() => setInputValue(DeleteIcon)}
             onMouseLeave={() => setInputValue(props.edgeDefinition.icon)}
         >

@@ -14,7 +14,7 @@ interface Props {
 
 export default function Model(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
-    const {fitView} = useReactFlow();
+    const reactFlow = useReactFlow();
     const renderIHGraph = useStore((state: State) => state.reactFlow.render);
     let borderStyle: "dotted" | "solid" | "double";
     let borderWidth: number;
@@ -49,7 +49,7 @@ export default function Model(props: Props): React.JSX.Element {
             title={title}
         >
             <IconButton
-                onClick={() => renderIHGraph(property, fitView)}
+                onClick={() => renderIHGraph(property, reactFlow.fitView)}
                 sx={{
                     marginLeft: marginLeft,
                     marginRight: marginRight,

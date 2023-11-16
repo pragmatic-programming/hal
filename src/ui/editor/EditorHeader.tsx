@@ -25,8 +25,8 @@ export const editorHeaderHeight = 46;
 
 export default function EditorHeader(props: Props): React.JSX.Element {
     const openEditor = useStore((state: State) => state.editor.editorOpen);
-    const {getNode} = useReactFlow();
-    let node: Node<NodeData> | undefined = getNode(props.nodeId);
+    const reactFlow = useReactFlow();
+    let node: Node<NodeData> | undefined = reactFlow.getNode(props.nodeId);
     if (!node) {
         throw new Error("Node is undefined");
     }
@@ -41,7 +41,7 @@ export default function EditorHeader(props: Props): React.JSX.Element {
             }}
         >
             <InsertDriveFile
-                onClick={() => openEditor(getNode, props.nodeId)}
+                onClick={() => openEditor(reactFlow.getNode, props.nodeId)}
                 sx={{color: "action.active"}}
             />
             <EditorNodeLabelTextField

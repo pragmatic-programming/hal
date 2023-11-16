@@ -9,8 +9,8 @@ import { BoxBorder } from "../../util/BoxBorder";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
 
 export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.Element {
-    const {getNode,} = useReactFlow();
-    const node = getNode(props.id);
+    const reactFlow = useReactFlow();
+    const node = reactFlow.getNode(props.id);
     if (!node) {
         throw new Error("Node is undefined");
     }

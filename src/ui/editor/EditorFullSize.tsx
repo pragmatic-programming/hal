@@ -25,9 +25,9 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
     const editorOpenSetLabel = useStore((state: State) => state.editor.editorLabelSet);
     const editorOpenSetContent = useStore((state: State) => state.editor.editorContentSet);
     const openEditor = useStore((state: State) => state.editor.editorOpen);
-    const {getNode} = useReactFlow();
+    const reactFlow = useReactFlow();
     const theme: Theme = useTheme();
-    let node: Node<NodeData> | undefined = getNode(props.editorState.nodeId);
+    let node: Node<NodeData> | undefined = reactFlow.getNode(props.editorState.nodeId);
     if (!node) {
         throw new Error("Node is undefined");
     }
@@ -51,7 +51,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                     top: 5,
                     right: 5,
                 }}
-                onClick={() => openEditor(getNode, undefined)}
+                onClick={() => openEditor(reactFlow.getNode, undefined)}
             >
                 <Close/>
             </IconButton>

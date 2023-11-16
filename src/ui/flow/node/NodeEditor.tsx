@@ -19,8 +19,8 @@ const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
-    const {getNode,} = useReactFlow();
-    const node = getNode(props.id);
+    const reactFlow = useReactFlow();
+    const node = reactFlow.getNode(props.id);
     if (!node) {
         throw new Error("Node is undefined");
     }

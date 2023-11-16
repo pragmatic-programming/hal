@@ -24,11 +24,11 @@ const menuExamplesWidth = 300;
 export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);
     const menuOpenToggle = useStore((state: State) => state.menuExamples.menuExampleOpenToggle);
-    const {fitView} = useReactFlow();
+    const reactFlow = useReactFlow();
     const render = useStore((state: State) => (example: Example) => {
         state.reactFlow.render(
             createIHGraphFromJSON(example.value),
-            fitView,
+            reactFlow.fitView,
             example.name,
         );
     });

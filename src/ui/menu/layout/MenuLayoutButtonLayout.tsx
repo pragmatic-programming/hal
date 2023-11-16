@@ -11,14 +11,14 @@ interface Props {
 }
 
 export default function MenuLayoutButtonLayout(props: Props): React.JSX.Element {
-    const {fitView} = useReactFlow();
+    const reactFlow = useReactFlow();
     const layout = useStore((state: State) => state.reactFlow.layout);
     const layoutOption = useStore((state: State) => state.reactFlow.layoutOption);
     return (
         <ListItem>
             <ListItemButton
                 selected={layoutOption === props.layoutOption}
-                onClick={() => layout(fitView, props.layoutOption)}
+                onClick={() => layout(reactFlow.fitView, props.layoutOption)}
             >
                 <ListItemIcon>
                     {props.icon}

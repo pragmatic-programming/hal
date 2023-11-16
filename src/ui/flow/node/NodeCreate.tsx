@@ -12,7 +12,8 @@ import NodeCreateButton from "./NodeCreateButton";
 
 export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
-    const targetEdge: Edge | undefined = useReactFlow().getEdges().find(edge => edge.target === props.id);
+    const reactFlow = useReactFlow();
+    const targetEdge: Edge | undefined = reactFlow.getEdges().find(edge => edge.target === props.id);
     return (
         <BoxBorder
             borderColor={borderColor(props, theme, theme.palette.primary.main)}

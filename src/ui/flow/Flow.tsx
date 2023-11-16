@@ -28,7 +28,7 @@ const creationNodeHalfHeight = 30;
 export default function Flow(): React.JSX.Element {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
     const connectStartParams = useRef<OnConnectStartParams | null>(null);
-    const {project} = useReactFlow();
+    const reactFlow = useReactFlow();
     const {
         layout,
         nodes,
@@ -58,7 +58,7 @@ export default function Flow(): React.JSX.Element {
                             throw new Error("Current is null");
                         }
                         const boundingClientRect: DOMRect = current.getBoundingClientRect();
-                        const position = project({
+                        const position = reactFlow.project({
                             x: event.clientX - boundingClientRect.left,
                             y: event.clientY - boundingClientRect.top
                         });
@@ -86,11 +86,11 @@ export default function Flow(): React.JSX.Element {
             }
         },
         [
+            reactFlow,
             layoutOption,
             nextId,
             onEdgesChange,
             onNodesChange,
-            project,
             setConnectingSourceNodeId
         ]
     );

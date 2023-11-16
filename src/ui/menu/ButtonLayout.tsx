@@ -6,12 +6,12 @@ import { State } from "../../state/State";
 import { useReactFlow } from "reactflow";
 
 export default function ButtonLayout(): React.JSX.Element {
-    const {fitView} = useReactFlow();
+    const reactFlow = useReactFlow();
     const layoutOptions = useStore((state: State) => state.reactFlow.layoutOption);
     const layout = useStore((state: State) => state.reactFlow.layout);
     return (
         <ButtonMenu
-            onClick={()=>layout(fitView, layoutOptions)}
+            onClick={()=>layout(reactFlow.fitView, layoutOptions)}
             icon={<Hive fontSize="inherit"/>}
             tooltip="Layout"
         />

@@ -13,8 +13,8 @@ import EdgeDefaultLabel from "./EdgeDefaultLabel";
 export default function EdgeDefault(props: EdgeProps): React.JSX.Element {
     const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
     let {edgePath, labelX, labelY} = getEdgePath(edgePathStyle, props);
-    const {getEdge,} = useReactFlow();
-    const edge: Edge | undefined = getEdge(props.id);
+    const reactFlow = useReactFlow();
+    const edge: Edge | undefined = reactFlow.getEdge(props.id);
     if (!edge) {
         throw new Error("Edge is undefined");
     }
