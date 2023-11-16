@@ -21,10 +21,10 @@ import { setNodeNodeDataLabel } from "./reactFlow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./reactFlow/setNodeNodeDataContent";
 import { runImmediate } from "./compilation/runImmediate";
 import { transformCreateEdge } from "./reactFlow/transformCreateEdge";
-import { createNodeCreate } from "../model/node/createNode";
 import { Position } from "@reactflow/core";
 import { nextNodeId } from "./reactFlow/nextNodeId";
 import { menuLayoutOpenToggle } from "./menuLayout/menuLayoutOpenToggle";
+import { NodeFactory } from "../model/node/NodeFactory";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -58,7 +58,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         nextNodeId: nextNodeId(getState),
         nodes: [
             // crate first node
-            createNodeCreate("1", 100, 100, Position.Left)
+            NodeFactory.nodeCreate("1", 100, 100, Position.Left)
         ],
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),

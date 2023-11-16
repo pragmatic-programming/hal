@@ -4,7 +4,6 @@ import { State } from "../../state/State";
 import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef } from "react";
 import { useStore } from "../../state/Store";
 import { shallow } from "zustand/shallow";
-import { createNodeCreate } from "../../model/node/createNode";
 import { createEdgeFromOnConnectStartParams } from "../../model/edge/createEdge";
 import { nodeTypesMapping } from "../../model/node/nodeTypesMapping";
 import { bottomHeight } from "../bottom/Bottom";
@@ -12,6 +11,7 @@ import { menuWidth } from "../menu/Menu";
 import { edgeTypesMapping } from "../../model/edge/edgeTypesMapping";
 import { targetPosition } from "../../state/reactFlow/LayoutDirectionIndicator";
 import { layoutOptions } from "../../util";
+import { NodeFactory } from "../../model/node/NodeFactory";
 
 const selector = (state: State) => ({
     edges: state.reactFlow.edges,
@@ -60,7 +60,7 @@ export default function Flow(): React.JSX.Element {
                             const targetId = store.nextNodeId();
                             store.onNodesChange([{
                                 type: "add",
-                                item: createNodeCreate(
+                                item: NodeFactory.nodeCreate(
                                     targetId,
                                     position.x,
                                     position.y - creationNodeHalfHeight,

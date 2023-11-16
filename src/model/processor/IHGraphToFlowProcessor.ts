@@ -1,9 +1,9 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { Edge, Node } from "reactflow";
-import { createNodeFromSourceNode } from "../node/createNode";
 import { FlowState } from "./FlowState";
 import { createEdgeFromTransformationEdge } from "../edge/createEdge";
+import { NodeFactory } from "../node/NodeFactory";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 
@@ -11,7 +11,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
         const ihGraph: IHGraph = this.getModel();
         const nodes: Node[] = [];
         for (const sourceNode of ihGraph.getSourceNodes()) {
-            nodes.push(createNodeFromSourceNode(sourceNode));
+            nodes.push(NodeFactory.fromSourceNode(sourceNode));
         }
         const edges: Edge[] = [];
         for (const edge of ihGraph.getEdges()) {
