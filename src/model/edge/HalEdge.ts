@@ -1,7 +1,7 @@
 import { Edge } from "reactflow";
 import { EdgeDefinition } from "./EdgeDefinition";
-import { createEdgeDataFromCreationEdge } from "./createEdgeData";
 import { EdgeFactory } from "./EdgeFactory";
+import { EdgeDataFactory } from "./EdgeDataFactory";
 
 export class HalEdge {
     private readonly edge: Edge;
@@ -21,7 +21,7 @@ export class HalEdge {
         edge.type = edgeDefinition.type;
         edge.animated = edgeDefinition.animated;
         edge.label = edgeDefinition.type;
-        edge.data = createEdgeDataFromCreationEdge(
+        edge.data = EdgeDataFactory.edgeDataFromCreationEdge(
             edgeDefinition.type,
             edge.data.sourceHandle,
             edge.data.targetHandle

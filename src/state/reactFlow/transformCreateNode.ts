@@ -2,12 +2,12 @@ import { State } from "../State";
 import { StoreApi } from "zustand";
 import { Edge, Node } from "reactflow";
 import { StateReactFlow } from "./StateReactFlow";
-import { createEdgeDataCreate } from "../../model/edge/createEdgeData";
 import { EdgeTypeIndicator, edgeTypeIndicators } from "../../model/edge/EdgeTypeIndicator";
 import { NodeDefinition } from "../../model/node/NodeDefinition";
 import { retrieveEdgeDefinition } from "../../model/edge/edgeDefinitions";
 import { HalNode } from "../../model/node/HalNode";
 import { HalEdge } from "../../model/edge/HalEdge";
+import { EdgeDataFactory } from "../../model/edge/EdgeDataFactory";
 
 
 export function transformCreateNode(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -60,7 +60,7 @@ function transformEdges(reactFlow: StateReactFlow, nodeDefinition: NodeDefinitio
             if (edge.type !== "create") {
                 throw new Error("Edge is not from type create");
             }
-            edge.data = createEdgeDataCreate(edge.data, deniedEdgeTypes(nodeDefinition));
+            edge.data = EdgeDataFactory.edgeDataCreate(edge.data, deniedEdgeTypes(nodeDefinition));
         }
         return edge;
     });

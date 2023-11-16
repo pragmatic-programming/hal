@@ -3,13 +3,13 @@ import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
 import { edgeDefinitionCreate, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 import { EdgeData } from "./EdgeData";
-import { createEdgeDataFromCreationEdge } from "./createEdgeData";
 import { TransformationEdge } from "../../../../ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { TargetHandleId } from "./TargetHandleId";
+import { EdgeDataFactory } from "./EdgeDataFactory";
 
 
-export class EdgeFactory{
+export class EdgeFactory {
 
     static fromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
         if (!onConnectStartParams.nodeId) {
@@ -109,7 +109,7 @@ export class EdgeFactory{
                 width: 30,
                 height: 30,
             },
-            data: createEdgeDataFromCreationEdge(edgeDefinition.type, sourceHandleId, targetHandleId)
+            data: EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition.type, sourceHandleId, targetHandleId)
         };
     }
 }
