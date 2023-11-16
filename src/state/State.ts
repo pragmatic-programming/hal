@@ -1,5 +1,5 @@
 import { StateEditor } from "./editor/StateEditor";
-import { StateReactFlow } from "./reactFlow/StateReactFlow";
+import { StateFlow } from "./flow/StateFlow";
 import { StateCompilation } from "./compilation/StateCompilation";
 import { StateUi } from "./ui/StateUi";
 import { StateMenuExamples } from "./menuExamples/StateMenuExamples";
@@ -12,6 +12,6 @@ export interface State {
     editor: StateEditor,
     menuExamples: StateMenuExamples,
     menuLayout: StateMenuLayout,
-    reactFlow: StateReactFlow
+    reactFlow: StateFlow
     ui: StateUi,
 }

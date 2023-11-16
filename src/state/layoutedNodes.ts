@@ -1,6 +1,6 @@
 import { Edge, Node } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
-import { sourcePosition, targetPosition } from "./reactFlow/LayoutDirectionIndicator";
+import { sourcePosition, targetPosition } from "./flow/LayoutDirectionIndicator";
 import { FlowState } from "../model/processor/FlowState";
 
 const elk = new ELK({

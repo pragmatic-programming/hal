@@ -2,7 +2,7 @@ import { State } from "../State";
 import { Node } from "reactflow";
 import { NodeData } from "../../model/node/NodeData";
 import { StoreApi } from "zustand";
-import { StateReactFlow } from "../reactFlow/StateReactFlow";
+import { StateFlow } from "../flow/StateFlow";
 import { StateEditorOpen } from "./StateEditor";
 
 export function editorOpen(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -31,7 +31,7 @@ export function editorOpen(setState: StoreApi<State>["setState"], getState: () =
             if (!open) {
                 throw new Error("EditorOpen.open is undefined");
             }
-            const reactFlow: StateReactFlow = getState().reactFlow;
+            const reactFlow: StateFlow = getState().reactFlow;
             setState({
                 editor: {
                     ...editor,

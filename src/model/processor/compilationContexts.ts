@@ -3,7 +3,7 @@ import { HALGraphProcessor } from "hal-kico";
 import { IHGraph } from "ihgraph";
 import { FlowToIHGraphProcessor } from "./FlowToIHGraphProcessor";
 import { IHGraphToFlowProcessor } from "./IHGraphToFlowProcessor";
-import { StateReactFlow } from "../../state/reactFlow/StateReactFlow";
+import { StateFlow } from "../../state/flow/StateFlow";
 
 
 export function ihGraphToHalGraph(ihgraph: IHGraph): CompilationContext {
@@ -14,7 +14,7 @@ export function ihGraphToHalGraph(ihgraph: IHGraph): CompilationContext {
 }
 
 
-export function flowToIHGraph(reactFlowState: StateReactFlow): CompilationContext {
+export function flowToIHGraph(reactFlowState: StateFlow): CompilationContext {
     return createCompilationContextFromProcessors(
         reactFlowState,
         FlowToIHGraphProcessor

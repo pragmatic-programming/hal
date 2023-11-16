@@ -7,7 +7,7 @@ import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
 import { NodeDefinition } from "../../model/node/NodeDefinition";
 import { LayoutOptionTypeIndicator } from "../../util";
 
-export interface StateReactFlow {
+export interface StateFlow {
     connectingSourceNodeId: string | null,
     edgePathStyle: EdgePathStyle
     edges: Edge[],

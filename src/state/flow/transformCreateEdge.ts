@@ -2,7 +2,7 @@ import { State } from "../State";
 import { StoreApi } from "zustand";
 import { Edge, Node } from "reactflow";
 import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
-import { StateReactFlow } from "./StateReactFlow";
+import { StateFlow } from "./StateFlow";
 import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
 import { HalNode } from "../../model/node/HalNode";
 import { HalEdge } from "../../model/edge/HalEdge";
@@ -10,7 +10,7 @@ import { HalEdge } from "../../model/edge/HalEdge";
 
 export function transformCreateEdge(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (edgeId: string, edgeDefinition: EdgeDefinition, targetNodeId: string): Promise<void> => {
-        const reactFlow: StateReactFlow = getState().reactFlow;
+        const reactFlow: StateFlow = getState().reactFlow;
         const edges: Edge[] = transformEdges(reactFlow, edgeDefinition, edgeId);
         let nodes: Node[] = reactFlow.nodes;
         // if only one targetNodeType exist,
@@ -30,7 +30,7 @@ export function transformCreateEdge(setState: StoreApi<State>["setState"], getSt
 }
 
 
-function transformNodes(reactFlow: StateReactFlow, type: NodeTypeIndicator, nodeId: string): Node[] {
+function transformNodes(reactFlow: StateFlow, type: NodeTypeIndicator, nodeId: string): Node[] {
     return reactFlow.nodes.map((node: Node) => {
         if (node.id === nodeId) {
             if (node.type === "create") {
@@ -42,7 +42,7 @@ function transformNodes(reactFlow: StateReactFlow, type: NodeTypeIndicator, node
 }
 
 
-function transformEdges(reactFlow: StateReactFlow, edgeDefinition: EdgeDefinition, edgeId: string): Edge[] {
+function transformEdges(reactFlow: StateFlow, edgeDefinition: EdgeDefinition, edgeId: string): Edge[] {
     return reactFlow.edges.map((edge: Edge) => {
         if (edge.id === edgeId) {
             edge = new HalEdge(edge).transformByEdgeDefinition(edgeDefinition);

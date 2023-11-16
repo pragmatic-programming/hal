@@ -8,7 +8,7 @@ import { nodeTypesMapping } from "../../model/node/nodeTypesMapping";
 import { bottomHeight } from "../bottom/Bottom";
 import { menuWidth } from "../menu/Menu";
 import { edgeTypesMapping } from "../../model/edge/edgeTypesMapping";
-import { targetPosition } from "../../state/reactFlow/LayoutDirectionIndicator";
+import { targetPosition } from "../../state/flow/LayoutDirectionIndicator";
 import { layoutOptions } from "../../util";
 import { NodeFactory } from "../../model/node/NodeFactory";
 import { EdgeFactory } from "../../model/edge/EdgeFactory";
