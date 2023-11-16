@@ -11,15 +11,18 @@ import { bottomHeight } from "../bottom/Bottom";
 import { menuWidth } from "../menu/Menu";
 import { edgeTypesMapping } from "../../model/edge/edgeTypesMapping";
 import { targetPosition } from "../../state/reactFlow/LayoutDirectionIndicator";
-import { layoutOptions, LayoutOptionTypeIndicator } from "../../util";
+import { layoutOptions } from "../../util";
 
 const selector = (state: State) => ({
-    nodes: state.reactFlow.nodes,
     edges: state.reactFlow.edges,
-    onNodesChange: state.reactFlow.onNodesChange,
-    onEdgesChange: state.reactFlow.onEdgesChange,
-    onConnect: state.reactFlow.onConnect,
     layout: state.reactFlow.layout,
+    layoutOption: state.reactFlow.layoutOption,
+    nextNodeId: state.reactFlow.nextNodeId,
+    nodes: state.reactFlow.nodes,
+    onConnect: state.reactFlow.onConnect,
+    onEdgesChange: state.reactFlow.onEdgesChange,
+    onNodesChange: state.reactFlow.onNodesChange,
+    setConnectingSourceNodeId: state.reactFlow.setConnectingSourceNodeId,
 });
 
 const creationNodeHalfHeight = 30;
@@ -29,26 +32,14 @@ export default function Flow(): React.JSX.Element {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
     const connectStartParams = useRef<OnConnectStartParams | null>(null);
     const reactFlow = useReactFlow();
-    const {
-        layout,
-        nodes,
-        edges,
-        onNodesChange,
-        onEdgesChange,
-        onConnect
-    } = useStore(selector, shallow);
-    const nextId = useStore((state: State) => state.reactFlow.nextNodeId);
-    const layoutOption: LayoutOptionTypeIndicator = useStore((state: State) => state.reactFlow.layoutOption);
-    const setConnectingSourceNodeId = useStore((state: State) => state.reactFlow.setConnectingSourceNodeId);
-
+    const store = useStore(selector, shallow);
     const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {
         connectStartParams.current = onConnectStartParams;
-        setConnectingSourceNodeId(onConnectStartParams.nodeId);
-    }, [setConnectingSourceNodeId]);
-
+        store.setConnectingSourceNodeId(onConnectStartParams.nodeId);
+    }, [store]);
     const onConnectEnd = useCallback(
         (event: MouseEvent | TouchEvent): void => {
-            setConnectingSourceNodeId(null);
+            store.setConnectingSourceNodeId(null);
             if (event instanceof MouseEvent) {
                 if (event.target instanceof HTMLElement) {
                     const targetIsPane = event.target.classList.contains("react-flow__pane");
@@ -66,17 +57,17 @@ export default function Flow(): React.JSX.Element {
                             throw new Error("ConnectingNodeId.current is null");
                         }
                         if (connectStartParams.current?.handleType === "source") {
-                            const targetId = nextId();
-                            onNodesChange([{
+                            const targetId = store.nextNodeId();
+                            store.onNodesChange([{
                                 type: "add",
                                 item: createNodeCreate(
                                     targetId,
                                     position.x,
                                     position.y - creationNodeHalfHeight,
-                                    targetPosition(layoutOptions(layoutOption)),
+                                    targetPosition(layoutOptions(store.layoutOption)),
                                 )
                             }]);
-                            onEdgesChange([{
+                            store.onEdgesChange([{
                                 type: "add",
                                 item: createEdgeFromOnConnectStartParams(connectStartParams.current, targetId)
                             }]);
@@ -87,11 +78,7 @@ export default function Flow(): React.JSX.Element {
         },
         [
             reactFlow,
-            layoutOption,
-            nextId,
-            onEdgesChange,
-            onNodesChange,
-            setConnectingSourceNodeId
+            store,
         ]
     );
 
@@ -110,15 +97,15 @@ export default function Flow(): React.JSX.Element {
             <ReactFlow
                 connectionRadius={0}
                 edgeTypes={edgeTypesMapping}
-                edges={edges}
+                edges={store.edges}
                 nodeTypes={nodeTypesMapping}
-                nodes={nodes}
-                onConnect={onConnect}
+                nodes={store.nodes}
+                onConnect={store.onConnect}
                 onConnectEnd={onConnectEnd}
                 onConnectStart={onConnectStart}
-                onEdgesChange={onEdgesChange}
-                onInit={(reactFlowInstance: ReactFlowInstance) => layout(reactFlowInstance.fitView, layoutOption)}
-                onNodesChange={onNodesChange}
+                onEdgesChange={store.onEdgesChange}
+                onInit={(reactFlowInstance: ReactFlowInstance) => store.layout(reactFlowInstance.fitView, store.layoutOption)}
+                onNodesChange={store.onNodesChange}
             >
                 <Background/>
                 <Controls
