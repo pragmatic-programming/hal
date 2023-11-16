@@ -1,4 +1,3 @@
-import { styled, TextField } from "@mui/material";
 import React from "react";
 import { InsertDriveFile } from "@mui/icons-material";
 import { useStore } from "../../state/Store";
@@ -6,6 +5,7 @@ import { State } from "../../state/State";
 import { Node, useReactFlow } from "reactflow";
 import { NodeData } from "../../model/node/NodeData";
 import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
+import { EditorHeaderLabel } from "./EditorHeaderLabel";
 
 interface Props {
     nodeId: string,
@@ -13,13 +13,6 @@ interface Props {
     onChange: (content: string) => void,
 }
 
-const EditorNodeLabelTextField = styled(TextField)({
-    "& .MuiOutlinedInput-root": {
-        "& fieldset": {
-            border: "none"
-        },
-    },
-});
 
 export const editorHeaderHeight = 46;
 
@@ -44,7 +37,7 @@ export default function EditorHeader(props: Props): React.JSX.Element {
                 onClick={() => openEditor(reactFlow.getNode, props.nodeId)}
                 sx={{color: "action.active"}}
             />
-            <EditorNodeLabelTextField
+            <EditorHeaderLabel
                 size="small"
                 value={props.value}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
