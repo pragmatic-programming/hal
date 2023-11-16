@@ -13,6 +13,7 @@ import HandleTargetTop from "../handle/HandleTargetTop";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
 import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
+import { strictNode } from "../../../model/node/StrictNode";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
@@ -20,16 +21,7 @@ const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const reactFlow = useReactFlow();
-    const node = reactFlow.getNode(props.id);
-    if (!node) {
-        throw new Error("Node is undefined");
-    }
-    if (!node.height) {
-        throw new Error("Node.height is undefined");
-    }
-    if (!node.width) {
-        throw new Error("Node.width is undefined");
-    }
+    const node = strictNode(reactFlow.getNode(props.id));
     if (props.data.type !== "editor") {
         throw new Error("Node.data has wrong type");
     }

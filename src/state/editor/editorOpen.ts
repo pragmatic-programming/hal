@@ -4,15 +4,13 @@ import { NodeData } from "../../model/node/NodeData";
 import { StoreApi } from "zustand";
 import { StateFlow } from "../flow/StateFlow";
 import { StateEditorOpen } from "./StateEditor";
+import { StrictNode, strictNode } from "../../model/node/StrictNode";
 
 export function editorOpen(setState: StoreApi<State>["setState"], getState: () => State) {
     return (getNode: (id: string) => Node | undefined, editorId: string | undefined) => {
         const editor = getState().editor;
         if (editorId) {
-            const node: Node<NodeData> | undefined = getNode(editorId);
-            if (!node) {
-                throw new Error("Node is undefined");
-            }
+            const node: StrictNode<NodeData>  = strictNode(getNode(editorId));
             if(node.data.type !== "editor"){
                 throw new Error("Node.data has wrong type");
             }

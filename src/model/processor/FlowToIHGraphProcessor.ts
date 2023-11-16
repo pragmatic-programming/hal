@@ -3,6 +3,7 @@ import { IHGraph, TransformationDirection } from "ihgraph";
 import { FlowState } from "./FlowState";
 import { NodeData } from "../node/NodeData";
 import { edgeDefinitions } from "../edge/edgeDefinitions";
+import { strictNode } from "../node/StrictNode";
 
 
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
@@ -22,20 +23,13 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
         }
 
         const model = this.getModel();
-        for (const node of model.nodes) {
+        for (let unsafeNode of model.nodes) {
+            const node = strictNode(unsafeNode);
             const sourceNode = graph.createSourceNode(node.id);
-            const width = node.width;
-            const height = node.height;
-            if (!width) {
-                throw new Error("Width is undefined");
-            }
-            if (!height) {
-                throw new Error("height is undefined");
-            }
             let data: NodeData = {
                 ...node.data,
-                width: width,
-                height: height,
+                width: node.width,
+                height: node.height,
             };
             // set content from node data,
             // because reactFlow has no content field and
