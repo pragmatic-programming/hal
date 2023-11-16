@@ -1,9 +1,9 @@
 import { State } from "../State";
 import { addEdge, Connection } from "reactflow";
 import { StoreApi } from "zustand";
-import { createEdgeCreate } from "../../model/edge/createEdge";
 import { isSourceHandleId } from "../../model/edge/SourceHandleId";
 import { isTargetHandleId } from "../../model/edge/TargetHandleId";
+import { EdgeFactory } from "../../model/edge/EdgeFactory";
 
 export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {
     return (connection: Connection) => {
@@ -26,7 +26,7 @@ export function onConnect(setState: StoreApi<State>["setState"], getState: () =>
         setState({
             reactFlow: {
                 ...getState().reactFlow,
-                edges: addEdge(createEdgeCreate(source, target, sourceHandleId, targetHandleId), getState().reactFlow.edges),
+                edges: addEdge(EdgeFactory.edgeCreate(source, target, sourceHandleId, targetHandleId), getState().reactFlow.edges),
             }
         });
     };
