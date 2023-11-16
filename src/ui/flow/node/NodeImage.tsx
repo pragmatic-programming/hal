@@ -5,6 +5,7 @@ import { Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
 import NodeImageDefault from "./NodeImageDefault";
+import HandleTargetTop from "../handle/HandleTargetTop";
 
 export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.Element {
     const reactFlow = useReactFlow();
@@ -51,6 +52,9 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
     }
     return (
         <>
+            <HandleTargetTop
+                nodeId={props.id}
+            />
             <HandleTargetLeft
                 nodeId={props.id}
             />
