@@ -2,6 +2,8 @@ import { Edge, Node } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
 import { sourcePosition, targetPosition } from "./flow/LayoutDirectionIndicator";
 import { FlowState } from "../model/processor/FlowState";
+import { strictNode, StrictNode } from "../model/node/StrictNode";
+import { NodeData } from "../model/node/NodeData";
 
 const elk = new ELK({
     workerFactory: function (url) { // the value of 'url' is irrelevant here
@@ -38,10 +40,7 @@ export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutO
         throw new Error("Children are undefined");
     }
     root.children.forEach((child: ElkNode): void => {
-        const node: Node | undefined = nodeMap.get(child.id);
-        if (!node) {
-            throw new Error("Node is undefined");
-        }
+        const node: StrictNode<NodeData> = strictNode(nodeMap.get(child.id));
         if (!child.x) {
             throw new Error("Child.x is undefined");
         }

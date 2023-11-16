@@ -1,36 +1,27 @@
 import React from "react";
-import { BaseEdge, Edge, EdgeLabelRenderer, EdgeProps, useReactFlow } from "reactflow";
+import { BaseEdge, EdgeLabelRenderer, EdgeProps, useReactFlow } from "reactflow";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
-
-import { isEdgeTypeIndicator } from "../../../model/edge/EdgeTypeIndicator";
 import { getEdgePath } from "../../../util";
 import { retrieveEdgeDefinition } from "../../../model/edge/edgeDefinitions";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EdgeDefaultLabel from "./EdgeDefaultLabel";
-
+import { EdgeData } from "../../../model/edge/EdgeData";
+import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
+import { StrictEdge, strictEdge } from "../../../model/edge/StrictEdge";
 
 export default function EdgeDefault(props: EdgeProps): React.JSX.Element {
     const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
-    let {edgePath, labelX, labelY} = getEdgePath(edgePathStyle, props);
+    const edgePath = getEdgePath(edgePathStyle, props);
     const reactFlow = useReactFlow();
-    const edge: Edge | undefined = reactFlow.getEdge(props.id);
-    if (!edge) {
-        throw new Error("Edge is undefined");
-    }
-    if (!edge.type) {
-        throw new Error("Edge.type is undefined");
-    }
-    if (!isEdgeTypeIndicator(edge.type)) {
-        throw new Error("EdgeType is not a valid edgeTypeIndicator");
-    }
-    const edgeDefinition = retrieveEdgeDefinition(edge.type);
+    const edge: StrictEdge<EdgeData> = strictEdge(reactFlow.getEdge(props.id));
+    const edgeDefinition: EdgeDefinition = retrieveEdgeDefinition(edge.type);
     return (
         <>
             <BaseEdge
                 id={props.id}
                 markerEnd={props.markerEnd}
-                path={edgePath}
+                path={edgePath.edgePath}
                 style={edgeDefinition.style}
             />
             <EdgeLabelRenderer>
@@ -38,7 +29,7 @@ export default function EdgeDefault(props: EdgeProps): React.JSX.Element {
                     style={{
                         pointerEvents: "all",
                         position: "absolute",
-                        transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                        transform: `translate(-50%, -50%) translate(${edgePath.labelX}px,${edgePath.labelY}px)`,
                     }}
                     className="nopan nodrag"
                 >
