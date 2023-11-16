@@ -1,6 +1,6 @@
 import { CliqueProcessor } from "hal-kico";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
-import { NodeData } from "../../../node/NodeData";
+import { NodeData } from "../../../model/node/NodeData";
 import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
 import { RemoteExecution } from "./RemoteExecution";
 import { LocalExecution } from "./LocalExecution";

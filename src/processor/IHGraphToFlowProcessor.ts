@@ -2,8 +2,8 @@ import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { Edge, Node } from "reactflow";
 import { FlowState } from "./FlowState";
-import { NodeFactory } from "../node/NodeFactory";
-import { EdgeFactory } from "../edge/EdgeFactory";
+import { NodeFactory } from "../model/node/NodeFactory";
+import { EdgeFactory } from "../model/edge/EdgeFactory";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
 

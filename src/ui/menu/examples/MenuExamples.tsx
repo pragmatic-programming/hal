@@ -16,8 +16,8 @@ import ButtonMenu from "../ButtonMenu";
 import { FormatListBulleted } from "@mui/icons-material";
 import { createIHGraphFromJSON } from "ihgraph";
 import { useReactFlow } from "reactflow";
-import { examples } from "../../../model/examples/examples";
-import { Example } from "../../../model/examples/Example";
+import { examples } from "../../../examples/examples";
+import { Example } from "../../../examples/Example";
 
 const menuExamplesWidth = 300;
 

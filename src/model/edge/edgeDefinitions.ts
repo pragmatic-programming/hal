@@ -7,13 +7,13 @@ import AddIcon from "@mui/icons-material/Add";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
-import { ExecuteProcessor } from "../processor/edgeTypes/execute/ExecuteProcessor";
-import { SCChartDiagramProcessor } from "../processor/edgeTypes/scchart/SCChartDiagramProcessor";
-import { SequenceProcessor } from "hal-kico";
-import { TestProcessor } from "../processor/edgeTypes/TestProcessor";
-import { CreateProcessor } from "../processor/edgeTypes/CreateProcessor";
-import { SCChartCodeProcessor } from "../processor/edgeTypes/scchart/SCChartCodeProcessor";
+import { ExecuteProcessor } from "../../processor/edgeTypes/execute/ExecuteProcessor";
+import { SCChartDiagramProcessor } from "../../processor/edgeTypes/scchart/SCChartDiagramProcessor";
+import { TestProcessor } from "../../processor/edgeTypes/TestProcessor";
+import { CreateProcessor } from "../../processor/edgeTypes/CreateProcessor";
+import { SCChartCodeProcessor } from "../../processor/edgeTypes/scchart/SCChartCodeProcessor";
 import EngineeringIcon from "@mui/icons-material/Engineering";
+import { SequenceProcessor } from "hal-kico";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {

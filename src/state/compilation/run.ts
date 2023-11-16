@@ -1,6 +1,6 @@
 import { State } from "../State";
 import { CompilationContext } from "kico";
-import { flowToIHGraph, ihGraphToHalGraph } from "../../model/processor/compilationContexts";
+import { flowToIHGraph, ihGraphToHalGraph } from "../../processor/compilationContexts";
 import { CliqueSelectionProcessor } from "hal-kico";
 import { StoreApi } from "zustand";
 

@@ -1,6 +1,6 @@
 import { State } from "../State";
 import { CompilationContext, createCompilationContextFromProcessors, Processor } from "kico";
-import { flowToIHGraph, iHGraphToFlow } from "../../model/processor/compilationContexts";
+import { flowToIHGraph, iHGraphToFlow } from "../../processor/compilationContexts";
 import { StoreApi } from "zustand";
 import { IHGraph } from "ihgraph";
 import { layoutedNodes } from "../layoutedNodes";

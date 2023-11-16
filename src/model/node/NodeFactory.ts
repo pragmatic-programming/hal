@@ -1,7 +1,7 @@
 import { SourceNode, SourceNodeStatus } from "ihgraph";
 import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
-import { FlowToIHGraphProcessor } from "../processor/FlowToIHGraphProcessor";
+import { FlowToIHGraphProcessor } from "../../processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, } from "./NodeData";
 import { NodeDataFactory } from "./NodeDataFactory";
 

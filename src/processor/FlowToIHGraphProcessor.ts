@@ -1,9 +1,9 @@
 import { Processor } from "kico";
 import { IHGraph, TransformationDirection } from "ihgraph";
 import { FlowState } from "./FlowState";
-import { NodeData } from "../node/NodeData";
-import { edgeDefinitions } from "../edge/edgeDefinitions";
-import { strictNode } from "../node/StrictNode";
+import { NodeData } from "../model/node/NodeData";
+import { edgeDefinitions } from "../model/edge/edgeDefinitions";
+import { strictNode } from "../model/node/StrictNode";
 
 
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {

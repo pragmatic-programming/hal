@@ -2,7 +2,7 @@ import { State } from "../State";
 import { IHGraph } from "ihgraph";
 import { FitViewOptions } from "reactflow";
 import { CompilationContext } from "kico";
-import { iHGraphToFlow } from "../../model/processor/compilationContexts";
+import { iHGraphToFlow } from "../../processor/compilationContexts";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 import { layoutedNodes } from "../layoutedNodes";

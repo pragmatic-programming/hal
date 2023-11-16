@@ -1,7 +1,7 @@
-import { CliqueProcessor } from "hal-kico";
-import { NodeDataImage } from "../../../node/NodeData";
+import { NodeDataImage } from "../../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { SCChartDiagram } from "./SCChartDiagram";
+import { CliqueProcessor } from "hal-kico";
 
 export class SCChartDiagramProcessor extends CliqueProcessor {
 

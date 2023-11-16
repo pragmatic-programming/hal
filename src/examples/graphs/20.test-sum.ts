@@ -28,10 +28,10 @@ export function exampleGraphsWYTIWYGSum(): ihgraph.IHGraphFactoryInterface {
             },
             {
                 id: "Usage",
-                content: 
+                content:
 `
 sum(3) + sum(1);
-`                
+`
             },
             {
                 id: "Result",

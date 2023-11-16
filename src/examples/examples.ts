@@ -2,7 +2,7 @@ import * as ihgraph from "ihgraph";
 import { IHGraphFactoryInterface } from "ihgraph";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 import { exampleGraphsWYTIWYGSum } from "./graphs/20.test-sum";
-import { LanguageIndicator } from "../node/LanguageIndicator";
+import { LanguageIndicator } from "../model/node/LanguageIndicator";
 import { Example } from "./Example";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import BiotechIcon from "@mui/icons-material/Biotech";
