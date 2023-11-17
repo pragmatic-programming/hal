@@ -12,7 +12,6 @@ interface Props {
     id: SourceHandleId;
 }
 
-
 export default function HandleSource(props: Props): React.JSX.Element {
     const connecting = useStore((state: State) => state.reactFlow.connectingSourceNodeId !== null);
     const theme: Theme = useTheme();
@@ -25,10 +24,9 @@ export default function HandleSource(props: Props): React.JSX.Element {
     }
     return (
         <HandleStyled
-            id={props.id}
-            position={props.position}
             style={style}
             type="source"
+            {...props}
         />
     );
 }

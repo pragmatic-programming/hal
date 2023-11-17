@@ -9,21 +9,19 @@ import { BoxBorder } from "../../util/BoxBorder";
 import HandleTargetTop from "../handle/HandleTargetTop";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
 import NodeCreateButton from "./NodeCreateButton";
+import { EdgeData } from "../../../model/edge/EdgeData";
 
 export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
-    const reactFlow = useReactFlow();
-    const targetEdge: Edge | undefined = reactFlow.getEdges().find(edge => edge.target === props.id);
+    const targetEdge: Edge | undefined = useReactFlow().getEdges().find((edge: Edge<EdgeData>): boolean => edge.target === props.id);
     return (
         <BoxBorder
             borderColor={borderColor(props, theme, theme.palette.primary.main)}
         >
             <HandleTargetTop
-                hidden={targetEdge?.targetHandle !== "top"}
                 nodeId={props.id}
             />
             <HandleTargetLeft
-                hidden={targetEdge?.targetHandle !== "left"}
                 nodeId={props.id}
             />
             <BoxBackgroundMain

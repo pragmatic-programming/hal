@@ -1,16 +1,15 @@
 import React from "react";
 import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
-import { NodeDataImage } from "../../../model/node/NodeData";
+import { NodeData, NodeDataImage } from "../../../model/node/NodeData";
 import { Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
 import NodeImageDefault from "./NodeImageDefault";
 import HandleTargetTop from "../handle/HandleTargetTop";
-import { strictNode } from "../../../model/node/StrictNode";
+import { StrictNode, strictNode } from "../../../model/node/StrictNode";
 
 export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.Element {
-    const reactFlow = useReactFlow();
-    const node = strictNode(reactFlow.getNode(props.id));
+    const node: StrictNode<NodeData> = strictNode(useReactFlow().getNode(props.id));
     const theme: Theme = useTheme();
     let img: React.JSX.Element = (
         <NodeImageDefault
