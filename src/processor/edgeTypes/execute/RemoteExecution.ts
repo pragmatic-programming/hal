@@ -23,8 +23,7 @@ export class RemoteExecution implements ExecutionInterface {
             }
         );
         await this.handleResponseNotOk(response);
-        const body = await response.json();
-        return body["payload"];
+        return await response.text();
     }
 
     private async handleResponseNotOk(response: Response) {
