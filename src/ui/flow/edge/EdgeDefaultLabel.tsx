@@ -11,7 +11,7 @@ import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
-    label?: React.ReactNode;
+    label: string;
     id: string;
 }
 
@@ -57,7 +57,7 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
                 style={{
                     backgroundColor: theme.palette.primary.main,
-                    width: 130,
+                    width: Math.max(130, props.label.length * 12),
                 }}
             />
         );

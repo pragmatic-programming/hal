@@ -16,6 +16,9 @@ export default function EdgeDefault(props: EdgeProps): React.JSX.Element {
     const reactFlow = useReactFlow();
     const edge: StrictEdge<EdgeData> = strictEdge(reactFlow.getEdge(props.id));
     const edgeDefinition: EdgeDefinition = retrieveEdgeDefinition(edge.type);
+    if (typeof props.label != "string") {
+        throw Error("Label is not a string");
+    }
     return (
         <>
             <BaseEdge
