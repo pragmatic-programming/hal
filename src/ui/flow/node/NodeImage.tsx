@@ -1,5 +1,5 @@
 import React from "react";
-import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
+import { Edge, NodeProps, NodeResizer, useEdges, useReactFlow } from "reactflow";
 import { NodeDataImage } from "../../../model/node/NodeData";
 import { Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
@@ -19,6 +19,9 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
             height={props.data.height}
         />
     );
+    const edges = useEdges();
+    const targetEdgeTop: Edge | undefined = edges.find(edge => edge.target === props.id && edge.targetHandle === "top");
+    const targetEdgeLeft: Edge | undefined = edges.find(edge => edge.target === props.id && edge.targetHandle === "left");
     if (props.data.content && props.data.content.length > 0) {
         img = (
             <div
@@ -45,9 +48,11 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
     return (
         <>
             <HandleTargetTop
+                isConnected={targetEdgeTop !== undefined}
                 nodeId={props.id}
             />
             <HandleTargetLeft
+                isConnected={targetEdgeLeft !== undefined}
                 nodeId={props.id}
             />
             {img}

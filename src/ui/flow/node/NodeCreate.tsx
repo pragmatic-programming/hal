@@ -19,11 +19,11 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
             borderColor={borderColor(props, theme, theme.palette.primary.main)}
         >
             <HandleTargetTop
-                hidden={targetEdge?.targetHandle !== "top"}
+                isConnected={targetEdge?.targetHandle === "top"}
                 nodeId={props.id}
             />
             <HandleTargetLeft
-                hidden={targetEdge?.targetHandle !== "left"}
+                isConnected={targetEdge?.targetHandle === "left"}
                 nodeId={props.id}
             />
             <BoxBackgroundMain

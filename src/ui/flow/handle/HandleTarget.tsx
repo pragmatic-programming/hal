@@ -7,8 +7,8 @@ import { Theme, useTheme } from "@mui/material";
 import { TargetHandleId } from "../../../model/edge/TargetHandleId";
 
 interface Props {
-    hidden?: boolean
     id: TargetHandleId;
+    isConnected: boolean;
     nodeId: string;
     position?: Position;
     style?: CSSProperties;
@@ -20,18 +20,17 @@ export default function HandleTarget(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
     let style: CSSProperties = {};
     if (isPossibleTarget) {
-        style = {
-            ...style,
-            backgroundColor: theme.palette.success.light
-        };
+        style.backgroundColor = theme.palette.success.light;
+    }
+    const hidden = !props.isConnected && !isPossibleTarget;
+    if (hidden) {
+        style.visibility = "hidden";
     }
     return (
         <HandleStyled
-            hidden={props.hidden}
-            id={props.id}
-            position={props.position}
             style={style}
             type="target"
+            {...props}
         />
     );
 }

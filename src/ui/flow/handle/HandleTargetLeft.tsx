@@ -3,7 +3,7 @@ import React from "react";
 import HandleTarget from "./HandleTarget";
 
 interface Props {
-    hidden? : boolean;
+    isConnected: boolean
     nodeId: string;
 }
 
@@ -11,9 +11,8 @@ export default function HandleTargetLeft(props: Props): React.JSX.Element {
     return (
         <HandleTarget
             id={"left"}
-            hidden={props.hidden}
-            nodeId={props.nodeId}
             position={Position.Left}
+            {...props}
         />
     );
 }

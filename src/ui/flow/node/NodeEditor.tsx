@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
+import { Edge, NodeProps, NodeResizer, useEdges, useReactFlow } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
@@ -14,6 +14,7 @@ import HandleTargetLeft from "../handle/HandleTargetLeft";
 import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
 import { strictNode } from "../../../model/node/StrictNode";
+import { EdgeData } from "../../../model/edge/EdgeData";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
@@ -41,6 +42,9 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
             border: "none",
         };
     }
+    const edges: Edge<EdgeData>[] = useEdges();
+    const targetEdgeTop: Edge | undefined = edges.find(edge => edge.target === props.id && edge.targetHandle === "top");
+    const targetEdgeLeft: Edge | undefined = edges.find(edge => edge.target === props.id && edge.targetHandle === "left");
     return (
         <BoxBackgroundMain
             style={{
@@ -55,9 +59,11 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 minWidth={100}
             />
             <HandleTargetTop
+                isConnected={targetEdgeTop !== undefined}
                 nodeId={props.id}
             />
             <HandleTargetLeft
+                isConnected={targetEdgeLeft !== undefined}
                 nodeId={props.id}
             />
             <HandleSourceRight/>
