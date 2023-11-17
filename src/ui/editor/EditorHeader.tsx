@@ -2,7 +2,7 @@ import React from "react";
 import { InsertDriveFile } from "@mui/icons-material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import { useReactFlow } from "reactflow";
+import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { NodeData } from "../../model/node/NodeData";
 import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
 import { EditorHeaderLabel } from "./EditorHeaderLabel";
@@ -19,7 +19,7 @@ export const editorHeaderHeight = 46;
 
 export default function EditorHeader(props: Props): React.JSX.Element {
     const openEditor = useStore((state: State) => state.editor.editorOpen);
-    const reactFlow = useReactFlow();
+    const reactFlow: ReactFlowInstance = useReactFlow();
     const node: StrictNode<NodeData> = strictNode(reactFlow.getNode(props.nodeId));
     if (node.data.type !== "editor") {
         throw new Error("Node has wrong type");

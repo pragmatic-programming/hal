@@ -5,7 +5,7 @@ import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { Environment, Processor } from "kico";
 import { IHGraph } from "ihgraph";
-import { useReactFlow } from "reactflow";
+import { ReactFlowInstance, useReactFlow } from "reactflow";
 
 interface Props {
     position: "start" | "inter" | "end";
@@ -14,7 +14,7 @@ interface Props {
 
 export default function Model(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
-    const reactFlow = useReactFlow();
+    const reactFlow: ReactFlowInstance = useReactFlow();
     const renderIHGraph = useStore((state: State) => state.reactFlow.render);
     let borderStyle: "dotted" | "solid" | "double";
     let borderWidth: number;

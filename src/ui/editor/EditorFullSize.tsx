@@ -1,7 +1,7 @@
 import React from "react";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import { useReactFlow } from "reactflow";
+import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { IconButton, Theme, useTheme } from "@mui/material";
 import EditorHeader, { editorHeaderHeight } from "./EditorHeader";
 import { Close } from "@mui/icons-material";
@@ -26,7 +26,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
     const editorOpenSetLabel = useStore((state: State) => state.editor.editorLabelSet);
     const editorOpenSetContent = useStore((state: State) => state.editor.editorContentSet);
     const openEditor = useStore((state: State) => state.editor.editorOpen);
-    const reactFlow = useReactFlow();
+    const reactFlow: ReactFlowInstance = useReactFlow();
     const theme: Theme = useTheme();
     const node: StrictNode<NodeData> = strictNode(reactFlow.getNode(props.editorState.nodeId));
     if (node.data.type !== "editor") {

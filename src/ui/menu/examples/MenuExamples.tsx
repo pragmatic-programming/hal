@@ -15,7 +15,7 @@ import {
 import ButtonMenu from "../ButtonMenu";
 import { FormatListBulleted } from "@mui/icons-material";
 import { createIHGraphFromJSON } from "ihgraph";
-import { useReactFlow } from "reactflow";
+import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { examples } from "../../../examples/examples";
 import { Example } from "../../../examples/Example";
 
@@ -24,7 +24,7 @@ const menuExamplesWidth = 300;
 export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);
     const menuOpenToggle = useStore((state: State) => state.menuExamples.menuExampleOpenToggle);
-    const reactFlow = useReactFlow();
+    const reactFlow: ReactFlowInstance = useReactFlow();
     const render = useStore((state: State) => (example: Example) => {
         state.reactFlow.render(
             createIHGraphFromJSON(example.value),

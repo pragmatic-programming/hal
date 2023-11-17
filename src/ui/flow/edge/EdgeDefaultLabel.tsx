@@ -6,7 +6,7 @@ import { firstCharUpperCase } from "../../../util";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { SvgIconComponent } from "@mui/icons-material";
-import { useReactFlow } from "reactflow";
+import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
 
 interface Props {
@@ -17,7 +17,7 @@ interface Props {
 
 export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     const setEdgeLabel = useStore((state: State) => state.reactFlow.setEdgeLabel);
-    const reactFlow = useReactFlow();
+    const reactFlow: ReactFlowInstance = useReactFlow();
     const [inputValue, setInputValue] = useState<SvgIconComponent>(props.edgeDefinition.icon);
     const theme: Theme = useTheme();
     const iconButton: React.JSX.Element = (

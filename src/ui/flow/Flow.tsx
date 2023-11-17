@@ -31,7 +31,7 @@ const creationNodeHalfHeight = 30;
 export default function Flow(): React.JSX.Element {
     const reactFlowWrapper = useRef<HTMLDivElement>(null);
     const connectStartParams = useRef<OnConnectStartParams | null>(null);
-    const reactFlow = useReactFlow();
+    const reactFlow: ReactFlowInstance = useReactFlow();
     const store = useStore(selector, shallow);
     const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {
         connectStartParams.current = onConnectStartParams;

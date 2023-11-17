@@ -2,7 +2,7 @@ import React from "react";
 import { State } from "../../../state/State";
 import { useStore } from "../../../state/Store";
 import { ListItem, ListItemButton, ListItemIcon } from "@mui/material";
-import { useReactFlow } from "reactflow";
+import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { firstCharUpperCase, LayoutOptionTypeIndicator } from "../../../util";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function MenuLayoutButtonLayout(props: Props): React.JSX.Element {
-    const reactFlow = useReactFlow();
+    const reactFlow: ReactFlowInstance = useReactFlow();
     const layout = useStore((state: State) => state.reactFlow.layout);
     const layoutOption = useStore((state: State) => state.reactFlow.layoutOption);
     return (

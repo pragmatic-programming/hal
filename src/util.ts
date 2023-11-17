@@ -8,7 +8,13 @@ export function firstCharUpperCase(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
-export function getEdgePath(edgePathStyle: EdgePathStyle, props: EdgeProps) {
+export interface EdgePath {
+    edgePath: string,
+    labelX: number,
+    labelY: number,
+}
+
+export function getEdgePath(edgePathStyle: EdgePathStyle, props: EdgeProps): EdgePath {
     let edgePath, labelX, labelY;
     switch (edgePathStyle) {
         case "Straight":
