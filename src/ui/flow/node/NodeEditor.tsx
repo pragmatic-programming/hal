@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { NodeProps, NodeResizer, ReactFlowInstance, useReactFlow } from "reactflow";
+import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
@@ -15,24 +15,23 @@ import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
 import { StrictNode, strictNode } from "../../../model/node/StrictNode";
 
-const editorBodyReducedWidth = 2;
-const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
+const editorBodyReducedWidth: number = 2;
+const editorBodyReducedHeight: number = editorHeaderHeight + editorFooterHeight;
 
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
-    const reactFlow: ReactFlowInstance = useReactFlow();
-    const node: StrictNode<NodeData> = strictNode(reactFlow.getNode(props.id));
     if (props.data.type !== "editor") {
         throw new Error("Node.data has wrong type");
     }
+    const node: StrictNode<NodeData> = strictNode(useReactFlow().getNode(props.id));
     const setNodeNodeDataLabel = useStore((state: State) => state.reactFlow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.reactFlow.setNodeNodeDataContent);
     const theme: Theme = useTheme();
-    let handeStyle: CSSProperties = {};
-    let lineStyle: CSSProperties = {
+    const lineStyle: CSSProperties = {
         borderColor: borderColor(props, theme, theme.palette.primary.dark),
     };
     // todo find a better solution than set the handleStyle
+    const handeStyle: CSSProperties = {};
     if (!props.selected) {
         handeStyle.width = 2;
         handeStyle.height = 2;
