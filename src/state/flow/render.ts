@@ -9,7 +9,7 @@ import { layoutedNodes } from "../layoutedNodes";
 import { layoutOptions } from "../../util";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string) => {
+    return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string): Promise<void> => {
         setState({
             ui: {
                 ...getState().ui,

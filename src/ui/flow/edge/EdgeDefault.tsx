@@ -2,16 +2,17 @@ import React from "react";
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, ReactFlowInstance, useReactFlow } from "reactflow";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
-import { EdgePath, getEdgePath } from "../../../util";
 import { retrieveEdgeDefinition } from "../../../model/edge/edgeDefinitions";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import EdgeDefaultLabel from "./EdgeDefaultLabel";
 import { EdgeData } from "../../../model/edge/EdgeData";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import { StrictEdge, strictEdge } from "../../../model/edge/StrictEdge";
+import { EdgePath, getEdgePath } from "../../../model/edge/EdgePath";
+import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
 
 export default function EdgeDefault(props: EdgeProps): React.JSX.Element {
-    const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
+    const edgePathStyle: EdgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
     const edgePath: EdgePath = getEdgePath(edgePathStyle, props);
     const reactFlow: ReactFlowInstance = useReactFlow();
     const edge: StrictEdge<EdgeData> = strictEdge(reactFlow.getEdge(props.id));

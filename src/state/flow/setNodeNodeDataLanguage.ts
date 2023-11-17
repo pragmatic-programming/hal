@@ -7,7 +7,7 @@ import { LanguageIndicator } from "../../model/node/LanguageIndicator";
 
 
 export function setNodeNodeDataLanguage(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (editorId: string, language: LanguageIndicator) => {
+    return async (editorId: string, language: LanguageIndicator): Promise<void> => {
         const reactFlow: StateFlow = getState().reactFlow;
         setState({
             reactFlow: {

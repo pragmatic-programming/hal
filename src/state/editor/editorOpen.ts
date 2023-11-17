@@ -7,11 +7,11 @@ import { StateEditorOpen } from "./StateEditor";
 import { StrictNode, strictNode } from "../../model/node/StrictNode";
 
 export function editorOpen(setState: StoreApi<State>["setState"], getState: () => State) {
-    return (getNode: (id: string) => Node | undefined, editorId: string | undefined) => {
+    return (getNode: (id: string) => Node | undefined, editorId: string | undefined): void => {
         const editor = getState().editor;
         if (editorId) {
-            const node: StrictNode<NodeData>  = strictNode(getNode(editorId));
-            if(node.data.type !== "editor"){
+            const node: StrictNode<NodeData> = strictNode(getNode(editorId));
+            if (node.data.type !== "editor") {
                 throw new Error("Node.data has wrong type");
             }
             setState({
@@ -39,7 +39,7 @@ export function editorOpen(setState: StoreApi<State>["setState"], getState: () =
                     ...reactFlow,
                     nodes: reactFlow.nodes.map((node: Node<NodeData>) => {
                         if (node.id === open.nodeId) {
-                            if(node.data.type !== "editor"){
+                            if (node.data.type !== "editor") {
                                 throw new Error("Node.data has wrong type");
                             }
                             node.data = {

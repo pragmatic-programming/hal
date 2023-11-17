@@ -7,10 +7,10 @@ import { EdgeFactory } from "../../model/edge/EdgeFactory";
 
 export function onConnect(setState: StoreApi<State>["setState"], getState: () => State) {
     return (connection: Connection) => {
-        const source = connection.source;
-        const target = connection.target;
-        const sourceHandleId = connection.sourceHandle;
-        const targetHandleId = connection.targetHandle;
+        const source: string | null = connection.source;
+        const target: string | null = connection.target;
+        const sourceHandleId: string | null = connection.sourceHandle;
+        const targetHandleId: string | null = connection.targetHandle;
         if (!source) {
             throw new Error("Source is undefined");
         }

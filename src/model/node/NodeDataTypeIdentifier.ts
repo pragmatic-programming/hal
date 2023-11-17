@@ -1,2 +1,3 @@
-// todo can this be replaced by NodeTypeIndicator?
-export type NodeDataTypeIdentifier = "editor" | "create" | "image"
+import { NodeTypeIndicator } from "./NodeTypeIndicator";
+
+export type NodeDataTypeIdentifier = NodeTypeIndicator

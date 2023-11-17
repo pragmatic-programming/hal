@@ -19,7 +19,7 @@ import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { examples } from "../../../examples/examples";
 import { Example } from "../../../examples/Example";
 
-const menuExamplesWidth = 300;
+const menuExamplesWidth: number = 300;
 
 export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.menuExamples.open);

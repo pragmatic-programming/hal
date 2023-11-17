@@ -7,8 +7,9 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { Add } from "@mui/icons-material";
 import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
-import { firstCharUpperCase, getEdgePath } from "../../../util";
+import { firstCharUpperCase } from "../../../util";
 import { EdgeDataCreate } from "../../../model/edge/EdgeData";
+import { getEdgePath } from "../../../model/edge/EdgePath";
 
 export default function EdgeCreate(props: EdgeProps<EdgeDataCreate>): React.JSX.Element {
     const transformCreationEdge = useStore((state: State) => state.reactFlow.transformCreateEdge);

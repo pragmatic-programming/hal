@@ -6,7 +6,7 @@ import { StateFlow } from "./StateFlow";
 
 
 export function setNodeNodeDataContent(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (editorId: string, content: string | undefined) => {
+    return async (editorId: string, content: string | undefined): Promise<void> => {
         const reactFlow: StateFlow = getState().reactFlow;
         setState({
             reactFlow: {

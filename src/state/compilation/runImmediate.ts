@@ -8,7 +8,7 @@ import { layoutOptions } from "../../util";
 
 
 export function runImmediate(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async () => {
+    return async (): Promise<void> => {
         const state = getState();
 
         const preContext: CompilationContext = flowToIHGraph(state.reactFlow);

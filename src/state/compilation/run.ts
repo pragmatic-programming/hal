@@ -6,7 +6,7 @@ import { StoreApi } from "zustand";
 
 
 export function run(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async () => {
+    return async (): Promise<void> => {
         const state = getState();
         setState({
             ui: {

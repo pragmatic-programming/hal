@@ -14,7 +14,7 @@ import MenuLayoutButtonLayout from "./MenuLayoutButtonLayout";
 import MenuLayoutButtonEdgePathStyle from "./MenuLayoutButtonEdgePathStyle";
 import { Polyline } from "@mui/icons-material";
 
-const menuExamplesWidth = 200;
+const menuExamplesWidth: number = 200;
 
 export default function MenuLayout(): React.JSX.Element {
     const menuOpenToggle = useStore((state: State) => state.menuLayout.menuLayoutOpenToggle);

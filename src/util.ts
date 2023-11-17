@@ -1,32 +1,10 @@
-import { EdgeProps, getBezierPath, getSmoothStepPath, getStraightPath, NodeProps } from "reactflow";
-import { EdgePathStyle } from "./model/edge/EdgePathStyle";
+import { NodeProps } from "reactflow";
 import { Theme } from "@mui/material";
 import { SourceNodeStatus } from "ihgraph";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 
 export function firstCharUpperCase(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1);
-}
-
-export interface EdgePath {
-    edgePath: string,
-    labelX: number,
-    labelY: number,
-}
-
-export function getEdgePath(edgePathStyle: EdgePathStyle, props: EdgeProps): EdgePath {
-    let edgePath, labelX, labelY;
-    switch (edgePathStyle) {
-        case "Straight":
-            [edgePath, labelX, labelY] = getStraightPath(props);
-            break;
-        case "Smooth":
-            [edgePath, labelX, labelY] = getSmoothStepPath(props);
-            break;
-        default:
-            [edgePath, labelX, labelY] = getBezierPath(props);
-    }
-    return {edgePath, labelX, labelY};
 }
 
 export function borderColor(

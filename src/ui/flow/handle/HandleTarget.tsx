@@ -16,13 +16,13 @@ interface Props {
 
 
 export default function HandleTarget(props: Props): React.JSX.Element {
-    const isPossibleTarget = useStore((state: State) => state.reactFlow.connectingSourceNodeId !== null && state.reactFlow.connectingSourceNodeId !== props.nodeId);
+    const isPossibleTarget: boolean = useStore((state: State) => state.reactFlow.connectingSourceNodeId !== null && state.reactFlow.connectingSourceNodeId !== props.nodeId);
     const theme: Theme = useTheme();
     let style: CSSProperties = {};
     if (isPossibleTarget) {
         style.backgroundColor = theme.palette.success.light;
     }
-    const hidden = !props.isConnected && !isPossibleTarget;
+    const hidden: boolean = !props.isConnected && !isPossibleTarget;
     if (hidden) {
         style.visibility = "hidden";
     }

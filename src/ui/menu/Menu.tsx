@@ -8,7 +8,7 @@ import ButtonImmediatePlay from "./ButtonImmediatePlay";
 import MenuLayout from "./layout/MenuLayout";
 import ButtonLayout from "./ButtonLayout";
 
-export const menuWidth = 100;
+export const menuWidth: number = 100;
 
 export default function Menu(): React.JSX.Element {
     return (
