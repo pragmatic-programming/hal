@@ -18,7 +18,19 @@ function theme() {
             main: "rgb(97, 97, 97)",
             light: "#f0f0f0",
             dark: "#dcdcdc",
-            contrastText: "",
+            contrastText: "rgba(0, 0, 0, 0.87)",
+        },
+        success: {
+            light: "#B0D9B1",
+            main: "#2e7d32",
+            dark: "#618264",
+            contrastText: "rgba(0, 0, 0, 0.87)",
+        },
+        error: {
+            light: "#ec7674",
+            main: "#d32f2f",
+            dark: "#c62828",
+            contrastText: "rgba(0, 0, 0, 0.87)",
         }
     };
     return createTheme({
