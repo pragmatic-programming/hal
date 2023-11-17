@@ -1,5 +1,5 @@
 import React, { CSSProperties } from "react";
-import { Edge, NodeProps, NodeResizer, useEdges, useReactFlow } from "reactflow";
+import { NodeProps, NodeResizer, ReactFlowInstance, useReactFlow } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
@@ -13,16 +13,15 @@ import HandleTargetTop from "../handle/HandleTargetTop";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
 import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
-import { strictNode } from "../../../model/node/StrictNode";
-import { EdgeData } from "../../../model/edge/EdgeData";
+import { StrictNode, strictNode } from "../../../model/node/StrictNode";
 
 const editorBodyReducedWidth = 2;
 const editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
 
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
-    const reactFlow = useReactFlow();
-    const node = strictNode(reactFlow.getNode(props.id));
+    const reactFlow: ReactFlowInstance = useReactFlow();
+    const node: StrictNode<NodeData> = strictNode(reactFlow.getNode(props.id));
     if (props.data.type !== "editor") {
         throw new Error("Node.data has wrong type");
     }
@@ -35,16 +34,11 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     };
     // todo find a better solution than set the handleStyle
     if (!props.selected) {
-        handeStyle = {
-            width: 2,
-            height: 2,
-            backgroundColor: borderColor(props, theme, theme.palette.primary.dark),
-            border: "none",
-        };
+        handeStyle.width = 2;
+        handeStyle.height = 2;
+        handeStyle.backgroundColor = borderColor(props, theme, theme.palette.primary.dark);
+        handeStyle.border = "none";
     }
-    const edges: Edge<EdgeData>[] = useEdges();
-    const targetEdgeTop: Edge | undefined = edges.find(edge => edge.target === props.id && edge.targetHandle === "top");
-    const targetEdgeLeft: Edge | undefined = edges.find(edge => edge.target === props.id && edge.targetHandle === "left");
     return (
         <BoxBackgroundMain
             style={{
@@ -59,11 +53,9 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 minWidth={100}
             />
             <HandleTargetTop
-                isConnected={targetEdgeTop !== undefined}
                 nodeId={props.id}
             />
             <HandleTargetLeft
-                isConnected={targetEdgeLeft !== undefined}
                 nodeId={props.id}
             />
             <HandleSourceRight/>
