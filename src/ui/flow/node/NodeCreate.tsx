@@ -36,7 +36,7 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         nodeId={props.id}
                         nodeDefinition={nodeDefinitionEditor}
                         placement={"top"}
-                        targetEdgeId={targetEdge?.targetHandle}
+                        targetEdgeId={targetEdge?.id}
                     />
                 </div>
                 <div>
@@ -44,7 +44,7 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         nodeId={props.id}
                         nodeDefinition={nodeDefinitionImage}
                         placement={"bottom"}
-                        targetEdgeId={targetEdge?.targetHandle}
+                        targetEdgeId={targetEdge?.id}
                     />
                     <Tooltip
                         placement="top"

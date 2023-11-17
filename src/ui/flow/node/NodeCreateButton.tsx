@@ -13,14 +13,14 @@ interface Props {
 }
 
 export default function NodeCreateButton(props: Props): React.JSX.Element {
-    const transformCreationNode = useStore((state: State) => state.reactFlow.transformCreateNode);
+    const transformCreateNode = useStore((state: State) => state.reactFlow.transformCreateNode);
     return (
         <Tooltip
             placement={props.placement}
             title={"Create new " + firstCharUpperCase(props.nodeDefinition.type) + " Node"}
         >
             <IconButton
-                onClick={() => transformCreationNode(props.nodeId, props.nodeDefinition, props.targetEdgeId)}
+                onClick={() => transformCreateNode(props.nodeId, props.nodeDefinition, props.targetEdgeId)}
             >
                 <SvgIcon component={props.nodeDefinition.icon}></SvgIcon>
             </IconButton>
