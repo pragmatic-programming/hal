@@ -3,7 +3,7 @@ import { Theme, useTheme } from "@mui/material";
 
 interface Props {
     backgroundColor: string;
-    border?: "top" | "bottom" | "left" | "right";
+    border?: "top" | "bottom" | "left" | "right" | "top-bottom-left-right";
     children: React.ReactNode;
     style?: CSSProperties;
 }
@@ -27,6 +27,9 @@ export function BoxBackground(props: Props): React.JSX.Element {
             break;
         case "right":
             style.borderRight = border;
+            break;
+        case "top-bottom-left-right":
+            style.border = border;
             break;
     }
     return (
