@@ -2,7 +2,7 @@ import { Chip, Theme, Tooltip, useTheme } from "@mui/material";
 import React, { CSSProperties } from "react";
 import "./Bottom.scss";
 import MemoryIcon from "@mui/icons-material/Memory";
-import { Processor, StatusEntry } from "../../../../kico-core";
+import { Processor, StatusEntry } from "kico";
 
 interface Props {
     processor: Processor<any, any>;

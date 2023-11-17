@@ -5818,7 +5818,7 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-"hal-kico@link:../hal-kico":
+"hal-kico@link:../../hal-kico":
   version "0.0.0"
   uid ""
 
@@ -6063,7 +6063,7 @@ ignore@^5.2.0:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.4.tgz#a291c0c6178ff1b960befe47fcdec301674a6324"
   integrity sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==
 
-"ihgraph@link:../ihgraph":
+"ihgraph@link:../../ihgraph":
   version "0.0.0"
   uid ""
 
@@ -7465,7 +7465,7 @@ keyv@^4.5.3:
   dependencies:
     json-buffer "3.0.1"
 
-"kico@link:../kico-core":
+"kico@link:../../kico-core":
   version "0.0.0"
   uid ""
 
