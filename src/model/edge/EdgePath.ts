@@ -2,7 +2,7 @@ import { EdgePathStyle } from "./EdgePathStyle";
 import { EdgeProps, getBezierPath, getSmoothStepPath, getStraightPath } from "reactflow";
 
 export interface EdgePath {
-    edgePath: string,
+    path: string,
     labelX: number,
     labelY: number,
 }
@@ -19,5 +19,9 @@ export function getEdgePath(edgePathStyle: EdgePathStyle, props: EdgeProps): Edg
         default:
             [edgePath, labelX, labelY] = getBezierPath(props);
     }
-    return {edgePath, labelX, labelY};
+    return {
+        path: edgePath,
+        labelX,
+        labelY
+    };
 }

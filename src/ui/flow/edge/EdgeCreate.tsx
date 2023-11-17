@@ -5,16 +5,18 @@ import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { Add } from "@mui/icons-material";
-import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
+import { edgeDefinitions, retrieveEdgeDefinition } from "../../../model/edge/edgeDefinitions";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import { firstCharUpperCase } from "../../../util";
 import { EdgeDataCreate } from "../../../model/edge/EdgeData";
-import { getEdgePath } from "../../../model/edge/EdgePath";
+import { EdgePath, getEdgePath } from "../../../model/edge/EdgePath";
+import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
 
 export default function EdgeCreate(props: EdgeProps<EdgeDataCreate>): React.JSX.Element {
+    const edgePathStyle: EdgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
+    const edgePath: EdgePath = getEdgePath(edgePathStyle, props);
+    const edgeDefinition: EdgeDefinition = retrieveEdgeDefinition("create");
     const transformCreationEdge = useStore((state: State) => state.reactFlow.transformCreateEdge);
-    const edgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
-    let {edgePath, labelX, labelY} = getEdgePath(edgePathStyle, props);
     const edgeData: EdgeDataCreate | undefined = props.data;
     if (!edgeData) {
         throw new Error("Props.edgeData is undefined");
@@ -24,14 +26,15 @@ export default function EdgeCreate(props: EdgeProps<EdgeDataCreate>): React.JSX.
             <BaseEdge
                 id={props.id}
                 markerEnd={props.markerEnd}
-                path={edgePath}
+                path={edgePath.path}
+                style={edgeDefinition.style}
             />
             <EdgeLabelRenderer>
                 <div
                     style={{
                         pointerEvents: "all",
                         position: "absolute",
-                        transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                        transform: `translate(-50%, -50%) translate(${edgePath.labelX}px,${edgePath.labelY}px)`,
                     }}
                     className="nopan nodrag"
                 >

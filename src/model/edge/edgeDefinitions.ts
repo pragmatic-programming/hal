@@ -18,14 +18,17 @@ import { SequenceProcessor } from "hal-kico";
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {
     type: "create",
-    animated: true,
+    animated: false,
     component: EdgeCreate,
     icon: AddIcon,
     immediate: false,
     priority: 1,
     processor: CreateProcessor,
     requiresLabel: false,
-    targetNodeTypes: []
+    targetNodeTypes: [],
+    style: {
+        strokeDasharray: "5"
+    },
 };
 
 export const edgeDefinitionExecute: EdgeDefinition = {
