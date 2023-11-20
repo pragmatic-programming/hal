@@ -13,7 +13,7 @@ import { StateEditorOpen } from "./state/editor/StateEditor";
 export default function App(): React.JSX.Element {
     const stateEditorOpen: StateEditorOpen | undefined = useStore((state: State) => state.editor.open);
     const content: string | undefined = useStore((state: State) => state.ui.message.content);
-    const severity: "success"  = useStore((state: State) => state.ui.message.severity);
+    const severity: "success" | "error"  = useStore((state: State) => state.ui.message.severity);
     const closeSnackBar: () => void = useStore((state: State) => () => state.ui.message.setContent(undefined));
     let editor = undefined;
     if (stateEditorOpen) {
