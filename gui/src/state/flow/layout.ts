@@ -29,11 +29,11 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
             ui: {
                 ...state.ui,
                 busy: false,
+                layouts: {
+                    ...state.ui.layouts,
+                    open: false,
+                }
             },
-            menuLayout: {
-                ...state.menuLayout,
-                open: false,
-            }
         });
     };
 }

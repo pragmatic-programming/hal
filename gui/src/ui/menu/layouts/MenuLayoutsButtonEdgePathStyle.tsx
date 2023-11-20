@@ -10,7 +10,7 @@ interface Props {
     icon: React.JSX.Element;
 }
 
-export default function MenuLayoutButtonEdgePathStyle(props: Props): React.JSX.Element {
+export default function MenuLayoutsButtonEdgePathStyle(props: Props): React.JSX.Element {
     const edgePathStyle: EdgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
     const setEdgePathStyle = useStore((state: State) => state.reactFlow.setEdgePathStyle);
     return (

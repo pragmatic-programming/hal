@@ -4,11 +4,14 @@ import { EdgePathStyle } from "../../model/edge/EdgePathStyle";
 
 export function setEdgePathStyle(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (edgePathStyle: EdgePathStyle): Promise<void> => {
-        const state = getState();
+        const state: State = getState();
         setState({
-            menuLayout: {
-                ...state.menuLayout,
-                open: false,
+            ui: {
+                ...state.ui,
+                layouts: {
+                    ...state.ui.layouts,
+                    open: false,
+                },
             },
             reactFlow: {
                 ...state.reactFlow,

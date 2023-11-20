@@ -10,15 +10,15 @@ import BoltIcon from "@mui/icons-material/Bolt";
 import RedoIcon from "@mui/icons-material/Redo";
 import CallMadeIcon from "@mui/icons-material/CallMade";
 import MovingIcon from "@mui/icons-material/Moving";
-import MenuLayoutButtonLayout from "./MenuLayoutButtonLayout";
-import MenuLayoutButtonEdgePathStyle from "./MenuLayoutButtonEdgePathStyle";
+import MenuLayoutsButtonLayout from "./MenuLayoutsButtonLayout";
+import MenuLayoutsButtonEdgePathStyle from "./MenuLayoutsButtonEdgePathStyle";
 import { Polyline } from "@mui/icons-material";
 
 const menuExamplesWidth: number = 200;
 
-export default function MenuLayout(): React.JSX.Element {
-    const menuOpenToggle = useStore((state: State) => state.menuLayout.menuLayoutOpenToggle);
-    const open: boolean = useStore((state: State) => state.menuLayout.open);
+export default function MenuLayouts(): React.JSX.Element {
+    const menuOpenToggle = useStore((state: State) => state.ui.layouts.layoutsOpenToggle);
+    const open: boolean = useStore((state: State) => state.ui.layouts.open);
     return (
         <>
             <ButtonMenu
@@ -39,19 +39,19 @@ export default function MenuLayout(): React.JSX.Element {
                         <ListSubheader>Layout Settings</ListSubheader>
                     }
                 >
-                    <MenuLayoutButtonLayout
+                    <MenuLayoutsButtonLayout
                         icon={<MoreVertIcon/>}
                         layoutOption={"vertical"}
                     />
-                    <MenuLayoutButtonLayout
+                    <MenuLayoutsButtonLayout
                         icon={<MoreHorizIcon/>}
                         layoutOption={"horizontal"}
                     />
-                    <MenuLayoutButtonLayout
+                    <MenuLayoutsButtonLayout
                         icon={<DataUsageIcon/>}
                         layoutOption={"radial"}
                     />
-                    <MenuLayoutButtonLayout
+                    <MenuLayoutsButtonLayout
                         icon={<BoltIcon/>}
                         layoutOption={"force"}
                     />
@@ -64,15 +64,15 @@ export default function MenuLayout(): React.JSX.Element {
                         <ListSubheader>Edge Settings</ListSubheader>
                     }
                 >
-                    <MenuLayoutButtonEdgePathStyle
+                    <MenuLayoutsButtonEdgePathStyle
                         edgePathStyle={"Bezier"}
                         icon={<RedoIcon/>}
                     />
-                    <MenuLayoutButtonEdgePathStyle
+                    <MenuLayoutsButtonEdgePathStyle
                         edgePathStyle={"Straight"}
                         icon={<CallMadeIcon/>}
                     />
-                    <MenuLayoutButtonEdgePathStyle
+                    <MenuLayoutsButtonEdgePathStyle
                         edgePathStyle={"Smooth"}
                         icon={<MovingIcon/>}
                     />

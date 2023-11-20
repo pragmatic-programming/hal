@@ -15,15 +15,15 @@ import { transformCreateNode } from "./flow/transformCreateNode";
 import { setConnectingSourceNodeId } from "./flow/setConnectingSourceNodeId";
 import { setNodeNodeDataLanguage } from "./flow/setNodeNodeDataLanguage";
 import { setEdgePathStyle } from "./flow/setEdgePathStyle";
-import { menuExamplesOpenToggle } from "./menuExamples/menuExamplesOpenToggle";
 import { setNodeNodeDataLabel } from "./flow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./flow/setNodeNodeDataContent";
 import { runImmediate } from "./compilation/runImmediate";
 import { transformCreateEdge } from "./flow/transformCreateEdge";
 import { Position } from "@reactflow/core";
 import { nextNodeId } from "./flow/nextNodeId";
-import { menuLayoutOpenToggle } from "./menuLayout/menuLayoutOpenToggle";
+import { layoutsOpenToggle } from "./ui/layout/layoutsOpenToggle";
 import { NodeFactory } from "../model/node/NodeFactory";
+import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -39,14 +39,6 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         editorContentSet: editorContentSet(setState),
         editorLabelSet: editorLabelSet(setState),
         editorOpen: editorOpen(setState, getState),
-    },
-    menuExamples: {
-        open: false,
-        menuExampleOpenToggle: menuExamplesOpenToggle(setState),
-    },
-    menuLayout: {
-        open: false,
-        menuLayoutOpenToggle: menuLayoutOpenToggle(setState),
     },
     reactFlow: {
         connectingSourceNodeId: null,
@@ -77,5 +69,13 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         mode: "light",
         // todo what should we do with the project name
         projectName: "hello-world.hal",
+        examples: {
+            open: false,
+            examplesOpenToggle: examplesOpenToggle(setState),
+        },
+        layouts: {
+            open: false,
+            layoutsOpenToggle: layoutsOpenToggle(setState),
+        },
     },
 }));

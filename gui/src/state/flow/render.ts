@@ -15,11 +15,11 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
                 ...getState().ui,
                 projectName: projectName ? projectName : getState().ui.projectName,
                 busy: true,
+                examples: {
+                    ...getState().ui.examples,
+                    open: false,
+                }
             },
-            menuExamples: {
-                ...getState().menuExamples,
-                open: false,
-            }
         });
         const context: CompilationContext = iHGraphToFlow(ihGraph);
         await context.compileAsync();
