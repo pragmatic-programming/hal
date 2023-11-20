@@ -1,8 +1,9 @@
 import { State } from "../State";
-import { CompilationContext } from "kico";
+import { CompilationContext, Processor, StatusEntry } from "kico";
 import { flowToIHGraph, ihGraphToHalGraph } from "../../processor/compilationContexts";
 import { CliqueSelectionProcessor } from "hal-kico";
 import { StoreApi } from "zustand";
+import { StateMessage } from "../ui/message/StateMessage";
 
 
 export function run(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -28,7 +29,25 @@ export function run(setState: StoreApi<State>["setState"], getState: () => State
             ui: {
                 ...state.ui,
                 busy: false,
+                message: stateMessage(state.ui.message, context)
             }
         });
+    };
+}
+
+function stateMessage(state: StateMessage, context: CompilationContext): StateMessage {
+    const failedProcessor: Processor<any, any> | undefined = context.processors.find((processor: Processor<any, any>) => processor.getStatus().hasErrors());
+    if (failedProcessor === undefined) {
+        return {
+            ...state,
+            severity: "success",
+            content: "Compilation finished",
+        };
+    }
+    const firstError: StatusEntry = failedProcessor.getStatus().getErrors()[0];
+    return {
+        ...state,
+        severity: "error",
+        content: firstError.message,
     };
 }
