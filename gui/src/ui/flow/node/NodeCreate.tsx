@@ -49,7 +49,7 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         title={"Show more options"}
                     >
                         <IconButton
-                            onClick={() => console.log("To be implemented")}
+                            disabled={true}
                         >
                             <Add/>
                         </IconButton>
