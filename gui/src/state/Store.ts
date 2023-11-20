@@ -24,6 +24,7 @@ import { nextNodeId } from "./flow/nextNodeId";
 import { layoutsOpenToggle } from "./ui/layout/layoutsOpenToggle";
 import { NodeFactory } from "../model/node/NodeFactory";
 import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
+import { setContent } from "./ui/message/setContent";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -67,8 +68,11 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     ui: {
         busy: false,
         mode: "light",
-        // todo what should we do with the project name
-        projectName: "hello-world.hal",
+        message: {
+            content: undefined,
+            setContent: setContent(setState, getState),
+            severity: "success",
+        },
         examples: {
             open: false,
             examplesOpenToggle: examplesOpenToggle(setState),
@@ -77,5 +81,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
             open: false,
             layoutsOpenToggle: layoutsOpenToggle(setState),
         },
+        // todo what should we do with the project name
+        projectName: "hello-world.hal",
     },
 }));

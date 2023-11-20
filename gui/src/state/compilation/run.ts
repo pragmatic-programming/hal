@@ -28,6 +28,11 @@ export function run(setState: StoreApi<State>["setState"], getState: () => State
             ui: {
                 ...state.ui,
                 busy: false,
+                message: {
+                    ...state.ui.message,
+                    severity: "success",
+                    content: "Compilation finished"
+                }
             }
         });
     };
