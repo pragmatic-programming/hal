@@ -59,11 +59,14 @@ export default function EdgeCreate(props: EdgeProps<EdgeDataCreate>): React.JSX.
                             placement="top"
                             title={"Open new Edge Dialog"}
                         >
-                            <IconButton
-                                disabled={true}
-                            >
-                                <Add/>
-                            </IconButton>
+                            {/* todo: remove span when IconButton is not disabled anymore */}
+                            <span>
+                                <IconButton
+                                    disabled={true}
+                                >
+                                    <Add/>
+                                </IconButton>
+                            </span>
                         </Tooltip>
                     </BoxBackgroundMain>
                 </div>

@@ -48,11 +48,14 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         placement="top"
                         title={"Show more options"}
                     >
-                        <IconButton
-                            disabled={true}
-                        >
-                            <Add/>
-                        </IconButton>
+                        {/* todo: remove span when IconButton is not disabled anymore */}
+                        <span>
+                            <IconButton
+                                disabled={true}
+                            >
+                                <Add/>
+                            </IconButton>
+                        </span>
                     </Tooltip>
                 </div>
             </BoxBackgroundMain>
