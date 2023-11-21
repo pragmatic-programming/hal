@@ -26,7 +26,7 @@ export default function MenuExamples(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.ui.examples.open);
     const reactFlow: ReactFlowInstance = useReactFlow();
     const render = useStore((state: State) => (example: Example) => {
-        state.reactFlow.render(
+        state.flow.render(
             createIHGraphFromJSON(example.value),
             reactFlow.fitView,
             example.name,

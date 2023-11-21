@@ -8,8 +8,8 @@ import { LayoutOptionTypeIndicator } from "../../util";
 
 export default function ButtonLayout(): React.JSX.Element {
     const reactFlow: ReactFlowInstance = useReactFlow();
-    const layoutOptions: LayoutOptionTypeIndicator = useStore((state: State) => state.reactFlow.layoutOption);
-    const layout = useStore((state: State) => state.reactFlow.layout);
+    const layoutOptions: LayoutOptionTypeIndicator = useStore((state: State) => state.flow.layoutOption);
+    const layout = useStore((state: State) => state.flow.layout);
     return (
         <ButtonMenu
             onClick={() => layout(reactFlow.fitView, layoutOptions)}

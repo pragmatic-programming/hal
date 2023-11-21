@@ -15,7 +15,7 @@ export function run(setState: StoreApi<State>["setState"], getState: () => State
                 busy: true,
             }
         });
-        const preContext: CompilationContext = flowToIHGraph(state.reactFlow);
+        const preContext: CompilationContext = flowToIHGraph(state.flow);
         await preContext.compileAsync();
         const context: CompilationContext = ihGraphToHalGraph(preContext.getResult());
         context.startEnvironment.setProperty(CliqueSelectionProcessor.CSP_LOG, false);

@@ -14,9 +14,9 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
                 busy: true,
             },
         });
-        const reactFlow = state.reactFlow;
+        const reactFlow = state.flow;
         setState({
-            reactFlow: {
+            flow: {
                 ...reactFlow,
                 layoutOption: layoutOption,
                 nodes: await layoutedNodes(reactFlow, layoutOptions(layoutOption)),

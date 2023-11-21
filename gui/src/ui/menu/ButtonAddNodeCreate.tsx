@@ -5,7 +5,7 @@ import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 
 export default function ButtonAddNodeCreate(): React.JSX.Element {
-    const addNodeCreate = useStore((state: State) => state.reactFlow.addNodeCreate);
+    const addNodeCreate = useStore((state: State) => state.flow.addNodeCreate);
     return (
         <ButtonMenu
             onClick={addNodeCreate}

@@ -42,7 +42,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         editorLabelSet: editorLabelSet(setState),
         editorOpen: editorOpen(setState, getState),
     },
-    reactFlow: {
+    flow: {
         addNodeCreate: addNodeCreate(setState, getState),
         connectingSourceNodeId: null,
         edgePathStyle: "Bezier",

@@ -7,9 +7,9 @@ import { StateFlow } from "./StateFlow";
 
 export function setNodeNodeDataContent(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (editorId: string, content: string | undefined): Promise<void> => {
-        const reactFlow: StateFlow = getState().reactFlow;
+        const reactFlow: StateFlow = getState().flow;
         setState({
-            reactFlow: {
+            flow: {
                 ...reactFlow,
                 nodes: reactFlow.nodes.map((node: Node<NodeData>) => {
                     if (node.id === editorId) {

@@ -12,7 +12,7 @@ import { EdgePath, getEdgePath } from "../../../model/edge/EdgePath";
 import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
 
 export default function EdgeDefault(props: EdgeProps<EdgeData>): React.JSX.Element {
-    const edgePathStyle: EdgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
+    const edgePathStyle: EdgePathStyle = useStore((state: State) => state.flow.edgePathStyle);
     const edgePath: EdgePath = getEdgePath(edgePathStyle, props);
     const reactFlow: ReactFlowInstance = useReactFlow();
     const edge: StrictEdge<EdgeData> = strictEdge(reactFlow.getEdge(props.id));

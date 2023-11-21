@@ -13,10 +13,10 @@ import { EdgePath, getEdgePath } from "../../../model/edge/EdgePath";
 import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
 
 export default function EdgeCreate(props: EdgeProps<EdgeDataCreate>): React.JSX.Element {
-    const edgePathStyle: EdgePathStyle = useStore((state: State) => state.reactFlow.edgePathStyle);
+    const edgePathStyle: EdgePathStyle = useStore((state: State) => state.flow.edgePathStyle);
     const edgePath: EdgePath = getEdgePath(edgePathStyle, props);
     const edgeDefinition: EdgeDefinition = retrieveEdgeDefinition("create");
-    const transformCreationEdge = useStore((state: State) => state.reactFlow.transformCreateEdge);
+    const transformCreationEdge = useStore((state: State) => state.flow.transformCreateEdge);
     const edgeData: EdgeDataCreate | undefined = props.data;
     if (!edgeData) {
         throw new Error("Props.edgeData is undefined");

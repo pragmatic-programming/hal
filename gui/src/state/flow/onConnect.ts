@@ -24,9 +24,9 @@ export function onConnect(setState: StoreApi<State>["setState"], getState: () =>
             throw new Error("TargetHandleId is not from type TargetHandleId");
         }
         setState({
-            reactFlow: {
-                ...getState().reactFlow,
-                edges: addEdge(EdgeFactory.edgeCreate(source, target, sourceHandleId, targetHandleId), getState().reactFlow.edges),
+            flow: {
+                ...getState().flow,
+                edges: addEdge(EdgeFactory.edgeCreate(source, target, sourceHandleId, targetHandleId), getState().flow.edges),
             }
         });
     };

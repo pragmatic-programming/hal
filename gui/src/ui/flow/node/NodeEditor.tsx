@@ -22,8 +22,8 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
         throw new Error("Node.data has wrong type");
     }
     const node: StrictNode<NodeData> = strictNode(useReactFlow().getNode(props.id));
-    const setNodeNodeDataLabel = useStore((state: State) => state.reactFlow.setNodeNodeDataLabel);
-    const setNodeNodeDataContent = useStore((state: State) => state.reactFlow.setNodeNodeDataContent);
+    const setNodeNodeDataLabel = useStore((state: State) => state.flow.setNodeNodeDataLabel);
+    const setNodeNodeDataContent = useStore((state: State) => state.flow.setNodeNodeDataContent);
     const resizerIsVisible = props.selected;
     return (
         <NodeEditorBorder

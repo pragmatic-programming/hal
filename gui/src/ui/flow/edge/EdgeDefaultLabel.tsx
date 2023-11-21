@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
-    const setEdgeLabel = useStore((state: State) => state.reactFlow.setEdgeLabel);
+    const setEdgeLabel = useStore((state: State) => state.flow.setEdgeLabel);
     const reactFlow: ReactFlowInstance = useReactFlow();
     const [inputValue, setInputValue] = useState<SvgIconComponent>(props.edgeDefinition.icon);
     const theme: Theme = useTheme();

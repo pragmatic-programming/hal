@@ -8,9 +8,9 @@ import { nextNodeId } from "./nextNodeId";
 
 export function addNodeCreate(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (): Promise<void> => {
-        const reactFlow: StateFlow = getState().reactFlow;
+        const reactFlow: StateFlow = getState().flow;
         setState({
-            reactFlow: {
+            flow: {
                 ...reactFlow,
                 nodes: [
                     ...reactFlow.nodes,
