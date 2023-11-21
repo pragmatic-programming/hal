@@ -25,6 +25,7 @@ import { layoutsOpenToggle } from "./ui/layout/layoutsOpenToggle";
 import { NodeFactory } from "../model/node/NodeFactory";
 import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
 import { setContent } from "./ui/message/setContent";
+import { addNodeCreate } from "./flow/addNodeCreate";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -42,6 +43,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         editorOpen: editorOpen(setState, getState),
     },
     reactFlow: {
+        addNodeCreate: addNodeCreate(setState, getState),
         connectingSourceNodeId: null,
         edgePathStyle: "Bezier",
         edges: [],
