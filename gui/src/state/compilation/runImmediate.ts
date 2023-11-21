@@ -11,7 +11,7 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
     return async (): Promise<void> => {
         const state = getState();
 
-        const preContext: CompilationContext = flowToIHGraph(state.reactFlow);
+        const preContext: CompilationContext = flowToIHGraph(state.flow);
         await preContext.compileAsync();
 
         const ihGraph = preContext.getResult() as IHGraph;
@@ -31,14 +31,14 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         await context.compileAsync();
         const flowState = context.getResult();
         const reactFlow = {
-            ...getState().reactFlow,
+            ...getState().flow,
             nodes: flowState.nodes,
             edges: flowState.edges,
         };
         setState({
-            reactFlow: {
+            flow: {
                 ...reactFlow,
-                nodes: await layoutedNodes(flowState, layoutOptions(getState().reactFlow.layoutOption)),
+                nodes: await layoutedNodes(flowState, layoutOptions(getState().flow.layoutOption)),
             }
         });
     };

@@ -13,8 +13,8 @@ export function setEdgePathStyle(setState: StoreApi<State>["setState"], getState
                     open: false,
                 },
             },
-            reactFlow: {
-                ...state.reactFlow,
+            flow: {
+                ...state.flow,
                 edgePathStyle: edgePathStyle,
             },
         });

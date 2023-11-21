@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function NodeCreateButton(props: Props): React.JSX.Element {
-    const transformCreateNode = useStore((state: State) => state.reactFlow.transformCreateNode);
+    const transformCreateNode = useStore((state: State) => state.flow.transformCreateNode);
     return (
         <Tooltip
             placement={props.placement}

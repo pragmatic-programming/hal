@@ -12,8 +12,8 @@ interface Props {
 
 export default function MenuLayoutsButtonLayout(props: Props): React.JSX.Element {
     const reactFlow: ReactFlowInstance = useReactFlow();
-    const layout = useStore((state: State) => state.reactFlow.layout);
-    const layoutOption: LayoutOptionTypeIndicator = useStore((state: State) => state.reactFlow.layoutOption);
+    const layout = useStore((state: State) => state.flow.layout);
+    const layoutOption: LayoutOptionTypeIndicator = useStore((state: State) => state.flow.layoutOption);
     return (
         <ListItem>
             <ListItemButton

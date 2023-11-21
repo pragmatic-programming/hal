@@ -14,15 +14,15 @@ import { NodeFactory } from "../../model/node/NodeFactory";
 import { EdgeFactory } from "../../model/edge/EdgeFactory";
 
 const selector = (state: State) => ({
-    edges: state.reactFlow.edges,
-    layout: state.reactFlow.layout,
-    layoutOption: state.reactFlow.layoutOption,
-    nextNodeId: state.reactFlow.nextNodeId,
-    nodes: state.reactFlow.nodes,
-    onConnect: state.reactFlow.onConnect,
-    onEdgesChange: state.reactFlow.onEdgesChange,
-    onNodesChange: state.reactFlow.onNodesChange,
-    setConnectingSourceNodeId: state.reactFlow.setConnectingSourceNodeId,
+    edges: state.flow.edges,
+    layout: state.flow.layout,
+    layoutOption: state.flow.layoutOption,
+    nextNodeId: state.flow.nextNodeId,
+    nodes: state.flow.nodes,
+    onConnect: state.flow.onConnect,
+    onEdgesChange: state.flow.onEdgesChange,
+    onNodesChange: state.flow.onNodesChange,
+    setConnectingSourceNodeId: state.flow.setConnectingSourceNodeId,
 });
 
 const creationNodeHalfHeight = 30;

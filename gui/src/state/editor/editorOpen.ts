@@ -29,13 +29,13 @@ export function editorOpen(setState: StoreApi<State>["setState"], getState: () =
             if (!open) {
                 throw new Error("EditorOpen.open is undefined");
             }
-            const reactFlow: StateFlow = getState().reactFlow;
+            const reactFlow: StateFlow = getState().flow;
             setState({
                 editor: {
                     ...editor,
                     open: undefined
                 },
-                reactFlow: {
+                flow: {
                     ...reactFlow,
                     nodes: reactFlow.nodes.map((node: Node<NodeData>) => {
                         if (node.id === open.nodeId) {

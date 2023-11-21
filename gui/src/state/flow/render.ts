@@ -25,14 +25,14 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         await context.compileAsync();
         const flowState = context.getResult();
         const reactFlow = {
-            ...getState().reactFlow,
+            ...getState().flow,
             nodes: flowState.nodes,
             edges: flowState.edges,
         };
         setState({
-            reactFlow: {
+            flow: {
                 ...reactFlow,
-                nodes: await layoutedNodes(reactFlow, layoutOptions(getState().reactFlow.layoutOption))
+                nodes: await layoutedNodes(reactFlow, layoutOptions(getState().flow.layoutOption))
             }
         });
         window.requestAnimationFrame(() => {

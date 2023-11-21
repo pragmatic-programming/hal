@@ -6,9 +6,9 @@ import { StateFlow } from "./StateFlow";
 
 export function setEdgeLabel(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (edgeId: string, label: string): Promise<void> => {
-        const reactFlow: StateFlow = getState().reactFlow;
+        const reactFlow: StateFlow = getState().flow;
         setState({
-            reactFlow: {
+            flow: {
                 ...reactFlow,
                 edges: reactFlow.edges.map((edge: Edge) => {
                     if (edge.id === edgeId) {

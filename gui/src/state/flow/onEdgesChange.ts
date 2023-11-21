@@ -5,9 +5,9 @@ import { StoreApi } from "zustand";
 export function onEdgesChange(setState: StoreApi<State>["setState"], getState: () => State) {
     return (changes: EdgeChange[]): void => {
         setState({
-            reactFlow: {
-                ...getState().reactFlow,
-                edges: applyEdgeChanges(changes, getState().reactFlow.edges),
+            flow: {
+                ...getState().flow,
+                edges: applyEdgeChanges(changes, getState().flow.edges),
             }
         });
     };

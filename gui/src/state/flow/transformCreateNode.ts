@@ -12,7 +12,7 @@ import { EdgeDataFactory } from "../../model/edge/EdgeDataFactory";
 
 export function transformCreateNode(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | null | undefined): Promise<void> => {
-        const reactFlow: StateFlow = getState().reactFlow;
+        const reactFlow: StateFlow = getState().flow;
         const nodes: Node[] = transformNodes(reactFlow, nodeDefinition, nodeId);
         let edges: Edge[] = reactFlow.edges;
         // if targetEdgeId is not set, no target edge exist and,
@@ -21,7 +21,7 @@ export function transformCreateNode(setState: StoreApi<State>["setState"], getSt
             edges = transformEdges(reactFlow, nodeDefinition, targetEdgeId);
         }
         setState({
-            reactFlow: {
+            flow: {
                 ...reactFlow,
                 edges: edges,
                 nodes: nodes,

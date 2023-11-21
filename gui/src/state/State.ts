@@ -10,6 +10,6 @@ export interface State {
     compilation: StateCompilation,
     immediateCompilation: StateCompilationImmediate,
     editor: StateEditor,
-    reactFlow: StateFlow
+    flow: StateFlow
     ui: StateUi,
 }
