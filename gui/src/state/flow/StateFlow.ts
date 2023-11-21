@@ -8,6 +8,7 @@ import { NodeDefinition } from "../../model/node/NodeDefinition";
 import { LayoutOptionTypeIndicator } from "../../util";
 
 export interface StateFlow {
+    addNodeCreate: () => void,
     connectingSourceNodeId: string | null,
     edgePathStyle: EdgePathStyle
     edges: Edge[],
