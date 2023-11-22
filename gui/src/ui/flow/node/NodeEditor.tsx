@@ -24,12 +24,13 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     const node: StrictNode<NodeData> = strictNode(useReactFlow().getNode(props.id));
     const setNodeNodeDataLabel = useStore((state: State) => state.flow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.flow.setNodeNodeDataContent);
-    const resizerIsVisible = props.selected;
+    const resizerIsVisible: boolean = props.selected;
     return (
         <NodeEditorBorder
+            height={node.height}
+            sourceNodeStatus={props.data.status}
             visible={!resizerIsVisible}
             width={node.width}
-            height={node.height}
         >
             <NodeResizer
                 isVisible={resizerIsVisible}

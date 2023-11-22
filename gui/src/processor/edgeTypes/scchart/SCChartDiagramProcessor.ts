@@ -2,6 +2,8 @@ import { NodeDataImage } from "../../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { SCChartDiagram } from "./SCChartDiagram";
 import { CliqueProcessor } from "hal-kico";
+import { NodeDataFactory } from "../../../model/node/NodeDataFactory";
+import { SourceNodeStatus } from "ihgraph";
 
 export class SCChartDiagramProcessor extends CliqueProcessor {
 
@@ -38,18 +40,18 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
 
 
     private async htmlImageElement(image64: string): Promise<HTMLImageElement> {
-        let img = new Image();
+        let img: HTMLImageElement = new Image();
         img.src = image64;
         await img.decode();
         return img;
     }
 
     private nodeData(img: HTMLImageElement): NodeDataImage {
-        return {
-            content: img.src,
-            height: img.height,
-            type: "image",
-            width: img.width,
-        };
+        return NodeDataFactory.nodeDataImage(
+            img.src,
+            img.height,
+            img.width,
+            SourceNodeStatus.UNDEFINED,
+        );
     }
 }

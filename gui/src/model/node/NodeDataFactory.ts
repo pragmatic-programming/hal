@@ -27,11 +27,13 @@ export class NodeDataFactory {
     static nodeDataImage(
         content: string,
         height: number,
-        width: number
+        width: number,
+        status: SourceNodeStatus,
     ): NodeDataImage {
         return {
             content: content,
             height: height,
+            status: status,
             type: "image",
             width: width,
         };
@@ -55,6 +57,7 @@ export class NodeDataFactory {
                     "",
                     64,
                     64,
+                    SourceNodeStatus.UNDEFINED,
                 );
         }
     }

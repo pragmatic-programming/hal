@@ -53,7 +53,7 @@ export class NodeFactory {
         return {
             id: id,
             type: "image",
-            data: NodeDataFactory.nodeDataImage(content, height, width),
+            data: NodeDataFactory.nodeDataImage(content, height, width, SourceNodeStatus.UNDEFINED),
             position: {x: x, y: y},
             width: width,
             height: height,

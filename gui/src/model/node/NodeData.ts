@@ -23,4 +23,5 @@ export interface NodeDataCreate extends NodeDataCommon {
 export interface NodeDataImage extends NodeDataCommon {
     type: "image",
     content: string | undefined,
+    status: SourceNodeStatus,
 }

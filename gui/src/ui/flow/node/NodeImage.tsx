@@ -13,7 +13,7 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
     const theme: Theme = useTheme();
     let img: React.JSX.Element = (
         <NodeImageDefault
-            borderColor={borderColor(props, theme, theme.palette.primary.main)}
+            borderColor={borderColor(props.data.status, props.selected, theme, theme.palette.primary.main)}
             width={props.data.width}
             height={props.data.height}
         />
@@ -29,7 +29,7 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
                 <NodeResizer
                     isVisible={props.selected}
                     keepAspectRatio={true}
-                    lineStyle={{borderColor: borderColor(props, theme, theme.palette.info.light)}}
+                    lineStyle={{borderColor: borderColor(props.data.status, props.selected, theme, theme.palette.info.light)}}
                     maxHeight={props.data.height}
                     maxWidth={props.data.width}
                 />

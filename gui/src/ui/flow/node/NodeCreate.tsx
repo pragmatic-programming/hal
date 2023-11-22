@@ -16,7 +16,7 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const targetEdge: Edge | undefined = useReactFlow().getEdges().find((edge: Edge<EdgeData>): boolean => edge.target === props.id);
     return (
         <BoxBorder
-            borderColor={borderColor(props, theme, theme.palette.primary.main)}
+            borderColor={borderColor(props.data.status, props.selected, theme, theme.palette.primary.main)}
         >
             <HandleTargetTop
                 nodeId={props.id}
