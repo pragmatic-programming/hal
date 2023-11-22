@@ -1,4 +1,3 @@
-import { NodeProps } from "reactflow";
 import { Theme } from "@mui/material";
 import { SourceNodeStatus } from "ihgraph";
 import { LayoutOptions } from "elkjs/lib/elk-api";
@@ -8,12 +7,13 @@ export function firstCharUpperCase(value: string): string {
 }
 
 export function borderColor(
-    props: NodeProps,
+    status: SourceNodeStatus,
+    selected: boolean,
     theme: Theme,
     defaultBorderColor: string,
 ): string {
     let borderColor: string = defaultBorderColor;
-    switch (props.data.status) {
+    switch (status) {
         case SourceNodeStatus.ERROR:
             borderColor = theme.palette.error.main;
             break;
@@ -23,9 +23,8 @@ export function borderColor(
         case SourceNodeStatus.WARNING:
             borderColor = theme.palette.warning.main;
             break;
-
     }
-    if (props.selected) {
+    if (selected) {
         borderColor = theme.palette.info.light;
     }
     return borderColor;
