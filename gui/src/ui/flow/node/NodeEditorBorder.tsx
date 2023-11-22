@@ -2,6 +2,7 @@ import React from "react";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 
 interface Props {
+    borderColor: string;
     children: React.ReactNode;
     visible: boolean;
     width: number;
@@ -21,6 +22,7 @@ export default function NodeEditorBorder(props: Props): React.JSX.Element {
     }
     return (
         <BoxBackgroundMain
+            borderColor={props.borderColor}
             border={border}
             style={{
                 width: width,

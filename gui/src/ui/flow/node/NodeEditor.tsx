@@ -12,6 +12,8 @@ import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
 import { StrictNode, strictNode } from "../../../model/node/StrictNode";
 import NodeEditorBorder from "./NodeEditorBorder";
+import { borderColor } from "../../../util";
+import { Theme, useTheme } from "@mui/material";
 
 const editorBodyReducedWidth: number = 2;
 const editorBodyReducedHeight: number = editorHeaderHeight + editorFooterHeight;
@@ -25,11 +27,13 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     const setNodeNodeDataLabel = useStore((state: State) => state.flow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.flow.setNodeNodeDataContent);
     const resizerIsVisible = props.selected;
+    const theme: Theme = useTheme();
     return (
         <NodeEditorBorder
             visible={!resizerIsVisible}
             width={node.width}
             height={node.height}
+            borderColor={borderColor(props, theme, theme.palette.primary.main)}
         >
             <NodeResizer
                 isVisible={resizerIsVisible}

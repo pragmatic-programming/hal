@@ -4,13 +4,15 @@ import { Theme, useTheme } from "@mui/material";
 interface Props {
     backgroundColor: string;
     border?: "top" | "bottom" | "left" | "right" | "top-bottom-left-right";
+    borderColor?: string;
     children: React.ReactNode;
     style?: CSSProperties;
 }
 
 export function BoxBackground(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
-    const border: string = "1px solid " + theme.palette.primary.dark;
+    const borderColor: string = props.borderColor ? props.borderColor : theme.palette.primary.dark
+    const border: string = "1px solid " + borderColor;
     let style: CSSProperties = {
         ...props.style,
         backgroundColor: props.backgroundColor,
