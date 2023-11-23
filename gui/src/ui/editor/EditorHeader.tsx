@@ -1,5 +1,4 @@
 import React from "react";
-import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
 import { EditorHeaderLabel } from "./EditorHeaderLabel";
 
 interface Props {
@@ -14,7 +13,7 @@ export const editorHeaderHeight = 46;
 
 export default function EditorHeader(props: Props): React.JSX.Element {
     return (
-        <BoxBackgroundLight
+        <div
             style={{
                 alignItems: "center",
                 display: "flex",
@@ -30,6 +29,6 @@ export default function EditorHeader(props: Props): React.JSX.Element {
                 fullWidth={true}
             />
             {props.iconRight}
-        </BoxBackgroundLight>
+        </div>
     );
 }

@@ -5,7 +5,6 @@ import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { Theme, useTheme } from "@mui/material";
 import EditorHeader, { editorHeaderHeight } from "./EditorHeader";
 import { StateEditorOpen } from "../../state/editor/StateEditor";
-import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "./EditorFooter";
 import { EditorBody } from "./EditorBody";
 import { NodeData } from "../../model/node/NodeData";
@@ -14,6 +13,7 @@ import { EditorHeaderIcon } from "./EditorHeaderIcon";
 import InsertDriveFile from "@mui/icons-material/InsertDriveFile";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
+import { BoxBackgroundLight } from "../util/BoxBackgroundLight";
 
 interface Props {
     editorState: StateEditorOpen;
@@ -36,7 +36,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
         throw new Error("Node has wrong type");
     }
     return (
-        <BoxBackgroundMain
+        <BoxBackgroundLight
             style={{
                 position: "fixed",
                 width: "calc(100vw - " + editorFullSizeReducedWidth + "px)",
@@ -78,6 +78,6 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                 nodeId={node.id}
                 language={node.data.language}
             />
-        </BoxBackgroundMain>
+        </BoxBackgroundLight>
     );
 }

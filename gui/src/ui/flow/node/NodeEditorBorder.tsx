@@ -1,8 +1,8 @@
 import React from "react";
-import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
 import { SourceNodeStatus } from "../../../../../../ihgraph";
+import { BoxBackgroundLight } from "../../util/BoxBackgroundLight";
 
 interface Props {
     children: React.ReactNode;
@@ -25,7 +25,7 @@ export default function NodeEditorBorder(props: Props): React.JSX.Element {
         border = "top-bottom-left-right";
     }
     return (
-        <BoxBackgroundMain
+        <BoxBackgroundLight
             borderColor={borderColor(props.sourceNodeStatus, !props.visible, theme, theme.palette.primary.main)}
             border={border}
             style={{
@@ -34,6 +34,6 @@ export default function NodeEditorBorder(props: Props): React.JSX.Element {
             }}
         >
             {props.children}
-        </BoxBackgroundMain>
+        </BoxBackgroundLight>
     );
 }
