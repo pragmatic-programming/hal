@@ -1,4 +1,4 @@
-package com.github.ssmifi.hal.server.kico
+package com.github.ssmifi.hal.server.enpoint.kico
 
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus

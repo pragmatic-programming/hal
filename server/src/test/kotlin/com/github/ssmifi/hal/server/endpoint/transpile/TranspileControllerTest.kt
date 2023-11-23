@@ -1,5 +1,6 @@
-package com.github.ssmifi.hal.server.execute
+package com.github.ssmifi.hal.server.endpoint.transpile
 
+import com.github.ssmifi.hal.server.enpoint.transpile.TranspileRequest
 import io.restassured.RestAssured
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
@@ -11,7 +12,7 @@ import org.springframework.boot.test.web.server.LocalServerPort
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ExecuteControllerTest {
+class TranspileControllerTest {
 
     @LocalServerPort
     private val port: Int? = null
@@ -22,21 +23,16 @@ class ExecuteControllerTest {
     }
 
     @Test
-    fun execute() {
-        val script = """
-            x = 1
-            if x == 1:
-            # indented four spaces
-                print("x is 1.")
-        """.trimIndent()
+    fun transpile() {
         given()
             .contentType(ContentType.JSON)
-            .body(ExecuteRequest(script))
+            .body(TranspileRequest("Python", "JavaScript", "print(1);"))
             .`when`()
-            .post("/execute/")
+            .post("/transpile/")
             .then()
             .statusCode(200)
-            .body(equalTo("x is 1.\n"))
+            .header("Content-Type", "text/plain;charset=UTF-8")
+            .body(equalTo("console.log(1);\n\n"))
     }
 
 }

@@ -1,4 +1,4 @@
-package com.github.ssmifi.hal.server.transpile
+package com.github.ssmifi.hal.server.enpoint.transpile
 
 class TranspileRequest(
     val inputLanguage: String,

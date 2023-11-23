@@ -1,5 +1,6 @@
-package com.github.ssmifi.hal.server.kico
+package com.github.ssmifi.hal.server.endpoint.kico
 
+import com.github.ssmifi.hal.server.enpoint.kico.SCChartRequest
 import io.restassured.RestAssured
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
