@@ -13,8 +13,9 @@ export function BoxBackgroundLight(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
     return (
         <BoxBackground
-            border={props.border}
             backgroundColor={theme.palette.primary.light}
+            border={props.border}
+            borderColor={props.borderColor}
             style={props.style}
         >
             {props.children}
