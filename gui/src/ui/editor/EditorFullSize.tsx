@@ -9,7 +9,7 @@ import EditorFooter, { editorFooterHeight } from "./EditorFooter";
 import { EditorBody } from "./EditorBody";
 import { NodeData } from "../../model/node/NodeData";
 import { StrictNode, strictNode } from "../../model/node/StrictNode";
-import { EditorHeaderIcon } from "./EditorHeaderIcon";
+import { Icon } from "../util/Icon";
 import InsertDriveFile from "@mui/icons-material/InsertDriveFile";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
@@ -38,12 +38,12 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
     return (
         <BoxBackgroundLight
             style={{
-                position: "fixed",
-                width: "calc(100vw - " + editorFullSizeReducedWidth + "px)",
-                height: "calc(100vh - " + editorFullSizeReducedHeight + "px)",
                 borderColor: theme.palette.info.light,
                 borderStyle: "solid",
                 borderWidth: editorFullSizeBorderWidth,
+                height: "calc(100vh - " + editorFullSizeReducedHeight + "px)",
+                position: "fixed",
+                width: "calc(100vw - " + editorFullSizeReducedWidth + "px)",
             }}
         >
             <EditorHeader
@@ -51,7 +51,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                 onChange={(value: string) => editorOpenSetLabel(value)}
                 value={props.editorState.label}
                 iconLeft={
-                    <EditorHeaderIcon
+                    <Icon
                         iconDefault={InsertDriveFile}
                         iconHover={DeleteIcon}
                         onClick={() => {
@@ -61,7 +61,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                     />
                 }
                 iconRight={
-                    <EditorHeaderIcon
+                    <Icon
                         iconDefault={CloseFullscreenIcon}
                         onClick={() => openEditor(reactFlow.getNode, undefined)}
                     />
@@ -75,8 +75,8 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                 width={"calc(vw - " + editorBodyReducedHeight + "px)"}
             />
             <EditorFooter
-                nodeId={node.id}
                 language={node.data.language}
+                nodeId={node.id}
             />
         </BoxBackgroundLight>
     );

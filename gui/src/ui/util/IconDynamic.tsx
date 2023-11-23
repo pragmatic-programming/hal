@@ -6,10 +6,10 @@ interface Props {
     iconDefault: SvgIconComponent;
     iconHover: SvgIconComponent;
     onClick: () => void;
-    style: CSSProperties;
+    style?: CSSProperties;
 }
 
-export function EditorHeaderIconDynamic(props: Props): React.JSX.Element {
+export function IconDynamic(props: Props): React.JSX.Element {
     const [inputValue, setInputValue] = useState<SvgIconComponent>(props.iconDefault);
 
     return (
