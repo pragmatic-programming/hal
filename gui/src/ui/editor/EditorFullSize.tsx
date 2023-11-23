@@ -2,15 +2,18 @@ import React from "react";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
-import { IconButton, Theme, useTheme } from "@mui/material";
+import { Theme, useTheme } from "@mui/material";
 import EditorHeader, { editorHeaderHeight } from "./EditorHeader";
-import { Close } from "@mui/icons-material";
 import { StateEditorOpen } from "../../state/editor/StateEditor";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import EditorFooter, { editorFooterHeight } from "./EditorFooter";
 import { EditorBody } from "./EditorBody";
 import { NodeData } from "../../model/node/NodeData";
 import { StrictNode, strictNode } from "../../model/node/StrictNode";
+import { EditorHeaderIcon } from "./EditorHeaderIcon";
+import InsertDriveFile from "@mui/icons-material/InsertDriveFile";
+import DeleteIcon from "@mui/icons-material/Delete";
+import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
 
 interface Props {
     editorState: StateEditorOpen;
@@ -43,20 +46,26 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                 borderWidth: editorFullSizeBorderWidth,
             }}
         >
-            <IconButton
-                style={{
-                    position: "fixed",
-                    top: 5,
-                    right: 5,
-                }}
-                onClick={() => openEditor(reactFlow.getNode, undefined)}
-            >
-                <Close/>
-            </IconButton>
             <EditorHeader
                 nodeId={props.editorState.nodeId}
                 onChange={(value: string) => editorOpenSetLabel(value)}
                 value={props.editorState.label}
+                iconLeft={
+                    <EditorHeaderIcon
+                        iconDefault={InsertDriveFile}
+                        iconHover={DeleteIcon}
+                        onClick={() => {
+                            reactFlow.deleteElements({nodes: [{id: props.editorState.nodeId}]});
+                            openEditor(reactFlow.getNode, undefined);
+                        }}
+                    />
+                }
+                iconRight={
+                    <EditorHeaderIcon
+                        iconDefault={CloseFullscreenIcon}
+                        onClick={() => openEditor(reactFlow.getNode, undefined)}
+                    />
+                }
             />
             <EditorBody
                 height={"calc(100vh - " + editorBodyReducedWidth + "px)"}

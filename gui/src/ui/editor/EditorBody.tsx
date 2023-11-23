@@ -13,6 +13,7 @@ interface Props {
 export function EditorBody(props: Props) {
     return (
         <Monaco
+            className="nodrag"
             height={props.height}
             language={props.language.toLowerCase()}
             onChange={props.onChange}
