@@ -5,7 +5,7 @@ export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface 
         "annotations": {},
         "nodes": [
             {
-                "id": "Hello World!",
+                "id": "1",
                 "content": "hello = \"World!\""
             },
         ],
