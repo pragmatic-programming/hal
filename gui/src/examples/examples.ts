@@ -1,5 +1,6 @@
 import * as ihgraph from "ihgraph";
 import { IHGraphFactoryInterface } from "ihgraph";
+import HardwareIcon from "@mui/icons-material/Hardware";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 import { exampleGraphsWYTIWYGSum } from "./graphs/20.test-sum";
 import { LanguageIndicator } from "../model/node/LanguageIndicator";
@@ -50,7 +51,7 @@ export const examples: Example[] = [
         id: 6,
         name: "Python Transpile",
         value: addDefaultAnnotations(exampleGraphsPythonTranspile(), "Python"),
-        icon: GestureIcon,
+        icon: HardwareIcon,
     }
 ];
 

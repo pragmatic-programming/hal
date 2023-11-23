@@ -96,7 +96,7 @@ export const edgeDefinitionTest: EdgeDefinition = {
 
 export const edgeDefinitionTranspile: EdgeDefinition = {
     type: "transpile",
-    animated: false,
+    animated: true,
     component: EdgeDefault,
     icon: HardwareIcon,
     immediate: true,
