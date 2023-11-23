@@ -2,9 +2,10 @@ import { State } from "../State";
 import { CompilationContext, createCompilationContextFromProcessors, Processor } from "kico";
 import { flowToIHGraph, iHGraphToFlow } from "../../processor/compilationContexts";
 import { StoreApi } from "zustand";
-import { IHGraph } from "ihgraph";
+import { EdgeType, IHGraph, TransformationConfiguration } from "ihgraph";
 import { layoutedNodes } from "../layoutedNodes";
 import { layoutOptions } from "../../util";
+import { StateFlow } from "../flow/StateFlow";
 
 
 export function runImmediate(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -20,14 +21,14 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         const preContext: CompilationContext = flowToIHGraph(oldState.flow);
         await preContext.compileAsync();
 
-        const ihGraph = preContext.getResult() as IHGraph;
-        const immediateCliques = ihGraph.getImmediateCliques();
+        const ihGraph: IHGraph = preContext.getResult() as IHGraph;
+        const immediateCliques: IHGraph[] = ihGraph.getImmediateCliques();
 
         for (const clique of immediateCliques) {
-            const edgeType = clique.getEdges()[0].getType();
-            const transformationConfiguration = clique.getTransformationConfiguration();
+            const edgeType: EdgeType = clique.getEdges()[0].getType();
+            const transformationConfiguration: TransformationConfiguration = clique.getTransformationConfiguration();
             const processorType = transformationConfiguration.get(edgeType);
-            const immediateContext = createCompilationContextFromProcessors(clique, processorType as typeof Processor);
+            const immediateContext: CompilationContext = createCompilationContextFromProcessors(clique, processorType as typeof Processor);
             await immediateContext.compileAsync();
 
             ihGraph.replaceClique(clique, immediateContext.getResult());
@@ -37,7 +38,7 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         await context.compileAsync();
         const flowState = context.getResult();
         const newState: State = getState();
-        const reactFlow = {
+        const reactFlow: StateFlow = {
             ...newState.flow,
             nodes: flowState.nodes,
             edges: flowState.edges,

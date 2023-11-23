@@ -1,12 +1,12 @@
-import * as ihgraph from "ihgraph";
+import { IHGraphFactoryInterface } from "ihgraph";
 
-export function exampleGraphsWYTIWYGSum(): ihgraph.IHGraphFactoryInterface {
+export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
     return {
         nodes: [
             {
                 id: "Function",
                 content:
-`function sum(n) {
+                    `function sum(n) {
     if (n > 0) {
         return n + sum(n - 1);
     } else {
@@ -29,7 +29,7 @@ export function exampleGraphsWYTIWYGSum(): ihgraph.IHGraphFactoryInterface {
             {
                 id: "Usage",
                 content:
-`
+                    `
 sum(3) + sum(1);
 `
             },

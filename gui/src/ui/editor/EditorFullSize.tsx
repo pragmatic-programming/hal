@@ -54,16 +54,18 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                     <Icon
                         iconDefault={InsertDriveFile}
                         iconHover={DeleteIcon}
-                        onClick={() => {
+                        onClick={(): void => {
                             reactFlow.deleteElements({nodes: [{id: props.editorState.nodeId}]});
                             openEditor(reactFlow.getNode, undefined);
                         }}
+                        tooltip={"Delete Editor Node"}
                     />
                 }
                 iconRight={
                     <Icon
                         iconDefault={CloseFullscreenIcon}
                         onClick={() => openEditor(reactFlow.getNode, undefined)}
+                        tooltip={"Exit Fullscreen"}
                     />
                 }
             />
