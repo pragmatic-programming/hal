@@ -12,8 +12,8 @@ import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
 import { StrictNode, strictNode } from "../../../model/node/StrictNode";
 import NodeEditorBorder from "./NodeEditorBorder";
-import { EditorHeaderIcon } from "../../editor/EditorHeaderIcon";
-import InsertDriveFile from "@mui/icons-material/InsertDriveFile";
+import { Icon } from "../../util/Icon";
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import DeleteIcon from "@mui/icons-material/Delete";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
@@ -56,14 +56,14 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}
                 nodeId={props.id}
                 iconLeft={
-                    <EditorHeaderIcon
-                        iconDefault={InsertDriveFile}
+                    <Icon
+                        iconDefault={InsertDriveFileIcon}
                         iconHover={DeleteIcon}
                         onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}
                     />
                 }
                 iconRight={
-                    <EditorHeaderIcon
+                    <Icon
                         iconDefault={OpenInNewIcon}
                         onClick={() => openEditor(reactFlow.getNode, props.id)}
                     />
