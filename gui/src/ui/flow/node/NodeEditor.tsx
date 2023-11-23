@@ -1,5 +1,5 @@
 import React from "react";
-import { NodeProps, NodeResizer, useReactFlow } from "reactflow";
+import { NodeProps, NodeResizer, ReactFlowInstance, useReactFlow } from "reactflow";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import EditorHeader, { editorHeaderHeight } from "../../editor/EditorHeader";
@@ -12,16 +12,22 @@ import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
 import { StrictNode, strictNode } from "../../../model/node/StrictNode";
 import NodeEditorBorder from "./NodeEditorBorder";
+import { EditorHeaderIcon } from "../../editor/EditorHeaderIcon";
+import InsertDriveFile from "@mui/icons-material/InsertDriveFile";
+import DeleteIcon from "@mui/icons-material/Delete";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const editorBodyReducedWidth: number = 2;
 const editorBodyReducedHeight: number = editorHeaderHeight + editorFooterHeight;
 
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
+    const openEditor = useStore((state: State) => state.editor.editorOpen);
     if (props.data.type !== "editor") {
         throw new Error("Node.data has wrong type");
     }
-    const node: StrictNode<NodeData> = strictNode(useReactFlow().getNode(props.id));
+    const reactFlow: ReactFlowInstance = useReactFlow();
+    const node: StrictNode<NodeData> = strictNode(reactFlow.getNode(props.id));
     const setNodeNodeDataLabel = useStore((state: State) => state.flow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.flow.setNodeNodeDataContent);
     const resizerIsVisible: boolean = props.selected;
@@ -49,6 +55,19 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 value={props.data.label}
                 onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}
                 nodeId={props.id}
+                iconLeft={
+                    <EditorHeaderIcon
+                        iconDefault={InsertDriveFile}
+                        iconHover={DeleteIcon}
+                        onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}
+                    />
+                }
+                iconRight={
+                    <EditorHeaderIcon
+                        iconDefault={OpenInNewIcon}
+                        onClick={() => openEditor(reactFlow.getNode, props.id)}
+                    />
+                }
             />
             <EditorBody
                 height={"calc(100% - " + editorBodyReducedHeight + "px)"}
