@@ -14,8 +14,9 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
     let img: React.JSX.Element = (
         <NodeImageDefault
             borderColor={borderColor(props.data.status, props.selected, theme, theme.palette.primary.main)}
-            width={props.data.width}
             height={props.data.height}
+            nodeId={props.id}
+            width={props.data.width}
         />
     );
     if (props.data.content && props.data.content.length > 0) {
@@ -34,9 +35,9 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
                     maxWidth={props.data.width}
                 />
                 <img
-                    style={{width: "100%"}}
-                    src={props.data.content}
                     alt={props.id}
+                    src={props.data.content}
+                    style={{width: "100%"}}
                 />
             </div>
         );

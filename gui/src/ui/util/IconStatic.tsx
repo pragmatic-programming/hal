@@ -4,11 +4,11 @@ import { SvgIconComponent } from "@mui/icons-material";
 
 interface Props {
     icon: SvgIconComponent;
-    onClick: () => void;
-    style: CSSProperties;
+    onClick?: () => void;
+    style?: CSSProperties;
 }
 
-export function EditorHeaderIconStatic(props: Props): React.JSX.Element {
+export function IconStatic(props: Props): React.JSX.Element {
     return (
         <IconButton
             onClick={props.onClick}
