@@ -9,9 +9,15 @@ import { layoutOptions } from "../../util";
 
 export function runImmediate(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (): Promise<void> => {
-        const state = getState();
+        const oldState: State = getState();
+        setState({
+            ui: {
+                ...oldState.ui,
+                busy: true,
+            }
+        });
 
-        const preContext: CompilationContext = flowToIHGraph(state.flow);
+        const preContext: CompilationContext = flowToIHGraph(oldState.flow);
         await preContext.compileAsync();
 
         const ihGraph = preContext.getResult() as IHGraph;
@@ -30,15 +36,20 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         const context: CompilationContext = iHGraphToFlow(ihGraph);
         await context.compileAsync();
         const flowState = context.getResult();
+        const newState: State = getState();
         const reactFlow = {
-            ...getState().flow,
+            ...newState.flow,
             nodes: flowState.nodes,
             edges: flowState.edges,
         };
         setState({
             flow: {
                 ...reactFlow,
-                nodes: await layoutedNodes(flowState, layoutOptions(getState().flow.layoutOption)),
+                nodes: await layoutedNodes(flowState, layoutOptions(newState.flow.layoutOption)),
+            },
+            ui: {
+                ...newState.ui,
+                busy: false,
             }
         });
     };

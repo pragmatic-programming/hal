@@ -2,10 +2,11 @@
 export const edgeTypeIndicators = [
     "create",
     "execute",
-    "scchartdiagram",
     "scchartcode",
+    "scchartdiagram",
     "sequence",
     "test",
+    "transpile",
 ] as const;
 
 export type EdgeTypeIndicator = typeof edgeTypeIndicators[number];

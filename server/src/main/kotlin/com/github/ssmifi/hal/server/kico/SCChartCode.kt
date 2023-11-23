@@ -14,9 +14,9 @@ class SCChartCode(private val scChartRequest: SCChartRequest) {
     fun text(): String {
         input.writeText(this.scChartRequest.payload)
         generateCode()
-        val code = output.listDirectoryEntries().joinToString { it.readText() };
+        val code = output.listDirectoryEntries().joinToString { it.readText() }
         deleteFiles()
-        return code;
+        return code
     }
 
     private fun generateCode() {

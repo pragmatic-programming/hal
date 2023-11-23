@@ -2,6 +2,7 @@ export const languageIndicators = [
     "C",
     "HTML",
     "JavaScript",
+    "TypeScript",
     "PlainText",
     "Python",
 ] as const;
