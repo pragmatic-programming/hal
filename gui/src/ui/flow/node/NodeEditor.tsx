@@ -60,12 +60,14 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                         iconDefault={InsertDriveFileIcon}
                         iconHover={DeleteIcon}
                         onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}
+                        tooltip={"Delete Editor Node"}
                     />
                 }
                 iconRight={
                     <Icon
                         iconDefault={OpenInNewIcon}
                         onClick={() => openEditor(reactFlow.getNode, props.id)}
+                        tooltip={"Open Fullscreen"}
                     />
                 }
             />

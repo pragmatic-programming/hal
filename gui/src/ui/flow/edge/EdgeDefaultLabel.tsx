@@ -1,5 +1,5 @@
 import React from "react";
-import { InputAdornment, Theme, Tooltip, useTheme } from "@mui/material";
+import { InputAdornment, Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { firstCharUpperCase } from "../../../util";
@@ -19,20 +19,13 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     const setEdgeLabel = useStore((state: State) => state.flow.setEdgeLabel);
     const reactFlow: ReactFlowInstance = useReactFlow();
     const theme: Theme = useTheme();
-    const iconButton: React.JSX.Element = (
+    let content: React.JSX.Element = (
         <IconDynamic
             iconDefault={props.edgeDefinition.icon}
             iconHover={DeleteIcon}
             onClick={() => reactFlow.deleteElements({edges: [{id: props.id}]})}
+            tooltip={"Delete " + firstCharUpperCase(props.edgeDefinition.type) + " Edge"}
         />
-    );
-    let content: React.JSX.Element = (
-        <Tooltip
-            placement="top"
-            title={"Delete " + firstCharUpperCase(props.edgeDefinition.type) + " Edge"}
-        >
-            {iconButton}
-        </Tooltip>
     );
     if (props.edgeDefinition.requiresLabel) {
         content = (
@@ -46,7 +39,7 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
                     },
                     startAdornment: (
                         <InputAdornment position="start">
-                            {iconButton}
+                            {content}
                         </InputAdornment>
                     ),
                 }}

@@ -26,6 +26,7 @@ export default function NodeImageDefault(props: Props): React.JSX.Element {
                     iconDefault={ImageIcon}
                     iconHover={DeleteIcon}
                     onClick={() => reactFlow.deleteElements({nodes: [{id: props.nodeId}]})}
+                    tooltip={"Delete Image Node"}
                 />
             </BoxBackgroundMain>
         </BoxBorder>
