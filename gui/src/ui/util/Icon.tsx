@@ -7,6 +7,7 @@ interface Props {
     iconDefault: SvgIconComponent;
     iconHover?: SvgIconComponent;
     onClick: () => void;
+    tooltip: string;
 }
 
 const style: CSSProperties = {
@@ -18,5 +19,5 @@ export function Icon(props: Props): React.JSX.Element {
     if (props.iconHover) {
         return <IconDynamic style={style} {...props} iconHover={props.iconHover}/>;
     }
-    return <IconStatic style={style} icon={props.iconDefault} onClick={props.onClick}/>;
+    return <IconStatic style={style} {...props} icon={props.iconDefault}/>;
 }
