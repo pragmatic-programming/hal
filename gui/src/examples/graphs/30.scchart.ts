@@ -1,6 +1,6 @@
-import * as ihgraph from "ihgraph";
+import { IHGraphFactoryInterface } from "ihgraph";
 
-export function exampleGraphsSCChart(): ihgraph.IHGraphFactoryInterface {
+export function exampleGraphsSCChart(): IHGraphFactoryInterface {
     return {
         "nodes": [
             {

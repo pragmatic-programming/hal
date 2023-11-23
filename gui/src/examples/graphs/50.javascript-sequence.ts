@@ -1,6 +1,6 @@
-import * as ihgraph from "ihgraph";
+import { IHGraphFactoryInterface } from "ihgraph";
 
-export function exampleGraphsJavaScriptSequence(): ihgraph.IHGraphFactoryInterface {
+export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
     return {
         "nodes": [
             {

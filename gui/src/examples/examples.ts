@@ -1,5 +1,4 @@
-import * as ihgraph from "ihgraph";
-import { IHGraphFactoryInterface } from "ihgraph";
+import { AnnotationFactoryType, IHGraphFactoryInterface } from "ihgraph";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 import { exampleGraphsWYTIWYGSum } from "./graphs/20.test-sum";
 import { LanguageIndicator } from "../model/node/LanguageIndicator";
@@ -46,10 +45,10 @@ export const examples: Example[] = [
     }
 ];
 
-function addDefaultAnnotations(example: ihgraph.IHGraphFactoryInterface, languageIndicator: LanguageIndicator): IHGraphFactoryInterface {
+function addDefaultAnnotations(example: IHGraphFactoryInterface, languageIndicator: LanguageIndicator): IHGraphFactoryInterface {
     example.nodes.forEach(node => {
         if (!node.annotations) {
-            node.annotations = {} as ihgraph.AnnotationFactoryType;
+            node.annotations = {} as AnnotationFactoryType;
         }
         node.annotations["nodeData"] = {
             id: "nodeData",
@@ -65,7 +64,7 @@ function addDefaultAnnotations(example: ihgraph.IHGraphFactoryInterface, languag
     });
     example.edges.forEach(edge => {
         if (!edge.annotations) {
-            edge.annotations = {} as ihgraph.AnnotationFactoryType;
+            edge.annotations = {} as AnnotationFactoryType;
         }
         edge.annotations["edgeData"] = {
             id: "edgeData",
