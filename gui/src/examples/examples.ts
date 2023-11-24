@@ -1,3 +1,4 @@
+import HardwareIcon from "@mui/icons-material/Hardware";
 import { AnnotationFactoryType, IHGraphFactoryInterface } from "ihgraph";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 import { exampleGraphsWYTIWYGSum } from "./graphs/20.test-sum";
@@ -9,8 +10,10 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import GestureIcon from "@mui/icons-material/Gesture";
 import { exampleGraphsSCChart } from "./graphs/30.scchart";
-import { exampleGraphsPython } from "./graphs/40.python";
+import { exampleGraphsPythonExecute } from "./graphs/40.python-execute";
 import { exampleGraphsJavaScriptSequence } from "./graphs/50.javascript-sequence";
+import { exampleGraphsPythonTranspile } from "./graphs/60.python-transpile";
+
 
 export const examples: Example[] = [
     {
@@ -39,9 +42,15 @@ export const examples: Example[] = [
     },
     {
         id: 5,
-        name: "Python",
-        value: addDefaultAnnotations(exampleGraphsPython(), "Python"),
+        name: "Python Execute",
+        value: addDefaultAnnotations(exampleGraphsPythonExecute(), "Python"),
         icon: GestureIcon,
+    },
+    {
+        id: 6,
+        name: "Python Transpile",
+        value: addDefaultAnnotations(exampleGraphsPythonTranspile(), "Python"),
+        icon: HardwareIcon,
     }
 ];
 
@@ -77,3 +86,4 @@ function addDefaultAnnotations(example: IHGraphFactoryInterface, languageIndicat
 
     return example;
 }
+

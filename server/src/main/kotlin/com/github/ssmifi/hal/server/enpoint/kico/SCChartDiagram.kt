@@ -1,32 +1,32 @@
-package com.github.ssmifi.hal.server.kico
+package com.github.ssmifi.hal.server.enpoint.kico
 
 import org.springframework.http.HttpStatus
 import org.springframework.web.server.ResponseStatusException
 import java.nio.file.Path
 import kotlin.io.path.*
 
-class SCChartCode(private val scChartRequest: SCChartRequest) {
+class SCChartDiagram(private val scChartRequest: SCChartRequest) {
 
     private val input: Path = createTempFile(suffix = ".sctx")
-    private val output: Path = createTempDirectory()
+    private val output: Path = createTempFile(suffix = ".png")
     private val log: Path = createTempFile(suffix = ".log")
 
-    fun text(): String {
+    fun bytes(): ByteArray {
         input.writeText(this.scChartRequest.payload)
-        generateCode()
-        val code = output.listDirectoryEntries().joinToString { it.readText() };
+        generateSCChart()
+        val output = output.readBytes()
         deleteFiles()
-        return code;
+        return output
     }
 
-    private fun generateCode() {
+    private fun generateSCChart() {
         val logFile = log.toFile()
         val result = ProcessBuilder(
             "java",
             "-jar",
             "/tmp/kicodia.linux.jar",
-            "-s",
-            "de.cau.cs.kieler.sccharts.netlist",
+            "-d",
+            "--only-diagram",
             "-o=${output.absolutePathString()}",
             input.absolutePathString()
         )
@@ -40,7 +40,6 @@ class SCChartCode(private val scChartRequest: SCChartRequest) {
     }
 
     private fun deleteFiles() {
-        output.listDirectoryEntries().forEach { it.deleteIfExists() }
         output.deleteIfExists()
         input.deleteIfExists()
         log.deleteIfExists()

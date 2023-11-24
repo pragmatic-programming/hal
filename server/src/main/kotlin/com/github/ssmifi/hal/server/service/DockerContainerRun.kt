@@ -1,22 +1,27 @@
-package com.github.ssmifi.hal.server.execute
+package com.github.ssmifi.hal.server.service
 
-import com.github.ssmifi.hal.server.service.DockerServiceInterface
-import org.springframework.web.bind.annotation.*
+class DockerContainerRun(
+    private val dockerService: DockerServiceInterface,
+    private val image: String,
+    private vararg val cmd: String,
+) {
 
-
-@CrossOrigin(origins = ["http://localhost:3000"], methods = [RequestMethod.POST])
-@RestController
-class ExecuteController(val dockerService: DockerServiceInterface) {
-
-    @PostMapping("/execute/")
-    fun execute(@RequestBody executeRequest: ExecuteRequest): String {
-        val id = createContainer(executeRequest)
+    fun run(): String {
+        val id = createContainer()
         startContainer(id)
         val logAdapter = attachLogger(id)
         stopContainer(id)
         removeContainer(id)
         return logAdapter.result()
     }
+
+
+    private fun createContainer(): String = dockerService
+        .docker()
+        .createContainerCmd(this.image)
+        .withCmd(*this.cmd)
+        .exec()
+        .id
 
     private fun stopContainer(
         id: String,
@@ -29,15 +34,6 @@ class ExecuteController(val dockerService: DockerServiceInterface) {
     ) {
         dockerService.docker().removeContainerCmd(id).exec()
     }
-
-    private fun createContainer(
-        execute: ExecuteRequest,
-    ): String = dockerService
-        .docker()
-        .createContainerCmd("python:3.6")
-        .withCmd("python3", "-c", execute.payload)
-        .exec()
-        .id
 
     private fun startContainer(
         id: String,
@@ -60,5 +56,4 @@ class ExecuteController(val dockerService: DockerServiceInterface) {
             .awaitCompletion()
         return logAdapter
     }
-
 }

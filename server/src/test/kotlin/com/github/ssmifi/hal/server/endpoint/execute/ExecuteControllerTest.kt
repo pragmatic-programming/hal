@@ -1,5 +1,6 @@
-package com.github.ssmifi.hal.server.execute
+package com.github.ssmifi.hal.server.endpoint.execute
 
+import com.github.ssmifi.hal.server.enpoint.execute.ExecuteRequest
 import io.restassured.RestAssured
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
@@ -31,7 +32,7 @@ class ExecuteControllerTest {
         """.trimIndent()
         given()
             .contentType(ContentType.JSON)
-            .body(ExecuteRequest(script))
+            .body(ExecuteRequest("Python", script))
             .`when`()
             .post("/execute/")
             .then()

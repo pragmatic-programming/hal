@@ -48,8 +48,8 @@ export class NodeDataFactory {
                     "",
                     "New Editor Node",
                     "JavaScript",
+                    200,
                     300,
-                    400,
                     SourceNodeStatus.UNDEFINED,
                 );
             case "image":

@@ -1,6 +1,6 @@
 import { IHGraphFactoryInterface } from "ihgraph";
 
-export function exampleGraphsPython(): IHGraphFactoryInterface {
+export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
     return {
 
         "nodes": [

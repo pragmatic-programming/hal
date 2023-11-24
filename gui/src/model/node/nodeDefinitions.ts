@@ -22,6 +22,7 @@ export const nodeDefinitionEditor: NodeDefinition = {
         "sequence",
         "sequence",
         "test",
+        "transpile",
     ]
 };
 

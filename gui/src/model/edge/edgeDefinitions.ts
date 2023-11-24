@@ -4,6 +4,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import AddIcon from "@mui/icons-material/Add";
+import HardwareIcon from "@mui/icons-material/Hardware";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
@@ -14,6 +15,7 @@ import { CreateProcessor } from "../../processor/edgeTypes/CreateProcessor";
 import { SCChartCodeProcessor } from "../../processor/edgeTypes/scchart/SCChartCodeProcessor";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import { SequenceProcessor } from "hal-kico";
+import { TranspileProcessor } from "../../processor/edgeTypes/transpile/TranspileProcessor";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {
@@ -79,7 +81,7 @@ export const edgeDefinitionSCChartCode: EdgeDefinition = {
     targetNodeTypes: ["editor"]
 };
 
-export const edgeDefinitionWYTIWYG: EdgeDefinition = {
+export const edgeDefinitionTest: EdgeDefinition = {
     type: "test",
     animated: true,
     component: EdgeDefault,
@@ -92,6 +94,19 @@ export const edgeDefinitionWYTIWYG: EdgeDefinition = {
     transformationDirection: "dependency"
 };
 
+export const edgeDefinitionTranspile: EdgeDefinition = {
+    type: "transpile",
+    animated: true,
+    component: EdgeDefault,
+    icon: HardwareIcon,
+    immediate: true,
+    priority: 1,
+    processor: TranspileProcessor,
+    requiresLabel: false,
+    targetNodeTypes: ["editor"],
+};
+
+
 // new edge (step 3): add the new edge definition to the following array
 export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionCreate,
@@ -99,7 +114,8 @@ export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionSCChartCode,
     edgeDefinitionSCChartDiagram,
     edgeDefinitionSequence,
-    edgeDefinitionWYTIWYG,
+    edgeDefinitionTest,
+    edgeDefinitionTranspile,
 ];
 
 // new edge (step 4): add the edge type indicator as case to return new edge definition
@@ -116,6 +132,8 @@ export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): Ed
         case "sequence":
             return edgeDefinitionSequence;
         case "test":
-            return edgeDefinitionWYTIWYG;
+            return edgeDefinitionTest;
+        case "transpile":
+            return edgeDefinitionTranspile;
     }
 }

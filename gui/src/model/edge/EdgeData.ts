@@ -5,14 +5,15 @@ import { TargetHandleId } from "./TargetHandleId";
 export type EdgeData = EdgeDataEmpty | EdgeDataCreate;
 
 export interface EdgeDataCommon {
-    sourceHandle: SourceHandleId
-    targetHandle: TargetHandleId
+    sourceHandle: SourceHandleId;
+    targetHandle: TargetHandleId;
 }
-export interface EdgeDataEmpty extends EdgeDataCommon{
+
+export interface EdgeDataEmpty extends EdgeDataCommon {
     type: "empty";
 }
 
-export interface EdgeDataCreate extends EdgeDataCommon{
+export interface EdgeDataCreate extends EdgeDataCommon {
     type: "create";
     deniedEdgeTypes: EdgeTypeIndicator[];
 }
