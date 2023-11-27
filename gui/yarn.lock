@@ -2936,6 +2936,13 @@
   resolved "https://registry.yarnpkg.com/@types/trusted-types/-/trusted-types-2.0.4.tgz#2b38784cd16957d3782e8e2b31c03bc1d13b4d65"
   integrity sha512-IDaobHimLQhjwsQ/NMwRVfa/yL7L/wriQPMhw1ZJall0KX6E1oxk29XMDeilW5qTIg5aoiqf5Udy8U/51aNoQQ==
 
+"@types/use-double-click@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@types/use-double-click/-/use-double-click-1.0.4.tgz#0170d31cc980ff0d42bc2beaab7642e162da06a4"
+  integrity sha512-wNc6sw4JWV3ZxpmJrKpkSwj8av+oLYvSz6xQiQjHbG1WVUFIhbdlY1y5t1Y2Efh2Hcj2pcEYyHpA69jAs4mF1g==
+  dependencies:
+    "@types/react" "*"
+
 "@types/ws@^8.5.5":
   version "8.5.7"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.5.7.tgz#1ca585074fe5d2c81dec7a3d451f244a2a6d83cb"
@@ -10411,6 +10418,11 @@ url-parse@^1.5.3:
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
+
+use-double-click@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/use-double-click/-/use-double-click-1.0.5.tgz#656a3c3c528b5cd3ff40ee548bac0d50b714dfc6"
+  integrity sha512-71LUca6NtzpzHYlcfM/dOdmwvmvpMbzeIVQpN87w+DctpLiMCXtZpsN8FNWPgHpPBtNhvucPUHIDh5al8D8C7w==
 
 use-sync-external-store@1.2.0:
   version "1.2.0"

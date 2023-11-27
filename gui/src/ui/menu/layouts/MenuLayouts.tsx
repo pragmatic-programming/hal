@@ -2,7 +2,6 @@ import React from "react";
 import { State } from "../../../state/State";
 import { useStore } from "../../../state/Store";
 import { Drawer, List, ListSubheader } from "@mui/material";
-import ButtonMenu from "../ButtonMenu";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DataUsageIcon from "@mui/icons-material/DataUsage";
@@ -12,20 +11,16 @@ import CallMadeIcon from "@mui/icons-material/CallMade";
 import MovingIcon from "@mui/icons-material/Moving";
 import MenuLayoutsButtonLayout from "./MenuLayoutsButtonLayout";
 import MenuLayoutsButtonEdgePathStyle from "./MenuLayoutsButtonEdgePathStyle";
-import { Polyline } from "@mui/icons-material";
+import ButtonLayout from "../ButtonLayout";
 
 const menuExamplesWidth: number = 200;
 
 export default function MenuLayouts(): React.JSX.Element {
-    const menuOpenToggle = useStore((state: State) => state.ui.layouts.layoutsOpenToggle);
     const open: boolean = useStore((state: State) => state.ui.layouts.open);
+    const menuOpenToggle = useStore((state: State) => state.ui.layouts.layoutsOpenToggle);
     return (
         <>
-            <ButtonMenu
-                icon={<Polyline/>}
-                onClick={menuOpenToggle}
-                tooltip={"Layout Settings"}
-            />
+            <ButtonLayout/>
             <Drawer
                 anchor={"left"}
                 open={open}
