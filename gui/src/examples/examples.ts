@@ -1,5 +1,5 @@
 import HardwareIcon from "@mui/icons-material/Hardware";
-import { AnnotationFactoryType, IHGraphFactoryInterface } from "ihgraph";
+import { AnnotationFactoryType, IHGraphFactoryInterface, SourceNodeStatus } from "ihgraph";
 import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
 import { exampleGraphsWYTIWYGSum } from "./graphs/20.test-sum";
 import { LanguageIndicator } from "../model/node/LanguageIndicator";
@@ -13,6 +13,7 @@ import { exampleGraphsSCChart } from "./graphs/30.scchart";
 import { exampleGraphsPythonExecute } from "./graphs/40.python-execute";
 import { exampleGraphsJavaScriptSequence } from "./graphs/50.javascript-sequence";
 import { exampleGraphsPythonTranspile } from "./graphs/60.python-transpile";
+import { NodeDataFactory } from "../model/node/NodeDataFactory";
 
 
 export const examples: Example[] = [
@@ -61,14 +62,12 @@ function addDefaultAnnotations(example: IHGraphFactoryInterface, languageIndicat
         }
         node.annotations["nodeData"] = {
             id: "nodeData",
-            data: {
-                label: node.id,
-                type: "editor",
-                content: node.content ? node.content : "",
-                language: languageIndicator,
-                width: 300,
-                height: 200
-            }
+            data: NodeDataFactory.nodeDataEditor(
+                node.content ? node.content : "",
+                node.id,
+                languageIndicator,
+                SourceNodeStatus.UNDEFINED,
+            )
         };
     });
     example.edges.forEach(edge => {

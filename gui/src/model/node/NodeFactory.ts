@@ -97,7 +97,7 @@ export class NodeFactory {
         return {
             id: id,
             type: "editor",
-            data: NodeDataFactory.nodeDataEditor(content, label, language, height, width, status),
+            data: NodeDataFactory.nodeDataEditor(content, label, language, status),
             position: {x: x, y: y},
             width: width,
             height: height,
