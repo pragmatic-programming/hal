@@ -1,6 +1,6 @@
 import { CliqueProcessor } from "hal-kico";
 import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
-import { NodeData, NodeDataEditor } from "../../model/node/NodeData";
+import { NodeData } from "../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
 import { IndentedString } from "./IndentedString";
 import { ArduinoSetupLoop } from "./ArduinoSetupLoop";
@@ -38,19 +38,16 @@ export class ArduinoProcessor extends CliqueProcessor {
             const content: string = arduinoSetupLoop.content();
             target.createAnnotation(
                 FlowToIHGraphProcessor.ANNOTATION_NODE_DATA,
-                this.nodeData(content)
+                NodeDataFactory.nodeDataEditor(
+                    content,
+                    "Arduino",
+                    "C",
+                    SourceNodeStatus.UNDEFINED,
+                )
             );
             target.setContent(content);
         }
         this.setNewClique(targetGraph);
     }
 
-    private nodeData(code: string): NodeDataEditor {
-        return NodeDataFactory.nodeDataEditor(
-            code,
-            "Arduino",
-            "C",
-            SourceNodeStatus.UNDEFINED,
-        );
-    }
 }
