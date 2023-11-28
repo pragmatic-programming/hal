@@ -8,6 +8,9 @@
 ```sh
 cd gui
 yarn
+# next line is only needed the first time
+# and when devDependendy "monaco-editor" is updated
+yarn run copy-monaco
 yarn run start
 ```
 
