@@ -16,6 +16,8 @@ import { SCChartCodeProcessor } from "../../processor/edgeTypes/scchart/SCChartC
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import { SequenceProcessor } from "hal-kico";
 import { TranspileProcessor } from "../../processor/edgeTypes/transpile/TranspileProcessor";
+import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
+import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {
@@ -31,6 +33,18 @@ export const edgeDefinitionCreate: EdgeDefinition = {
     style: {
         strokeDasharray: "5"
     },
+};
+
+export const edgeDefinitionArduino: EdgeDefinition = {
+    type: "arduino",
+    animated: false,
+    component: EdgeDefault,
+    icon: DeveloperBoardIcon,
+    immediate: false,
+    priority: 9,
+    processor: ArduinoProcessor,
+    requiresLabel: false,
+    targetNodeTypes: ["editor"]
 };
 
 export const edgeDefinitionExecute: EdgeDefinition = {
@@ -110,6 +124,7 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
 // new edge (step 3): add the new edge definition to the following array
 export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionCreate,
+    edgeDefinitionArduino,
     edgeDefinitionExecute,
     edgeDefinitionSCChartCode,
     edgeDefinitionSCChartDiagram,
@@ -123,6 +138,8 @@ export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): Ed
     switch (edgeTypeIndicator) {
         case "create":
             return edgeDefinitionCreate;
+        case "arduino":
+            return edgeDefinitionArduino;
         case "execute":
             return edgeDefinitionExecute;
         case "scchartdiagram":
