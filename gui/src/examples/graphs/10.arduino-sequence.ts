@@ -19,6 +19,10 @@ export function exampleGraphsArduinoSequence(): IHGraphFactoryInterface {
         edgeTypes: [
             {
                 id: "sequence",
+                priority: 2
+            },
+            {
+                id: "arduino",
                 priority: 1
             }
         ],
@@ -29,7 +33,7 @@ export function exampleGraphsArduinoSequence(): IHGraphFactoryInterface {
                 targetNode: "Setup"
             },
             {
-                edgeType: "sequence",
+                edgeType: "arduino",
                 sourceNode: "Setup",
                 targetNode: "Loop"
             }
