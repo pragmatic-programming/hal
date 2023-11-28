@@ -4,7 +4,7 @@ import { NodeData, NodeDataEditor } from "../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
 import { IndentedString } from "./IndentedString";
 import { ArduinoSetupLoop } from "./ArduinoSetupLoop";
-import { DimensionsForContent } from "./DimensionsForContent";
+import { NodeDataFactory } from "../../model/node/NodeDataFactory";
 
 export class ArduinoProcessor extends CliqueProcessor {
 
@@ -45,16 +45,12 @@ export class ArduinoProcessor extends CliqueProcessor {
         this.setNewClique(targetGraph);
     }
 
-
     private nodeData(code: string): NodeDataEditor {
-        const dimensionsForContent: DimensionsForContent = new DimensionsForContent(code);
-        return {
-            ...dimensionsForContent.dimension(),
-            content: code,
-            language: "C",
-            label: "Arduino",
-            type: "editor",
-            status: SourceNodeStatus.UNDEFINED,
-        };
+        return NodeDataFactory.nodeDataEditor(
+            code,
+            "Arduino",
+            "C",
+            SourceNodeStatus.UNDEFINED,
+        );
     }
 }

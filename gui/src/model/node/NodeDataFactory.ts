@@ -2,6 +2,7 @@ import { NodeData, NodeDataEditor, NodeDataImage } from "./NodeData";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { NodeDataTypeIdentifier } from "./NodeDataTypeIdentifier";
 import { SourceNodeStatus } from "ihgraph";
+import { DimensionsForContent } from "../../processor/edgeTypes/DimensionsForContent";
 
 export class NodeDataFactory {
 
@@ -9,18 +10,16 @@ export class NodeDataFactory {
         content: string,
         label: string,
         language: LanguageIndicator,
-        height: number,
-        width: number,
         status: SourceNodeStatus,
     ): NodeDataEditor {
+        const dimensionsForContent: DimensionsForContent = new DimensionsForContent(content);
         return {
+            ...dimensionsForContent.dimension(),
             content: content,
-            height: height,
             label: label,
             language: language,
             status: status,
             type: "editor",
-            width: width,
         };
     }
 
@@ -48,8 +47,6 @@ export class NodeDataFactory {
                     "",
                     "New Editor Node",
                     "JavaScript",
-                    200,
-                    300,
                     SourceNodeStatus.UNDEFINED,
                 );
             case "image":
