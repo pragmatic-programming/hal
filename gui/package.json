@@ -5,6 +5,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "*",
     "jest": "^29.5.0",
+    "monaco-editor": "^0.44.0",
+    "shx": "^0.3.4",
     "ts-jest": "^29.1.0"
   },
   "dependencies": {
@@ -38,6 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "copy-monaco": "shx cp -r ./node_modules/monaco-editor/min/vs ./public/",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
