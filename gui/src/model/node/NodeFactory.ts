@@ -25,8 +25,6 @@ export class NodeFactory {
                     nodeData.language,
                     0,
                     0,
-                    nodeData.width,
-                    nodeData.height,
                     sourceNode.getStatus(),
                 );
             case "image":
@@ -90,17 +88,16 @@ export class NodeFactory {
         language: LanguageIndicator,
         x: number,
         y: number,
-        width: number,
-        height: number,
         status: SourceNodeStatus,
     ): Node<NodeDataEditor> {
+        const data: NodeDataEditor = NodeDataFactory.nodeDataEditor(content, label, language, status);
         return {
             id: id,
             type: "editor",
-            data: NodeDataFactory.nodeDataEditor(content, label, language, status),
+            data: data,
             position: {x: x, y: y},
-            width: width,
-            height: height,
+            width: data.width,
+            height: data.height,
         };
     }
 }
