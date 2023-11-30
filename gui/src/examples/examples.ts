@@ -38,7 +38,7 @@ export const examples: Example[] = [
     {
         id: 4,
         name: "Unit Test",
-        value: addDefaultAnnotations(exampleGraphsWYTIWYGSum(), "JavaScript"),
+        value: exampleGraphsWYTIWYGSum(),
         icon: BiotechIcon,
     },
     {

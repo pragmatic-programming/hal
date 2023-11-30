@@ -4,7 +4,20 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
     return {
         nodes: [
             {
-                id: "Function",
+                "annotations": {
+                    "nodeData": {
+                        "id": "nodeData",
+                        "data": {
+                            "content": "",
+                            "type": "editor",
+                            "label": "Function",
+                            "language": "JavaScript",
+                            "width": 0,
+                            "height": 0
+                        }
+                    }
+                },
+                id: "1",
                 content:
                     `function sum(n) {
     if (n > 0) {
@@ -15,26 +28,89 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
 }`
             },
             {
-                id: "Test 1",
+                "annotations": {
+                    "nodeData": {
+                        "id": "nodeData",
+                        "data": {
+                            "content": "",
+                            "type": "editor",
+                            "label": "Test 1",
+                            "language": "JavaScript",
+                            "width": 0,
+                            "height": 0
+                        }
+                    }
+                },
+                id: "2",
                 content: "sum(3) == 6"
             },
             {
-                id: "Test 2",
+                "annotations": {
+                    "nodeData": {
+                        "id": "nodeData",
+                        "data": {
+                            "content": "",
+                            "type": "editor",
+                            "label": "Test 2",
+                            "language": "JavaScript",
+                            "width": 0,
+                            "height": 0
+                        }
+                    }
+                },
+                id: "3",
                 content: "sum(1)"
             },
             {
-                id: "Test 3",
+                "annotations": {
+                    "nodeData": {
+                        "id": "nodeData",
+                        "data": {
+                            "content": "",
+                            "type": "editor",
+                            "label": "Test 3",
+                            "language": "JavaScript",
+                            "width": 0,
+                            "height": 0
+                        }
+                    }
+                },
+                id: "4",
                 content: "sum(-1) == -1"
             },
             {
-                id: "Usage",
+                "annotations": {
+                    "nodeData": {
+                        "id": "nodeData",
+                        "data": {
+                            "content": "",
+                            "type": "editor",
+                            "label": "Usage",
+                            "language": "JavaScript",
+                            "width": 0,
+                            "height": 0
+                        }
+                    }
+                },
+                id: "5",
                 content:
-                    `
-sum(3) + sum(1);
-`
+                    `sum(3) + sum(1);`
             },
             {
-                id: "Result",
+                "annotations": {
+                    "nodeData": {
+                        "id": "nodeData",
+                        "data": {
+                            "content": "",
+                            "type": "editor",
+                            "label": "Result",
+                            "language": "Plaintext",
+                            "width": 0,
+                            "height": 0
+                        }
+                    }
+                },
+                id: "6",
                 content: ""
             }
         ],
@@ -57,29 +133,74 @@ sum(3) + sum(1);
         ],
         edges: [
             {
+                "annotations": {
+                    "edgeData": {
+                        "id": "edgeData",
+                        "data": {
+                            "sourceHandle": "right",
+                            "targetHandle": "left",
+                        }
+                    }
+                },
                 edgeType: "test",
-                sourceNode: "Test 1",
-                targetNode: "Function"
+                sourceNode: "2",
+                targetNode: "1"
             },
             {
+                "annotations": {
+                    "edgeData": {
+                        "id": "edgeData",
+                        "data": {
+                            "sourceHandle": "right",
+                            "targetHandle": "left",
+                        }
+                    }
+                },
                 edgeType: "test",
-                sourceNode: "Test 2",
-                targetNode: "Function"
+                sourceNode: "3",
+                targetNode: "1"
             },
             {
+                "annotations": {
+                    "edgeData": {
+                        "id": "edgeData",
+                        "data": {
+                            "sourceHandle": "right",
+                            "targetHandle": "left",
+                        }
+                    }
+                },
                 edgeType: "test",
-                sourceNode: "Test 3",
-                targetNode: "Function"
+                sourceNode: "4",
+                targetNode: "1"
             },
             {
+                "annotations": {
+                    "edgeData": {
+                        "id": "edgeData",
+                        "data": {
+                            "sourceHandle": "right",
+                            "targetHandle": "left",
+                        }
+                    }
+                },
                 edgeType: "sequence",
-                sourceNode: "Function",
-                targetNode: "Usage"
+                sourceNode: "1",
+                targetNode: "5"
             },
             {
+                "annotations": {
+                    "edgeData": {
+                        "id": "edgeData",
+                        "data": {
+                            "sourceHandle": "right",
+                            "targetHandle": "left",
+                        }
+                    }
+                },
                 edgeType: "execute",
-                sourceNode: "Usage",
-                targetNode: "Result"
+                sourceNode: "5",
+                targetNode: "6"
             }
         ]
     };
