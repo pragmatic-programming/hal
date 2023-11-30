@@ -8,5 +8,7 @@ export interface NodeDefinition {
     type: NodeTypeIndicator;
     icon: SvgIconComponent;
     component: ComponentType<NodeProps>;
+    // new node (step 5): add edge type to every node definition
+    // which can be connected by new edge
     sourceEdgeTypes: EdgeTypeIndicator[];
 }

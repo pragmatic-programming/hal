@@ -17,6 +17,7 @@ export const nodeDefinitionEditor: NodeDefinition = {
     icon: InsertDriveFile,
     component: NodeEditor,
     sourceEdgeTypes: [
+        "arduino",
         "execute",
         "scchartcode",
         "sequence",
