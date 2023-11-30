@@ -1,6 +1,6 @@
 import { IHGraphFactoryInterface } from "ihgraph";
 
-export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
+export function exampleGraphsArduino(): IHGraphFactoryInterface {
     return {
         nodes: [
             {
@@ -10,15 +10,15 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
                         data: {
                             content: "",
                             type: "editor",
-                            label: "Declaration",
-                            language: "JavaScript",
+                            label: "Defines",
+                            language: "C",
                             width: 0,
                             height: 0
                         }
                     }
                 },
                 id: "1",
-                content: "var x = 1;"
+                content: "const int LED_PIN = 13;"
             },
             {
                 annotations: {
@@ -27,15 +27,15 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
                         data: {
                             content: "",
                             type: "editor",
-                            label: "Usage",
-                            language: "JavaScript",
+                            label: "Setup",
+                            language: "C",
                             width: 0,
                             height: 0
                         }
                     }
                 },
                 id: "2",
-                content: "x + 2;"
+                content: "pinMode(LED_PIN, OUTPUT);"
             },
             {
                 annotations: {
@@ -44,27 +44,25 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
                         data: {
                             content: "",
                             type: "editor",
-                            label: "Result",
-                            language: "PlainText",
+                            label: "Loop",
+                            language: "C",
                             width: 0,
                             height: 0
                         }
                     }
                 },
                 id: "3",
-                content: ""
+                content: "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);"
             }
         ],
         edgeTypes: [
             {
                 id: "sequence",
-                priority: 8,
-                immediate: false
+                priority: 2
             },
             {
-                id: "execute",
-                priority: 2,
-                immediate: false
+                id: "arduino",
+                priority: 1
             }
         ],
         edges: [
@@ -92,11 +90,10 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
                         }
                     }
                 },
-                edgeType: "execute",
+                edgeType: "arduino",
                 sourceNode: "2",
                 targetNode: "3"
             }
         ]
-
     };
 }
