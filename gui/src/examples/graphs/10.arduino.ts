@@ -4,16 +4,16 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
     return {
         nodes: [
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Defines",
-                            "language": "C",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Defines",
+                            language: "C",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -21,16 +21,16 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
                 content: "const int LED_PIN = 13;"
             },
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Setup",
-                            "language": "C",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Setup",
+                            language: "C",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -38,16 +38,16 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
                 content: "pinMode(LED_PIN, OUTPUT);"
             },
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Loop",
-                            "language": "C",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Loop",
+                            language: "C",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -67,12 +67,12 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                "annotations": {
-                    "edgeData": {
-                        "id": "edgeData",
-                        "data": {
-                            "sourceHandle": "right",
-                            "targetHandle": "left",
+                annotations: {
+                    edgeData: {
+                        id: "edgeData",
+                        data: {
+                            sourceHandle: "right",
+                            targetHandle: "left",
                         }
                     }
                 },
@@ -81,12 +81,12 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
                 targetNode: "2"
             },
             {
-                "annotations": {
-                    "edgeData": {
-                        "id": "edgeData",
-                        "data": {
-                            "sourceHandle": "right",
-                            "targetHandle": "left",
+                annotations: {
+                    edgeData: {
+                        id: "edgeData",
+                        data: {
+                            sourceHandle: "right",
+                            targetHandle: "left",
                         }
                     }
                 },

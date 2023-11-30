@@ -4,16 +4,16 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
     return {
         nodes: [
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Function",
-                            "language": "JavaScript",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Function",
+                            language: "JavaScript",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -28,16 +28,16 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
 }`
             },
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Test 1",
-                            "language": "JavaScript",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Test 1",
+                            language: "JavaScript",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -45,16 +45,16 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                 content: "sum(3) == 6"
             },
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Test 2",
-                            "language": "JavaScript",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Test 2",
+                            language: "JavaScript",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -62,16 +62,16 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                 content: "sum(1)"
             },
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Test 3",
-                            "language": "JavaScript",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Test 3",
+                            language: "JavaScript",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -79,16 +79,16 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                 content: "sum(-1) == -1"
             },
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Usage",
-                            "language": "JavaScript",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Usage",
+                            language: "JavaScript",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -97,16 +97,16 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                     `sum(3) + sum(1);`
             },
             {
-                "annotations": {
-                    "nodeData": {
-                        "id": "nodeData",
-                        "data": {
-                            "content": "",
-                            "type": "editor",
-                            "label": "Result",
-                            "language": "Plaintext",
-                            "width": 0,
-                            "height": 0
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Result",
+                            language: "Plaintext",
+                            width: 0,
+                            height: 0
                         }
                     }
                 },
@@ -133,12 +133,12 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                "annotations": {
-                    "edgeData": {
-                        "id": "edgeData",
-                        "data": {
-                            "sourceHandle": "right",
-                            "targetHandle": "left",
+                annotations: {
+                    edgeData: {
+                        id: "edgeData",
+                        data: {
+                            sourceHandle: "right",
+                            targetHandle: "left",
                         }
                     }
                 },
@@ -147,12 +147,12 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                 targetNode: "1"
             },
             {
-                "annotations": {
-                    "edgeData": {
-                        "id": "edgeData",
-                        "data": {
-                            "sourceHandle": "right",
-                            "targetHandle": "left",
+                annotations: {
+                    edgeData: {
+                        id: "edgeData",
+                        data: {
+                            sourceHandle: "right",
+                            targetHandle: "left",
                         }
                     }
                 },
@@ -161,12 +161,12 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                 targetNode: "1"
             },
             {
-                "annotations": {
-                    "edgeData": {
-                        "id": "edgeData",
-                        "data": {
-                            "sourceHandle": "right",
-                            "targetHandle": "left",
+                annotations: {
+                    edgeData: {
+                        id: "edgeData",
+                        data: {
+                            sourceHandle: "right",
+                            targetHandle: "left",
                         }
                     }
                 },
@@ -175,12 +175,12 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                 targetNode: "1"
             },
             {
-                "annotations": {
-                    "edgeData": {
-                        "id": "edgeData",
-                        "data": {
-                            "sourceHandle": "right",
-                            "targetHandle": "left",
+                annotations: {
+                    edgeData: {
+                        id: "edgeData",
+                        data: {
+                            sourceHandle: "right",
+                            targetHandle: "left",
                         }
                     }
                 },
@@ -189,12 +189,12 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                 targetNode: "5"
             },
             {
-                "annotations": {
-                    "edgeData": {
-                        "id": "edgeData",
-                        "data": {
-                            "sourceHandle": "right",
-                            "targetHandle": "left",
+                annotations: {
+                    edgeData: {
+                        id: "edgeData",
+                        data: {
+                            sourceHandle: "right",
+                            targetHandle: "left",
                         }
                     }
                 },
