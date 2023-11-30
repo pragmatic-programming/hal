@@ -26,7 +26,7 @@ export const examples: Example[] = [
     {
         id: 2,
         name: "SCChart",
-        value: addDefaultAnnotations(exampleGraphsSCChart(), "C"),
+        value: exampleGraphsSCChart(),
         icon: TableChartIcon,
     },
     {
@@ -50,10 +50,11 @@ export const examples: Example[] = [
     {
         id: 6,
         name: "Python Transpile",
-        value: addDefaultAnnotations(exampleGraphsPythonTranspile(), "Python"),
+        value: exampleGraphsPythonTranspile(),
         icon: HardwareIcon,
     }
 ];
+
 
 function addDefaultAnnotations(example: IHGraphFactoryInterface, languageIndicator: LanguageIndicator): IHGraphFactoryInterface {
     example.nodes.forEach(node => {

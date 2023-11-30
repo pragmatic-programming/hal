@@ -11,10 +11,10 @@ export function strictNode<T>(node: Node<T> | undefined): StrictNode<T> {
     if (!node) {
         throw new Error("Node is undefined");
     }
-    if (!node.height) {
+    if (node.height === undefined) {
         throw new Error("Node.height is undefined");
     }
-    if (!node.width) {
+    if (node.width === undefined) {
         throw new Error("Node.width is undefined");
     }
     if (!node.data) {
