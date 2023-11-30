@@ -4,8 +4,8 @@ import { Edge, Node } from "reactflow";
 import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
 import { StateFlow } from "./StateFlow";
 import { NodeTypeIndicator } from "../../model/node/NodeTypeIndicator";
-import { HalEdge } from "../../model/edge/HalEdge";
 import { NodeFactory } from "../../model/node/NodeFactory";
+import { EdgeFactory } from "../../model/edge/EdgeFactory";
 
 
 export function transformCreateEdge(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -45,7 +45,7 @@ function transformNodes(reactFlow: StateFlow, type: NodeTypeIndicator, nodeId: s
 function transformEdges(reactFlow: StateFlow, edgeDefinition: EdgeDefinition, edgeId: string): Edge[] {
     return reactFlow.edges.map((edge: Edge) => {
         if (edge.id === edgeId) {
-            edge = new HalEdge(edge).transformByEdgeDefinition(edgeDefinition);
+            edge = EdgeFactory.fromCreationEdge(edge, edgeDefinition);
         }
         return edge;
     });

@@ -2,14 +2,31 @@ import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
 import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
 import { edgeDefinitionCreate, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
-import { EdgeData } from "./EdgeData";
+import { EdgeData, EdgeDataCreate } from "./EdgeData";
 import { TransformationEdge } from "ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
-import { TargetHandleId } from "./TargetHandleId";
+import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";
 
 
 export class EdgeFactory {
+
+    static fromCreationEdge(edge: Edge<EdgeDataCreate>, edgeDefinition: EdgeDefinition): Edge<EdgeData> {
+        if(!isSourceHandleId(edge.sourceHandle)){
+            throw new Error("edge.sourceHandle is not from type SourceHandleId");
+        }
+        if(!isTargetHandleId(edge.targetHandle)){
+            throw new Error("edge.targetHandle is not from type TargetHandleId");
+        }
+        return EdgeFactory.fromEdgeDefinition(
+            edgeDefinition,
+            edge.source,
+            edge.target,
+            edge.sourceHandle,
+            edge.targetHandle,
+        );
+
+    }
 
     static fromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
         if (!onConnectStartParams.nodeId) {
