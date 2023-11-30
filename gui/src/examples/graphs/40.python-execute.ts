@@ -2,7 +2,6 @@ import { IHGraphFactoryInterface } from "ihgraph";
 
 export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
     return {
-
         "nodes": [
             {
                 "annotations": {
@@ -13,8 +12,8 @@ export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
                             "type": "editor",
                             "label": "Source",
                             "language": "Python",
-                            "width": 500,
-                            "height": 600
+                            "width": 0,
+                            "height": 0
                         }
                     }
                 },
@@ -30,8 +29,8 @@ export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
                             "type": "editor",
                             "label": "Result",
                             "language": "PlainText",
-                            "width": 300,
-                            "height": 200
+                            "width": 0,
+                            "height": 0
                         }
                     }
                 },
@@ -48,6 +47,15 @@ export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
         ],
         "edges": [
             {
+                "annotations": {
+                    "edgeData": {
+                        "id": "edgeData",
+                        "data": {
+                            "sourceHandle": "right",
+                            "targetHandle": "left",
+                        }
+                    }
+                },
                 "edgeType": "execute",
                 "sourceNode": "1",
                 "targetNode": "2"

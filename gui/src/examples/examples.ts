@@ -44,7 +44,7 @@ export const examples: Example[] = [
     {
         id: 5,
         name: "Python Execute",
-        value: addDefaultAnnotations(exampleGraphsPythonExecute(), "Python"),
+        value: exampleGraphsPythonExecute(),
         icon: GestureIcon,
     },
     {
