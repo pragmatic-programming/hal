@@ -1,6 +1,6 @@
 import HardwareIcon from "@mui/icons-material/Hardware";
 import { AnnotationFactoryType, IHGraphFactoryInterface, SourceNodeStatus } from "ihgraph";
-import { exampleGraphsArduinoSequence } from "./graphs/10.arduino-sequence";
+import { exampleGraphsArduino } from "./graphs/10.arduino";
 import { exampleGraphsWYTIWYGSum } from "./graphs/20.test-sum";
 import { LanguageIndicator } from "../model/node/LanguageIndicator";
 import { Example } from "./Example";
@@ -32,7 +32,7 @@ export const examples: Example[] = [
     {
         id: 3,
         name: "Arduino",
-        value: addDefaultAnnotations(exampleGraphsArduinoSequence(), "C"),
+        value: exampleGraphsArduino(),
         icon: DeveloperBoardIcon,
     },
     {
