@@ -104,7 +104,7 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
                             content: "",
                             type: "editor",
                             label: "Result",
-                            language: "Plaintext",
+                            language: "PlainText",
                             width: 0,
                             height: 0
                         }

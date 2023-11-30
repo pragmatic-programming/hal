@@ -1,9 +1,10 @@
 import { CliqueProcessor } from "hal-kico";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
-import { NodeData } from "../../../model/node/NodeData";
+import { NodeData, NodeDataEditor } from "../../../model/node/NodeData";
 import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
 import { RemoteExecution } from "./RemoteExecution";
 import { LocalExecution } from "./LocalExecution";
+import { NodeDataFactory } from "../../../model/node/NodeDataFactory";
 
 export class ExecuteProcessor extends CliqueProcessor {
 
@@ -46,14 +47,12 @@ export class ExecuteProcessor extends CliqueProcessor {
         targets.forEach((target, i) => targetGraph.createSourceNode("Eval" + i).setContent(target.getContent()));
         this.setNewClique(targetGraph);
         const node = this.getModel().getSourceNodes()[0];
-        // todo this should come from NodeDataFactory
-        const nodeData: NodeData = {
-            content: node.getContent(),
-            label: "Result",
-            language: "PlainText",
-            type: "editor",
-            status: SourceNodeStatus.SUCCESS,
-        };
+        const nodeData: NodeDataEditor = NodeDataFactory.nodeDataEditor(
+            node.getContent(),
+            "Result",
+            "PlainText",
+            SourceNodeStatus.SUCCESS
+        );
         node.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, nodeData);
     }
 
