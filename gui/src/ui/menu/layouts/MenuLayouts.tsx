@@ -1,7 +1,7 @@
 import React from "react";
 import { State } from "../../../state/State";
 import { useStore } from "../../../state/Store";
-import { Drawer, List, ListSubheader } from "@mui/material";
+import { Divider, Drawer, List, ListSubheader } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import DataUsageIcon from "@mui/icons-material/DataUsage";
@@ -34,6 +34,7 @@ export default function MenuLayouts(): React.JSX.Element {
                         <ListSubheader>Layout Settings</ListSubheader>
                     }
                 >
+                    <Divider/>
                     <MenuLayoutsButtonLayout
                         icon={<MoreVertIcon/>}
                         layoutOption={"vertical"}
@@ -59,6 +60,7 @@ export default function MenuLayouts(): React.JSX.Element {
                         <ListSubheader>Edge Settings</ListSubheader>
                     }
                 >
+                    <Divider/>
                     <MenuLayoutsButtonEdgePathStyle
                         edgePathStyle={"Bezier"}
                         icon={<RedoIcon/>}
