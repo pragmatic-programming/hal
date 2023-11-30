@@ -30,7 +30,7 @@ export function EditorBody(props: Props) {
             height={props.height}
             language={props.language.toLowerCase()}
             onChange={props.onChange}
-            options={{minimap: {enabled: false}}}
+            options={{minimap: {enabled: false}, readOnly: true}}
             value={props.value}
             width={props.width}
         />

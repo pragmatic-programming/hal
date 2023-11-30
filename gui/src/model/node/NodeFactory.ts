@@ -5,8 +5,35 @@ import { FlowToIHGraphProcessor } from "../../processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, } from "./NodeData";
 import { NodeDataFactory } from "./NodeDataFactory";
 import { DimensionsForContent } from "../../processor/edgeTypes/DimensionsForContent";
+import { NodeTypeIndicator } from "./NodeTypeIndicator";
 
 export class NodeFactory {
+
+    static fromCreationNode(node: Node<NodeDataCreate>, newNodeTypeIdentifier: NodeTypeIndicator): Node<NodeData> {
+        switch (newNodeTypeIdentifier) {
+            case "create":
+                throw new Error("Node is already a creation node");
+            case "editor":
+                return NodeFactory.nodeEditor(
+                    node.id,
+                    "",
+                    "Editor",
+                    "JavaScript",
+                    node.position.x,
+                    node.position.y,
+                    SourceNodeStatus.UNDEFINED,
+                );
+            case "image":
+                return NodeFactory.nodeImage(
+                    node.id,
+                    "",
+                    node.position.x,
+                    node.position.y,
+                    0,
+                    0,
+                );
+        }
+    }
 
     static fromSourceNode(sourceNode: SourceNode): Node<NodeData> {
         const nodeData: NodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
