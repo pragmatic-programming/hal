@@ -4,6 +4,7 @@ import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../../processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, } from "./NodeData";
 import { NodeDataFactory } from "./NodeDataFactory";
+import { DimensionsForContent } from "../../processor/edgeTypes/DimensionsForContent";
 
 export class NodeFactory {
 
@@ -68,12 +69,7 @@ export class NodeFactory {
         return {
             id: id,
             type: "create",
-            // todo this should be a create method
-            data: {
-                height: 0,
-                type: "create",
-                width: 0,
-            },
+            data: NodeDataFactory.nodeDataCreate(),
             position: {x: x, y: y},
             targetPosition: targetPosition,
             width: 0,
@@ -90,14 +86,13 @@ export class NodeFactory {
         y: number,
         status: SourceNodeStatus,
     ): Node<NodeDataEditor> {
-        const data: NodeDataEditor = NodeDataFactory.nodeDataEditor(content, label, language, status);
+        const dimensionsForContent: DimensionsForContent = new DimensionsForContent(content);
         return {
+            ...dimensionsForContent.dimension(),
             id: id,
             type: "editor",
-            data: data,
+            data: NodeDataFactory.nodeDataEditor(content, label, language, status),
             position: {x: x, y: y},
-            width: data.width,
-            height: data.height,
         };
     }
 }

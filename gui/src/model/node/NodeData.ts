@@ -3,12 +3,8 @@ import { SourceNodeStatus } from "ihgraph";
 
 export type NodeData = NodeDataEditor | NodeDataCreate | NodeDataImage
 
-interface NodeDataCommon {
-    width: number,
-    height: number,
-}
 
-export interface NodeDataEditor extends NodeDataCommon {
+export interface NodeDataEditor {
     type: "editor",
     content: string | undefined,
     label: string,
@@ -16,12 +12,14 @@ export interface NodeDataEditor extends NodeDataCommon {
     status: SourceNodeStatus,
 }
 
-export interface NodeDataCreate extends NodeDataCommon {
+export interface NodeDataCreate {
     type: "create",
 }
 
-export interface NodeDataImage extends NodeDataCommon {
+export interface NodeDataImage {
     type: "image",
     content: string | undefined,
     status: SourceNodeStatus,
+    height: number,
+    width: number,
 }

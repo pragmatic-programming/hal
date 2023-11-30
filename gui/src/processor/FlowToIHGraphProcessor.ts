@@ -1,9 +1,9 @@
 import { Processor } from "kico";
-import { IHGraph, TransformationDirection } from "ihgraph";
+import { EdgeType, IHGraph, SourceNode, TransformationDirection, TransformationEdge } from "ihgraph";
 import { FlowState } from "./FlowState";
 import { NodeData } from "../model/node/NodeData";
 import { edgeDefinitions } from "../model/edge/edgeDefinitions";
-import { strictNode } from "../model/node/StrictNode";
+import { StrictNode, strictNode } from "../model/node/StrictNode";
 
 
 export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
@@ -11,8 +11,8 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
     public static readonly ANNOTATION_NODE_DATA = "nodeData";
     public static readonly ANNOTATION_EDGE_DATA = "edgeData";
 
-    async process() {
-        const graph = new IHGraph();
+    async process(): Promise<void> {
+        const graph: IHGraph = new IHGraph();
 
         for (const edgeDefinition of edgeDefinitions) {
             const edgeType = graph.createEdgeType(edgeDefinition.type, edgeDefinition.priority).setImmediate(edgeDefinition.immediate);
@@ -22,14 +22,12 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             graph.getTransformationConfiguration().setById(edgeDefinition.type, edgeDefinition.processor);
         }
 
-        const model = this.getModel();
+        const model: FlowState = this.getModel();
         for (let unsafeNode of model.nodes) {
-            const node = strictNode(unsafeNode);
-            const sourceNode = graph.createSourceNode(node.id);
+            const node: StrictNode<NodeData> = strictNode(unsafeNode);
+            const sourceNode: SourceNode = graph.createSourceNode(node.id);
             let data: NodeData = {
                 ...node.data,
-                width: node.width,
-                height: node.height,
             };
             // set content from node data,
             // because reactFlow has no content field and
@@ -41,9 +39,9 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             sourceNode.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, data);
         }
         for (const edge of model.edges) {
-            const source = graph.getNodeById(edge.source);
-            const target = graph.getNodeById(edge.target);
-            const edgeType = graph.getEdgeTypeById(edge.label as string);
+            const source: SourceNode | undefined = graph.getNodeById(edge.source);
+            const target: SourceNode | undefined = graph.getNodeById(edge.target);
+            const edgeType: EdgeType | undefined = graph.getEdgeTypeById(edge.label as string);
             if (!source) {
                 throw new Error("Returned SourceNode is undefined");
             }
@@ -53,8 +51,8 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             if (!edgeType) {
                 throw new Error("Returned EdgeType is undefined: " + edge.label + "");
             }
-            const transformationEdge = graph.createTransformationEdge(edgeType, source, target);
-            transformationEdge.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA, edge.data)
+            const transformationEdge: TransformationEdge = graph.createTransformationEdge(edgeType, source, target);
+            transformationEdge.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA, edge.data);
         }
 
 

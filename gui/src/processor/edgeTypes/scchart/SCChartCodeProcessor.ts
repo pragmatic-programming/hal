@@ -1,7 +1,7 @@
 import { NodeDataEditor } from "../../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { SCChartCode } from "./SCChartCode";
-import { SourceNodeStatus } from "ihgraph";
+import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
 import { CliqueProcessor } from "hal-kico";
 
 export class SCChartCodeProcessor extends CliqueProcessor {
@@ -19,10 +19,10 @@ export class SCChartCodeProcessor extends CliqueProcessor {
     }
 
     async processAsync(): Promise<void> {
-        const targetGraph = this.createTargetGraph();
+        const targetGraph: IHGraph = this.createTargetGraph();
         // todo why Sequence?
-        const targetNode = targetGraph.createSourceNode("Sequence");
-        const cliqueNodes = this.getCliqueNodes();
+        const targetNode: SourceNode = targetGraph.createSourceNode("Sequence");
+        const cliqueNodes: SourceNode[] = this.getCliqueNodes();
 
         try {
             const scChartCode: SCChartCode = new SCChartCode(cliqueNodes[0]);
@@ -41,11 +41,9 @@ export class SCChartCodeProcessor extends CliqueProcessor {
     private nodeData(code: string): NodeDataEditor {
         return {
             content: code,
-            height: 480,
             language: "C",
             label: "Generated Code",
             type: "editor",
-            width: 640,
             status: SourceNodeStatus.UNDEFINED,
         };
     }
