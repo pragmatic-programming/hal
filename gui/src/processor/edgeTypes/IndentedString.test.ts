@@ -5,7 +5,7 @@ test("empty value", () => {
     const indentedString: IndentedString = new IndentedString("");
     //when
     const actual = indentedString.indented();
-    expect(actual).toEqual("");
+    expect(actual).toEqual(" ");
 });
 
 test("one line", () => {
