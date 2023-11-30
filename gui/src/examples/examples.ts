@@ -20,7 +20,7 @@ export const examples: Example[] = [
     {
         id: 1,
         name: "JavaScript Sequence",
-        value: addDefaultAnnotations(exampleGraphsJavaScriptSequence(), "JavaScript"),
+        value: exampleGraphsJavaScriptSequence(),
         icon: KeyboardDoubleArrowRightIcon,
     },
     {

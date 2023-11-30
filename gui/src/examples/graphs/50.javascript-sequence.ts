@@ -8,12 +8,12 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
                     "nodeData": {
                         "id": "nodeData",
                         "data": {
-                            "content": "var x = 1;",
+                            "content": "",
                             "type": "editor",
                             "label": "Declaration",
                             "language": "JavaScript",
-                            "width": 300,
-                            "height": 200
+                            "width": 0,
+                            "height": 0
                         }
                     }
                 },
@@ -25,12 +25,12 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
                     "nodeData": {
                         "id": "nodeData",
                         "data": {
-                            "content": "x + 2;",
+                            "content": "",
                             "type": "editor",
                             "label": "Usage",
                             "language": "JavaScript",
-                            "width": 300,
-                            "height": 200
+                            "width": 0,
+                            "height": 0
                         }
                     }
                 },
@@ -46,8 +46,8 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
                             "type": "editor",
                             "label": "Result",
                             "language": "PlainText",
-                            "width": 300,
-                            "height": 200
+                            "width": 0,
+                            "height": 0
                         }
                     }
                 },
@@ -69,11 +69,29 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
         ],
         "edges": [
             {
+                "annotations": {
+                    "edgeData": {
+                        "id": "edgeData",
+                        "data": {
+                            "sourceHandle": "right",
+                            "targetHandle": "left",
+                        }
+                    }
+                },
                 "edgeType": "sequence",
                 "sourceNode": "1",
                 "targetNode": "2"
             },
             {
+                "annotations": {
+                    "edgeData": {
+                        "id": "edgeData",
+                        "data": {
+                            "sourceHandle": "right",
+                            "targetHandle": "left",
+                        }
+                    }
+                },
                 "edgeType": "execute",
                 "sourceNode": "2",
                 "targetNode": "3"
