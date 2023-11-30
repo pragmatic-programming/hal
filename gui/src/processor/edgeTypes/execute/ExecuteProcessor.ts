@@ -46,13 +46,12 @@ export class ExecuteProcessor extends CliqueProcessor {
         targets.forEach((target, i) => targetGraph.createSourceNode("Eval" + i).setContent(target.getContent()));
         this.setNewClique(targetGraph);
         const node = this.getModel().getSourceNodes()[0];
+        // todo this should come from NodeDataFactory
         const nodeData: NodeData = {
             content: node.getContent(),
-            height: 200,
             label: "Result",
             language: "PlainText",
             type: "editor",
-            width: 200,
             status: SourceNodeStatus.SUCCESS,
         };
         node.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, nodeData);

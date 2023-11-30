@@ -8,9 +8,7 @@ import { ReactFlowInstance, useReactFlow } from "reactflow";
 
 interface Props {
     borderColor: string,
-    height: number,
     nodeId: string,
-    width: number,
 }
 
 const padding: CSSProperties = {padding: 30};

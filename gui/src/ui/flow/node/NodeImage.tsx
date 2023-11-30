@@ -14,9 +14,7 @@ export default function NodeImage(props: NodeProps<NodeDataImage>): React.JSX.El
     let img: React.JSX.Element = (
         <NodeImageDefault
             borderColor={borderColor(props.data.status, props.selected, theme, theme.palette.primary.main)}
-            height={props.data.height}
             nodeId={props.id}
-            width={props.data.width}
         />
     );
     if (props.data.content && props.data.content.length > 0) {

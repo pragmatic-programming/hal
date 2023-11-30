@@ -1,10 +1,36 @@
-import { NodeData, NodeDataEditor, NodeDataImage } from "./NodeData";
+import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage } from "./NodeData";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { NodeDataTypeIdentifier } from "./NodeDataTypeIdentifier";
 import { SourceNodeStatus } from "ihgraph";
-import { DimensionsForContent } from "../../processor/edgeTypes/DimensionsForContent";
 
 export class NodeDataFactory {
+
+    static fromCreationNode(newNodeDataTypeIdentifier: NodeDataTypeIdentifier): NodeData {
+        switch (newNodeDataTypeIdentifier) {
+            case "create":
+                throw new Error("Node is already a creation node");
+            case "editor":
+                return NodeDataFactory.nodeDataEditor(
+                    "",
+                    "New Editor Node",
+                    "JavaScript",
+                    SourceNodeStatus.UNDEFINED,
+                );
+            case "image":
+                return NodeDataFactory.nodeDataImage(
+                    "",
+                    64,
+                    64,
+                    SourceNodeStatus.UNDEFINED,
+                );
+        }
+    }
+
+    static nodeDataCreate(): NodeDataCreate {
+        return {
+            type: "create",
+        };
+    }
 
     static nodeDataEditor(
         content: string,
@@ -12,9 +38,7 @@ export class NodeDataFactory {
         language: LanguageIndicator,
         status: SourceNodeStatus,
     ): NodeDataEditor {
-        const dimensionsForContent: DimensionsForContent = new DimensionsForContent(content);
         return {
-            ...dimensionsForContent.dimension(),
             content: content,
             label: label,
             language: language,
@@ -36,27 +60,6 @@ export class NodeDataFactory {
             type: "image",
             width: width,
         };
-    }
-
-    static fromCreationNode(newNodeDataTypeIdentifier: NodeDataTypeIdentifier): NodeData {
-        switch (newNodeDataTypeIdentifier) {
-            case "create":
-                throw new Error("Node is already a creation node");
-            case "editor":
-                return NodeDataFactory.nodeDataEditor(
-                    "",
-                    "New Editor Node",
-                    "JavaScript",
-                    SourceNodeStatus.UNDEFINED,
-                );
-            case "image":
-                return NodeDataFactory.nodeDataImage(
-                    "",
-                    64,
-                    64,
-                    SourceNodeStatus.UNDEFINED,
-                );
-        }
     }
 }
 
