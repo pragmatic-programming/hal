@@ -14,9 +14,9 @@ export function ihGraphToHalGraph(ihgraph: IHGraph): CompilationContext {
 }
 
 
-export function flowToIHGraph(reactFlowState: StateFlow): CompilationContext {
+export function flowToIHGraph(stateFlow: StateFlow): CompilationContext {
     return createCompilationContextFromProcessors(
-        reactFlowState,
+        stateFlow,
         FlowToIHGraphProcessor
     );
 }

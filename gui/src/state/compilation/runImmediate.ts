@@ -6,6 +6,7 @@ import { EdgeType, IHGraph, TransformationConfiguration } from "ihgraph";
 import { layoutedNodes } from "../layoutedNodes";
 import { layoutOptions } from "../../util";
 import { StateFlow } from "../flow/StateFlow";
+import { NodesAndEdges } from "../../model/NodesAndEdges";
 
 
 export function runImmediate(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -36,17 +37,16 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
 
         const context: CompilationContext = iHGraphToFlow(ihGraph);
         await context.compileAsync();
-        const flowState = context.getResult();
+        const nodesAndEdges: NodesAndEdges = context.getResult();
         const newState: State = getState();
         const reactFlow: StateFlow = {
             ...newState.flow,
-            nodes: flowState.nodes,
-            edges: flowState.edges,
+            ...nodesAndEdges,
         };
         setState({
             flow: {
                 ...reactFlow,
-                nodes: await layoutedNodes(flowState, layoutOptions(newState.flow.layoutOption)),
+                nodes: await layoutedNodes(nodesAndEdges, layoutOptions(newState.flow.layoutOption)),
             },
             ui: {
                 ...newState.ui,

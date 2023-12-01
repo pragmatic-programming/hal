@@ -1,12 +1,12 @@
 import { Processor } from "kico";
 import { EdgeType, IHGraph, SourceNode, TransformationDirection, TransformationEdge } from "ihgraph";
-import { FlowState } from "./FlowState";
+import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeData } from "../model/node/NodeData";
 import { edgeDefinitions } from "../model/edge/edgeDefinitions";
 import { StrictNode, strictNode } from "../model/node/StrictNode";
 
 
-export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
+export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
 
     public static readonly ANNOTATION_NODE_DATA = "nodeData";
     public static readonly ANNOTATION_EDGE_DATA = "edgeData";
@@ -22,7 +22,7 @@ export class FlowToIHGraphProcessor extends Processor<FlowState, IHGraph> {
             graph.getTransformationConfiguration().setById(edgeDefinition.type, edgeDefinition.processor);
         }
 
-        const model: FlowState = this.getModel();
+        const model: NodesAndEdges = this.getModel();
         for (let unsafeNode of model.nodes) {
             const node: StrictNode<NodeData> = strictNode(unsafeNode);
             const sourceNode: SourceNode = graph.createSourceNode(node.id);

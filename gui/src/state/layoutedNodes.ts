@@ -1,7 +1,7 @@
 import { Edge, Node } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
 import { sourcePosition, targetPosition } from "./flow/LayoutDirectionIndicator";
-import { FlowState } from "../processor/FlowState";
+import { NodesAndEdges } from "../model/NodesAndEdges";
 import { strictNode, StrictNode } from "../model/node/StrictNode";
 import { NodeData } from "../model/node/NodeData";
 
@@ -12,12 +12,12 @@ const elk = new ELK({
     }
 });
 
-export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutOptions) {
+export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions: LayoutOptions) {
     const nodeMap = new Map<string, Node>();
     const graph: ElkNode = {
         id: "root",
         layoutOptions: layoutOptions,
-        children: flowState.nodes.map((node: Node): ElkNode => {
+        children: nodesAndEdges.nodes.map((node: Node): ElkNode => {
             nodeMap.set(node.id, node);
             return {
                 id: node.id,
@@ -25,7 +25,7 @@ export async function layoutedNodes(flowState: FlowState, layoutOptions: LayoutO
                 height: node.height ? node.height : 100,
             };
         }),
-        edges: flowState.edges.map((edge: Edge): ElkExtendedEdge => ({
+        edges: nodesAndEdges.edges.map((edge: Edge): ElkExtendedEdge => ({
             id: edge.id,
             sources: [edge.source],
             targets: [edge.target]

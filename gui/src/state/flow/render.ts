@@ -7,6 +7,7 @@ import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 import { layoutedNodes } from "../layoutedNodes";
 import { layoutOptions } from "../../util";
+import { NodesAndEdges } from "../../model/NodesAndEdges";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string): Promise<void> => {
@@ -23,11 +24,10 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         });
         const context: CompilationContext = iHGraphToFlow(ihGraph);
         await context.compileAsync();
-        const flowState = context.getResult();
+        const nodesAndEdges: NodesAndEdges = context.getResult();
         const reactFlow = {
             ...getState().flow,
-            nodes: flowState.nodes,
-            edges: flowState.edges,
+            ...nodesAndEdges,
         };
         setState({
             flow: {

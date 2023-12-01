@@ -1,11 +1,11 @@
 import { Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { Edge, Node } from "reactflow";
-import { FlowState } from "./FlowState";
+import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeFactory } from "../model/node/NodeFactory";
 import { EdgeFactory } from "../model/edge/EdgeFactory";
 
-export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
+export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
     getId() {
         return "hal.flow.to";
     }
@@ -24,7 +24,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, FlowState> {
         for (const edge of ihGraph.getEdges()) {
             edges.push(EdgeFactory.fromTransformationEdge(edge));
         }
-        this.setModel(new FlowState(nodes, edges));
+        this.setModel({nodes, edges});
     }
 
 
