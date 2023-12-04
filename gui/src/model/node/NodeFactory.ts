@@ -2,7 +2,7 @@ import { SourceNode, SourceNodeStatus } from "ihgraph";
 import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../../processor/FlowToIHGraphProcessor";
-import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage, } from "./NodeData";
+import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage, } from "./NodeData";
 import { NodeDataFactory } from "./NodeDataFactory";
 import { DimensionsForContent } from "../../processor/edgeTypes/DimensionsForContent";
 import { NodeTypeIndicator } from "./NodeTypeIndicator";
@@ -32,6 +32,17 @@ export class NodeFactory {
                     0,
                     0,
                 );
+            case "file":
+                return NodeFactory.nodeFile(
+                    node.id,
+                    undefined,
+                    undefined,
+                    node.position.x,
+                    node.position.y,
+                    // todo remove
+                    100,
+                  100
+                );
         }
     }
 
@@ -59,6 +70,17 @@ export class NodeFactory {
                 return NodeFactory.nodeImage(
                     sourceNode.getId(),
                     sourceNode.getContent(),
+                    0,
+                    0,
+                    nodeData.width,
+                    nodeData.height,
+                );
+            case "file":
+                return NodeFactory.nodeFile(
+                    sourceNode.getId(),
+                    sourceNode.getContent(),
+                    // todo
+                    undefined,
                     0,
                     0,
                     nodeData.width,
@@ -120,6 +142,30 @@ export class NodeFactory {
             type: "editor",
             data: NodeDataFactory.nodeDataEditor(content, label, language, status),
             position: {x: x, y: y},
+        };
+    }
+
+    private static nodeFile(
+        id: string,
+        content: string | undefined,
+        fileType: "text/plain" | undefined,
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+    ): Node<NodeDataFile> {
+        return {
+            id: id,
+            type: "file",
+            data: NodeDataFactory.nodeDataFile(
+                content,
+                fileType,
+                height,
+                width,
+            ),
+            position: {x: x, y: y},
+            width: width,
+            height: height,
         };
     }
 }

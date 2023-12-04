@@ -21,6 +21,7 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
             nodeMap.set(node.id, node);
             return {
                 id: node.id,
+                // todo remove 100 and 100
                 width: node.width ? node.width : 100,
                 height: node.height ? node.height : 100,
             };

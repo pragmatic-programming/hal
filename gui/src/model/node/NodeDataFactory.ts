@@ -1,30 +1,8 @@
-import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataImage } from "./NodeData";
+import { NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage } from "./NodeData";
 import { LanguageIndicator } from "./LanguageIndicator";
-import { NodeDataTypeIdentifier } from "./NodeDataTypeIdentifier";
 import { SourceNodeStatus } from "ihgraph";
 
 export class NodeDataFactory {
-
-    static fromCreationNode(newNodeDataTypeIdentifier: NodeDataTypeIdentifier): NodeData {
-        switch (newNodeDataTypeIdentifier) {
-            case "create":
-                throw new Error("Node is already a creation node");
-            case "editor":
-                return NodeDataFactory.nodeDataEditor(
-                    "",
-                    "New Editor Node",
-                    "JavaScript",
-                    SourceNodeStatus.UNDEFINED,
-                );
-            case "image":
-                return NodeDataFactory.nodeDataImage(
-                    "",
-                    64,
-                    64,
-                    SourceNodeStatus.UNDEFINED,
-                );
-        }
-    }
 
     static nodeDataCreate(): NodeDataCreate {
         return {
@@ -44,6 +22,10 @@ export class NodeDataFactory {
             language: language,
             status: status,
             type: "editor",
+            // todo remove
+            height: 0,
+            width: 0,
+
         };
     }
 
@@ -54,11 +36,26 @@ export class NodeDataFactory {
         status: SourceNodeStatus,
     ): NodeDataImage {
         return {
-            content: content,
-            height: height,
-            status: status,
             type: "image",
+            content: content,
+            status: status,
             width: width,
+            height: height,
+        };
+    }
+
+    static nodeDataFile(
+        content: string | undefined,
+        fileType: "text/plain" | undefined,
+        height: number,
+        width: number,
+    ): NodeDataFile {
+        return {
+            type: "file",
+            content: content,
+            fileType: fileType,
+            width: width,
+            height: height,
         };
     }
 }

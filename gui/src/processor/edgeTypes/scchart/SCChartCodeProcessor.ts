@@ -39,12 +39,15 @@ export class SCChartCodeProcessor extends CliqueProcessor {
     }
 
     private nodeData(code: string): NodeDataEditor {
+        // todo use NodeDataFactory
         return {
             content: code,
             language: "C",
             label: "Generated Code",
             type: "editor",
             status: SourceNodeStatus.UNDEFINED,
+            height: 0,
+            width: 0,
         };
     }
 }

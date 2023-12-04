@@ -14,10 +14,10 @@ import { TestProcessor } from "../../processor/edgeTypes/TestProcessor";
 import { CreateProcessor } from "../../processor/edgeTypes/CreateProcessor";
 import { SCChartCodeProcessor } from "../../processor/edgeTypes/scchart/SCChartCodeProcessor";
 import EngineeringIcon from "@mui/icons-material/Engineering";
-import { SequenceProcessor } from "hal-kico";
 import { TranspileProcessor } from "../../processor/edgeTypes/transpile/TranspileProcessor";
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
+import { SequenceProcessor } from "../../processor/edgeTypes/SequenceProcessor";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionCreate: EdgeDefinition = {

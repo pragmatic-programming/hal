@@ -1,8 +1,15 @@
 import { LanguageIndicator } from "./LanguageIndicator";
 import { SourceNodeStatus } from "ihgraph";
 
-export type NodeData = NodeDataEditor | NodeDataCreate | NodeDataImage
+export type NodeData =
+    NodeDataCreate
+    | NodeDataEditor
+    | NodeDataFile
+    | NodeDataImage
 
+export interface NodeDataCreate {
+    type: "create",
+}
 
 export interface NodeDataEditor {
     type: "editor",
@@ -10,10 +17,16 @@ export interface NodeDataEditor {
     label: string,
     language: LanguageIndicator,
     status: SourceNodeStatus,
+    height: number,
+    width: number,
 }
 
-export interface NodeDataCreate {
-    type: "create",
+export interface NodeDataFile {
+    type: "file",
+    fileType: "text/plain" | undefined
+    content: string | undefined,
+    height: number,
+    width: number,
 }
 
 export interface NodeDataImage {
@@ -23,3 +36,4 @@ export interface NodeDataImage {
     height: number,
     width: number,
 }
+
