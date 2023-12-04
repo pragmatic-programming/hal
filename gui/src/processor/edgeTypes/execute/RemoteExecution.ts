@@ -17,7 +17,7 @@ export class RemoteExecution implements ExecutionInterface {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    image: "python:3.6",
+                    language: "Python",
                     payload: this.sourceNode.getContent(),
                 })
             }
