@@ -4,8 +4,9 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.server.ResponseStatusException
 import java.nio.file.Path
 import kotlin.io.path.*
+import com.github.ssmifi.hal.server.service.OSDetector
 
-class SCChartDiagram(private val scChartRequest: SCChartRequest) {
+class SCChartDiagram(private val scChartRequest: SCChartRequest, private val osDetector : OSDetector) {
 
     private val input: Path = createTempFile(suffix = ".sctx")
     private val output: Path = createTempFile(suffix = ".png")
@@ -24,7 +25,7 @@ class SCChartDiagram(private val scChartRequest: SCChartRequest) {
         val result = ProcessBuilder(
             "java",
             "-jar",
-            "/tmp/kicodia.linux.jar",
+            "tmp/kicodia." + osDetector.getOSShortName() + ".jar",
             "-d",
             "--only-diagram",
             "-o=${output.absolutePathString()}",
