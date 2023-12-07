@@ -1,8 +1,10 @@
 import { IHGraphFactoryInterface } from "ihgraph";
+import { exampleGraphsArduino } from "./10.arduino";
 
-export function exampleGraphsArduino(): IHGraphFactoryInterface {
+export function exampleGraphsArduinoCompile(): IHGraphFactoryInterface {
     return {
-        nodes: [
+        ...exampleGraphsArduino(),
+        nodes: [...exampleGraphsArduino().nodes,
             {
                 annotations: {
                     nodeData: {
@@ -10,15 +12,15 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
                         data: {
                             content: "",
                             type: "editor",
-                            label: "Defines",
+                            label: "Compile Result",
                             language: "C",
                             width: 0,
                             height: 0
                         }
                     }
                 },
-                id: "1",
-                content: "const int LED_PIN = 13;\n"
+                id: "4",
+                content: ""
             },
             {
                 annotations: {
@@ -27,45 +29,28 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
                         data: {
                             content: "",
                             type: "editor",
-                            label: "Setup",
+                            label: "Deploy",
                             language: "C",
                             width: 0,
                             height: 0
                         }
                     }
                 },
-                id: "2",
-                content: "pinMode(LED_PIN, OUTPUT);"
-            },
-            {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Loop",
-                            language: "C",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "3",
-                content: "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);"
+                id: "5",
+                content: ""
             }
         ],
-        edgeTypes: [
+        edgeTypes: [...exampleGraphsArduino().edgeTypes,
             {
-                id: "sequence",
-                priority: 10
+                id: "arduinoCompile",
+                priority: 5
             },
             {
-                id: "arduino",
-                priority: 9
+                id: "arduinoDeploy",
+                priority: 4
             }
         ],
-        edges: [
+        edges: [...exampleGraphsArduino().edges,
             {
                 annotations: {
                     edgeData: {
@@ -76,9 +61,9 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
                         }
                     }
                 },
-                edgeType: "sequence",
-                sourceNode: "1",
-                targetNode: "2"
+                edgeType: "arduinoCompile",
+                sourceNode: "3",
+                targetNode: "4"
             },
             {
                 annotations: {
@@ -90,10 +75,10 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
                         }
                     }
                 },
-                edgeType: "arduino",
-                sourceNode: "2",
-                targetNode: "3"
+                edgeType: "arduinoDeploy",
+                sourceNode: "4",
+                targetNode: "5"
             }
         ]
-    };
+    }
 }

@@ -64,7 +64,7 @@ export class EdgeFactory {
             throw new Error("Returned targetId is undefined");
         }
         if (!isEdgeTypeIndicator(edgeType)) {
-            throw new Error("EdgeType is not a valid edgeTypeIndicator");
+            throw new Error(`EdgeType "${edgeType}" is not a valid edgeTypeIndicator`);
         }
         return EdgeFactory.fromEdgeType(
             edgeType,

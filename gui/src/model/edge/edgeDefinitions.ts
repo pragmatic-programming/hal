@@ -120,6 +120,30 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
     targetNodeTypes: ["editor"],
 };
 
+export const edgeDefinitionArduinoCompile: EdgeDefinition = {
+    type: "arduino",
+    animated: false,
+    component: EdgeDefault,
+    icon: DeveloperBoardIcon,
+    immediate: false,
+    priority: 9,
+    processor: ArduinoProcessor,
+    requiresLabel: false,
+    targetNodeTypes: ["editor"]
+};
+
+export const edgeDefinitionArduinoDeploy: EdgeDefinition = {
+    type: "arduino",
+    animated: false,
+    component: EdgeDefault,
+    icon: DeveloperBoardIcon,
+    immediate: false,
+    priority: 9,
+    processor: ArduinoProcessor,
+    requiresLabel: false,
+    targetNodeTypes: ["editor"]
+};
+
 
 // new edge (step 3): add the new edge definition to the following array
 export const edgeDefinitions: EdgeDefinition[] = [
@@ -131,6 +155,8 @@ export const edgeDefinitions: EdgeDefinition[] = [
     edgeDefinitionSequence,
     edgeDefinitionTest,
     edgeDefinitionTranspile,
+    edgeDefinitionArduinoCompile,
+    edgeDefinitionArduinoDeploy
 ];
 
 // new edge (step 4): add the edge type indicator as case to return new edge definition
@@ -152,5 +178,9 @@ export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): Ed
             return edgeDefinitionTest;
         case "transpile":
             return edgeDefinitionTranspile;
+        case "arduinoCompile":
+            return edgeDefinitionArduinoCompile;
+        case "arduinoDeploy":
+            return edgeDefinitionArduinoDeploy;
     }
 }
