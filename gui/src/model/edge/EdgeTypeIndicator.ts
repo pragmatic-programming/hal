@@ -8,8 +8,7 @@ export const edgeTypeIndicators = [
     "sequence",
     "test",
     "transpile",
-    "arduinoCompile",
-    "arduinoDeploy"
+    "unknown",
 ] as const;
 
 export type EdgeTypeIndicator = typeof edgeTypeIndicators[number];
