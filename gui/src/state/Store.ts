@@ -45,7 +45,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     flow: {
         addNodeCreate: addNodeCreate(setState, getState),
         connectingSourceNodeId: null,
-        edgePathStyle: "Bezier",
+        edgePathStyle: "Smooth",
         edges: [],
         layout: layout(setState, getState),
         layoutOption: "horizontal",
