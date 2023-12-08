@@ -3,18 +3,15 @@ package com.github.ssmifi.hal.server.service
 import org.springframework.stereotype.Service
 
 @Service
-class OSDetector {
-    fun detect(): String {
-        return System.getProperty("os.name")
-    }
+class OperatingSystem: OperatingSystemInterface {
 
-    fun getOSShortName(): String {
-        val osName = detect()
+   override fun shortName(): String {
+        val osName = System.getProperty("os.name")
         return when {
             osName.contains("win", ignoreCase = true) -> "win"
             osName.contains("mac", ignoreCase = true) -> "osx"
             osName.contains("nux", ignoreCase = true) -> "linux"
-            else -> throw RuntimeException("Unknown OS name: $osName")
+            else -> throw Exception("Unknown OS name: $osName")
         }
     }
 }
