@@ -1,5 +1,6 @@
 // new edge (step 1): add a new edge type indicator here
 export const edgeTypeIndicators = [
+    "unknown",
     "create",
     "arduino",
     "execute",
@@ -8,8 +9,6 @@ export const edgeTypeIndicators = [
     "sequence",
     "test",
     "transpile",
-    "arduinoCompile",
-    "arduinoDeploy"
 ] as const;
 
 export type EdgeTypeIndicator = typeof edgeTypeIndicators[number];
