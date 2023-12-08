@@ -1,11 +1,15 @@
 package com.github.ssmifi.hal.server.enpoint.kico
 
+import com.github.ssmifi.hal.server.service.OperatingSystemInterface
 import org.springframework.http.HttpStatus
 import org.springframework.web.server.ResponseStatusException
 import java.nio.file.Path
 import kotlin.io.path.*
 
-class SCChartDiagram(private val scChartRequest: SCChartRequest) {
+class SCChartDiagram(
+    private val operatingSystem: OperatingSystemInterface,
+    private val scChartRequest: SCChartRequest,
+) {
 
     private val input: Path = createTempFile(suffix = ".sctx")
     private val output: Path = createTempFile(suffix = ".png")
@@ -24,7 +28,7 @@ class SCChartDiagram(private val scChartRequest: SCChartRequest) {
         val result = ProcessBuilder(
             "java",
             "-jar",
-            "/tmp/kicodia.linux.jar",
+            "tmp/" + KiCoDiaJar(operatingSystem).fileName(),
             "-d",
             "--only-diagram",
             "-o=${output.absolutePathString()}",
