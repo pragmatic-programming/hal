@@ -22,6 +22,18 @@ import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
 import { UnknownProcessor } from "../../processor/edgeTypes/UnknownProcessor";
 
 // new edge (step 2): add a new edge definition here
+export const edgeDefinitionUnknown: EdgeDefinition = {
+    type: "unknown",
+    animated: false,
+    component: EdgeDefault,
+    icon: QuestionMarkIcon,
+    immediate: false,
+    priority: 1,
+    processor: UnknownProcessor,
+    requiresLabel: false,
+    targetNodeTypes: ["create", "editor", "image"]
+};
+
 export const edgeDefinitionCreate: EdgeDefinition = {
     type: "create",
     animated: false,
@@ -35,18 +47,6 @@ export const edgeDefinitionCreate: EdgeDefinition = {
     style: {
         strokeDasharray: "5"
     },
-};
-
-export const edgeDefinitionUnknown: EdgeDefinition = {
-    type: "unknown",
-    animated: false,
-    component: EdgeDefault,
-    icon: QuestionMarkIcon,
-    immediate: false,
-    priority: 1,
-    processor: UnknownProcessor,
-    requiresLabel: false,
-    targetNodeTypes: ["create", "editor", "image"]
 };
 
 export const edgeDefinitionArduino: EdgeDefinition = {
@@ -137,8 +137,8 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
 // new edge (step 3): add the new edge definition to the following array
 export const edgeDefinitions: EdgeDefinition[] = [
     // default edges
-    edgeDefinitionCreate,
     edgeDefinitionUnknown,
+    edgeDefinitionCreate,
     // custom edges
     edgeDefinitionArduino,
     edgeDefinitionExecute,
@@ -153,10 +153,10 @@ export const edgeDefinitions: EdgeDefinition[] = [
 export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): EdgeDefinition {
     switch (edgeTypeIndicator) {
         // default edges
-        case "create":
-            return edgeDefinitionCreate;
         case "unknown":
             return edgeDefinitionUnknown;
+        case "create":
+            return edgeDefinitionCreate;
         // custom edges
         case "arduino":
             return edgeDefinitionArduino;
