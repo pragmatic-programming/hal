@@ -2,7 +2,8 @@ import NodeCreate from "../../ui/flow/node/NodeCreate";
 import NodeEditor from "../../ui/flow/node/NodeEditor";
 import NodeImage from "../../ui/flow/node/NodeImage";
 import { NodeDefinition } from "./NodeDefinition";
-import { Image, InsertDriveFile } from "@mui/icons-material";
+import { AttachFile, Image, InsertDriveFile } from "@mui/icons-material";
+import NodeFile from "../../ui/flow/node/NodeFile";
 
 // new node (step 2): add a new node definition here
 export const nodeDefinitionCreate: NodeDefinition = {
@@ -21,7 +22,6 @@ export const nodeDefinitionEditor: NodeDefinition = {
         "execute",
         "scchartcode",
         "sequence",
-        "sequence",
         "test",
         "transpile",
     ]
@@ -36,9 +36,19 @@ export const nodeDefinitionImage: NodeDefinition = {
     ]
 };
 
+export const nodeDefinitionFile: NodeDefinition = {
+    type: "file",
+    icon: AttachFile,
+    component: NodeFile,
+    sourceEdgeTypes: [
+        "sequence"
+    ]
+};
+
 // new node (step 3): add the new node definition to the following array
 export const nodeDefinitions: NodeDefinition[] = [
     nodeDefinitionCreate,
     nodeDefinitionEditor,
+    nodeDefinitionFile,
     nodeDefinitionImage,
 ];

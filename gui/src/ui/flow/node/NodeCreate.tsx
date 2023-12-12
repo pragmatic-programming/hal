@@ -4,7 +4,7 @@ import { IconButton, Theme, Tooltip, useTheme } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { borderColor } from "../../../util";
-import { nodeDefinitionEditor, nodeDefinitionImage } from "../../../model/node/nodeDefinitions";
+import { nodeDefinitionEditor, nodeDefinitionFile, nodeDefinitionImage } from "../../../model/node/nodeDefinitions";
 import { BoxBorder } from "../../util/BoxBorder";
 import HandleTargetTop from "../handle/HandleTargetTop";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
@@ -33,6 +33,12 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                     <NodeCreateButton
                         nodeId={props.id}
                         nodeDefinition={nodeDefinitionEditor}
+                        placement={"top"}
+                        targetEdgeId={targetEdge?.id}
+                    />
+                    <NodeCreateButton
+                        nodeId={props.id}
+                        nodeDefinition={nodeDefinitionFile}
                         placement={"top"}
                         targetEdgeId={targetEdge?.id}
                     />
