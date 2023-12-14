@@ -7,6 +7,7 @@ import MenuExamples from "./examples/MenuExamples";
 import ButtonImmediatePlay from "./ButtonImmediatePlay";
 import MenuLayouts from "./layouts/MenuLayouts";
 import ButtonAddNodeCreate from "./ButtonAddNodeCreate";
+import ButtonImport from "./ButtonImport";
 
 export const menuWidth: number = 100;
 
@@ -22,6 +23,8 @@ export default function Menu(): React.JSX.Element {
                 height: "calc(100vh - " + bottomHeight + "px)",
             }}>
             <MenuExamples/>
+            <MenuDivider/>
+            <ButtonImport/>
             <MenuDivider/>
             <ButtonAddNodeCreate/>
             <MenuDivider/>
