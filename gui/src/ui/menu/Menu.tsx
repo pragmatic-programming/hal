@@ -8,6 +8,7 @@ import ButtonImmediatePlay from "./ButtonImmediatePlay";
 import MenuLayouts from "./layouts/MenuLayouts";
 import ButtonAddNodeCreate from "./ButtonAddNodeCreate";
 import ButtonImport from "./ButtonImport";
+import ButtonExport from "./ButtonExport";
 
 export const menuWidth: number = 100;
 
@@ -24,14 +25,15 @@ export default function Menu(): React.JSX.Element {
             }}>
             <MenuExamples/>
             <MenuDivider/>
-            <ButtonImport/>
-            <MenuDivider/>
             <ButtonAddNodeCreate/>
             <MenuDivider/>
             <ButtonPlay/>
             <ButtonImmediatePlay/>
             <MenuDivider/>
             <MenuLayouts/>
+            <MenuDivider/>
+            <ButtonImport/>
+            <ButtonExport/>
         </BoxBackgroundMain>
     );
 }

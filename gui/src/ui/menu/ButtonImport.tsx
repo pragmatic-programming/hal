@@ -17,13 +17,6 @@ export default function ButtonImport(): React.JSX.Element {
             name,
         );
     });
-    const handleChange = (target: EventTarget & HTMLInputElement): void => {
-        if (target.files == null) {
-            throw new Error("Files are null");
-        }
-        const file = target.files[0];
-        file.text().then((text: string) => render(file.name, text));
-    };
     return (
         <Box
             style={{
@@ -34,7 +27,7 @@ export default function ButtonImport(): React.JSX.Element {
             }}
         >
             <Tooltip
-                title={"Import IhGraph"}
+                title={"Import"}
                 placement={"right"}
             >
                 <IconButton
@@ -45,7 +38,13 @@ export default function ButtonImport(): React.JSX.Element {
                     <VisuallyHiddenInput
                         accept={"application/json"}
                         type="file"
-                        onChange={(e) => handleChange(e.target)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>): void => {
+                            if (e.target.files == null) {
+                                throw new Error("Files are null");
+                            }
+                            const file: File = e.target.files[0];
+                            file.text().then((text: string) => render(file.name, text));
+                        }}
                     />
                 </IconButton>
             </Tooltip>
