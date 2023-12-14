@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, IconButton, Tooltip } from "@mui/material";
+import { Box } from "@mui/material";
 import { menuWidth } from "./Menu";
+import TooltipIconButton from "../util/TooltipIconButton";
 
 interface Props {
     disabled?: boolean;
@@ -19,18 +20,15 @@ export default function ButtonMenu(props: Props): React.JSX.Element {
                 width: menuWidth,
             }}
         >
-            <Tooltip
-                title={props.tooltip}
+            <TooltipIconButton
+                disabled={props.disabled}
+                onClick={props.onClick}
                 placement={"right"}
+                size="large"
+                title={props.tooltip}
             >
-                <IconButton
-                    disabled={props.disabled}
-                    onClick={props.onClick}
-                    size="large"
-                >
-                    {props.icon}
-                </IconButton>
-            </Tooltip>
+                {props.icon}
+            </TooltipIconButton>
         </Box>
     );
 }

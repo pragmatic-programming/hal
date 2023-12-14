@@ -1,4 +1,4 @@
-import { Avatar, IconButton, Theme, Tooltip, useTheme } from "@mui/material";
+import { Avatar, Theme, useTheme } from "@mui/material";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import React from "react";
 import { useStore } from "../../state/Store";
@@ -6,6 +6,7 @@ import { State } from "../../state/State";
 import { Environment, Processor } from "kico";
 import { IHGraph } from "ihgraph";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
+import TooltipIconButton from "../util/TooltipIconButton";
 
 interface Props {
     position: "start" | "inter" | "end";
@@ -44,29 +45,26 @@ export default function Model(props: Props): React.JSX.Element {
 
     }
     return (
-        <Tooltip
+        <TooltipIconButton
             placement="top"
             title={title}
+            onClick={() => renderIHGraph(property, reactFlow.fitView)}
+            sx={{
+                marginLeft: marginLeft,
+                marginRight: marginRight,
+            }}
         >
-            <IconButton
-                onClick={() => renderIHGraph(property, reactFlow.fitView)}
-                sx={{
-                    marginLeft: marginLeft,
-                    marginRight: marginRight,
+            <Avatar
+                style={{
+                    backgroundColor: theme.palette.primary.dark,
+                    borderColor: theme.palette.secondary.main,
+                    borderStyle: borderStyle,
+                    borderWidth: borderWidth,
+                    cursor: "pointer",
                 }}
             >
-                <Avatar
-                    style={{
-                        backgroundColor: theme.palette.primary.dark,
-                        borderColor: theme.palette.secondary.main,
-                        borderStyle: borderStyle,
-                        borderWidth: borderWidth,
-                        cursor: "pointer",
-                    }}
-                >
-                    <AccountTreeIcon color="secondary"/>
-                </Avatar>
-            </IconButton>
-        </Tooltip>
+                <AccountTreeIcon color="secondary"/>
+            </Avatar>
+        </TooltipIconButton>
     );
 }

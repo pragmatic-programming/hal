@@ -1,6 +1,6 @@
 import React from "react";
 import { Edge, NodeProps, useReactFlow } from "reactflow";
-import { IconButton, Theme, Tooltip, useTheme } from "@mui/material";
+import { Theme, useTheme } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { borderColor } from "../../../util";
@@ -10,6 +10,7 @@ import HandleTargetTop from "../handle/HandleTargetTop";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
 import NodeCreateButton from "./NodeCreateButton";
 import { EdgeData } from "../../../model/edge/EdgeData";
+import TooltipIconButton from "../../util/TooltipIconButton";
 
 export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -50,19 +51,13 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         placement={"bottom"}
                         targetEdgeId={targetEdge?.id}
                     />
-                    <Tooltip
+                    <TooltipIconButton
                         placement="top"
                         title={"Show more options"}
+                        disabled={true}
                     >
-                        {/* todo: remove span when IconButton is not disabled anymore */}
-                        <span>
-                            <IconButton
-                                disabled={true}
-                            >
-                                <Add/>
-                            </IconButton>
-                        </span>
-                    </Tooltip>
+                        <Add/>
+                    </TooltipIconButton>
                 </div>
             </BoxBackgroundMain>
         </BoxBorder>

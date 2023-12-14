@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IconButton, SvgIcon, Tooltip } from "@mui/material";
+import { SvgIcon } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { Add } from "@mui/icons-material";
@@ -9,6 +9,7 @@ import { firstCharUpperCase } from "../../../util";
 import { EdgeTypeIndicator } from "../../../model/edge/EdgeTypeIndicator";
 import { EdgePath } from "../../../model/edge/EdgePath";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
+import TooltipIconButton from "../../util/TooltipIconButton";
 
 interface Props {
     deniedEdgeTypes: EdgeTypeIndicator[];
@@ -26,30 +27,24 @@ export default function EdgeCreateLabel(props: Props): React.JSX.Element {
             {filteredEdgeDefinitions
                 .slice(0, numberOfShownEdgeDefinitions)
                 .map((edgeDefinition: EdgeDefinition) =>
-                    <Tooltip
+                    <TooltipIconButton
                         key={edgeDefinition.type}
+                        onClick={() => transformCreationEdge(props.id, edgeDefinition, props.targetNodeId,)}
                         placement="top"
                         title={"Create new " + firstCharUpperCase(edgeDefinition.type) + " Edge"}
                     >
-                        <IconButton
-                            onClick={() => transformCreationEdge(props.id, edgeDefinition, props.targetNodeId,)}
-                        >
-                            <SvgIcon component={edgeDefinition.icon}></SvgIcon>
-                        </IconButton>
-                    </Tooltip>
+                        <SvgIcon component={edgeDefinition.icon}></SvgIcon>
+                    </TooltipIconButton>
                 )
             }
-            <Tooltip
+            <TooltipIconButton
+                disabled={numberOfShownEdgeDefinitions >= filteredEdgeDefinitions.length}
+                onClick={() => setNumberOfShownEdgeDefinitions(numberOfShownEdgeDefinitions + 2)}
                 placement="top"
                 title={"Open new Edge Dialog"}
             >
-                <IconButton
-                    disabled={numberOfShownEdgeDefinitions >= filteredEdgeDefinitions.length}
-                    onClick={() => setNumberOfShownEdgeDefinitions(numberOfShownEdgeDefinitions + 2)}
-                >
-                    <Add/>
-                </IconButton>
-            </Tooltip>
+                <Add/>
+            </TooltipIconButton>
         </BoxBackgroundMain>
     );
 }
