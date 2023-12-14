@@ -6,9 +6,9 @@ import { IconButton, Tooltip } from "@mui/material";
 import { VisuallyHiddenInput } from "../util/VisuallyHiddenInput";
 import { createIHGraphFromJSONString } from "ihgraph";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
-import ButtonMenuBox from "./ButtonMenuBox";
+import MenuButtonBox from "./MenuButtonBox";
 
-export default function ButtonImport(): React.JSX.Element {
+export default function MenuButtonImport(): React.JSX.Element {
     const reactFlow: ReactFlowInstance = useReactFlow();
     const render = useStore((state: State) => (name: string, ihGraph: string) => {
         state.flow.render(
@@ -18,7 +18,7 @@ export default function ButtonImport(): React.JSX.Element {
         );
     });
     return (
-        <ButtonMenuBox>
+        <MenuButtonBox>
             <Tooltip
                 title={"Import"}
                 placement={"right"}
@@ -41,6 +41,6 @@ export default function ButtonImport(): React.JSX.Element {
                     />
                 </IconButton>
             </Tooltip>
-        </ButtonMenuBox>
+        </MenuButtonBox>
     );
 }

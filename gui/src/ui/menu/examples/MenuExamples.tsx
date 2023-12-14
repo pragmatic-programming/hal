@@ -12,7 +12,7 @@ import {
     ListSubheader,
     SvgIcon
 } from "@mui/material";
-import ButtonMenu from "../ButtonMenu";
+import MenuButton from "../MenuButton";
 import { FormatListBulleted } from "@mui/icons-material";
 import { createIHGraphFromJSON } from "ihgraph";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
@@ -34,7 +34,7 @@ export default function MenuExamples(): React.JSX.Element {
     });
     return (
         <>
-            <ButtonMenu
+            <MenuButton
                 icon={<FormatListBulleted/>}
                 onClick={menuOpenToggle}
                 tooltip={"Examples"}

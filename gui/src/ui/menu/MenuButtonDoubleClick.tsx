@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import useDoubleClick from "use-double-click";
 import TooltipIconButton from "../util/TooltipIconButton";
-import ButtonMenuBox from "./ButtonMenuBox";
+import MenuButtonBox from "./MenuButtonBox";
 
 interface Props {
     disabled?: boolean;
@@ -11,7 +11,7 @@ interface Props {
     tooltip: string;
 }
 
-export default function ButtonMenuDoubleClick(props: Props): React.JSX.Element {
+export default function MenuButtonDoubleClick(props: Props): React.JSX.Element {
     // see https://www.timellenberger.com/libraries/use-double-click
     const buttonRef = useRef(null);
     useDoubleClick({
@@ -28,7 +28,7 @@ export default function ButtonMenuDoubleClick(props: Props): React.JSX.Element {
         latency: 200
     });
     return (
-        <ButtonMenuBox>
+        <MenuButtonBox>
             <TooltipIconButton
                 buttonRef={buttonRef}
                 disabled={props.disabled}
@@ -38,6 +38,6 @@ export default function ButtonMenuDoubleClick(props: Props): React.JSX.Element {
             >
                 {props.icon}
             </TooltipIconButton>
-        </ButtonMenuBox>
+        </MenuButtonBox>
     );
 }

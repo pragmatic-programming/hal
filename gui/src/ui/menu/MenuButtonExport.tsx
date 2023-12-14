@@ -7,12 +7,12 @@ import { flowToIHGraph } from "../../processor/compilationContexts";
 import { CompilationContext } from "../../../../../kico-core";
 import { StateFlow } from "../../state/flow/StateFlow";
 import { IHGraph } from "../../../../../ihgraph";
-import ButtonMenuBox from "./ButtonMenuBox";
+import MenuButtonBox from "./MenuButtonBox";
 
-export default function ButtonExport(): React.JSX.Element {
+export default function MenuButtonExport(): React.JSX.Element {
     const stateFlow: StateFlow = useStore((state: State) => state.flow);
     return (
-        <ButtonMenuBox>
+        <MenuButtonBox>
             <TooltipIconButton
                 title={"Export"}
                 placement={"right"}
@@ -36,6 +36,6 @@ export default function ButtonExport(): React.JSX.Element {
             >
                 <FileDownloadIcon/>
             </TooltipIconButton>
-        </ButtonMenuBox>
+        </MenuButtonBox>
     );
 }
