@@ -1,8 +1,7 @@
 import React, { useRef } from "react";
 import useDoubleClick from "use-double-click";
-import { Box } from "@mui/material";
-import { menuWidth } from "./Menu";
 import TooltipIconButton from "../util/TooltipIconButton";
+import ButtonMenuBox from "./ButtonMenuBox";
 
 interface Props {
     disabled?: boolean;
@@ -29,14 +28,7 @@ export default function ButtonMenuDoubleClick(props: Props): React.JSX.Element {
         latency: 200
     });
     return (
-        <Box
-            style={{
-                height: 32,
-                marginTop: 16,
-                textAlign: "center",
-                width: menuWidth,
-            }}
-        >
+        <ButtonMenuBox>
             <TooltipIconButton
                 buttonRef={buttonRef}
                 disabled={props.disabled}
@@ -46,6 +38,6 @@ export default function ButtonMenuDoubleClick(props: Props): React.JSX.Element {
             >
                 {props.icon}
             </TooltipIconButton>
-        </Box>
+        </ButtonMenuBox>
     );
 }

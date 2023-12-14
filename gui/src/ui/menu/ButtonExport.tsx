@@ -1,7 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import { menuWidth } from "./Menu";
 import TooltipIconButton from "../util/TooltipIconButton";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
@@ -9,18 +7,12 @@ import { flowToIHGraph } from "../../processor/compilationContexts";
 import { CompilationContext } from "../../../../../kico-core";
 import { StateFlow } from "../../state/flow/StateFlow";
 import { IHGraph } from "../../../../../ihgraph";
+import ButtonMenuBox from "./ButtonMenuBox";
 
 export default function ButtonExport(): React.JSX.Element {
     const stateFlow: StateFlow = useStore((state: State) => state.flow);
     return (
-        <Box
-            style={{
-                height: 32,
-                marginTop: 16,
-                textAlign: "center",
-                width: menuWidth,
-            }}
-        >
+        <ButtonMenuBox>
             <TooltipIconButton
                 title={"Export"}
                 placement={"right"}
@@ -44,6 +36,6 @@ export default function ButtonExport(): React.JSX.Element {
             >
                 <FileDownloadIcon/>
             </TooltipIconButton>
-        </Box>
+        </ButtonMenuBox>
     );
 }

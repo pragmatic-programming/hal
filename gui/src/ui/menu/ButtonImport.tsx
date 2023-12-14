@@ -2,11 +2,11 @@ import React from "react";
 import { Publish } from "@mui/icons-material";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import { Box, IconButton, Tooltip } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 import { VisuallyHiddenInput } from "../util/VisuallyHiddenInput";
-import { menuWidth } from "./Menu";
 import { createIHGraphFromJSONString } from "ihgraph";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
+import ButtonMenuBox from "./ButtonMenuBox";
 
 export default function ButtonImport(): React.JSX.Element {
     const reactFlow: ReactFlowInstance = useReactFlow();
@@ -18,14 +18,7 @@ export default function ButtonImport(): React.JSX.Element {
         );
     });
     return (
-        <Box
-            style={{
-                height: 32,
-                marginTop: 16,
-                textAlign: "center",
-                width: menuWidth,
-            }}
-        >
+        <ButtonMenuBox>
             <Tooltip
                 title={"Import"}
                 placement={"right"}
@@ -48,6 +41,6 @@ export default function ButtonImport(): React.JSX.Element {
                     />
                 </IconButton>
             </Tooltip>
-        </Box>
+        </ButtonMenuBox>
     );
 }
