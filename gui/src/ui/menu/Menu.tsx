@@ -1,12 +1,14 @@
 import React from "react";
-import ButtonPlay from "./ButtonPlay";
+import MenuButtonPlay from "./MenuButtonPlay";
 import MenuDivider from "./MenuDivider";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import { bottomHeight } from "../bottom/Bottom";
 import MenuExamples from "./examples/MenuExamples";
-import ButtonImmediatePlay from "./ButtonImmediatePlay";
+import MenuButtonImmediatePlay from "./MenuButtonImmediatePlay";
 import MenuLayouts from "./layouts/MenuLayouts";
-import ButtonAddNodeCreate from "./ButtonAddNodeCreate";
+import MenuButtonAddNodeCreate from "./MenuButtonAddNodeCreate";
+import MenuButtonImport from "./MenuButtonImport";
+import MenuButtonExport from "./MenuButtonExport";
 
 export const menuWidth: number = 100;
 
@@ -23,12 +25,15 @@ export default function Menu(): React.JSX.Element {
             }}>
             <MenuExamples/>
             <MenuDivider/>
-            <ButtonAddNodeCreate/>
+            <MenuButtonAddNodeCreate/>
             <MenuDivider/>
-            <ButtonPlay/>
-            <ButtonImmediatePlay/>
+            <MenuButtonPlay/>
+            <MenuButtonImmediatePlay/>
             <MenuDivider/>
             <MenuLayouts/>
+            <MenuDivider/>
+            <MenuButtonImport/>
+            <MenuButtonExport/>
         </BoxBackgroundMain>
     );
 }
