@@ -47,8 +47,12 @@ export default function NodeFile(props: NodeProps<NodeDataFile>): React.JSX.Elem
     }
     return (
         <>
-            <HandleSourceRight/>
-            <HandleSourceBottom/>
+            <HandleSourceRight
+                nodeId={props.id}
+            />
+            <HandleSourceBottom
+                nodeId={props.id}
+            />
             <BoxBorder
                 borderColor={borderColor(SourceNodeStatus.UNDEFINED, props.selected, theme, theme.palette.primary.main)}
             >

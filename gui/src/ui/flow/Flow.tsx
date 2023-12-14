@@ -12,6 +12,7 @@ import { targetPosition } from "../../state/flow/LayoutDirectionIndicator";
 import { layoutOptions } from "../../util";
 import { NodeFactory } from "../../model/node/NodeFactory";
 import { EdgeFactory } from "../../model/edge/EdgeFactory";
+import { isSourceHandleId } from "../../model/edge/SourceHandleId";
 
 const selector = (state: State) => ({
     edges: state.flow.edges,
@@ -22,7 +23,7 @@ const selector = (state: State) => ({
     onConnect: state.flow.onConnect,
     onEdgesChange: state.flow.onEdgesChange,
     onNodesChange: state.flow.onNodesChange,
-    setConnectingSourceNodeId: state.flow.setConnectingSourceNodeId,
+    setConnectingSource: state.flow.setConnectingSource,
 });
 
 const creationNodeHalfHeight = 30;
@@ -33,13 +34,20 @@ export default function Flow(): React.JSX.Element {
     const connectStartParams = useRef<OnConnectStartParams | null>(null);
     const reactFlow: ReactFlowInstance = useReactFlow();
     const store = useStore(selector, shallow);
-    const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams) => {
+    const onConnectStart = useCallback((_: ReactMouseEvent | ReactTouchEvent, onConnectStartParams: OnConnectStartParams): void => {
         connectStartParams.current = onConnectStartParams;
-        store.setConnectingSourceNodeId(onConnectStartParams.nodeId);
+        const handleId: string | null = onConnectStartParams.handleId;
+        if (!isSourceHandleId(handleId)) {
+            throw Error("HandleId is not a valid sourceHandleId");
+        }
+        store.setConnectingSource(
+            handleId,
+            onConnectStartParams.nodeId
+        );
     }, [store]);
     const onConnectEnd = useCallback(
         (event: MouseEvent | TouchEvent): void => {
-            store.setConnectingSourceNodeId(null);
+            store.setConnectingSource(null, null);
             if (event instanceof MouseEvent) {
                 if (event.target instanceof HTMLElement) {
                     const targetIsPane = event.target.classList.contains("react-flow__pane");

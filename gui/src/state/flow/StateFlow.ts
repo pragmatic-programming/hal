@@ -10,6 +10,7 @@ import { LayoutOptionTypeIndicator } from "../../util";
 export interface StateFlow {
     addNodeCreate: () => void,
     connectingSourceNodeId: string | null,
+    connectingSourceHandleId: "right" | "bottom" | null,
     edgePathStyle: EdgePathStyle
     edges: Edge[],
     layout: (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptionTypeIndicator) => void,
@@ -20,7 +21,7 @@ export interface StateFlow {
     onEdgesChange: OnEdgesChange,
     onNodesChange: OnNodesChange,
     render: (ihGraph: IHGraph, fitView: () => void, projectName?: string) => void,
-    setConnectingSourceNodeId: (nodeId: string | null) => void,
+    setConnectingSource: (handleType: "right" | "bottom" | null, nodeId: string | null) => void,
     setEdgeLabel: (nodeId: string, label: string) => void,
     setEdgePathStyle: (edgePathStyle: EdgePathStyle) => void,
     setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,

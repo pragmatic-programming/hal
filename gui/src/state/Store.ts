@@ -12,7 +12,7 @@ import { editorContentSet } from "./editor/editorContentSet";
 import { editorLabelSet } from "./editor/editorLabelSet";
 import { createWithEqualityFn } from "zustand/traditional";
 import { transformCreateNode } from "./flow/transformCreateNode";
-import { setConnectingSourceNodeId } from "./flow/setConnectingSourceNodeId";
+import { setConnectingSource } from "./flow/setConnectingSource";
 import { setNodeNodeDataLanguage } from "./flow/setNodeNodeDataLanguage";
 import { setEdgePathStyle } from "./flow/setEdgePathStyle";
 import { setNodeNodeDataLabel } from "./flow/setNodeNodeDataLabel";
@@ -45,6 +45,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     flow: {
         addNodeCreate: addNodeCreate(setState, getState),
         connectingSourceNodeId: null,
+        connectingSourceHandleId: null,
         edgePathStyle: "Smooth",
         edges: [],
         layout: layout(setState, getState),
@@ -58,7 +59,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         onEdgesChange: onEdgesChange(setState, getState),
         onNodesChange: onNodesChange(setState, getState),
         render: render(setState, getState),
-        setConnectingSourceNodeId: setConnectingSourceNodeId(setState),
+        setConnectingSource: setConnectingSource(setState),
         setEdgeLabel: setEdgeLabel(setState, getState),
         setEdgePathStyle: setEdgePathStyle(setState, getState),
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),

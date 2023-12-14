@@ -49,8 +49,12 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
             <HandleTargetLeft
                 nodeId={props.id}
             />
-            <HandleSourceRight/>
-            <HandleSourceBottom/>
+            <HandleSourceRight
+                nodeId={props.id}
+            />
+            <HandleSourceBottom
+                nodeId={props.id}
+            />
             <EditorHeader
                 value={props.data.label}
                 onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}
