@@ -5,7 +5,7 @@ import { Edge } from "reactflow";
 import { EdgeData } from "../../model/edge/EdgeData";
 import { strictEdge, StrictEdge } from "../../model/edge/StrictEdge";
 
-export function setEdgePathStyle(setState: StoreApi<State>["setState"], getState: () => State) {
+export function setEdgePathStyleForAll(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (edgePathStyle: EdgePathStyle): Promise<void> => {
         const state: State = getState();
         setState({

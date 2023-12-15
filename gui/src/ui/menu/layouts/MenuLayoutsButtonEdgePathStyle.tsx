@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function MenuLayoutsButtonEdgePathStyle(props: Props): React.JSX.Element {
-    const setEdgePathStyle = useStore((state: State) => state.flow.setEdgePathStyle);
+    const setEdgePathStyle = useStore((state: State) => state.flow.setEdgePathStyleForAll);
     return (
         <ListItem>
             <ListItemButton
