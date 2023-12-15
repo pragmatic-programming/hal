@@ -6,7 +6,7 @@ interface Props {
     border?: "top" | "bottom" | "left" | "right" | "top-bottom-left-right";
     borderColor?: string;
     style?: CSSProperties;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 export function BoxBackgroundMain(props: Props): React.JSX.Element {
