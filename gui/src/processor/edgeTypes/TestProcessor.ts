@@ -1,5 +1,5 @@
 import { SourceNodeStatus, TransformationDirection } from "ihgraph";
-import { CliqueProcessor } from "hal-kico";
+import { CliqueProcessor } from "../CliqueProcessor";
 
 export class TestProcessor extends CliqueProcessor {
 

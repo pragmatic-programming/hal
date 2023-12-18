@@ -1,7 +1,7 @@
-import { CliqueProcessor } from "hal-kico";
 import { RemoteTranspilation } from "./RemoteTranspilation";
 import { NodeData } from "../../../model/node/NodeData";
 import { SourceNode } from "ihgraph";
+import { CliqueProcessor } from "../../CliqueProcessor";
 
 export class TranspileProcessor extends CliqueProcessor {
 
