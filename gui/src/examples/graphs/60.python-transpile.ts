@@ -19,7 +19,7 @@ export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface 
                     }
                 },
                 id: "1",
-                content: "hello = \"World!\""
+                content: "hello = \"World!\"\nprint(hello)\n"
             },
             {
                 annotations: {
@@ -38,12 +38,34 @@ export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface 
                 id: "2",
                 content: ""
             },
+            {
+                annotations: {
+                    nodeData: {
+                        id: "nodeData",
+                        data: {
+                            content: "",
+                            type: "editor",
+                            label: "Result",
+                            language: "PlainText",
+                            width: 0,
+                            height: 0
+                        }
+                    }
+                },
+                id: "6",
+                content: ""
+            }
         ],
         edgeTypes: [
             {
                 id: "transpile",
-                priority: 1,
+                priority: 0,
                 immediate: true
+            },
+            {
+                id: "execute",
+                priority: 1,
+                immediate: false
             }
         ],
         edges: [
@@ -60,6 +82,20 @@ export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface 
                 edgeType: "transpile",
                 sourceNode: "1",
                 targetNode: "2"
+            },
+            {
+                annotations: {
+                    edgeData: {
+                        id: "edgeData",
+                        data: {
+                            sourceHandle: "right",
+                            targetHandle: "left",
+                        }
+                    }
+                },
+                edgeType: "execute",
+                sourceNode: "2",
+                targetNode: "6"
             }
         ]
     };

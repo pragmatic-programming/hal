@@ -122,10 +122,11 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
     icon: HardwareIcon,
     edgePathStyle: "Smooth",
     immediate: true,
-    priority: 1,
+    priority: 0,
     processor: TranspileProcessor,
     requiresLabel: false,
     targetNodeTypes: ["editor"],
+    transformationDirection: "dependency"
 };
 
 
