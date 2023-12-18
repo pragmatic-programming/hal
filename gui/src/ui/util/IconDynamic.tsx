@@ -1,13 +1,15 @@
 import React, { CSSProperties, useState } from "react";
 import { IconButton, SvgIcon, Tooltip } from "@mui/material";
 import { SvgIconComponent } from "@mui/icons-material";
+import { Placement } from "./Placement";
 
 interface Props {
     iconDefault: SvgIconComponent;
     iconHover: SvgIconComponent;
     onClick: () => void;
+    placement?: Placement;
     style?: CSSProperties;
-    tooltip: string;
+    tooltip?: string;
 }
 
 export function IconDynamic(props: Props): React.JSX.Element {
@@ -15,7 +17,7 @@ export function IconDynamic(props: Props): React.JSX.Element {
 
     return (
         <Tooltip
-            placement="top"
+            placement={props.placement === undefined ? "top" : props.placement}
             title={props.tooltip}
         >
             <IconButton

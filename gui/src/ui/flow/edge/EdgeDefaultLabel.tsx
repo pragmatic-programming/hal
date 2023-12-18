@@ -2,29 +2,26 @@ import React from "react";
 import { InputAdornment, Theme, useTheme } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
-import { firstCharUpperCase } from "../../../util";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
-import { IconDynamic } from "../../util/IconDynamic";
+import { EdgeDefaultLabelCross } from "./EdgeDefaultLabelCross";
+import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
+    edgePathStyle: EdgePathStyle;
     id: string;
     label: string;
 }
 
 export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     const setEdgeLabel = useStore((state: State) => state.flow.setEdgeLabel);
-    const reactFlow: ReactFlowInstance = useReactFlow();
     const theme: Theme = useTheme();
     let content: React.JSX.Element = (
-        <IconDynamic
-            iconDefault={props.edgeDefinition.icon}
-            iconHover={DeleteIcon}
-            onClick={() => reactFlow.deleteElements({edges: [{id: props.id}]})}
-            tooltip={"Delete " + firstCharUpperCase(props.edgeDefinition.type) + " Edge"}
+        <EdgeDefaultLabelCross
+            edgeDefinition={props.edgeDefinition}
+            edgePathStyle={props.edgePathStyle}
+            id={props.id}
         />
     );
     if (props.edgeDefinition.requiresLabel) {

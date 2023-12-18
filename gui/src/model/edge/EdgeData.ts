@@ -1,12 +1,14 @@
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import { SourceHandleId } from "./SourceHandleId";
 import { TargetHandleId } from "./TargetHandleId";
+import { EdgePathStyle } from "./EdgePathStyle";
 
 export type EdgeData = EdgeDataEmpty | EdgeDataCreate;
 
 export interface EdgeDataCommon {
     sourceHandle: SourceHandleId;
     targetHandle: TargetHandleId;
+    edgePathStyle: EdgePathStyle;
 }
 
 export interface EdgeDataEmpty extends EdgeDataCommon {

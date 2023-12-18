@@ -1,23 +1,12 @@
 import React, { CSSProperties, MutableRefObject } from "react";
 import { IconButton, Tooltip } from "@mui/material";
+import { Placement } from "./Placement";
 
 interface Props {
     children: React.JSX.Element;
     disabled?: boolean;
     onClick?: () => void;
-    placement:
-        | "bottom-end"
-        | "bottom-start"
-        | "bottom"
-        | "left-end"
-        | "left-start"
-        | "left"
-        | "right-end"
-        | "right-start"
-        | "right"
-        | "top-end"
-        | "top-start"
-        | "top";
+    placement: Placement;
     buttonRef?: MutableRefObject<null>;
     size?: "large";
     style?: CSSProperties;

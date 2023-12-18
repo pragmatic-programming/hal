@@ -11,7 +11,6 @@ export interface StateFlow {
     addNodeCreate: () => void,
     connectingSourceNodeId: string | null,
     connectingSourceHandleId: "right" | "bottom" | null,
-    edgePathStyle: EdgePathStyle
     edges: Edge[],
     layout: (fitView: (fitViewOptions: FitViewOptions) => void, layoutOptions: LayoutOptionTypeIndicator) => void,
     layoutOption: LayoutOptionTypeIndicator,
@@ -23,7 +22,8 @@ export interface StateFlow {
     render: (ihGraph: IHGraph, fitView: () => void, projectName?: string) => void,
     setConnectingSource: (handleType: "right" | "bottom" | null, nodeId: string | null) => void,
     setEdgeLabel: (nodeId: string, label: string) => void,
-    setEdgePathStyle: (edgePathStyle: EdgePathStyle) => void,
+    setEdgePathStyleForAll: (edgePathStyle: EdgePathStyle) => void,
+    setEdgePathStyleForEdge: (edgeId: string, edgePathStyle: EdgePathStyle) => void,
     setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,
     setNodeNodeDataLabel: (nodeId: string, label: string) => void,
     setNodeNodeDataLanguage: (nodeId: string, language: LanguageIndicator) => void,

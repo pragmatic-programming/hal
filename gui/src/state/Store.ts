@@ -14,7 +14,7 @@ import { createWithEqualityFn } from "zustand/traditional";
 import { transformCreateNode } from "./flow/transformCreateNode";
 import { setConnectingSource } from "./flow/setConnectingSource";
 import { setNodeNodeDataLanguage } from "./flow/setNodeNodeDataLanguage";
-import { setEdgePathStyle } from "./flow/setEdgePathStyle";
+import { setEdgePathStyleForAll } from "./flow/setEdgePathStyleForAll";
 import { setNodeNodeDataLabel } from "./flow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./flow/setNodeNodeDataContent";
 import { runImmediate } from "./compilation/runImmediate";
@@ -26,6 +26,7 @@ import { NodeFactory } from "../model/node/NodeFactory";
 import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
 import { setContent } from "./ui/message/setContent";
 import { addNodeCreate } from "./flow/addNodeCreate";
+import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -61,7 +62,8 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         render: render(setState, getState),
         setConnectingSource: setConnectingSource(setState),
         setEdgeLabel: setEdgeLabel(setState, getState),
-        setEdgePathStyle: setEdgePathStyle(setState, getState),
+        setEdgePathStyleForAll: setEdgePathStyleForAll(setState, getState),
+        setEdgePathStyleForEdge: setEdgePathStyleForEdge(setState, getState),
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
