@@ -1,10 +1,10 @@
-import { CliqueProcessor } from "hal-kico";
 import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
 import { NodeData } from "../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
 import { IndentedString } from "./IndentedString";
 import { ArduinoSetupLoop } from "./ArduinoSetupLoop";
 import { NodeDataFactory } from "../../model/node/NodeDataFactory";
+import { CliqueProcessor } from "../CliqueProcessor";
 
 export class ArduinoProcessor extends CliqueProcessor {
 

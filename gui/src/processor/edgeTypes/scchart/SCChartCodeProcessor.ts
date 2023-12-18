@@ -2,7 +2,7 @@ import { NodeDataEditor } from "../../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { SCChartCode } from "./SCChartCode";
 import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
-import { CliqueProcessor } from "hal-kico";
+import { CliqueProcessor } from "../../CliqueProcessor";
 
 export class SCChartCodeProcessor extends CliqueProcessor {
 
