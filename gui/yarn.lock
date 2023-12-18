@@ -5958,10 +5958,6 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-"hal-kico@link:../../hal-kico":
-  version "0.0.0"
-  uid ""
-
 handle-thing@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.1.tgz#857f79ce359580c340d43081cc648970d0bb234e"

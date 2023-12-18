@@ -29,7 +29,6 @@
     "@types/react-dom": "^18.2.6",
     "@types/use-double-click": "^1.0.4",
     "elkjs": "^0.8.2",
-    "hal-kico": "link:../../hal-kico",
     "ihgraph": "link:../../ihgraph",
     "kico": "link:../../kico-core",
     "react": "^18.2.0",
