@@ -57,7 +57,7 @@ export class CliqueSelectionProcessor extends CliqueProcessor {
         const processorType = transformationConfiguration.get(edgeType);
         this.setProperty(CliqueProcessor.NEXT_CLIQUE, clique);
 
-        if (processorType == undefined) {
+        if (processorType === undefined) {
             throw new Error("No processor mapped for edge type " + edgeType.getId());
         }
 

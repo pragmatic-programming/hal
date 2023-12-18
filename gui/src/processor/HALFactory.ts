@@ -20,15 +20,13 @@ import { SequenceProcessor } from "./SequenceProcessor";
 export type HALGraph = ihgraph.IHGraph;
 
 export function createHALGraph(): HALGraph {
-    const graph = new ihgraph.IHGraph();
-
-    return graph;
+    return new ihgraph.IHGraph();
 }
 
 function getOrCreateEdgeType(graph: HALGraph, id: string, defaultPriority: number) {
     const edgeType = graph.getEdgeTypeById(id);
 
-    if (edgeType == undefined) {
+    if (edgeType === undefined) {
         return graph.createEdgeType(id, defaultPriority);
     }
 

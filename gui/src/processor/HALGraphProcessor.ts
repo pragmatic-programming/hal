@@ -43,8 +43,6 @@ export class HALGraphProcessor extends CliqueProcessor {
     protected removeZeroPriorityNodes(): void {
         // Remove all edges with priority less than 1.
         const edges = this.getModel().getDeepEdges().filter((edge) => edge.getType().getPriority() < 1);
-        const targetNodes: ihgraph.IHNode[] = [];
-
         edges.forEach((edge) => {
             this.removeEdgeAndLooseNode(edge);
         });
@@ -54,7 +52,7 @@ export class HALGraphProcessor extends CliqueProcessor {
         const graph = this.getModel();
 
         // todo: delete whole node chains of not connected otherwise
-        if (edge.getType().getTransformationDirection() == ihgraph.TransformationDirection.CONTROLFLOW) {
+        if (edge.getType().getTransformationDirection() === ihgraph.TransformationDirection.CONTROLFLOW) {
             const targetNode = edge.getTargetNode();
             graph.removeNode(targetNode);
         } else {

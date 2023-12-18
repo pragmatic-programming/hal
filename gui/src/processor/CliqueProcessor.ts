@@ -19,19 +19,19 @@ import * as kico from "kico";
 
 export class CliqueProcessor extends ihgraph.TransformationProcessor {
 
-    public static readonly NEXT_CLIQUE: kico.Property<ihgraph.IHGraph | null> = 
+    public static readonly NEXT_CLIQUE: kico.Property<ihgraph.IHGraph | null> =
         new kico.Property<ihgraph.IHGraph | null>("HAL.clique.next", () => null);
-    public static readonly NEW_CLIQUE: kico.Property<ihgraph.IHGraph | null> = 
+    public static readonly NEW_CLIQUE: kico.Property<ihgraph.IHGraph | null> =
         new kico.Property<ihgraph.IHGraph | null>("HAL.clique.new", () => null);
 
 
     public getNextClique(): ihgraph.IHGraph {
         const clique = this.getProperty(CliqueProcessor.NEXT_CLIQUE);
-        
+
         if (clique == null) {
             throw new Error("Next clique is empty!");
         }
-        
+
         return clique;
     }
 
@@ -42,28 +42,26 @@ export class CliqueProcessor extends ihgraph.TransformationProcessor {
 
     public getSourceNodes(): ihgraph.SourceNode[] {
         const graph = this.getNextClique();
-        const nodes = graph.getSourceNodes().filter(node => node.getOutgoingEdges().length > 0);
-        return nodes;
+        return graph.getSourceNodes().filter(node => node.getOutgoingEdges().length > 0);
     }
 
     public getTargetNodes(): ihgraph.SourceNode[] {
         const graph = this.getNextClique();
-        const nodes = graph.getSourceNodes().filter(node => node.getIncomingEdges().length > 0);
-        return nodes;
+        return graph.getSourceNodes().filter(node => node.getIncomingEdges().length > 0);
     }
 
     public getCliqueNodes(): ihgraph.SourceNode[] {
         const visited = new Set<ihgraph.SourceNode>();
         const result = new Array<ihgraph.SourceNode>();
-        
+
         const nodes = this.getModel().getRootNodes();
         while(nodes.length > 0) {
             const node: ihgraph.SourceNode = nodes[0]
             visited.add(node);
-            const newNodes = node.getOutgoingEdges().
-                filter(edge => edge.getTargetNode() instanceof ihgraph.SourceNode).
-                map(edge => edge.getTargetNode() as ihgraph.SourceNode).
-                filter(node => !visited.has(node) && !nodes.includes(node));
+            const newNodes = node.getOutgoingEdges()
+                .filter(edge => edge.getTargetNode() instanceof ihgraph.SourceNode)
+                .map(edge => edge.getTargetNode() as ihgraph.SourceNode)
+                .filter(node => !visited.has(node) && !nodes.includes(node));
             result.push(nodes.shift()!);
             nodes.push(...newNodes);
         }
@@ -95,8 +93,6 @@ export class CliqueProcessor extends ihgraph.TransformationProcessor {
     }
 
     protected createTargetGraph(): ihgraph.IHGraph {
-        const targetGraph = new ihgraph.IHGraph();
-
-        return targetGraph;
+        return new ihgraph.IHGraph();
     }
 }
