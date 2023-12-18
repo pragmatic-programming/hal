@@ -1,5 +1,5 @@
-import { IndentedString } from "./IndentedString";
-import { ArduinoSetupLoop } from "./ArduinoSetupLoop";
+import { IndentedString } from "../../../processor/edgeTypes/IndentedString";
+import { ArduinoSetupLoop } from "../../../processor/edgeTypes/ArduinoSetupLoop";
 
 test("blink example", () => {
     //given
