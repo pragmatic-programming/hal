@@ -4,7 +4,7 @@ import TooltipIconButton from "../util/TooltipIconButton";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { flowToIHGraph } from "../../processor/compilationContexts";
-import { CompilationContext } from "../../../../../kico-core";
+import { CompilationContext } from "../../../../../kico";
 import { StateFlow } from "../../state/flow/StateFlow";
 import { IHGraph } from "../../../../../ihgraph";
 import MenuButtonBox from "./MenuButtonBox";

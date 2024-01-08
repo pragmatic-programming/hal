@@ -7606,7 +7606,7 @@ keyv@^4.5.3:
   dependencies:
     json-buffer "3.0.1"
 
-"kico@link:../../kico-core":
+"kico@link:../../kico":
   version "0.0.0"
   uid ""
 

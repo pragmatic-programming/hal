@@ -30,7 +30,7 @@
     "@types/use-double-click": "^1.0.4",
     "elkjs": "^0.8.2",
     "ihgraph": "link:../../ihgraph",
-    "kico": "link:../../kico-core",
+    "kico": "link:../../kico",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
