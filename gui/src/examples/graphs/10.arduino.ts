@@ -1,57 +1,22 @@
 import { IHGraphFactoryInterface } from "ihgraph";
+import { createEdgeData, createNodeData, sanitizeNodeDataLabels } from "../exampleAnnotations";
 
 export function exampleGraphsArduino(): IHGraphFactoryInterface {
-    return {
+    return sanitizeNodeDataLabels({
         nodes: [
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Defines",
-                            language: "C",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "1",
+                annotations: createNodeData("C"),
+                id: "Define",
                 content: "const int LED_PIN = 13;"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Setup",
-                            language: "C",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "2",
+                annotations: createNodeData("C"),
+                id: "Setup",
                 content: "pinMode(LED_PIN, OUTPUT);"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Loop",
-                            language: "C",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "3",
+                annotations: createNodeData("C"),
+                id: "Loop",
                 content: "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);"
             }
         ],
@@ -67,33 +32,17 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
+                annotations: createEdgeData(),
                 edgeType: "sequence",
-                sourceNode: "1",
-                targetNode: "2"
+                sourceNode: "Define",
+                targetNode: "Setup"
             },
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
+                annotations: createEdgeData(),
                 edgeType: "arduino",
-                sourceNode: "2",
-                targetNode: "3"
+                sourceNode: "Setup",
+                targetNode: "Loop"
             }
         ]
-    };
+    });
 }
