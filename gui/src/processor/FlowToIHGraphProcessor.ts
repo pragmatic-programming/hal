@@ -2,8 +2,9 @@ import { Processor } from "kico";
 import { EdgeType, IHGraph, IHNode, SourceNode, TransformationDirection, TransformationEdge } from "ihgraph";
 import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeData } from "../model/node/NodeData";
-import { edgeDefinitions } from "../model/edge/edgeDefinitions";
+import { defaultEdgeDefinitions } from "../model/edge/edgeDefinitions";
 import { StrictNode, strictNode } from "../model/node/StrictNode";
+import { defaultProcessors } from "./defaultProcessors";
 
 
 export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
@@ -12,17 +13,28 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
     public static readonly ANNOTATION_EDGE_DATA = "edgeData";
 
     async process(): Promise<void> {
+        const model: NodesAndEdges = this.getModel();
         const graph: IHGraph = new IHGraph();
-
-        for (const edgeDefinition of edgeDefinitions) {
-            const edgeType = graph.createEdgeType(edgeDefinition.type, edgeDefinition.priority).setImmediate(edgeDefinition.immediate);
-            if (edgeDefinition.transformationDirection === "dependency") {
-                edgeType.setTransformationDirection(TransformationDirection.DEPENDENCY);
+        
+        // Test all included edge types beforehand because we only want to add edge types that are actually used.
+        for (const edge of model.edges) {
+            let edgeDefinition = defaultEdgeDefinitions["prototype"];
+            edgeDefinition.type = edge.label as string;
+            edgeDefinition.priority = edge.data!.priority;
+            edgeDefinition.immediate = edge.data!.immediate;
+            if (defaultProcessors[edge.label as string]) {
+                edgeDefinition.processor = defaultProcessors[edge.label as string]
+            } 
+            if (!graph.getEdgeTypeById(edge.label as string)) {
+                const edgeType = graph.createEdgeType(edge.label as string, edgeDefinition.priority).setImmediate(edgeDefinition.immediate);
+                if (edgeDefinition.transformationDirection === "dependency") {
+                    edgeType.setTransformationDirection(TransformationDirection.DEPENDENCY);
+                }
+                graph.getTransformationConfiguration().setById(edge.label as string, edgeDefinition.processor);
+                console.log(`Added edge type ${edgeDefinition.type}`)
             }
-            graph.getTransformationConfiguration().setById(edgeDefinition.type, edgeDefinition.processor);
         }
 
-        const model: NodesAndEdges = this.getModel();
         for (let unsafeNode of model.nodes) {
             const node: StrictNode<NodeData> = strictNode(unsafeNode);
             const sourceNode: SourceNode = graph.createSourceNode(node.id);
@@ -49,7 +61,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
                 throw new Error("Returned TargetNode is undefined");
             }
             if (!edgeType) {
-                throw new Error("Returned EdgeType is undefined: " + edge.label + "");
+                throw new Error(`Returned EdgeType ${edge.label as string} is undefined`);
             }
             const transformationEdge: TransformationEdge = graph.createTransformationEdge(edgeType, source, target);
             transformationEdge.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA, edge.data);

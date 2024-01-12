@@ -1,6 +1,5 @@
 import { EdgeData, EdgeDataCommon, EdgeDataCreate, EdgeDataEmpty } from "./EdgeData";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
-import { EdgeDataTypeIndicator } from "./EdgeDataTypeIndicator";
 import { SourceHandleId } from "./SourceHandleId";
 import { TargetHandleId } from "./TargetHandleId";
 
@@ -29,20 +28,26 @@ export class EdgeDataFactory {
     static edgeDataCommon(
         sourceHandle: SourceHandleId,
         targetHandle: TargetHandleId,
+        priority: number,
+        immediate: boolean,
     ): EdgeDataCommon {
         return {
             sourceHandle: sourceHandle,
             targetHandle: targetHandle,
             edgePathStyle: "Smooth",
+            priority: priority,
+            immediate: immediate
         };
     }
 
     static edgeDataFromCreationEdge(
-        newEdgeDataTypeIdentifier: EdgeDataTypeIndicator,
+        newEdgeDataTypeIdentifier: string,
         sourceHandle: SourceHandleId,
-        targetHandle: TargetHandleId
+        targetHandle: TargetHandleId,
+        priority: number,
+        immediate: boolean
     ): EdgeData {
-        const edgeDataCommon: EdgeDataCommon = EdgeDataFactory.edgeDataCommon(sourceHandle, targetHandle);
+        const edgeDataCommon: EdgeDataCommon = EdgeDataFactory.edgeDataCommon(sourceHandle, targetHandle, priority, immediate);
         switch (newEdgeDataTypeIdentifier) {
             case "create":
                 return EdgeDataFactory.edgeDataCreate(

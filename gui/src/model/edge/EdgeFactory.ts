@@ -1,9 +1,8 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
-import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
-import { edgeDefinitionCreate, retrieveEdgeDefinition } from "./edgeDefinitions";
+import { edgeDefinitionCreate, edgeDefinitionPrototype, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 import { EdgeData, EdgeDataCreate } from "./EdgeData";
-import { TransformationEdge } from "ihgraph";
+import { EdgeType, TransformationEdge } from "ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";
@@ -36,7 +35,7 @@ export class EdgeFactory {
         if (!isSourceHandleId(sourceHandleId)) {
             throw new Error("OnConnectStartParams.handleId is not from type SourceHandleId");
         }
-        return EdgeFactory.fromEdgeType(
+        return EdgeFactory.fromEdgeTypeId(
             "create",
             onConnectStartParams.nodeId,
             targetId,
@@ -56,23 +55,12 @@ export class EdgeFactory {
         const edgeData: EdgeData = edge.getAnnotationData<EdgeData>("edgeData");
         const sourceId = edge.getSourceNode().getId();
         const targetId = edge.getTargetNode().getId();
-        const edgeType = edge.getType().getId();
+        const edgeType = edge.getType()
         if (!sourceId) {
             throw new Error("Returned sourceId is undefined");
         }
         if (!targetId) {
             throw new Error("Returned targetId is undefined");
-        }
-        if (!isEdgeTypeIndicator(edgeType)) {
-            // throw new Error("EdgeType is not a valid edgeTypeIndicator");
-            console.log(edgeData);
-            return EdgeFactory.fromEdgeType(
-                "unknown",
-                sourceId,
-                targetId,
-                edgeData.sourceHandle,
-                edgeData.targetHandle
-            );
         }
         return EdgeFactory.fromEdgeType(
             edgeType,
@@ -84,7 +72,27 @@ export class EdgeFactory {
     }
 
     static fromEdgeType(
-        edgeType: EdgeTypeIndicator,
+        edgeType: EdgeType,
+        sourceId: string,
+        targetId: string,
+        sourceHandleId: SourceHandleId,
+        targetHandleId: TargetHandleId,
+    ): Edge {
+        const edgeDefinition = edgeDefinitionPrototype
+        edgeDefinition.type = edgeType.getId();
+        edgeDefinition.priority = edgeType.getPriority();
+        edgeDefinition.immediate = edgeType.isImmediate();
+        return EdgeFactory.fromEdgeDefinition(
+            edgeDefinition,
+            sourceId,
+            targetId,
+            sourceHandleId,
+            targetHandleId,
+        );
+    }
+
+    static fromEdgeTypeId(
+        edgeType: string,
         sourceId: string,
         targetId: string,
         sourceHandleId: SourceHandleId,
@@ -109,7 +117,7 @@ export class EdgeFactory {
     }
 
 
-    static edgeId(sourceId: string, targetId: string, sourceHandleId: string, targetHandleId: string, edgeTypeIndication: EdgeTypeIndicator): string {
+    static edgeId(sourceId: string, targetId: string, sourceHandleId: string, targetHandleId: string, edgeTypeIndication: string): string {
         return "e-" + sourceId + "-" + targetId + "-" + sourceHandleId + "-" + targetHandleId + "-" + edgeTypeIndication;
     }
 
@@ -134,7 +142,7 @@ export class EdgeFactory {
                 width: 30,
                 height: 30,
             },
-            data: EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition.type, sourceHandleId, targetHandleId)
+            data: EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition.type, sourceHandleId, targetHandleId, edgeDefinition.priority, edgeDefinition.immediate)
         };
     }
 }

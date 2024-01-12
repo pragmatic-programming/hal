@@ -25,7 +25,20 @@ import { IdentityProcessor } from "../../processor/IdentityProcessor";
 export const edgeDefinitionUnknown: EdgeDefinition = {
     type: "unknown",
     animated: false,
-    component: EdgeCreate,
+    component: EdgeDefault,
+    icon: WarningAmberIcon,
+    edgePathStyle: "Smooth",
+    immediate: false,
+    priority: 0,
+    processor: IdentityProcessor,
+    requiresLabel: false,
+    targetNodeTypes: [],
+};
+
+export const edgeDefinitionPrototype: EdgeDefinition = {
+    type: "prototype",
+    animated: false,
+    component: EdgeDefault,
     icon: WarningAmberIcon,
     edgePathStyle: "Smooth",
     immediate: false,
@@ -38,7 +51,7 @@ export const edgeDefinitionUnknown: EdgeDefinition = {
 export const edgeDefinitionCreate: EdgeDefinition = {
     type: "create",
     animated: false,
-    component: EdgeDefault,
+    component: EdgeCreate,
     icon: AddIcon,
     edgePathStyle: "Smooth",
     immediate: false,
@@ -146,22 +159,21 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
 
 
 // new edge (step 3): add the new edge definition to the following array
-export const edgeDefinitions: EdgeDefinition[] = [
-    edgeDefinitionCreate,
-    edgeDefinitionArduino,
-    edgeDefinitionExecute,
-    edgeDefinitionSCChartCode,
-    edgeDefinitionSCChartDiagram,
-    edgeDefinitionSequence,
-    edgeDefinitionTest,
-    edgeDefinitionTranspile,
-];
+export const defaultEdgeDefinitions: { [ key: string ]: EdgeDefinition } = {
+    prototype: edgeDefinitionPrototype,
+    create: edgeDefinitionCreate,
+    arduino: edgeDefinitionArduino,
+    execute: edgeDefinitionExecute,
+    scchartcode: edgeDefinitionSCChartCode,
+    scchartdiagram: edgeDefinitionSCChartDiagram,
+    sequence: edgeDefinitionSequence,
+    test: edgeDefinitionTest,
+    transpile: edgeDefinitionTranspile,
+};
 
 // new edge (step 4): add the edge type indicator as case to return new edge definition
-export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): EdgeDefinition {
+export function retrieveEdgeDefinition(edgeTypeIndicator: string): EdgeDefinition {
     switch (edgeTypeIndicator) {
-        case "unknown": 
-            return edgeDefinitionUnknown;
         case "create":
             return edgeDefinitionCreate;
         case "arduino":
@@ -179,4 +191,6 @@ export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): Ed
         case "transpile":
             return edgeDefinitionTranspile;
     }
+    const genericEdgeDefinition = edgeDefinitionUnknown;
+    return genericEdgeDefinition;
 }

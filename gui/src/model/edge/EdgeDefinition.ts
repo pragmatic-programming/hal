@@ -7,7 +7,7 @@ import { NodeTypeIndicator } from "../node/NodeTypeIndicator";
 import { EdgePathStyle } from "./EdgePathStyle";
 
 export interface EdgeDefinition {
-    type: EdgeTypeIndicator;
+    type: string;
     animated: boolean;
     component: ComponentType<EdgeProps>;
     icon: SvgIconComponent;
