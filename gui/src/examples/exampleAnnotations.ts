@@ -42,7 +42,7 @@ export function sanitizeDataAnnotations(graph: IHGraphFactoryInterface): IHGraph
             edge.annotations = {} as AnnotationFactoryType;
         }
         if (!edge.annotations.edgeData || !edge.annotations.edgeData.data) {
-            edge.annotations.edgeData = createEdgeData();
+            edge.annotations = createEdgeData();
         }
     });
 
