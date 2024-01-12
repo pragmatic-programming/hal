@@ -1,8 +1,8 @@
 import { IHGraphFactoryInterface } from "ihgraph";
-import { createEdgeData, createNodeData, sanitizeNodeDataLabels } from "../exampleAnnotations";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsArduino(): IHGraphFactoryInterface {
-    return sanitizeNodeDataLabels({
+    return sanitizeDataAnnotations({
         nodes: [
             {
                 annotations: createNodeData("C"),
@@ -32,13 +32,11 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: createEdgeData(),
                 edgeType: "sequence",
                 sourceNode: "Define",
                 targetNode: "Setup"
             },
             {
-                annotations: createEdgeData(),
                 edgeType: "arduino",
                 sourceNode: "Setup",
                 targetNode: "Loop"

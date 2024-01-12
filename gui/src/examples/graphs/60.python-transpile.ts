@@ -1,8 +1,8 @@
 import * as ihgraph from "ihgraph";
-import { createEdgeData, createNodeData, sanitizeNodeDataLabels } from "../exampleAnnotations";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface {
-    return sanitizeNodeDataLabels({
+    return sanitizeDataAnnotations({
         annotations: {},
         nodes: [
             {
@@ -35,13 +35,11 @@ export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface 
         ],
         edges: [
             {
-                annotations: createEdgeData(),
                 edgeType: "transpile",
                 sourceNode: "Python",
                 targetNode: "JavaScript"
             },
             {
-                annotations: createEdgeData(),
                 edgeType: "execute",
                 sourceNode: "JavaScript",
                 targetNode: "Result"

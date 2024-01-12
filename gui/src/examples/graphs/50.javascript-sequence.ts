@@ -1,8 +1,8 @@
 import { IHGraphFactoryInterface } from "ihgraph";
-import { createEdgeData, createNodeData, sanitizeNodeDataLabels } from "../exampleAnnotations";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
-    return sanitizeNodeDataLabels({
+    return sanitizeDataAnnotations({
         nodes: [
             {
                 annotations: createNodeData("JavaScript"),
@@ -34,13 +34,11 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: createEdgeData(),
                 edgeType: "sequence",
                 sourceNode: "Define",
                 targetNode: "Usage"
             },
             {
-                annotations: createEdgeData(),
                 edgeType: "execute",
                 sourceNode: "Usage",
                 targetNode: "Result"

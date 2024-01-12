@@ -1,8 +1,8 @@
 import { IHGraphFactoryInterface } from "ihgraph";
-import { createEdgeData, createNodeData, sanitizeNodeDataLabels } from "../exampleAnnotations";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
-    return sanitizeNodeDataLabels({
+    return sanitizeDataAnnotations({
         nodes: [
             {
                 annotations: createNodeData("Python"),
@@ -24,7 +24,6 @@ export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: createEdgeData(),
                 edgeType: "execute",
                 sourceNode: "Source",
                 targetNode: "Result"

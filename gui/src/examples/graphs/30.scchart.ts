@@ -1,9 +1,9 @@
 import { IHGraphFactoryInterface } from "ihgraph";
-import { createEdgeData, createNodeData, sanitizeNodeDataLabels } from "../exampleAnnotations";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 
 export function exampleGraphsSCChart(): IHGraphFactoryInterface {
-    return sanitizeNodeDataLabels({
+    return sanitizeDataAnnotations({
         nodes: [
             {
                 annotations: createNodeData(),
@@ -25,7 +25,6 @@ export function exampleGraphsSCChart(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: createEdgeData(),
                 edgeType: "scchartdiagram",
                 sourceNode: "Model",
                 targetNode: "Diagram"

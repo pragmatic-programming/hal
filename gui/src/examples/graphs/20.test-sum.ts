@@ -1,8 +1,8 @@
 import { IHGraphFactoryInterface } from "ihgraph";
-import { createEdgeData, createNodeData, sanitizeNodeDataLabels } from "../exampleAnnotations";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
-    return sanitizeNodeDataLabels({
+    return sanitizeDataAnnotations({
         nodes: [
             {
                 annotations: createNodeData("JavaScript"),
@@ -61,31 +61,26 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: createEdgeData(),
                 edgeType: "test",
                 sourceNode: "Test 1",
                 targetNode: "Function"
             },
             {
-                annotations: createEdgeData(),
                 edgeType: "test",
                 sourceNode: "Test 2",
                 targetNode: "Function"
             },
             {
-                annotations: createEdgeData(),
                 edgeType: "test",
                 sourceNode: "Test 3",
                 targetNode: "Function"
             },
             {
-                annotations: createEdgeData(),
                 edgeType: "sequence",
                 sourceNode: "Function",
                 targetNode: "Usage"
             },
             {
-                annotations: createEdgeData(),
                 edgeType: "execute",
                 sourceNode: "Usage",
                 targetNode: "Result"

@@ -28,12 +28,21 @@ export function createEdgeData(): AnnotationFactoryType {
     }
 }
 
-export function sanitizeNodeDataLabels(graph: IHGraphFactoryInterface): IHGraphFactoryInterface {
+export function sanitizeDataAnnotations(graph: IHGraphFactoryInterface): IHGraphFactoryInterface {
     graph.nodes.forEach((node: SourceNodeInterface) => {
         if (node.annotations && node.annotations.nodeData && node.annotations.nodeData.data) {
             if (!node.annotations.nodeData.data.label || node.annotations.nodeData.data.label === "") {
                 node.annotations.nodeData.data.label = node.id;
             }
+        }
+    });
+
+    graph.edges.forEach((edge) => {
+        if (!edge.annotations) {
+            edge.annotations = {} as AnnotationFactoryType;
+        }
+        if (!edge.annotations.edgeData || !edge.annotations.edgeData.data) {
+            edge.annotations.edgeData = createEdgeData();
         }
     });
 
