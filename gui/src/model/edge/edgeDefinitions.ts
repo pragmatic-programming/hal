@@ -6,6 +6,7 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import AddIcon from "@mui/icons-material/Add";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import TableChartIcon from "@mui/icons-material/TableChart";
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
 import { ExecuteProcessor } from "../../processor/edgeTypes/execute/ExecuteProcessor";
@@ -18,12 +19,26 @@ import { TranspileProcessor } from "../../processor/edgeTypes/transpile/Transpil
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
 import { SequenceProcessor } from "../../processor/edgeTypes/SequenceProcessor";
+import { IdentityProcessor } from "../../processor/IdentityProcessor";
 
 // new edge (step 2): add a new edge definition here
+export const edgeDefinitionUnknown: EdgeDefinition = {
+    type: "unknown",
+    animated: false,
+    component: EdgeCreate,
+    icon: WarningAmberIcon,
+    edgePathStyle: "Smooth",
+    immediate: false,
+    priority: 0,
+    processor: IdentityProcessor,
+    requiresLabel: false,
+    targetNodeTypes: [],
+};
+
 export const edgeDefinitionCreate: EdgeDefinition = {
     type: "create",
     animated: false,
-    component: EdgeCreate,
+    component: EdgeDefault,
     icon: AddIcon,
     edgePathStyle: "Smooth",
     immediate: false,
@@ -145,6 +160,8 @@ export const edgeDefinitions: EdgeDefinition[] = [
 // new edge (step 4): add the edge type indicator as case to return new edge definition
 export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): EdgeDefinition {
     switch (edgeTypeIndicator) {
+        case "unknown": 
+            return edgeDefinitionUnknown;
         case "create":
             return edgeDefinitionCreate;
         case "arduino":
