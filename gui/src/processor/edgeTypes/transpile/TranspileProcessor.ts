@@ -2,6 +2,7 @@ import { RemoteTranspilation } from "./RemoteTranspilation";
 import { NodeData } from "../../../model/node/NodeData";
 import { SourceNode } from "ihgraph";
 import { CliqueProcessor } from "../../CliqueProcessor";
+import { SourceNodeContent } from "../../../../../../ihgraph/src";
 
 export class TranspileProcessor extends CliqueProcessor {
 
@@ -24,16 +25,20 @@ export class TranspileProcessor extends CliqueProcessor {
             const targetNode = cliqueNodes[i + 1];
             const sourceNodeNodeData: NodeData = sourceNode.getAnnotationData<NodeData>("nodeData");
             const targetNodeNodeData: NodeData = targetNode.getAnnotationData<NodeData>("nodeData");
+            const content: SourceNodeContent = sourceNode.getContent();
             if (sourceNodeNodeData.type !== "editor") {
                 throw new Error("SourceNode is not from type editor");
             }
             if (targetNodeNodeData.type !== "editor") {
                 throw new Error("TargetNode is not from type editor");
             }
+            if (content === undefined) {
+                throw new Error("Content is undefined");
+            }
             const remoteTranspilation = new RemoteTranspilation(
                 sourceNodeNodeData.language,
                 targetNodeNodeData.language,
-                sourceNode.getContent()
+                content
             );
             targetNode.setContent(await remoteTranspilation.text());
         }

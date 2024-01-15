@@ -1,4 +1,5 @@
 import { SourceNode } from "ihgraph";
+import { SourceNodeContent } from "../../../../../ihgraph";
 
 export class IndentedString {
 
@@ -9,7 +10,11 @@ export class IndentedString {
     }
 
     static fromSourceNode(sourceNode: SourceNode): IndentedString {
-        return new IndentedString(sourceNode.getContent());
+        const content: SourceNodeContent = sourceNode.getContent();
+        if (content === undefined) {
+            throw new Error("Content is undefined");
+        }
+        return new IndentedString(content);
     }
 
     indented(): string {
