@@ -1,5 +1,5 @@
 import { Processor } from "kico";
-import { EdgeType, IHGraph, SourceNode, TransformationDirection, TransformationEdge } from "ihgraph";
+import { EdgeType, IHGraph, IHNode, SourceNode, TransformationDirection, TransformationEdge } from "ihgraph";
 import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeData } from "../model/node/NodeData";
 import { edgeDefinitions } from "../model/edge/edgeDefinitions";
@@ -39,8 +39,8 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             sourceNode.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, data);
         }
         for (const edge of model.edges) {
-            const source: SourceNode | undefined = graph.getNodeById(edge.source);
-            const target: SourceNode | undefined = graph.getNodeById(edge.target);
+            const source: IHNode | undefined = graph.getNodeById(edge.source);
+            const target: IHNode | undefined = graph.getNodeById(edge.target);
             const edgeType: EdgeType | undefined = graph.getEdgeTypeById(edge.label as string);
             if (!source) {
                 throw new Error("Returned SourceNode is undefined");
