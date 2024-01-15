@@ -11,7 +11,7 @@ export class NodeDataFactory {
     }
 
     static nodeDataEditor(
-        content: string,
+        content: string | undefined,
         label: string,
         language: LanguageIndicator,
         status: SourceNodeStatus,
@@ -30,7 +30,7 @@ export class NodeDataFactory {
     }
 
     static nodeDataImage(
-        content: string,
+        content: string | undefined,
         height: number,
         width: number,
         status: SourceNodeStatus,
