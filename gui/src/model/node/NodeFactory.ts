@@ -41,7 +41,7 @@ export class NodeFactory {
                     node.position.y,
                     // todo remove
                     100,
-                  100
+                    100
                 );
         }
     }
@@ -92,7 +92,7 @@ export class NodeFactory {
 
     static nodeImage(
         id: string,
-        content: string,
+        content: string | undefined,
         x: number,
         y: number,
         width: number,
@@ -128,14 +128,18 @@ export class NodeFactory {
 
     static nodeEditor(
         id: string,
-        content: string,
+        content: string | undefined,
         label: string,
         language: LanguageIndicator,
         x: number,
         y: number,
         status: SourceNodeStatus,
     ): Node<NodeDataEditor> {
-        const dimensionsForContent: DimensionsForContent = new DimensionsForContent(content);
+        // if content is undefined, we use an empty string to calculate dimensions
+        let dimensionsForContent: DimensionsForContent = new DimensionsForContent("");
+        if (content !== undefined) {
+            dimensionsForContent = new DimensionsForContent(content);
+        }
         return {
             ...dimensionsForContent.dimension(),
             id: id,
