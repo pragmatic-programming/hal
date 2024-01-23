@@ -17,6 +17,6 @@ jobs:
         working-directory: ./gui
       - run: yarn run build
         working-directory: ./gui
-      - run: yarn run jest
+      - run: yarn run test
         working-directory: ./gui
 
