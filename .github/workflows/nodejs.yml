@@ -9,14 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        working-directory: ./gui
+        working-directory: gui
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
       - run: yarn
-        working-directory: ./gui
+        working-directory: gui
       - run: yarn run build
-        working-directory: ./gui
+        working-directory: gui
       - run: yarn run test
-        working-directory: ./gui
+        working-directory: gui
 
