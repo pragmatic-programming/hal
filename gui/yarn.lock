@@ -2198,6 +2198,16 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
+"@pragmatic-programming/ihgraph@0.0.1-rc.1":
+  version "0.0.1-rc.1"
+  resolved "https://registry.yarnpkg.com/@pragmatic-programming/ihgraph/-/ihgraph-0.0.1-rc.1.tgz#5d5f443d238beb1dacd968a7d185b36e910928b5"
+  integrity sha512-a/+dMHmMnS8dJBgZNle1oNdTIf0B1LiBkJ41wtV7qlMr9lbhDflZlxrvvVxbYq9Z8awCnIyRYmfDP6Of2Rpmkw==
+
+"@pragmatic-programming/kico@0.0.1-rc.1":
+  version "0.0.1-rc.1"
+  resolved "https://registry.yarnpkg.com/@pragmatic-programming/kico/-/kico-0.0.1-rc.1.tgz#2b6d019465446251bbb81923b2c949a8967e5099"
+  integrity sha512-Jngg5N2gcKFnzuEnVp1l852bhIqtf41240O3eOHgyH3x5oky8DgLG1Hq+70sLRl5wMHdnxtUy3YU0Py4KeQdXQ==
+
 "@reactflow/background@11.3.4":
   version "11.3.4"
   resolved "https://registry.yarnpkg.com/@reactflow/background/-/background-11.3.4.tgz#377a869d9d6b6046d588f3dc6eba126eb5e03d99"
@@ -6199,10 +6209,6 @@ ignore@^5.2.0:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.4.tgz#a291c0c6178ff1b960befe47fcdec301674a6324"
   integrity sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==
 
-"ihgraph@link:../../ihgraph":
-  version "0.0.0"
-  uid ""
-
 immer@^9.0.7:
   version "9.0.21"
   resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.21.tgz#1e025ea31a40f24fb064f1fef23e931496330176"
@@ -7605,10 +7611,6 @@ keyv@^4.5.3:
   integrity sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==
   dependencies:
     json-buffer "3.0.1"
-
-"kico@link:../../kico":
-  version "0.0.0"
-  uid ""
 
 kind-of@^6.0.2:
   version "6.0.3"
