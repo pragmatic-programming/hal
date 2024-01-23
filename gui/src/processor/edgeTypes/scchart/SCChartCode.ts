@@ -1,9 +1,9 @@
-import { SourceNode } from "ihgraph";
+import { SimpleNode } from "ihgraph";
 
 export class SCChartCode {
-    private sourceNode: SourceNode;
+    private sourceNode: SimpleNode;
 
-    constructor(sourceNode: SourceNode) {
+    constructor(sourceNode: SimpleNode) {
         this.sourceNode = sourceNode;
     }
 

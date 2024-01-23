@@ -1,5 +1,4 @@
-import { SourceNode } from "ihgraph";
-import { SourceNodeContent } from "../../../../../ihgraph";
+import { SimpleNode, SimpleNodeContent } from "ihgraph";
 
 export class IndentedString {
 
@@ -9,8 +8,8 @@ export class IndentedString {
         this.value = value;
     }
 
-    static fromSourceNode(sourceNode: SourceNode): IndentedString {
-        const content: SourceNodeContent = sourceNode.getContent();
+    static fromSourceNode(sourceNode: SimpleNode): IndentedString {
+        const content: SimpleNodeContent = sourceNode.getContent();
         if (content === undefined) {
             throw new Error("Content is undefined");
         }

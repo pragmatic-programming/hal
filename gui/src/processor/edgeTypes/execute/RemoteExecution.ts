@@ -1,10 +1,10 @@
-import { SourceNode } from "ihgraph";
+import { SimpleNode } from "ihgraph";
 import { ExecutionInterface } from "./ExecutionInterface";
 
 export class RemoteExecution implements ExecutionInterface {
-    private sourceNode: SourceNode;
+    private sourceNode: SimpleNode;
 
-    constructor(sourceNode: SourceNode) {
+    constructor(sourceNode: SimpleNode) {
         this.sourceNode = sourceNode;
     }
 

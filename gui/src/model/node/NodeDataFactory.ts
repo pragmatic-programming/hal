@@ -1,6 +1,6 @@
 import { NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage } from "./NodeData";
 import { LanguageIndicator } from "./LanguageIndicator";
-import { SourceNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "ihgraph";
 
 export class NodeDataFactory {
 
@@ -14,7 +14,7 @@ export class NodeDataFactory {
         content: string | undefined,
         label: string,
         language: LanguageIndicator,
-        status: SourceNodeStatus,
+        status: SimpleNodeStatus,
     ): NodeDataEditor {
         return {
             content: content,
@@ -33,7 +33,7 @@ export class NodeDataFactory {
         content: string | undefined,
         height: number,
         width: number,
-        status: SourceNodeStatus,
+        status: SimpleNodeStatus,
     ): NodeDataImage {
         return {
             type: "image",

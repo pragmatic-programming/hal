@@ -1,7 +1,7 @@
 import { NodeDataEditor } from "../../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { SCChartCode } from "./SCChartCode";
-import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
+import { IHGraph, SimpleNode, SimpleNodeStatus } from "ihgraph";
 import { CliqueProcessor } from "../../CliqueProcessor";
 
 export class SCChartCodeProcessor extends CliqueProcessor {
@@ -21,8 +21,8 @@ export class SCChartCodeProcessor extends CliqueProcessor {
     async processAsync(): Promise<void> {
         const targetGraph: IHGraph = this.createTargetGraph();
         // todo why Sequence?
-        const targetNode: SourceNode = targetGraph.createSourceNode("Sequence");
-        const cliqueNodes: SourceNode[] = this.getCliqueNodes();
+        const targetNode: SimpleNode = targetGraph.createSimpleNode("Sequence");
+        const cliqueNodes: SimpleNode[] = this.getCliqueNodes();
 
         try {
             const scChartCode: SCChartCode = new SCChartCode(cliqueNodes[0]);
@@ -45,7 +45,7 @@ export class SCChartCodeProcessor extends CliqueProcessor {
             language: "C",
             label: "Generated Code",
             type: "editor",
-            status: SourceNodeStatus.UNDEFINED,
+            status: SimpleNodeStatus.UNDEFINED,
             height: 0,
             width: 0,
         };

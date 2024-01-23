@@ -1,8 +1,8 @@
 import { RemoteTranspilation } from "./RemoteTranspilation";
 import { NodeData } from "../../../model/node/NodeData";
-import { SourceNode } from "ihgraph";
+import { SimpleNode } from "ihgraph";
 import { CliqueProcessor } from "../../CliqueProcessor";
-import { SourceNodeContent } from "../../../../../../ihgraph/src";
+import { SimpleNodeContent } from "../../../../../../ihgraph/src";
 
 export class TranspileProcessor extends CliqueProcessor {
 
@@ -19,13 +19,13 @@ export class TranspileProcessor extends CliqueProcessor {
     }
 
     async processAsync(): Promise<void> {
-        const cliqueNodes: SourceNode[] = this.getCliqueNodes();
+        const cliqueNodes: SimpleNode[] = this.getCliqueNodes();
         for (let i = 0; i < cliqueNodes.length - 1; i++) {
             const sourceNode = cliqueNodes[i];
             const targetNode = cliqueNodes[i + 1];
             const sourceNodeNodeData: NodeData = sourceNode.getAnnotationData<NodeData>("nodeData");
             const targetNodeNodeData: NodeData = targetNode.getAnnotationData<NodeData>("nodeData");
-            const content: SourceNodeContent = sourceNode.getContent();
+            const content: SimpleNodeContent = sourceNode.getContent();
             if (sourceNodeNodeData.type !== "editor") {
                 throw new Error("SourceNode is not from type editor");
             }

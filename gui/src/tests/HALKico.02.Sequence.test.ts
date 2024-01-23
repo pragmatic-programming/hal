@@ -14,8 +14,8 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import * as ihgraph from "ihgraph";
-import * as kico from "kico";
+import { IHGraph } from "ihgraph";
+import { createCompilationContextFromProcessors } from "kico";
 import { testGraphDemo01 } from "./DemoGraphs";
 import { SequenceProcessor } from "../processor/SequenceProcessor";
 import { NextCliquePreProcessor } from "../processor/NextCliquePreProcessor";
@@ -25,7 +25,7 @@ test("processSequence", () => {
 
     const clique = ihGraph.getNextClique();
 
-    const context = kico.createCompilationContextFromProcessors(clique, SequenceProcessor);
+    const context = createCompilationContextFromProcessors(clique, SequenceProcessor);
     (context.processors[0] as SequenceProcessor).addPreProcessor(NextCliquePreProcessor);
     // (context.processors[0] as SequenceProcessor).addPostProcessor(CliqueReplacementPostProcessor);
     context.compile();
@@ -33,7 +33,7 @@ test("processSequence", () => {
     expect(context).toBeDefined();
     expect(context.getResult()).toBeDefined();
 
-    const compilationResult = (context.getResult() as ihgraph.IHGraph).getSourceNodes()[0].getContent();
+    const compilationResult = (context.getResult() as IHGraph).getSimpleNodes()[0].getContent();
     const expectedResult: string = "const int LED_PIN = 13;\n" +
         "pinMode(LED_PIN, OUTPUT);\n" +
         "digitalWrite(LED_PIN, HIGH);\n" +
@@ -47,12 +47,12 @@ test("processSequence", () => {
 test("processSequenceAnnotation", () => {
     const ihGraph = testGraphDemo01();
 
-    const node = ihGraph.getSourceNodes()[0];
+    const node = ihGraph.getSimpleNodes()[0];
     node.createAnnotation("NodeType", "JavaScript");
 
     const clique = ihGraph.getNextClique();
 
-    const context = kico.createCompilationContextFromProcessors(clique, SequenceProcessor);
+    const context = createCompilationContextFromProcessors(clique, SequenceProcessor);
     (context.processors[0] as SequenceProcessor).addPreProcessor(NextCliquePreProcessor);
     // (context.processors[0] as SequenceProcessor).addPostProcessor(CliqueReplacementPostProcessor);
     context.compile();
@@ -60,7 +60,7 @@ test("processSequenceAnnotation", () => {
     expect(context).toBeDefined();
     expect(context.getResult()).toBeDefined();
 
-    const compilationNode = (context.getResult() as ihgraph.IHGraph).getSourceNodes()[0];
+    const compilationNode = (context.getResult() as IHGraph).getSimpleNodes()[0];
 
     expect(compilationNode).toBeDefined();
     expect(compilationNode.getAnnotationData<string>("NodeType")).toEqual("JavaScript");

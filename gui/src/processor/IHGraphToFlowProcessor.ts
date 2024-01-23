@@ -17,7 +17,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
     process(): void {
         const ihGraph: IHGraph = this.getModel();
         const nodes: Node[] = [];
-        for (const sourceNode of ihGraph.getSourceNodes()) {
+        for (const sourceNode of ihGraph.getSimpleNodes()) {
             nodes.push(NodeFactory.fromSourceNode(sourceNode));
         }
         const edges: Edge[] = [];
