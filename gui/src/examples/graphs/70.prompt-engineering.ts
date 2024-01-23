@@ -110,7 +110,7 @@ and transition every 3 seconds.`
             {
                 edgeType: "promptframe",
                 sourceNode: "Key",
-                targetNode: "Request"
+                targetNode: "Response"
             },
             {
                 edgeType: "gptrequest",
