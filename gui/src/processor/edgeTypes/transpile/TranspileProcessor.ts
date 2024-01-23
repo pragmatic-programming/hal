@@ -1,8 +1,8 @@
 import { RemoteTranspilation } from "./RemoteTranspilation";
 import { NodeData } from "../../../model/node/NodeData";
-import { SimpleNode } from "@pragmatic-programming/ihgraph";
+import { SimpleNode, SimpleNodeContent } from "@pragmatic-programming/ihgraph";
 import { CliqueProcessor } from "../../CliqueProcessor";
-import { SimpleNodeContent } from "../../../../../../ihgraph/src";
+
 
 export class TranspileProcessor extends CliqueProcessor {
 
