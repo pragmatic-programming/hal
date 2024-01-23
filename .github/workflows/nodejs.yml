@@ -3,20 +3,20 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gui
     strategy:
       matrix:
         node-version: [18.x]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        working-directory: gui
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
       - run: yarn
-        working-directory: gui
       - run: yarn run build
-        working-directory: gui
       - run: yarn run test
-        working-directory: gui
 
