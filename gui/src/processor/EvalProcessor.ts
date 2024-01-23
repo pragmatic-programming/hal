@@ -1,6 +1,5 @@
 import { CliqueProcessor } from "./CliqueProcessor";
-import { SimpleNodeContent } from "../../../../ihgraph/src";
-import { SimpleNode } from "../../../../ihgraph";
+import { SimpleNode, SimpleNodeContent } from "@pragmatic-programming/ihgraph";
 
 export class EvalProcessor extends CliqueProcessor {
 
