@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { createCompilationContextFromProcessors } from "kico";
+import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
 import { testGraphDemo02 } from "./DemoGraphs";
 import { SequenceProcessor } from "../processor/SequenceProcessor";
 import { HALGraphProcessor } from "../processor/HALGraphProcessor";

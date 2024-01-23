@@ -12,7 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { IconDynamic } from "../../util/IconDynamic";
 import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
-import { SimpleNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { VisuallyHiddenInput } from "../../util/VisuallyHiddenInput";
 
 const padding: CSSProperties = {padding: 30};

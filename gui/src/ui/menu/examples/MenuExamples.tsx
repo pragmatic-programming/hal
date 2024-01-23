@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import MenuButton from "../MenuButton";
 import { FormatListBulleted } from "@mui/icons-material";
-import { createIHGraphFromJSON } from "ihgraph";
+import { createIHGraphFromJSON } from "@pragmatic-programming/ihgraph";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { examples } from "../../../examples/examples";
 import { Example } from "../../../examples/Example";

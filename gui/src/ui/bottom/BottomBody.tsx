@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { CompilationContext, Processor } from "kico";
+import { CompilationContext, Processor } from "@pragmatic-programming/kico";
 import BottomBodyStep from "./BottomBodyStep";
 import React from "react";
 import { bottomHeight } from "./Bottom";

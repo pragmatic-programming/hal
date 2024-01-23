@@ -14,16 +14,16 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import * as kico from "kico";
 import { testGraphDemo01 } from "./DemoGraphs";
 import { HALGraphProcessor } from "../processor/HALGraphProcessor";
 import { loadDefaultTransformationConfiguration } from "../processor/HALFactory";
+import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
 
 test("HALGraphPRocessorTestGraph01", () => {
     const ihGraph = testGraphDemo01();
     loadDefaultTransformationConfiguration(ihGraph);
 
-    const context = kico.createCompilationContextFromProcessors(ihGraph, HALGraphProcessor);
+    const context = createCompilationContextFromProcessors(ihGraph, HALGraphProcessor);
     context.compile();
 
     expect(context).toBeDefined();

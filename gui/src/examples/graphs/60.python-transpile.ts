@@ -1,4 +1,4 @@
-import * as ihgraph from "ihgraph";
+import * as ihgraph from "@pragmatic-programming/ihgraph";
 
 export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface {
     return {

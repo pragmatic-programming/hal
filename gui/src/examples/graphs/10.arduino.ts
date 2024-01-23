@@ -1,4 +1,4 @@
-import { IHGraphFactoryInterface } from "ihgraph";
+import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
 
 export function exampleGraphsArduino(): IHGraphFactoryInterface {
     return {

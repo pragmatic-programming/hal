@@ -1,4 +1,4 @@
-import { SimpleNode, SimpleNodeContent } from "ihgraph";
+import { SimpleNode, SimpleNodeContent } from "@pragmatic-programming/ihgraph";
 import { ExecutionInterface } from "./ExecutionInterface";
 
 export class LocalExecution implements ExecutionInterface {

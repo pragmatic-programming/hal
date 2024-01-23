@@ -1,7 +1,7 @@
 import React from "react";
 import { Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
-import { SimpleNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { BoxBackgroundLight } from "../../util/BoxBackgroundLight";
 
 interface Props {

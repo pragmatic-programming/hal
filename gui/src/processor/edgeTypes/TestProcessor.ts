@@ -1,4 +1,4 @@
-import { SimpleNodeStatus, TransformationDirection } from "ihgraph";
+import { SimpleNodeStatus, TransformationDirection } from "@pragmatic-programming/ihgraph";
 import { CliqueProcessor } from "../CliqueProcessor";
 
 export class TestProcessor extends CliqueProcessor {

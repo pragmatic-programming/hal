@@ -1,6 +1,6 @@
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { NodeData, NodeDataEditor } from "../../../model/node/NodeData";
-import { IHGraph, SimpleNode, SimpleNodeStatus } from "ihgraph";
+import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { RemoteExecution } from "./RemoteExecution";
 import { LocalExecution } from "./LocalExecution";
 import { NodeDataFactory } from "../../../model/node/NodeDataFactory";

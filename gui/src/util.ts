@@ -1,5 +1,5 @@
 import { Theme } from "@mui/material";
-import { SimpleNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 
 export function firstCharUpperCase(value: string): string {

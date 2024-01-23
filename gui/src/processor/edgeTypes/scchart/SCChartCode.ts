@@ -1,4 +1,4 @@
-import { SimpleNode } from "ihgraph";
+import { SimpleNode } from "@pragmatic-programming/ihgraph";
 
 export class SCChartCode {
     private sourceNode: SimpleNode;

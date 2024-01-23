@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { IHGraph }  from "ihgraph";
+import { IHGraph }  from "@pragmatic-programming/ihgraph";
 import { SequenceProcessor } from "./SequenceProcessor";
 
 export type HALGraph = IHGraph;

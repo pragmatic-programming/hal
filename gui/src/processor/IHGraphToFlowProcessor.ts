@@ -1,5 +1,5 @@
-import { Processor } from "kico";
-import { IHGraph } from "ihgraph";
+import { Processor } from "@pragmatic-programming/kico";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { Edge, Node } from "reactflow";
 import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeFactory } from "../model/node/NodeFactory";

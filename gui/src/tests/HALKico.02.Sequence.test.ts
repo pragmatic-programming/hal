@@ -14,8 +14,8 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { IHGraph } from "ihgraph";
-import { createCompilationContextFromProcessors } from "kico";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
+import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
 import { testGraphDemo01 } from "./DemoGraphs";
 import { SequenceProcessor } from "../processor/SequenceProcessor";
 import { NextCliquePreProcessor } from "../processor/NextCliquePreProcessor";

@@ -1,4 +1,4 @@
-import { SimpleNode, SimpleNodeStatus } from "ihgraph";
+import { SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../../processor/FlowToIHGraphProcessor";

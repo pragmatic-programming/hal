@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { Processor, Property } from "kico";
+import { Processor, Property } from "@pragmatic-programming/kico";
 import { CliqueProcessor } from "./CliqueProcessor";
 
 export class CliqueSelectionProcessor extends CliqueProcessor {

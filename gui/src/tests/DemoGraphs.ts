@@ -13,10 +13,10 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import * as ihgraph from "ihgraph";
+import { createIHGraphFromJSON, IHGraph, IHGraphFactoryInterface} from "@pragmatic-programming/ihgraph";
 
-export function testGraphDemo01(): ihgraph.IHGraph {
-    const graph: ihgraph.IHGraphFactoryInterface = {
+export function testGraphDemo01(): IHGraph {
+    const graph: IHGraphFactoryInterface = {
         nodes: [
             {
                 id: "Defines",
@@ -51,11 +51,11 @@ export function testGraphDemo01(): ihgraph.IHGraph {
         ]
     };
 
-    return ihgraph.createIHGraphFromJSON(graph);
+    return createIHGraphFromJSON(graph);
 }
 
-export function testGraphDemo02(): ihgraph.IHGraph {
-    const graph: ihgraph.IHGraphFactoryInterface = {
+export function testGraphDemo02(): IHGraph {
+    const graph: IHGraphFactoryInterface = {
         nodes: [
             {
                 id: "Define",
@@ -94,5 +94,5 @@ export function testGraphDemo02(): ihgraph.IHGraph {
         ]
     };
 
-    return ihgraph.createIHGraphFromJSON(graph);
+    return createIHGraphFromJSON(graph);
 }

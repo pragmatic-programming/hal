@@ -1,5 +1,5 @@
 import { LanguageIndicator } from "./LanguageIndicator";
-import { SimpleNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 
 export type NodeData =
     NodeDataCreate

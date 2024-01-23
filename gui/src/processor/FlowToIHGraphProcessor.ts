@@ -1,5 +1,5 @@
-import { Processor } from "kico";
-import { EdgeType, IHGraph, IHNode, SimpleNode, TransformationDirection, TransformationEdge } from "ihgraph";
+import { Processor } from "@pragmatic-programming/kico";
+import { EdgeType, IHGraph, IHNode, SimpleNode, TransformationDirection, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeData } from "../model/node/NodeData";
 import { edgeDefinitions } from "../model/edge/edgeDefinitions";
