@@ -15,13 +15,13 @@
  ********************************************************************************/
 
 import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
-import { testGraphDemo02 } from "./DemoGraphs";
+import { testGraphSequenceExecute } from "./DemoGraphs";
 import { SequenceProcessor } from "../processor/SequenceProcessor";
 import { HALGraphProcessor } from "../processor/HALGraphProcessor";
 import { EvalProcessor } from "../processor/EvalProcessor";
 
 test("HALGraphPRocessorTestGraph01", () => {
-    const graph = testGraphDemo02();
+    const graph = testGraphSequenceExecute();
     graph.setEdgeTypeTransformationById("Sequence", SequenceProcessor);
     graph.setEdgeTypeTransformationById("Execute", EvalProcessor);
 
@@ -38,7 +38,7 @@ test("HALGraphPRocessorTestGraph01", () => {
 })
 
 test("HALGraphPRocessorTestGraph02", () => {
-    const graph = testGraphDemo02();
+    const graph = testGraphSequenceExecute();
     const eval2 = graph.createSimpleNode("Eval 2")
     const executeType = graph.getEdgeTypes()[1];
     graph.createTransformationEdge(executeType, graph.getNodes()[1], eval2);

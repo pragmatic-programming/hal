@@ -45,7 +45,7 @@ export class CliqueSelectionProcessor extends CliqueProcessor {
         const graph = this.getModel();
 
         // Ignore edges with priority 0 (or less)
-        const compilationEdges = graph.getDeepEdges().filter((edge) => edge.getType().getPriority() > 0);
+        const compilationEdges = graph.getEdges().filter((edge) => edge.getType().getPriority() > 0);
 
         if (compilationEdges.length < 1) {
             return;

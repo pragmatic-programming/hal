@@ -15,10 +15,10 @@
  ********************************************************************************/
 
 import { Identity, createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
-import { testGraphDemo01 } from "./DemoGraphs";
+import { testGraphSequence } from "./DemoGraphs";
 
 test("createIHGraph", () => {
-    const ihGraph = testGraphDemo01();
+    const ihGraph = testGraphSequence();
 
     expect(ihGraph).toBeDefined();
 })

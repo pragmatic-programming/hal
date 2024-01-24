@@ -15,7 +15,7 @@
  ********************************************************************************/
 import { createIHGraphFromJSON, IHGraph, IHGraphFactoryInterface} from "@pragmatic-programming/ihgraph";
 
-export function testGraphDemo01(): IHGraph {
+export function testGraphSequence(): IHGraph {
     const graph: IHGraphFactoryInterface = {
         nodes: [
             {
@@ -54,7 +54,7 @@ export function testGraphDemo01(): IHGraph {
     return createIHGraphFromJSON(graph);
 }
 
-export function testGraphDemo02(): IHGraph {
+export function testGraphSequenceExecute(): IHGraph {
     const graph: IHGraphFactoryInterface = {
         nodes: [
             {

@@ -16,12 +16,12 @@
 
 import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
-import { testGraphDemo01 } from "./DemoGraphs";
+import { testGraphSequence } from "./DemoGraphs";
 import { SequenceProcessor } from "../processor/SequenceProcessor";
 import { NextCliquePreProcessor } from "../processor/NextCliquePreProcessor";
 
 test("processSequence", () => {
-    const ihGraph = testGraphDemo01();
+    const ihGraph = testGraphSequence();
 
     const clique = ihGraph.getNextClique();
 
@@ -45,7 +45,7 @@ test("processSequence", () => {
 })
 
 test("processSequenceAnnotation", () => {
-    const ihGraph = testGraphDemo01();
+    const ihGraph = testGraphSequence();
 
     const node = ihGraph.getSimpleNodes()[0];
     node.createAnnotation("NodeType", "JavaScript");

@@ -54,7 +54,7 @@ export class CliqueProcessor extends TransformationProcessor {
         const visited = new Set<SimpleNode>();
         const result = new Array<SimpleNode>();
 
-        const nodes = this.getModel().getSource2Nodes();
+        const nodes = this.getSourceNodes();
         while(nodes.length > 0) {
             const node: SimpleNode = nodes[0]
             visited.add(node);
