@@ -14,20 +14,20 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import * as kico from "kico";
-import { testGraphDemo02 } from "./DemoGraphs";
+import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
+import { testGraphSequenceExecute } from "./DemoGraphs";
 import { SequenceProcessor } from "../processor/SequenceProcessor";
 import { HALGraphProcessor } from "../processor/HALGraphProcessor";
 import { EvalProcessor } from "../processor/EvalProcessor";
 
 test("HALGraphPRocessorTestGraph01", () => {
-    const graph = testGraphDemo02();
-    graph.setTransformationConfigurationById("Sequence", SequenceProcessor);
-    graph.setTransformationConfigurationById("Execute", EvalProcessor);
+    const graph = testGraphSequenceExecute();
+    graph.setEdgeTypeTransformationById("Sequence", SequenceProcessor);
+    graph.setEdgeTypeTransformationById("Execute", EvalProcessor);
 
     expect(graph).toBeDefined();
 
-    const context = kico.createCompilationContextFromProcessors(graph, HALGraphProcessor);
+    const context = createCompilationContextFromProcessors(graph, HALGraphProcessor);
     context.compile();
 
     expect(context).toBeDefined();
@@ -38,16 +38,16 @@ test("HALGraphPRocessorTestGraph01", () => {
 })
 
 test("HALGraphPRocessorTestGraph02", () => {
-    const graph = testGraphDemo02();
-    const eval2 = graph.createSourceNode("Eval 2")
+    const graph = testGraphSequenceExecute();
+    const eval2 = graph.createSimpleNode("Eval 2")
     const executeType = graph.getEdgeTypes()[1];
     graph.createTransformationEdge(executeType, graph.getNodes()[1], eval2);
-    graph.setTransformationConfigurationById("Sequence", SequenceProcessor);
-    graph.setTransformationConfigurationById("Execute", EvalProcessor);
+    graph.setEdgeTypeTransformationById("Sequence", SequenceProcessor);
+    graph.setEdgeTypeTransformationById("Execute", EvalProcessor);
 
     expect(graph).toBeDefined();
 
-    const context = kico.createCompilationContextFromProcessors(graph, HALGraphProcessor);
+    const context = createCompilationContextFromProcessors(graph, HALGraphProcessor);
     context.compile();
 
     expect(context).toBeDefined();

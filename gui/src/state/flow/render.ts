@@ -1,7 +1,7 @@
 import { State } from "../State";
-import { IHGraph } from "ihgraph";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { FitViewOptions } from "reactflow";
-import { CompilationContext } from "kico";
+import { CompilationContext } from "@pragmatic-programming/kico";
 import { iHGraphToFlow } from "../../processor/compilationContexts";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";

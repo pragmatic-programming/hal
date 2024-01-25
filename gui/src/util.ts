@@ -1,5 +1,5 @@
 import { Theme } from "@mui/material";
-import { SourceNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { LayoutOptions } from "elkjs/lib/elk-api";
 
 export function firstCharUpperCase(value: string): string {
@@ -7,20 +7,20 @@ export function firstCharUpperCase(value: string): string {
 }
 
 export function borderColor(
-    status: SourceNodeStatus,
+    status: SimpleNodeStatus,
     selected: boolean,
     theme: Theme,
     defaultBorderColor: string,
 ): string {
     let borderColor: string = defaultBorderColor;
     switch (status) {
-        case SourceNodeStatus.ERROR:
+        case SimpleNodeStatus.ERROR:
             borderColor = theme.palette.error.main;
             break;
-        case SourceNodeStatus.SUCCESS:
+        case SimpleNodeStatus.SUCCESS:
             borderColor = theme.palette.success.main;
             break;
-        case SourceNodeStatus.WARNING:
+        case SimpleNodeStatus.WARNING:
             borderColor = theme.palette.warning.main;
             break;
     }

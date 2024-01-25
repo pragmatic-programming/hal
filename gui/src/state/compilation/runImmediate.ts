@@ -1,8 +1,8 @@
 import { State } from "../State";
-import { CompilationContext, createCompilationContextFromProcessors, Processor } from "kico";
+import { CompilationContext, createCompilationContextFromProcessors, Processor } from "@pragmatic-programming/kico";
 import { flowToIHGraph, iHGraphToFlow } from "../../processor/compilationContexts";
 import { StoreApi } from "zustand";
-import { EdgeType, IHGraph, TransformationConfiguration } from "ihgraph";
+import { EdgeType, IHGraph, TransformationConfiguration } from "@pragmatic-programming/ihgraph";
 import { layoutedNodes } from "../layoutedNodes";
 import { layoutOptions } from "../../util";
 import { StateFlow } from "../flow/StateFlow";

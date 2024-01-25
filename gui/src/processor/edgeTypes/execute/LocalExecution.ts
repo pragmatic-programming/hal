@@ -1,16 +1,15 @@
-import { SourceNode } from "ihgraph";
+import { SimpleNode, SimpleNodeContent } from "@pragmatic-programming/ihgraph";
 import { ExecutionInterface } from "./ExecutionInterface";
-import { SourceNodeContent } from "../../../../../../ihgraph";
 
 export class LocalExecution implements ExecutionInterface {
-    private sourceNode: SourceNode;
+    private sourceNode: SimpleNode;
 
-    constructor(sourceNode: SourceNode) {
+    constructor(sourceNode: SimpleNode) {
         this.sourceNode = sourceNode;
     }
 
     async text(): Promise<string> {
-        const content: SourceNodeContent = this.sourceNode.getContent();
+        const content: SimpleNodeContent = this.sourceNode.getContent();
         if (content === undefined) {
             throw new Error("Content is undefined");
         }

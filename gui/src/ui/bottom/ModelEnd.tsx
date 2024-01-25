@@ -1,6 +1,6 @@
 import React from "react";
 import Model from "./Model";
-import { Processor } from "kico";
+import { Processor } from "@pragmatic-programming/kico";
 
 
 interface Props {

@@ -2,7 +2,7 @@ import { Edge, FitViewOptions, Node, OnConnect, OnEdgesChange, OnNodesChange } f
 import { NodeData } from "../../model/node/NodeData";
 import { EdgePathStyle } from "../../model/edge/EdgePathStyle";
 import { LanguageIndicator } from "../../model/node/LanguageIndicator";
-import { IHGraph } from "ihgraph";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
 import { NodeDefinition } from "../../model/node/NodeDefinition";
 import { LayoutOptionTypeIndicator } from "../../util";

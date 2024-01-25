@@ -12,7 +12,7 @@ export class SequenceProcessor extends CliqueProcessor {
 
     public process() {
         const targetGraph = this.createTargetGraph();
-        const sourceNode = targetGraph.createSourceNode("Sequence");
+        const sourceNode = targetGraph.createSimpleNode("Sequence");
         const cliqueNodes = this.getCliqueNodes();
         let content = "";
 

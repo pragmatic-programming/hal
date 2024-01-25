@@ -1,6 +1,6 @@
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { NodeData, NodeDataEditor } from "../../../model/node/NodeData";
-import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
+import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { RemoteExecution } from "./RemoteExecution";
 import { LocalExecution } from "./LocalExecution";
 import { NodeDataFactory } from "../../../model/node/NodeDataFactory";
@@ -22,16 +22,16 @@ export class ExecuteProcessor extends CliqueProcessor {
 
     async processAsync(): Promise<void> {
         try {
-            const targets: SourceNode[] = await this.targetNodes();
+            const targets: SimpleNode[] = await this.targetNodes();
             this.postProcess(targets);
         } catch (e) {
             this.addError(String(e));
         }
     }
 
-    private async targetNodes(): Promise<SourceNode[]> {
-        const sources: SourceNode[] = this.getSourceNodes();
-        const targets: SourceNode[] = this.getTargetNodes();
+    private async targetNodes(): Promise<SimpleNode[]> {
+        const sources: SimpleNode[] = this.getSourceNodes();
+        const targets: SimpleNode[] = this.getTargetNodes();
         for (const source of sources) {
             const result = await this.result(source);
             for (const target of targets) {
@@ -42,21 +42,21 @@ export class ExecuteProcessor extends CliqueProcessor {
     }
 
     // todo find better name
-    private postProcess(targets: SourceNode[]): void {
+    private postProcess(targets: SimpleNode[]): void {
         const targetGraph: IHGraph = this.createTargetGraph();
-        targets.forEach((target, i) => targetGraph.createSourceNode("Eval" + i).setContent(target.getContent()));
+        targets.forEach((target, i) => targetGraph.createSimpleNode("Eval" + i).setContent(target.getContent()));
         this.setNewClique(targetGraph);
-        const node = this.getModel().getSourceNodes()[0];
+        const node = this.getModel().getSimpleNodes()[0];
         const nodeData: NodeDataEditor = NodeDataFactory.nodeDataEditor(
             node.getContent(),
             "Result",
             "PlainText",
-            SourceNodeStatus.SUCCESS
+            SimpleNodeStatus.SUCCESS
         );
         node.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, nodeData);
     }
 
-    private async result(source: SourceNode): Promise<string> {
+    private async result(source: SimpleNode): Promise<string> {
         const nodeData: NodeData = source.getAnnotationData<NodeData>("nodeData");
         if (nodeData.type !== "editor") {
             throw new Error("SourceNode is not from type editor");
