@@ -1,13 +1,13 @@
 import React from "react";
 import { Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
-import { SourceNodeStatus } from "../../../../../../ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { BoxBackgroundLight } from "../../util/BoxBackgroundLight";
 
 interface Props {
     children: React.ReactNode;
     height: number;
-    sourceNodeStatus: SourceNodeStatus;
+    sourceNodeStatus: SimpleNodeStatus;
     visible: boolean;
     width: number;
 }

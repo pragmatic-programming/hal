@@ -14,17 +14,17 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import * as kico from "kico";
+import { Processor, Property } from "@pragmatic-programming/kico";
 import { CliqueProcessor } from "./CliqueProcessor";
 
 export class CliqueSelectionProcessor extends CliqueProcessor {
 
-    public static readonly CSP_LOG: kico.Property<boolean> =
-        new kico.Property<boolean>("HAL.CSP.log", () => false);
-    public static readonly CSP_MAX_ITERATIONS: kico.Property<number> =
-        new kico.Property<number>("HAL.CSP.maxIterations", () => 10);
-    public static readonly CSP_ITERATIONS: kico.Property<number> =
-        new kico.Property<number>("HAL.CSP.iterations", () => 0);
+    public static readonly CSP_LOG: Property<boolean> =
+        new Property<boolean>("HAL.CSP.log", () => false);
+    public static readonly CSP_MAX_ITERATIONS: Property<number> =
+        new Property<number>("HAL.CSP.maxIterations", () => 10);
+    public static readonly CSP_ITERATIONS: Property<number> =
+        new Property<number>("HAL.CSP.iterations", () => 0);
 
     public getId(): string {
         return "CliqueSelectionProcessor";
@@ -45,7 +45,7 @@ export class CliqueSelectionProcessor extends CliqueProcessor {
         const graph = this.getModel();
 
         // Ignore edges with priority 0 (or less)
-        const compilationEdges = graph.getDeepEdges().filter((edge) => edge.getType().getPriority() > 0);
+        const compilationEdges = graph.getEdges().filter((edge) => edge.getType().getPriority() > 0);
 
         if (compilationEdges.length < 1) {
             return;
@@ -67,7 +67,7 @@ export class CliqueSelectionProcessor extends CliqueProcessor {
             console.log("Graph is " + this.getModel());
         }
 
-        const processor = this.getCompilationContext().appendProcessor(processorType as typeof kico.Processor);
+        const processor = this.getCompilationContext().appendProcessor(processorType as typeof Processor);
         processor.addPostProcessor(CliqueSelectionProcessor);
         this.setProperty(CliqueProcessor.NEW_CLIQUE, null);
     }

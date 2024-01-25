@@ -14,13 +14,13 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import * as ihgraph from "ihgraph";
+import { IHGraph }  from "@pragmatic-programming/ihgraph";
 import { SequenceProcessor } from "./SequenceProcessor";
 
-export type HALGraph = ihgraph.IHGraph;
+export type HALGraph = IHGraph;
 
 export function createHALGraph(): HALGraph {
-    return new ihgraph.IHGraph();
+    return new IHGraph();
 }
 
 function getOrCreateEdgeType(graph: HALGraph, id: string, defaultPriority: number) {
@@ -36,5 +36,5 @@ function getOrCreateEdgeType(graph: HALGraph, id: string, defaultPriority: numbe
 export function loadDefaultTransformationConfiguration(graph: HALGraph) {
     const sequenceEdgeType = getOrCreateEdgeType(graph, "Sequence", 10);
 
-    graph.setTransformationConfiguration(sequenceEdgeType, SequenceProcessor);
+    graph.setEdgeTypeTransformation(sequenceEdgeType, SequenceProcessor);
 }

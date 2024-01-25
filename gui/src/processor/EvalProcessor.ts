@@ -1,4 +1,5 @@
 import { CliqueProcessor } from "./CliqueProcessor";
+import { SimpleNode, SimpleNodeContent } from "@pragmatic-programming/ihgraph";
 
 export class EvalProcessor extends CliqueProcessor {
 
@@ -6,14 +7,18 @@ export class EvalProcessor extends CliqueProcessor {
         const sources = this.getSourceNodes();
         const targets = this.getTargetNodes();
 
-        sources.forEach(source => {
+        sources.forEach((sourceNode: SimpleNode): void => {
+            const content: SimpleNodeContent = sourceNode.getContent();
+            if (content === undefined) {
+                throw new Error("Content is undefined");
+            }
             // eslint-disable-next-line no-eval
-            const result: string = eval(source.getContent());
-            targets.forEach(target => target.appendContent(result));
+            const result: string = eval(content);
+            targets.forEach((target: SimpleNode) => target.appendContent(result));
         });
 
         const targetGraph = this.createTargetGraph();
-        targets.forEach((target, i) => targetGraph.createSourceNode("Eval" + i).setContent(target.getContent()));
+        targets.forEach((target, i) => targetGraph.createSimpleNode("Eval" + i).setContent(target.getContent()));
         this.setNewClique(targetGraph);
     }
 

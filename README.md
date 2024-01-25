@@ -12,6 +12,8 @@ yarn
 # and when devDependendy "monaco-editor" is updated
 yarn run copy-monaco
 yarn run start
+# run tests
+yarn run test
 ```
 
 **Docker:**

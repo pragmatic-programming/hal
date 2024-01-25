@@ -14,17 +14,17 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import * as kico from "kico";
-import { testGraphDemo01 } from "./DemoGraphs";
+import { Identity, createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
+import { testGraphSequence } from "./DemoGraphs";
 
 test("createIHGraph", () => {
-    const ihGraph = testGraphDemo01();
+    const ihGraph = testGraphSequence();
 
     expect(ihGraph).toBeDefined();
 })
 
 test("createCompilationContext", () => {
-    const context = kico.createCompilationContextFromProcessors("Hello World!", kico.Identity);
+    const context = createCompilationContextFromProcessors("Hello World!", Identity);
     context.compile();
 
     expect(context).toBeDefined();

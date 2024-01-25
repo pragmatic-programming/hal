@@ -1,5 +1,5 @@
 import { State } from "./State";
-import { CompilationContext, System } from "kico";
+import { CompilationContext, System } from "@pragmatic-programming/kico";
 import { onNodesChange } from "./flow/onNodesChange";
 import { onEdgesChange } from "./flow/onEdgesChange";
 import { onConnect } from "./flow/onConnect";

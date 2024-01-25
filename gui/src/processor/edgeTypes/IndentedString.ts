@@ -1,4 +1,4 @@
-import { SourceNode } from "ihgraph";
+import { SimpleNode, SimpleNodeContent } from "@pragmatic-programming/ihgraph";
 
 export class IndentedString {
 
@@ -8,8 +8,12 @@ export class IndentedString {
         this.value = value;
     }
 
-    static fromSourceNode(sourceNode: SourceNode): IndentedString {
-        return new IndentedString(sourceNode.getContent());
+    static fromSourceNode(sourceNode: SimpleNode): IndentedString {
+        const content: SimpleNodeContent = sourceNode.getContent();
+        if (content === undefined) {
+            throw new Error("Content is undefined");
+        }
+        return new IndentedString(content);
     }
 
     indented(): string {

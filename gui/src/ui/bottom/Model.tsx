@@ -3,8 +3,8 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import React from "react";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import { Environment, Processor } from "kico";
-import { IHGraph } from "ihgraph";
+import { Environment, Processor } from "@pragmatic-programming/kico";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
 import TooltipIconButton from "../util/TooltipIconButton";
 

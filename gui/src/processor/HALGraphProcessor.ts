@@ -14,15 +14,15 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import * as ihgraph from "ihgraph";
-import * as kico from "kico";
+import { TransformationDirection, TransformationEdge } from "@pragmatic-programming/ihgraph";
+import { Processor, Property } from "@pragmatic-programming/kico";
 import { CliqueSelectionProcessor } from "./CliqueSelectionProcessor";
 import { CliqueProcessor } from "./CliqueProcessor";
 
 export class HALGraphProcessor extends CliqueProcessor {
 
-    public static readonly HAL_DISCARD_ZERO_PRIORITY: kico.Property<boolean> =
-        new kico.Property<boolean>("HAL.discardZeroPriority", () => true);
+    public static readonly HAL_DISCARD_ZERO_PRIORITY: Property<boolean> =
+        new Property<boolean>("HAL.discardZeroPriority", () => true);
 
     public getId(): string {
         return "HALGraphProcessor";
@@ -37,7 +37,7 @@ export class HALGraphProcessor extends CliqueProcessor {
             this.removeZeroPriorityNodes();
         }
 
-        this.addPostProcessor(CliqueSelectionProcessor as typeof kico.Processor<any, any>);
+        this.addPostProcessor(CliqueSelectionProcessor as typeof Processor<any, any>);
     }
 
     protected removeZeroPriorityNodes(): void {
@@ -48,11 +48,11 @@ export class HALGraphProcessor extends CliqueProcessor {
         });
     }
 
-    protected removeEdgeAndLooseNode(edge: ihgraph.TransformationEdge): void {
+    protected removeEdgeAndLooseNode(edge: TransformationEdge): void {
         const graph = this.getModel();
 
         // todo: delete whole node chains of not connected otherwise
-        if (edge.getType().getTransformationDirection() === ihgraph.TransformationDirection.CONTROLFLOW) {
+        if (edge.getType().getTransformationDirection() === TransformationDirection.CONTROLFLOW) {
             const targetNode = edge.getTargetNode();
             graph.removeNode(targetNode);
         } else {
