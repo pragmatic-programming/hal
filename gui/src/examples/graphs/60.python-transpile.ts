@@ -1,58 +1,23 @@
 import * as ihgraph from "@pragmatic-programming/ihgraph";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface {
-    return {
+    return sanitizeDataAnnotations({
         annotations: {},
         nodes: [
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Python",
-                            language: "Python",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "1",
+                annotations: createNodeData("Python"),
+                id: "Python",
                 content: "hello = \"World!\"\nprint(hello)\n"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "JavaScript",
-                            language: "JavaScript",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "2",
+                annotations: createNodeData("JavaScript"),
+                id: "JavaScript",
                 content: ""
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Result",
-                            language: "PlainText",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "6",
+                annotations: createNodeData(),
+                id: "Result",
                 content: ""
             }
         ],
@@ -70,33 +35,15 @@ export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface 
         ],
         edges: [
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "transpile",
-                sourceNode: "1",
-                targetNode: "2"
+                sourceNode: "Python",
+                targetNode: "JavaScript"
             },
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "execute",
-                sourceNode: "2",
-                targetNode: "6"
+                sourceNode: "JavaScript",
+                targetNode: "Result"
             }
         ]
-    };
+    });
 }
