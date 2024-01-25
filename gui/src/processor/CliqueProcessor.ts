@@ -23,16 +23,26 @@ export class CliqueProcessor extends TransformationProcessor {
         new Property<IHGraph | null>("HAL.clique.next", () => null);
     public static readonly NEW_CLIQUE: Property<IHGraph | null> =
         new Property<IHGraph | null>("HAL.clique.new", () => null);
+    public static readonly NEXT_CLIQUE_MODEL_EXTENSION: Property<boolean> =
+        new Property<boolean>("HAL.clique.next.model.extension", () => true);
 
 
     public getNextClique(): IHGraph {
         const clique = this.getProperty(CliqueProcessor.NEXT_CLIQUE);
 
         if (clique == null) {
-            throw new Error("Next clique is empty!");
+            if (this.getProperty(CliqueProcessor.NEXT_CLIQUE_MODEL_EXTENSION)) {
+                return this.getModel();
+            } else {
+                throw new Error("Next clique is empty!");
+            }
         }
 
         return clique;
+    }
+
+    public setNextClique(clique: IHGraph): void {
+        this.setProperty(CliqueProcessor.NEXT_CLIQUE, clique);
     }
 
     public setNewClique(clique: IHGraph): void {
