@@ -1,4 +1,4 @@
-import { SourceNodeStatus, TransformationDirection } from "ihgraph";
+import { SimpleNodeStatus, TransformationDirection } from "@pragmatic-programming/ihgraph";
 import { CliqueProcessor } from "../CliqueProcessor";
 
 export class TestProcessor extends CliqueProcessor {
@@ -31,10 +31,10 @@ export class TestProcessor extends CliqueProcessor {
 
             switch (result) {
                 case "true":
-                    node.setStatus(SourceNodeStatus.SUCCESS);
+                    node.setStatus(SimpleNodeStatus.SUCCESS);
                     break;
                 case "false":
-                    node.setStatus(SourceNodeStatus.ERROR);
+                    node.setStatus(SimpleNodeStatus.ERROR);
                     break;
             }
         }

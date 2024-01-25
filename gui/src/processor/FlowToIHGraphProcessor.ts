@@ -1,5 +1,5 @@
-import { Processor } from "kico";
-import { EdgeType, IHGraph, IHNode, SourceNode, TransformationDirection, TransformationEdge } from "ihgraph";
+import { Processor } from "@pragmatic-programming/kico";
+import { EdgeType, IHGraph, IHNode, SimpleNode, TransformationDirection, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeData } from "../model/node/NodeData";
 import { defaultEdgeDefinitions } from "../model/edge/edgeDefinitions";
@@ -37,7 +37,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
 
         for (let unsafeNode of model.nodes) {
             const node: StrictNode<NodeData> = strictNode(unsafeNode);
-            const sourceNode: SourceNode = graph.createSourceNode(node.id);
+            const sourceNode: SimpleNode = graph.createSimpleNode(node.id);
             let data: NodeData = {
                 ...node.data,
             };

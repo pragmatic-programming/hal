@@ -14,53 +14,63 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import * as ihgraph from "ihgraph";
-import * as kico from "kico";
+import { IHGraph, SimpleNode, TransformationProcessor, SimpleNodeContent } from "@pragmatic-programming/ihgraph";
+import { Property } from "@pragmatic-programming/kico";
 
-export class CliqueProcessor extends ihgraph.TransformationProcessor {
+export class CliqueProcessor extends TransformationProcessor {
 
-    public static readonly NEXT_CLIQUE: kico.Property<ihgraph.IHGraph | null> =
-        new kico.Property<ihgraph.IHGraph | null>("HAL.clique.next", () => null);
-    public static readonly NEW_CLIQUE: kico.Property<ihgraph.IHGraph | null> =
-        new kico.Property<ihgraph.IHGraph | null>("HAL.clique.new", () => null);
+    public static readonly NEXT_CLIQUE: Property<IHGraph | null> =
+        new Property<IHGraph | null>("HAL.clique.next", () => null);
+    public static readonly NEW_CLIQUE: Property<IHGraph | null> =
+        new Property<IHGraph | null>("HAL.clique.new", () => null);
+    public static readonly NEXT_CLIQUE_MODEL_EXTENSION: Property<boolean> =
+        new Property<boolean>("HAL.clique.next.model.extension", () => true);
 
 
-    public getNextClique(): ihgraph.IHGraph {
+    public getNextClique(): IHGraph {
         const clique = this.getProperty(CliqueProcessor.NEXT_CLIQUE);
 
         if (clique == null) {
-            throw new Error("Next clique is empty!");
+            if (this.getProperty(CliqueProcessor.NEXT_CLIQUE_MODEL_EXTENSION)) {
+                return this.getModel();
+            } else {
+                throw new Error("Next clique is empty!");
+            }
         }
 
         return clique;
     }
 
-    public setNewClique(clique: ihgraph.IHGraph): void {
+    public setNextClique(clique: IHGraph): void {
+        this.setProperty(CliqueProcessor.NEXT_CLIQUE, clique);
+    }
+
+    public setNewClique(clique: IHGraph): void {
         this.setProperty(CliqueProcessor.NEW_CLIQUE, clique);
         this.executeCliqueReplacement();
     }
 
-    public getSourceNodes(): ihgraph.SourceNode[] {
+    public getSourceNodes(): SimpleNode[] {
         const graph = this.getNextClique();
-        return graph.getSourceNodes().filter(node => node.getOutgoingEdges().length > 0);
+        return graph.getSimpleNodes().filter(node => node.getOutgoingEdges().length > 0);
     }
 
-    public getTargetNodes(): ihgraph.SourceNode[] {
+    public getTargetNodes(): SimpleNode[] {
         const graph = this.getNextClique();
-        return graph.getSourceNodes().filter(node => node.getIncomingEdges().length > 0);
+        return graph.getSimpleNodes().filter(node => node.getIncomingEdges().length > 0);
     }
 
-    public getCliqueNodes(): ihgraph.SourceNode[] {
-        const visited = new Set<ihgraph.SourceNode>();
-        const result = new Array<ihgraph.SourceNode>();
+    public getCliqueNodes(): SimpleNode[] {
+        const visited = new Set<SimpleNode>();
+        const result = new Array<SimpleNode>();
 
-        const nodes = this.getModel().getRootNodes();
+        const nodes = this.getSourceNodes();
         while(nodes.length > 0) {
-            const node: ihgraph.SourceNode = nodes[0]
+            const node: SimpleNode = nodes[0]
             visited.add(node);
             const newNodes = node.getOutgoingEdges()
-                .filter(edge => edge.getTargetNode() instanceof ihgraph.SourceNode)
-                .map(edge => edge.getTargetNode() as ihgraph.SourceNode)
+                .filter(edge => edge.getTargetNode() instanceof SimpleNode)
+                .map(edge => edge.getTargetNode() as SimpleNode)
                 .filter(node => !visited.has(node) && !nodes.includes(node));
             result.push(nodes.shift()!);
             nodes.push(...newNodes);
@@ -80,11 +90,11 @@ export class CliqueProcessor extends ihgraph.TransformationProcessor {
         }
     }
 
-    protected getContents(): ihgraph.SourceNodeContent[] {
-        const contents: ihgraph.SourceNodeContent[] = [];
+    protected getContents(): SimpleNodeContent[] {
+        const contents: SimpleNodeContent[] = [];
 
         const graph = this.getNextClique();
-        graph.getSourceNodes().forEach(node => {
+        graph.getSimpleNodes().forEach(node => {
             const content = node.getContent();
             contents.push(content);
         });
@@ -92,7 +102,7 @@ export class CliqueProcessor extends ihgraph.TransformationProcessor {
         return contents;
     }
 
-    protected createTargetGraph(): ihgraph.IHGraph {
-        return new ihgraph.IHGraph();
+    protected createTargetGraph(): IHGraph {
+        return new IHGraph();
     }
 }

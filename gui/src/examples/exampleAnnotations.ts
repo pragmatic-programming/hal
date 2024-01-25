@@ -1,4 +1,4 @@
-import { AnnotationFactoryType, IHGraphFactoryInterface, SourceNodeInterface } from "ihgraph";
+import { AnnotationFactoryType, IHGraphFactoryInterface, SourceNodeInterface } from "@pragmatic-programming/ihgraph";
 
 export function createNodeData(language: string = "PlainText", type: string = "editor", label: string = ""): AnnotationFactoryType {
     return {

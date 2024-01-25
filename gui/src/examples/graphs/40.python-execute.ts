@@ -1,4 +1,4 @@
-import { IHGraphFactoryInterface } from "ihgraph";
+import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
 import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {

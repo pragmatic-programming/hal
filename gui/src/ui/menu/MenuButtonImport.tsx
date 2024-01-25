@@ -4,7 +4,7 @@ import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { IconButton, Tooltip } from "@mui/material";
 import { VisuallyHiddenInput } from "../util/VisuallyHiddenInput";
-import { createIHGraphFromJSONString } from "ihgraph";
+import { createIHGraphFromJSONString } from "@pragmatic-programming/ihgraph";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
 import MenuButtonBox from "./MenuButtonBox";
 

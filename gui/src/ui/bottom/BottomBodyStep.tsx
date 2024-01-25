@@ -1,4 +1,4 @@
-import { Processor } from "kico";
+import { Processor } from "@pragmatic-programming/kico";
 import ModelStart from "./ModelStart";
 import ModelProcessor from "./ModelProcessor";
 import ModelEnd from "./ModelEnd";

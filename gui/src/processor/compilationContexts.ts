@@ -1,5 +1,5 @@
-import { CompilationContext, createCompilationContextFromProcessors } from "kico";
-import { IHGraph } from "ihgraph";
+import { CompilationContext, createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { FlowToIHGraphProcessor } from "./FlowToIHGraphProcessor";
 import { IHGraphToFlowProcessor } from "./IHGraphToFlowProcessor";
 import { StateFlow } from "../state/flow/StateFlow";

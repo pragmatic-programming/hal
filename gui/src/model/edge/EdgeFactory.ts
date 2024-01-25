@@ -2,7 +2,7 @@ import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
 import { edgeDefinitionCreate, edgeDefinitionPrototype, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 import { EdgeData, EdgeDataCreate } from "./EdgeData";
-import { EdgeType, TransformationEdge } from "ihgraph";
+import { EdgeType, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";

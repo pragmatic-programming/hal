@@ -1,5 +1,5 @@
 
-import * as ihgraph from "ihgraph";
+import * as ihgraph from "@pragmatic-programming/ihgraph";
 import { SequenceProcessor } from "./SequenceProcessor";
 import { PromptFrameProcessor } from "./edgeTypes/ai/PromptFrameProcessor";
 

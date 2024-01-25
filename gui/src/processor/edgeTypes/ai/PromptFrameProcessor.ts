@@ -1,4 +1,4 @@
-import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
+import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { NodeData } from "../../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { IndentedString } from "../IndentedString";
@@ -21,7 +21,7 @@ export class PromptFrameProcessor extends CliqueProcessor {
     }
 
     public process(): void {
-        const cliqueNodes: SourceNode[] = this.getCliqueNodes();
+        const cliqueNodes: SimpleNode[] = this.getCliqueNodes();
         const promptNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.PROMPT_NODE_ID);
         const precursorNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.PRECURSOR_NODE_ID);
         const requestNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.REQUEST_NODE_ID);
@@ -63,7 +63,7 @@ export class PromptFrameProcessor extends CliqueProcessor {
         }`
 
         const newClique = this.createTargetGraph();
-        const sourceNode = newClique.createSourceNode("Request");
+        const sourceNode = newClique.createSimpleNode("Request");
         sourceNode.setContent(request);
         sourceNode.cloneAnnotationsTo(sourceNode);
         this.setNewClique(newClique);

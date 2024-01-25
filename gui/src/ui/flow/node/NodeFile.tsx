@@ -12,7 +12,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { IconDynamic } from "../../util/IconDynamic";
 import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
-import { SourceNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { VisuallyHiddenInput } from "../../util/VisuallyHiddenInput";
 
 const padding: CSSProperties = {padding: 30};
@@ -54,7 +54,7 @@ export default function NodeFile(props: NodeProps<NodeDataFile>): React.JSX.Elem
                 nodeId={props.id}
             />
             <BoxBorder
-                borderColor={borderColor(SourceNodeStatus.UNDEFINED, props.selected, theme, theme.palette.primary.main)}
+                borderColor={borderColor(SimpleNodeStatus.UNDEFINED, props.selected, theme, theme.palette.primary.main)}
             >
                 <BoxBackgroundMain
                     style={padding}

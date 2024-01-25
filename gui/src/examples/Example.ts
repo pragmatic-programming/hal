@@ -1,5 +1,5 @@
 import { SvgIconComponent } from "@mui/icons-material";
-import { IHGraphFactoryInterface } from "ihgraph";
+import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
 
 export interface Example {
     id: number,
