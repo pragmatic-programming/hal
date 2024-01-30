@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { IHGraph, SimpleNode, TransformationProcessor, SimpleNodeContent } from "@pragmatic-programming/ihgraph";
+import { IHGraph, SimpleNode, TransformationProcessor, SimpleNodeContent, assert } from "@pragmatic-programming/ihgraph";
 import { Property } from "@pragmatic-programming/kico";
 
 export class CliqueProcessor extends TransformationProcessor {
@@ -86,6 +86,7 @@ export class CliqueProcessor extends TransformationProcessor {
         if (newClique != null && nextClique != null) {
             const graph = this.getModel()
             graph.replaceClique(nextClique, newClique);
+            assert(graph.consistency());
             this.setModel(graph);
         }
     }

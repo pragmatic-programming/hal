@@ -1,5 +1,5 @@
 import { Processor } from "@pragmatic-programming/kico";
-import { IHGraph } from "@pragmatic-programming/ihgraph";
+import { IHGraph, assert } from "@pragmatic-programming/ihgraph";
 import { Edge, Node } from "reactflow";
 import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeFactory } from "../model/node/NodeFactory";
@@ -16,6 +16,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
 
     process(): void {
         const ihGraph: IHGraph = this.getModel();
+        assert(ihGraph.consistency());
         const nodes: Node[] = [];
         for (const sourceNode of ihGraph.getSimpleNodes()) {
             nodes.push(NodeFactory.fromSourceNode(sourceNode));
@@ -25,7 +26,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
             edges.push(EdgeFactory.fromTransformationEdge(edge));
         }
         this.setModel({nodes, edges});
+        console.log(ihGraph.toStringDebugGraph());
     }
-
 
 }

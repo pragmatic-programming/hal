@@ -47,6 +47,18 @@ export class NodeFactory {
     }
 
     static fromSourceNode(sourceNode: SimpleNode): Node<NodeData> {
+        if (!sourceNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
+            return NodeFactory.nodeEditor(
+                sourceNode.getId(),
+                sourceNode.getContent(),
+                sourceNode.getId(),
+                "PlainText",
+                0,
+                0,
+                sourceNode.getStatus(),
+            );
+        }
+
         const nodeData: NodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
         switch (nodeData.type) {
             case "create":

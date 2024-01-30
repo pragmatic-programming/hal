@@ -64,16 +64,6 @@ and transition every 3 seconds.`
                 content: ""
             },
             {
-                annotations: createNodeData("JavaScript"),
-                id: "Request",
-                content: ""
-            },
-            {
-                annotations: createNodeData(),
-                id: "Response",
-                content: ""
-            },
-            {
                 annotations: createNodeData(),
                 id: "Result",
                 content: ""
@@ -84,42 +74,22 @@ and transition every 3 seconds.`
                 id: "promptframe",
                 priority: 16,
                 immediate: true
-            },
-            {
-                id: "gptrequest",
-                priority: 8,
-                immediate: false
-            },
-            {
-                id: "scchartdiagram",
-                priority: 4,
-                immediate: false
             }
         ],
         edges: [
             {
                 edgeType: "promptframe",
                 sourceNode: "Prompt",
-                targetNode: "Request"
+                targetNode: "Result"
             },
             {
                 edgeType: "promptframe",
                 sourceNode: "Precursor",
-                targetNode: "Request"
+                targetNode: "Result"
             },
             {
                 edgeType: "promptframe",
                 sourceNode: "Key",
-                targetNode: "Response"
-            },
-            {
-                edgeType: "gptrequest",
-                sourceNode: "Request",
-                targetNode: "Response"
-            },
-            {
-                edgeType: "scchartdiagram",
-                sourceNode: "Response",
                 targetNode: "Result"
             }
         ]
