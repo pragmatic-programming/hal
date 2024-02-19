@@ -42,13 +42,14 @@ export function layoutOptions(layoutOptionType: LayoutOptionTypeIndicator): Layo
         "org.eclipse.elk.spacing.nodeNode": "30",
         "org.eclipse.elk.layered.nodePlacement.strategy": "NETWORK_SIMPLEX",
         "org.eclipse.elk.layered.cycleBreaking.strategy": "DEPTH_FIRST",
-        "org.eclipse.elk.layered.thoroughness": "LONGEST_PATH",
-        "org.eclipse.elk.layered.layering.strategy": "LONGEST_PATH",
+        "org.eclipse.elk.layered.thoroughness": "100",
+        // "org.eclipse.elk.layered.layering.strategy": "LONGEST_PATH",
         "org.eclipse.elk.layered.wrapping.strategy": "SINGLE_EDGE",
         "org.eclipse.elk.layered.wrapping.additionalEdgeSpacing": "0.0",
         "org.eclipse.elk.layered.wrapping.correctionFactor": "1.9",
-        "org.eclipse.elk.layered.compaction.postCompaction.strategy": "LEFT",
-        "org.eclipse.elk.layered.compaction.postCompaction.constraints": "QUADRATIC"
+        // "org.eclipse.elk.layered.compaction.postCompaction.strategy": "LEFT",
+        // "org.eclipse.elk.layered.compaction.postCompaction.constraints": "QUADRATIC",
+        "org.eclipse.elk.alignment": "RIGHT"
     };
     switch (layoutOptionType) {
         case "horizontal":

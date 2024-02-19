@@ -4,6 +4,7 @@ import { Edge, Node } from "reactflow";
 import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeFactory } from "../model/node/NodeFactory";
 import { EdgeFactory } from "../model/edge/EdgeFactory";
+import { edgeTypeIndicators } from "../model/edge/EdgeTypeIndicator";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
     getId() {
@@ -25,8 +26,11 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
         for (const edge of ihGraph.getEdges()) {
             edges.push(EdgeFactory.fromTransformationEdge(edge));
         }
+        // TODO: workaround. it should be possible to provide an unknown type and the view then just shows the prototype.
+        edges.forEach(edge => { if (edgeTypeIndicators.find(edgeTypeIndicator => edgeTypeIndicator === edge.type) === undefined) { edge.type = "prototype"; } });
         this.setModel({nodes, edges});
         console.log(ihGraph.toStringDebugGraph());
+        console.log({nodes, edges});
     }
 
 }

@@ -40,11 +40,11 @@ export const edgeDefinitionPrototype: EdgeDefinition = {
     animated: false,
     component: EdgeDefault,
     icon: WarningAmberIcon,
-    edgePathStyle: "Smooth",
+    edgePathStyle: "Bezier",
     immediate: false,
     priority: 0,
     processor: IdentityProcessor,
-    requiresLabel: false,
+    requiresLabel: true,
     targetNodeTypes: [],
 };
 
@@ -191,6 +191,5 @@ export function retrieveEdgeDefinition(edgeTypeIndicator: string): EdgeDefinitio
         case "transpile":
             return edgeDefinitionTranspile;
     }
-    const genericEdgeDefinition = edgeDefinitionUnknown;
-    return genericEdgeDefinition;
+    return edgeDefinitionPrototype;
 }

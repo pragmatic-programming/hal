@@ -6,6 +6,7 @@ import { EdgeType, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";
+import { edgeTypeIndicators } from "./EdgeTypeIndicator";
 
 
 export class EdgeFactory {
@@ -52,7 +53,6 @@ export class EdgeFactory {
     }
 
     static fromTransformationEdge(edge: TransformationEdge): Edge {
-        const edgeData: EdgeData = edge.getAnnotationData<EdgeData>("edgeData");
         const sourceId = edge.getSourceNode().getId();
         const targetId = edge.getTargetNode().getId();
         const edgeType = edge.getType()
@@ -66,8 +66,8 @@ export class EdgeFactory {
             edgeType,
             sourceId,
             targetId,
-            edgeData.sourceHandle,
-            edgeData.targetHandle
+            "right",
+            "left"
         );
     }
 
@@ -79,7 +79,11 @@ export class EdgeFactory {
         targetHandleId: TargetHandleId,
     ): Edge {
         const edgeDefinition = edgeDefinitionPrototype
-        edgeDefinition.type = edgeType.getId();
+        // if (edgeTypeIndicators.find((value: string) => value === edgeType.getId()) !== undefined) {
+            edgeDefinition.type = edgeType.getId();
+        // } else {
+            // edgeDefinition.type = "prototype"
+        // }
         edgeDefinition.priority = edgeType.getPriority();
         edgeDefinition.immediate = edgeType.isImmediate();
         return EdgeFactory.fromEdgeDefinition(

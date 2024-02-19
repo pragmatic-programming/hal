@@ -34,7 +34,7 @@ export function BottomBody(): React.JSX.Element {
                 {context.processors.map((processor: Processor<any, any>, index: number) => (
                     <BottomBodyStep
                         index={index}
-                        key={processor.getId()}
+                        key={processor.getId() + index}
                         length={context.processors.length}
                         processor={processor}
                     />
