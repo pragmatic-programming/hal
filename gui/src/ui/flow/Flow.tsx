@@ -13,6 +13,7 @@ import { layoutOptions } from "../../util";
 import { NodeFactory } from "../../model/node/NodeFactory";
 import { EdgeFactory } from "../../model/edge/EdgeFactory";
 import { isSourceHandleId } from "../../model/edge/SourceHandleId";
+import { ViewportChangeLogger } from "../ViewportChangeLogger";
 
 const selector = (state: State) => ({
     edges: state.flow.edges,
@@ -119,6 +120,7 @@ export default function Flow(): React.JSX.Element {
                 <Controls
                     position={"bottom-right"}
                 />
+                <ViewportChangeLogger/>
             </ReactFlow>
         </div>
     );

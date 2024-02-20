@@ -16,6 +16,9 @@ import { Icon } from "../../util/Icon";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import DeleteIcon from "@mui/icons-material/Delete";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import NodeCreateButton from "./NodeCreateButton";
+import { nodeDefinitionEditor } from "../../../model/node/nodeDefinitions";
+import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 
 const editorBodyReducedWidth: number = 2;
 const editorBodyReducedHeight: number = editorHeaderHeight + editorFooterHeight;
@@ -31,6 +34,31 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     const setNodeNodeDataLabel = useStore((state: State) => state.flow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.flow.setNodeNodeDataContent);
     const resizerIsVisible: boolean = props.selected;
+    const zoom: number = useStore((state: State) => state.flow.zoom);
+    if (zoom < 0.7) {
+        return (
+            <BoxBackgroundMain>
+                <HandleTargetTop
+                    nodeId={props.id}
+                />
+                <HandleTargetLeft
+                    nodeId={props.id}
+                />
+                <HandleSourceRight
+                    nodeId={props.id}
+                />
+                <HandleSourceBottom
+                    nodeId={props.id}
+                />
+                <NodeCreateButton
+                    nodeId={props.id}
+                    nodeDefinition={nodeDefinitionEditor}
+                    placement={"top"}
+                    targetEdgeId={"2"}
+                />
+            </BoxBackgroundMain>
+        );
+    }
     return (
         <NodeEditorBorder
             height={node.height}
