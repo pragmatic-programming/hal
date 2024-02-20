@@ -23,6 +23,7 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
             edgeDefinition={props.edgeDefinition}
             edgePathStyle={props.edgePathStyle}
             id={props.id}
+            showCross={!verboseMode}
         />
     );
     if (verboseMode) {

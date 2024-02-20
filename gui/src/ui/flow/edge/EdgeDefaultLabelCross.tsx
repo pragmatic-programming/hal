@@ -17,6 +17,7 @@ interface Props {
     edgeDefinition: EdgeDefinition;
     edgePathStyle: EdgePathStyle;
     id: string;
+    showCross: boolean;
 }
 
 export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
@@ -35,7 +36,8 @@ export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
                 />
             </BoxBackgroundMain>
         </div>;
-    if (showCross) {
+    // todo
+    if (showCross && props.showCross) {
         return (
             <div
                 onMouseLeave={() => setShowCross(false)}
