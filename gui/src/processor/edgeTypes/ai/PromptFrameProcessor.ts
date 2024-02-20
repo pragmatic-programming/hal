@@ -1,9 +1,4 @@
-import { EdgeType, IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
-import { NodeData } from "../../../model/node/NodeData";
-import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
-import { IndentedString } from "../IndentedString";
-import { ArduinoSetupLoop } from "../ArduinoSetupLoop";
-import { NodeDataFactory } from "../../../model/node/NodeDataFactory";
+import { SimpleNode } from "@pragmatic-programming/ihgraph";
 import { CliqueProcessor } from "../../CliqueProcessor";
 
 export class PromptFrameProcessor extends CliqueProcessor {
@@ -37,8 +32,6 @@ export class PromptFrameProcessor extends CliqueProcessor {
         const keyNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.KEY_NODE_ID);
         const responseNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.RESPONSE_NODE_ID);
 
-        console.log("PromptFrame processor running.");
-
         if (promptNode !== undefined && precursorNode !== undefined) {
             await this.processRequest(promptNode, precursorNode);
         } else if (requestNode !== undefined && keyNode !== undefined) {
@@ -55,6 +48,7 @@ export class PromptFrameProcessor extends CliqueProcessor {
             this.addError("The PromptFrame processor expects a prompt node named 'Prompt'.");
             return;
         }
+
         if (precursorNode === undefined) {
             this.addError("The PromptFrame processor expects a precursor node named 'Precursor'.");
             return;
@@ -78,23 +72,21 @@ export class PromptFrameProcessor extends CliqueProcessor {
     }
 
     public async processResponse(requestNode: SimpleNode, keyNode: SimpleNode): Promise<void> {
-        console.log(requestNode);
-        console.log(keyNode);
-
         if (requestNode === undefined || requestNode.getContentAsString() === "") {
             this.addError("The request node does not hold any content.");
             return;
         }
+
         if (keyNode === undefined || keyNode.getContentAsString() === "") {
             this.addError("You must provide a request key.");
             return;
         }
 
         let responseContent: string = "";
+
         if (keyNode.getContentAsString() === "debug") {
             responseContent = this.getDebugResponse();
         } else {
-
             const response = await fetch(PromptFrameProcessor.API_ENDPOINT, {
                 method: 'POST',
                 body: requestNode.getContentAsString(),
@@ -107,10 +99,10 @@ export class PromptFrameProcessor extends CliqueProcessor {
                 this.addError("The request to the OpenAI API failed.");
                 return;
             }
+
             const responseBody = await response.body?.getReader().read();
             responseContent = new TextDecoder("utf-8").decode(responseBody?.value);
         }
-        console.log(responseContent);
 
         const graph = this.getNextClique().clone();
 
@@ -118,7 +110,6 @@ export class PromptFrameProcessor extends CliqueProcessor {
         const resultNode = resultGraph.createSimpleNode(PromptFrameProcessor.RESULT_NODE_ID);
         const responseNode = resultGraph.createSimpleNode(PromptFrameProcessor.RESPONSE_NODE_ID);
         resultGraph.createTransformationEdge(resultGraph.getEdgeTypeById(PromptFrameProcessor.PROMPTFRAME_EDGE_TYPE_ID)!, responseNode, resultNode);
-
 
         responseNode.setContent(responseContent);
         resultNode.setContent("");
@@ -135,17 +126,19 @@ export class PromptFrameProcessor extends CliqueProcessor {
             return;
         }
 
-        const response = responseNode.getContentAsString() //.replace(/\n/g, "").replace(/\r/g, "");
-        console.log(response)
+        const response = responseNode.getContentAsString() 
         const responseJSON = JSON.parse(response);
+
         if (responseJSON.choices === undefined || responseJSON.choices.length === 0) {
             this.addError("The response does not contain any solutions.");
             return;
         }
+
         if (responseJSON.choices[0].message === undefined || responseJSON.choices[0].message.content === undefined) {
             this.addError("The response does not contain any content.");
             return;
         }
+
         const scchart = responseJSON.choices[0].message.content.replace(/^(.*)```scchart/, "").replace(/```(.*)$/, "");
         resultNode.setContent(scchart);
         graph.removeNodeById(PromptFrameProcessor.RESPONSE_NODE_ID);
