@@ -17,7 +17,8 @@ interface Props {
 
 export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     const setEdgeLabel = useStore((state: State) => state.flow.setEdgeLabel);
-    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
+    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode );
+    const zoom: number = useStore((state: State) => state.flow.zoom );
     const theme: Theme = useTheme();
     let content: React.JSX.Element = (
         <EdgeDefaultLabelCross
@@ -26,7 +27,8 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
             id={props.id}
         />
     );
-    if (verboseMode) {
+    // todo
+    if (verboseMode && zoom > 0.7) {
         content = (
             <>
                 <EdgeDefaultLabelTextField
