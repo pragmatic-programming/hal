@@ -4,11 +4,12 @@ import MenuButtonBox from "./MenuButtonBox";
 
 interface Props {
     disabled?: boolean;
-    on: boolean;
-    iconOn: React.JSX.Element;
     iconOff: React.JSX.Element;
+    iconOn: React.JSX.Element;
+    on: boolean;
     onClick: () => void;
-    tooltip: string;
+    tooltipOff: string;
+    tooltipOn: string;
 }
 
 export default function MenuButtonToggle(props: Props): React.JSX.Element {
@@ -19,7 +20,7 @@ export default function MenuButtonToggle(props: Props): React.JSX.Element {
                 onClick={props.onClick}
                 placement={"right"}
                 size="large"
-                title={props.tooltip}
+                title={props.on ? props.tooltipOn : props.tooltipOff}
             >
                 {props.on ? props.iconOn : props.iconOff}
             </TooltipIconButton>

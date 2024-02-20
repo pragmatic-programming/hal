@@ -1,5 +1,5 @@
 import React from "react";
-import { Edit, EditOff } from "@mui/icons-material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
@@ -10,11 +10,12 @@ export default function MenuButtonVerboseMode(): React.JSX.Element {
     const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
     return (
         <MenuButtonToggle
-            onClick={toggleVerboseMode}
+            iconOff={<VisibilityOff fontSize="inherit"/>}
+            iconOn={<Visibility fontSize="inherit"/>}
             on={verboseMode}
-            iconOn={<Edit fontSize="inherit"/>}
-            iconOff={<EditOff fontSize="inherit"/>}
-            tooltip="Compile"
+            onClick={toggleVerboseMode}
+            tooltipOff="Verbose"
+            tooltipOn="Compact"
         />
     );
 }
