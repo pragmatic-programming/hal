@@ -24,7 +24,6 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
     function onBlur(): void {
         const parsedPriority: number = parseInt(tempPriority);
         if (isNaN(parsedPriority)) {
-            console.log(parsedPriority);
             return;
         }
         setEdgePriority(props.id, parsedPriority);
