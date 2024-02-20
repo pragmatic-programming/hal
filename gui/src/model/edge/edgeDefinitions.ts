@@ -29,7 +29,6 @@ export const edgeDefinitionCreate: EdgeDefinition = {
     immediate: false,
     priority: 1,
     processor: CreateProcessor,
-    requiresLabel: false,
     targetNodeTypes: [],
     style: {
         strokeDasharray: "5"
@@ -45,7 +44,6 @@ export const edgeDefinitionArduino: EdgeDefinition = {
     immediate: false,
     priority: 9,
     processor: ArduinoProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"]
 };
 
@@ -58,7 +56,6 @@ export const edgeDefinitionExecute: EdgeDefinition = {
     immediate: false,
     priority: 2,
     processor: ExecuteProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"]
 };
 
@@ -71,7 +68,6 @@ export const edgeDefinitionSequence: EdgeDefinition = {
     immediate: false,
     priority: 8,
     processor: SequenceProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"]
 };
 
@@ -84,7 +80,6 @@ export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
     immediate: true,
     priority: 0,
     processor: SCChartDiagramProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["image"]
 };
 
@@ -97,7 +92,6 @@ export const edgeDefinitionSCChartCode: EdgeDefinition = {
     immediate: false,
     priority: 3,
     processor: SCChartCodeProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"]
 };
 
@@ -110,7 +104,6 @@ export const edgeDefinitionTest: EdgeDefinition = {
     immediate: true,
     priority: 0,
     processor: TestProcessor,
-    requiresLabel: true,
     targetNodeTypes: ["editor"],
     transformationDirection: "dependency"
 };
@@ -124,7 +117,6 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
     immediate: true,
     priority: 0,
     processor: TranspileProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"],
     transformationDirection: "dependency"
 };

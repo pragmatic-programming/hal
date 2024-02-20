@@ -16,6 +16,7 @@ interface Props {
 
 export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     const setEdgeLabel = useStore((state: State) => state.flow.setEdgeLabel);
+    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
     const theme: Theme = useTheme();
     let content: React.JSX.Element = (
         <EdgeDefaultLabelCross
@@ -24,7 +25,7 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
             id={props.id}
         />
     );
-    if (props.edgeDefinition.requiresLabel) {
+    if (verboseMode) {
         content = (
             <EdgeDefaultLabelTextField
                 size="small"
