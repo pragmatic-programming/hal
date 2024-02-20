@@ -16,37 +16,49 @@ interface Props {
 
 export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
     const setEdgeLabel = useStore((state: State) => state.flow.setEdgeLabel);
+    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
     const theme: Theme = useTheme();
     let content: React.JSX.Element = (
         <EdgeDefaultLabelCross
             edgeDefinition={props.edgeDefinition}
             edgePathStyle={props.edgePathStyle}
             id={props.id}
+            showCross={!verboseMode}
         />
     );
-    if (props.edgeDefinition.requiresLabel) {
+    if (verboseMode) {
         content = (
-            <EdgeDefaultLabelTextField
-                size="small"
-                InputProps={{
-                    inputProps: {
-                        style: {
-                            textAlign: "center",
-                        }
-                    },
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            {content}
-                        </InputAdornment>
-                    ),
-                }}
-                value={props.label}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
-                style={{
-                    backgroundColor: theme.palette.primary.main,
-                    width: Math.max(130, props.label.length * 12),
-                }}
-            />
+            <>
+                <EdgeDefaultLabelTextField
+                    size="small"
+                    InputProps={{
+                        inputProps: {
+                            style: {
+                                textAlign: "center",
+                            }
+                        },
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                {content}
+                            </InputAdornment>
+                        ),
+                    }}
+                    value={props.edgeDefinition.priority}
+                    style={{
+                        backgroundColor: theme.palette.primary.main,
+                        width: 100,
+                    }}
+                />
+                <EdgeDefaultLabelTextField
+                    size="small"
+                    value={props.label}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
+                    style={{
+                        backgroundColor: theme.palette.primary.main,
+                        width: Math.max(130, props.label.length * 12),
+                    }}
+                />
+            </>
         );
     }
     return content;

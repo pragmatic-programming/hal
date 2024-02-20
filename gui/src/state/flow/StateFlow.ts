@@ -27,6 +27,8 @@ export interface StateFlow {
     setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,
     setNodeNodeDataLabel: (nodeId: string, label: string) => void,
     setNodeNodeDataLanguage: (nodeId: string, language: LanguageIndicator) => void,
-    transformCreateNode: (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | null | undefined) => void,
+    toggleVerboseMode: () => void,
     transformCreateEdge: (edgeId: string, edgeDefinition: EdgeDefinition, targetNodeId: string) => void,
+    transformCreateNode: (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | null | undefined) => void,
+    verboseMode: boolean,
 }
