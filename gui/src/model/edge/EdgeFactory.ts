@@ -126,7 +126,7 @@ export class EdgeFactory {
                 width: 30,
                 height: 30,
             },
-            data: EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition.type, sourceHandleId, targetHandleId)
+            data: EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition, sourceHandleId, targetHandleId)
         };
     }
 }

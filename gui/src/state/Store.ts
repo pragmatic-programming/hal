@@ -28,6 +28,7 @@ import { setContent } from "./ui/message/setContent";
 import { addNodeCreate } from "./flow/addNodeCreate";
 import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
 import { toggleVerboseMode } from "./flow/toggleVerboseMode";
+import { setEdgePriority } from "./flow/setEdgePriority";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -65,6 +66,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setEdgeLabel: setEdgeLabel(setState, getState),
         setEdgePathStyleForAll: setEdgePathStyleForAll(setState, getState),
         setEdgePathStyleForEdge: setEdgePathStyleForEdge(setState, getState),
+        setEdgePriority: setEdgePriority(setState, getState),
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),

@@ -1,8 +1,8 @@
 import { EdgeData, EdgeDataCommon, EdgeDataCreate, EdgeDataEmpty } from "./EdgeData";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
-import { EdgeDataTypeIndicator } from "./EdgeDataTypeIndicator";
 import { SourceHandleId } from "./SourceHandleId";
 import { TargetHandleId } from "./TargetHandleId";
+import { EdgeDefinition } from "./EdgeDefinition";
 
 export class EdgeDataFactory {
 
@@ -29,21 +29,23 @@ export class EdgeDataFactory {
     static edgeDataCommon(
         sourceHandle: SourceHandleId,
         targetHandle: TargetHandleId,
+        priority: number,
     ): EdgeDataCommon {
         return {
+            edgePathStyle: "Smooth",
+            priority: priority,
             sourceHandle: sourceHandle,
             targetHandle: targetHandle,
-            edgePathStyle: "Smooth",
         };
     }
 
     static edgeDataFromCreationEdge(
-        newEdgeDataTypeIdentifier: EdgeDataTypeIndicator,
+        edgeDefinition: EdgeDefinition,
         sourceHandle: SourceHandleId,
-        targetHandle: TargetHandleId
+        targetHandle: TargetHandleId,
     ): EdgeData {
-        const edgeDataCommon: EdgeDataCommon = EdgeDataFactory.edgeDataCommon(sourceHandle, targetHandle);
-        switch (newEdgeDataTypeIdentifier) {
+        const edgeDataCommon: EdgeDataCommon = EdgeDataFactory.edgeDataCommon(sourceHandle, targetHandle, edgeDefinition.priority);
+        switch (edgeDefinition.type) {
             case "create":
                 return EdgeDataFactory.edgeDataCreate(
                     edgeDataCommon,
