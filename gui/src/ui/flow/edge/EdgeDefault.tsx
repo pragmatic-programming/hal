@@ -33,8 +33,8 @@ export default function EdgeDefault(props: EdgeProps<EdgeData>): React.JSX.Eleme
                     className="nopan nodrag"
                 >
                     <EdgeDefaultLabel
+                        edgeData={edge.data}
                         edgeDefinition={edgeDefinition}
-                        edgePathStyle={edge.data.edgePathStyle}
                         id={props.id}
                         label={props.label}
                     />
