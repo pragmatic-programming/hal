@@ -1,9 +1,9 @@
 import { State } from "../State";
-import { CompilationContext, Processor, StatusEntry } from "kico";
+import { CompilationContext, Processor, StatusEntry } from "@pragmatic-programming/kico";
 import { flowToIHGraph, ihGraphToHalGraph } from "../../processor/compilationContexts";
-import { CliqueSelectionProcessor } from "hal-kico";
 import { StoreApi } from "zustand";
 import { StateMessage } from "../ui/message/StateMessage";
+import { CliqueSelectionProcessor } from "../../processor/CliqueSelectionProcessor";
 
 
 export function run(setState: StoreApi<State>["setState"], getState: () => State) {

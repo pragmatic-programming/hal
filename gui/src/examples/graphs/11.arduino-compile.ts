@@ -1,42 +1,19 @@
-import { IHGraphFactoryInterface } from "ihgraph";
+import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
 import { exampleGraphsArduino } from "./10.arduino";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsArduinoCompile(): IHGraphFactoryInterface {
     return {
         ...exampleGraphsArduino(),
         nodes: [...exampleGraphsArduino().nodes,
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Compile Result",
-                            language: "C",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "4",
+                annotations: createNodeData("C"),
+                id: "Result",
                 content: ""
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Deploy",
-                            language: "C",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "5",
+                annotations: createNodeData("C"),
+                id: "Deploy",
                 content: ""
             }
         ],
@@ -52,32 +29,14 @@ export function exampleGraphsArduinoCompile(): IHGraphFactoryInterface {
         ],
         edges: [...exampleGraphsArduino().edges,
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "arduinoCompile",
-                sourceNode: "3",
-                targetNode: "4"
+                sourceNode: "Loop",
+                targetNode: "Result"
             },
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "arduinoDeploy",
-                sourceNode: "4",
-                targetNode: "5"
+                sourceNode: "Result",
+                targetNode: "Deploy"
             }
         ]
     }

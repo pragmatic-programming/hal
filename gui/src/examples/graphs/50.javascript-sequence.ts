@@ -1,57 +1,22 @@
-import { IHGraphFactoryInterface } from "ihgraph";
+import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
-    return {
+    return sanitizeDataAnnotations({
         nodes: [
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Declaration",
-                            language: "JavaScript",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "1",
+                annotations: createNodeData("JavaScript"),
+                id: "Define",
                 content: "var x = 1;"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Usage",
-                            language: "JavaScript",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "2",
+                annotations: createNodeData("JavaScript"),
+                id: "Usage",
                 content: "x + 2;"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Result",
-                            language: "PlainText",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "3",
+                annotations: createNodeData(),
+                id: "Result",
                 content: ""
             }
         ],
@@ -69,34 +34,16 @@ export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "sequence",
-                sourceNode: "1",
-                targetNode: "2"
+                sourceNode: "Define",
+                targetNode: "Usage"
             },
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "execute",
-                sourceNode: "2",
-                targetNode: "3"
+                sourceNode: "Usage",
+                targetNode: "Result"
             }
         ]
 
-    };
+    });
 }

@@ -3,7 +3,7 @@ import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
 import { edgeDefinitionCreate, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 import { EdgeData, EdgeDataCreate } from "./EdgeData";
-import { TransformationEdge } from "ihgraph";
+import { TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";

@@ -1,10 +1,10 @@
-import { CliqueProcessor } from "hal-kico";
-import { IHGraph, SourceNode, SourceNodeStatus } from "ihgraph";
+import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { NodeData } from "../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
 import { IndentedString } from "./IndentedString";
 import { ArduinoSetupLoop } from "./ArduinoSetupLoop";
 import { NodeDataFactory } from "../../model/node/NodeDataFactory";
+import { CliqueProcessor } from "../CliqueProcessor";
 
 export class ArduinoProcessor extends CliqueProcessor {
 
@@ -18,11 +18,11 @@ export class ArduinoProcessor extends CliqueProcessor {
 
     public process(): void {
         const targetGraph: IHGraph = this.createTargetGraph();
-        const target: SourceNode = targetGraph.createSourceNode("Arduino");
-        const cliqueNodes: SourceNode[] = this.getCliqueNodes();
+        const target: SimpleNode = targetGraph.createSimpleNode("Arduino");
+        const cliqueNodes: SimpleNode[] = this.getCliqueNodes();
         for (let i = 0; i < cliqueNodes.length - 1; i++) {
-            const setupNode: SourceNode = cliqueNodes[i];
-            const loopNode: SourceNode = cliqueNodes[i + 1];
+            const setupNode: SimpleNode = cliqueNodes[i];
+            const loopNode: SimpleNode = cliqueNodes[i + 1];
             const sourceNodeNodeData: NodeData = setupNode.getAnnotationData<NodeData>("nodeData");
             const targetNodeNodeData: NodeData = loopNode.getAnnotationData<NodeData>("nodeData");
             if (sourceNodeNodeData.type !== "editor") {
@@ -42,7 +42,7 @@ export class ArduinoProcessor extends CliqueProcessor {
                     content,
                     "Arduino",
                     "C",
-                    SourceNodeStatus.UNDEFINED,
+                    SimpleNodeStatus.UNDEFINED,
                 )
             );
             target.setContent(content);

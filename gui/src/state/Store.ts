@@ -1,5 +1,5 @@
 import { State } from "./State";
-import { CompilationContext, System } from "kico";
+import { CompilationContext, System } from "@pragmatic-programming/kico";
 import { onNodesChange } from "./flow/onNodesChange";
 import { onEdgesChange } from "./flow/onEdgesChange";
 import { onConnect } from "./flow/onConnect";
@@ -12,9 +12,9 @@ import { editorContentSet } from "./editor/editorContentSet";
 import { editorLabelSet } from "./editor/editorLabelSet";
 import { createWithEqualityFn } from "zustand/traditional";
 import { transformCreateNode } from "./flow/transformCreateNode";
-import { setConnectingSourceNodeId } from "./flow/setConnectingSourceNodeId";
+import { setConnectingSource } from "./flow/setConnectingSource";
 import { setNodeNodeDataLanguage } from "./flow/setNodeNodeDataLanguage";
-import { setEdgePathStyle } from "./flow/setEdgePathStyle";
+import { setEdgePathStyleForAll } from "./flow/setEdgePathStyleForAll";
 import { setNodeNodeDataLabel } from "./flow/setNodeNodeDataLabel";
 import { setNodeNodeDataContent } from "./flow/setNodeNodeDataContent";
 import { runImmediate } from "./compilation/runImmediate";
@@ -26,6 +26,8 @@ import { NodeFactory } from "../model/node/NodeFactory";
 import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
 import { setContent } from "./ui/message/setContent";
 import { addNodeCreate } from "./flow/addNodeCreate";
+import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
+import { toggleVerboseMode } from "./flow/toggleVerboseMode";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -45,7 +47,8 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     flow: {
         addNodeCreate: addNodeCreate(setState, getState),
         connectingSourceNodeId: null,
-        edgePathStyle: "Bezier",
+        connectingSourceHandleId: null,
+        edgePathStyle: "Smooth",
         edges: [],
         layout: layout(setState, getState),
         layoutOption: "horizontal",
@@ -58,14 +61,17 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         onEdgesChange: onEdgesChange(setState, getState),
         onNodesChange: onNodesChange(setState, getState),
         render: render(setState, getState),
-        setConnectingSourceNodeId: setConnectingSourceNodeId(setState),
+        setConnectingSource: setConnectingSource(setState),
         setEdgeLabel: setEdgeLabel(setState, getState),
-        setEdgePathStyle: setEdgePathStyle(setState, getState),
+        setEdgePathStyleForAll: setEdgePathStyleForAll(setState, getState),
+        setEdgePathStyleForEdge: setEdgePathStyleForEdge(setState, getState),
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
+        toggleVerboseMode: toggleVerboseMode(setState),
         transformCreateEdge: transformCreateEdge(setState, getState),
         transformCreateNode: transformCreateNode(setState, getState),
+        verboseMode: true,
     },
     ui: {
         busy: false,

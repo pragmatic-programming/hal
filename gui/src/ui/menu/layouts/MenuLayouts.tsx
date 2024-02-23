@@ -11,7 +11,7 @@ import CallMadeIcon from "@mui/icons-material/CallMade";
 import MovingIcon from "@mui/icons-material/Moving";
 import MenuLayoutsButtonLayout from "./MenuLayoutsButtonLayout";
 import MenuLayoutsButtonEdgePathStyle from "./MenuLayoutsButtonEdgePathStyle";
-import ButtonLayout from "../ButtonLayout";
+import MenuButtonLayout from "../MenuButtonLayout";
 
 const menuExamplesWidth: number = 200;
 
@@ -20,7 +20,7 @@ export default function MenuLayouts(): React.JSX.Element {
     const menuOpenToggle = useStore((state: State) => state.ui.layouts.layoutsOpenToggle);
     return (
         <>
-            <ButtonLayout/>
+            <MenuButtonLayout/>
             <Drawer
                 anchor={"left"}
                 open={open}

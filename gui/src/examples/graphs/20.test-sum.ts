@@ -1,25 +1,14 @@
-import { IHGraphFactoryInterface } from "ihgraph";
+import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
-    return {
+    return sanitizeDataAnnotations({
         nodes: [
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Function",
-                            language: "JavaScript",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "1",
+                annotations: createNodeData("JavaScript"),
+                id: "Function",
                 content:
-                    `function sum(n) {
+`function sum(n) {
     if (n > 0) {
         return n + sum(n - 1);
     } else {
@@ -28,89 +17,28 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
 }`
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Test 1",
-                            language: "JavaScript",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "2",
+                annotations: createNodeData("JavaScript"),
+                id: "Test 1",
                 content: "sum(3) == 6"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Test 2",
-                            language: "JavaScript",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "3",
+                annotations: createNodeData("JavaScript"),
+                id: "Test 2",
                 content: "sum(1)"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Test 3",
-                            language: "JavaScript",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "4",
+                annotations: createNodeData("JavaScript"),
+                id: "Test 3",
                 content: "sum(-1) == -1"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Usage",
-                            language: "JavaScript",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "5",
-                content:
-                    `sum(3) + sum(1);`
+                annotations: createNodeData("JavaScript"),
+                id: "Usage",
+                content: `sum(3) + sum(1);`
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Result",
-                            language: "PlainText",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "6",
+                annotations: createNodeData(),
+                id: "Result",
                 content: ""
             }
         ],
@@ -133,75 +61,30 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "test",
-                sourceNode: "2",
-                targetNode: "1"
+                sourceNode: "Test 1",
+                targetNode: "Function"
             },
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "test",
-                sourceNode: "3",
-                targetNode: "1"
+                sourceNode: "Test 2",
+                targetNode: "Function"
             },
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "test",
-                sourceNode: "4",
-                targetNode: "1"
+                sourceNode: "Test 3",
+                targetNode: "Function"
             },
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "sequence",
-                sourceNode: "1",
-                targetNode: "5"
+                sourceNode: "Function",
+                targetNode: "Usage"
             },
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "execute",
-                sourceNode: "5",
-                targetNode: "6"
+                sourceNode: "Usage",
+                targetNode: "Result"
             }
         ]
-    };
+    });
 }

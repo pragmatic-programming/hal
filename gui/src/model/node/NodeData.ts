@@ -1,25 +1,39 @@
 import { LanguageIndicator } from "./LanguageIndicator";
-import { SourceNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 
-export type NodeData = NodeDataEditor | NodeDataCreate | NodeDataImage
+export type NodeData =
+    NodeDataCreate
+    | NodeDataEditor
+    | NodeDataFile
+    | NodeDataImage
 
+export interface NodeDataCreate {
+    type: "create",
+}
 
 export interface NodeDataEditor {
     type: "editor",
     content: string | undefined,
     label: string,
     language: LanguageIndicator,
-    status: SourceNodeStatus,
+    status: SimpleNodeStatus,
+    height: number,
+    width: number,
 }
 
-export interface NodeDataCreate {
-    type: "create",
+export interface NodeDataFile {
+    type: "file",
+    fileType: "text/plain" | undefined
+    content: string | undefined,
+    height: number,
+    width: number,
 }
 
 export interface NodeDataImage {
     type: "image",
     content: string | undefined,
-    status: SourceNodeStatus,
+    status: SimpleNodeStatus,
     height: number,
     width: number,
 }
+

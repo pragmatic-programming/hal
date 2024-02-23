@@ -1,9 +1,9 @@
 import { NodeDataImage } from "../../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { SCChartDiagram } from "./SCChartDiagram";
-import { CliqueProcessor } from "hal-kico";
 import { NodeDataFactory } from "../../../model/node/NodeDataFactory";
-import { SourceNodeStatus } from "ihgraph";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
+import { CliqueProcessor } from "../../CliqueProcessor";
 
 export class SCChartDiagramProcessor extends CliqueProcessor {
 
@@ -51,7 +51,7 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
             img.src,
             img.height,
             img.width,
-            SourceNodeStatus.UNDEFINED,
+            SimpleNodeStatus.UNDEFINED,
         );
     }
 }

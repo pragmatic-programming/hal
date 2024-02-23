@@ -33,6 +33,7 @@ export class EdgeDataFactory {
         return {
             sourceHandle: sourceHandle,
             targetHandle: targetHandle,
+            edgePathStyle: "Smooth",
         };
     }
 

@@ -1,40 +1,17 @@
-import { IHGraphFactoryInterface } from "ihgraph";
+import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
+import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
-    return {
+    return sanitizeDataAnnotations({
         nodes: [
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Source",
-                            language: "Python",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "1",
+                annotations: createNodeData("Python"),
+                id: "Source",
                 content: "x = 1\nif x == 1:\n# indented four spaces\n    print(\"x is 1.\")"
             },
             {
-                annotations: {
-                    nodeData: {
-                        id: "nodeData",
-                        data: {
-                            content: "",
-                            type: "editor",
-                            label: "Result",
-                            language: "PlainText",
-                            width: 0,
-                            height: 0
-                        }
-                    }
-                },
-                id: "2",
+                annotations: createNodeData(),
+                id: "Result",
                 content: ""
             }
         ],
@@ -47,20 +24,11 @@ export function exampleGraphsPythonExecute(): IHGraphFactoryInterface {
         ],
         edges: [
             {
-                annotations: {
-                    edgeData: {
-                        id: "edgeData",
-                        data: {
-                            sourceHandle: "right",
-                            targetHandle: "left",
-                        }
-                    }
-                },
                 edgeType: "execute",
-                sourceNode: "1",
-                targetNode: "2"
+                sourceNode: "Source",
+                targetNode: "Result"
             }
         ]
 
-    };
+    });
 }

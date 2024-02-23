@@ -1,4 +1,4 @@
-import { CliqueProcessor } from "hal-kico";
+import { CliqueProcessor } from "../CliqueProcessor";
 
 export class UnknownProcessor extends CliqueProcessor {
 
