@@ -8,6 +8,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import GestureIcon from "@mui/icons-material/Gesture";
 import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
+import { exampleGraphsArduinoCompile } from "./graphs/11.arduino-compile";
 import { exampleGraphsSCChart } from "./graphs/30.scchart";
 import { exampleGraphsPythonExecute } from "./graphs/40.python-execute";
 import { exampleGraphsJavaScriptSequence } from "./graphs/50.javascript-sequence";
@@ -36,18 +37,24 @@ export const examples: Example[] = [
     },
     {
         id: 4,
+        name: "Arduino Compile",
+        value: exampleGraphsArduinoCompile(),
+        icon: DeveloperBoardIcon,
+    },
+    {
+        id: 5,
         name: "Unit Test",
         value: exampleGraphsWYTIWYGSum(),
         icon: BiotechIcon,
     },
     {
-        id: 5,
+        id: 6,
         name: "Python Execute",
         value: exampleGraphsPythonExecute(),
         icon: GestureIcon,
     },
     {
-        id: 6,
+        id: 7,
         name: "Python Transpile",
         value: exampleGraphsPythonTranspile(),
         icon: HardwareIcon,

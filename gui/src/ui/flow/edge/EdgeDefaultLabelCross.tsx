@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { IconDynamic } from "../../util/IconDynamic";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
-import { ReactFlowInstance, useReactFlow } from "reactflow";
-import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import RedoIcon from "@mui/icons-material/Redo";
 import CallMadeIcon from "@mui/icons-material/CallMade";
 import MovingIcon from "@mui/icons-material/Moving";
@@ -12,6 +8,7 @@ import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { Autorenew } from "@mui/icons-material";
 import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
+import { EdgeDefaultLabelIcon } from "./EdgeDefaultLabelIcon";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
@@ -20,20 +17,15 @@ interface Props {
 }
 
 export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
-    const reactFlow: ReactFlowInstance = useReactFlow();
     const setEdgePathStyleForEdge = useStore((state: State) => state.flow.setEdgePathStyleForEdge);
     const [showCross, setShowCross] = useState<boolean>(false);
     const icon: React.JSX.Element =
         <div
             onMouseEnter={() => setShowCross(true)}
         >
-            <BoxBackgroundMain>
-                <IconDynamic
-                    iconDefault={props.edgeDefinition.icon}
-                    iconHover={DeleteIcon}
-                    onClick={() => reactFlow.deleteElements({edges: [{id: props.id}]})}
-                />
-            </BoxBackgroundMain>
+            <EdgeDefaultLabelIcon
+                icon={props.edgeDefinition.icon} id={props.id}
+            />
         </div>;
     if (showCross) {
         return (

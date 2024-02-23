@@ -6,8 +6,8 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import AddIcon from "@mui/icons-material/Add";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import TableChartIcon from "@mui/icons-material/TableChart";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
 import { ExecuteProcessor } from "../../processor/edgeTypes/execute/ExecuteProcessor";
 import { SCChartDiagramProcessor } from "../../processor/edgeTypes/scchart/SCChartDiagramProcessor";
@@ -19,6 +19,7 @@ import { TranspileProcessor } from "../../processor/edgeTypes/transpile/Transpil
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
 import { SequenceProcessor } from "../../processor/edgeTypes/SequenceProcessor";
+import { UnknownProcessor } from "../../processor/edgeTypes/UnknownProcessor";
 import { IdentityProcessor } from "../../processor/IdentityProcessor";
 
 // new edge (step 2): add a new edge definition here
@@ -26,12 +27,11 @@ export const edgeDefinitionUnknown: EdgeDefinition = {
     type: "unknown",
     animated: false,
     component: EdgeDefault,
-    icon: WarningAmberIcon,
+    icon: QuestionMarkIcon,
     edgePathStyle: "Smooth",
     immediate: false,
     priority: 0,
-    processor: IdentityProcessor,
-    requiresLabel: false,
+    processor: UnknownProcessor,
     targetNodeTypes: [],
 };
 
@@ -44,7 +44,6 @@ export const edgeDefinitionPrototype: EdgeDefinition = {
     immediate: false,
     priority: 0,
     processor: IdentityProcessor,
-    requiresLabel: true,
     targetNodeTypes: [],
 };
 
@@ -57,7 +56,6 @@ export const edgeDefinitionCreate: EdgeDefinition = {
     immediate: false,
     priority: 1,
     processor: CreateProcessor,
-    requiresLabel: false,
     targetNodeTypes: [],
     style: {
         strokeDasharray: "5"
@@ -73,7 +71,6 @@ export const edgeDefinitionArduino: EdgeDefinition = {
     immediate: false,
     priority: 9,
     processor: ArduinoProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"]
 };
 
@@ -86,7 +83,6 @@ export const edgeDefinitionExecute: EdgeDefinition = {
     immediate: false,
     priority: 2,
     processor: ExecuteProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"]
 };
 
@@ -99,7 +95,6 @@ export const edgeDefinitionSequence: EdgeDefinition = {
     immediate: false,
     priority: 8,
     processor: SequenceProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"]
 };
 
@@ -112,7 +107,6 @@ export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
     immediate: true,
     priority: 0,
     processor: SCChartDiagramProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["image"]
 };
 
@@ -125,7 +119,6 @@ export const edgeDefinitionSCChartCode: EdgeDefinition = {
     immediate: false,
     priority: 3,
     processor: SCChartCodeProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"]
 };
 
@@ -138,7 +131,6 @@ export const edgeDefinitionTest: EdgeDefinition = {
     immediate: true,
     priority: 0,
     processor: TestProcessor,
-    requiresLabel: true,
     targetNodeTypes: ["editor"],
     transformationDirection: "dependency"
 };
@@ -150,9 +142,8 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
     icon: HardwareIcon,
     edgePathStyle: "Smooth",
     immediate: true,
-    priority: 0,
+    priority: 1,
     processor: TranspileProcessor,
-    requiresLabel: false,
     targetNodeTypes: ["editor"],
     transformationDirection: "dependency"
 };
@@ -160,7 +151,10 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
 
 // new edge (step 3): add the new edge definition to the following array
 export const defaultEdgeDefinitions: { [ key: string ]: EdgeDefinition } = {
+    // default edges
+    edgeDefinitionUnknown,
     prototype: edgeDefinitionPrototype,
+    // custom edges
     create: edgeDefinitionCreate,
     arduino: edgeDefinitionArduino,
     execute: edgeDefinitionExecute,
@@ -174,8 +168,12 @@ export const defaultEdgeDefinitions: { [ key: string ]: EdgeDefinition } = {
 // new edge (step 4): add the edge type indicator as case to return new edge definition
 export function retrieveEdgeDefinition(edgeTypeIndicator: string): EdgeDefinition {
     switch (edgeTypeIndicator) {
+        // default edges
+        case "unknown":
+            return edgeDefinitionUnknown;
         case "create":
             return edgeDefinitionCreate;
+        // custom edges
         case "arduino":
             return edgeDefinitionArduino;
         case "execute":
