@@ -16,10 +16,15 @@ interface Props {
 // Thus, we require a workaround, inspired by https://github.com/suren-atoyan/monaco-react/issues/12#issuecomment-1801079666
 // We copy the required files (from "vs") with the following command to the public folder: "cp -r node_modules/monaco-editor/min/vs ./public/"
 // The last step is required for everytime when devDependency "monaco-editor" is updated
-// Furthermore, we have to configure the loader and tell it find the files in "/vs",
+// Furthermore, we have to configure the loader and tell it find the files in "/vs"
+
+// We also need to provide the opportunity to set this to the correct VSCode
+// resource URI when used in a WebView.
+// Instead of casting to any, we should consider extending the global Window interface 
+// (cf. https://stackoverflow.com/questions/12709074/how-do-you-explicitly-set-a-new-property-on-window-in-typescript)
 loader.config({
     paths: {
-        vs: "/vs"
+        vs: (window as any).__monacoLoadUri || "/vs"
     },
 });
 
