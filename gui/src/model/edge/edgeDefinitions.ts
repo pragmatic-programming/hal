@@ -20,7 +20,6 @@ import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
 import { SequenceProcessor } from "../../processor/edgeTypes/SequenceProcessor";
 import { UnknownProcessor } from "../../processor/edgeTypes/UnknownProcessor";
-import { IdentityProcessor } from "../../processor/IdentityProcessor";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionUnknown: EdgeDefinition = {
@@ -43,7 +42,7 @@ export const edgeDefinitionPrototype: EdgeDefinition = {
     edgePathStyle: "Bezier",
     immediate: false,
     priority: 0,
-    processor: IdentityProcessor,
+    processor: UnknownProcessor,
     targetNodeTypes: [],
 };
 

@@ -1,8 +1,8 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
-import { edgeDefinitionCreate, retrieveEdgeDefinition } from "./edgeDefinitions";
+import { edgeDefinitionCreate, edgeDefinitionPrototype, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 import { EdgeData, EdgeDataCreate } from "./EdgeData";
-import { TransformationEdge } from "@pragmatic-programming/ihgraph";
+import { EdgeType, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";
@@ -62,11 +62,8 @@ export class EdgeFactory {
         if (!targetId) {
             throw new Error("Returned targetId is undefined");
         }
-        if (!isEdgeTypeIndicator(edgeType)) {
-            throw new Error("EdgeType is not a valid edgeTypeIndicator");
-        }
-        return EdgeFactory.fromEdgeTypeId(
-            EdgeFactory.edgeTypeIndicator(edge),
+        return EdgeFactory.fromEdgeType(
+            edgeType,
             sourceId,
             targetId,
             "right",
@@ -83,6 +80,30 @@ export class EdgeFactory {
             return "unknown";
         }
         return edgeType;
+    }
+
+    static fromEdgeType(
+        edgeType: EdgeType,
+        sourceId: string,
+        targetId: string,
+        sourceHandleId: SourceHandleId,
+        targetHandleId: TargetHandleId,
+    ): Edge {
+        const edgeDefinition = edgeDefinitionPrototype
+        // if (edgeTypeIndicators.find((value: string) => value === edgeType.getId()) !== undefined) {
+            edgeDefinition.type = edgeType.getId();
+        // } else {
+            // edgeDefinition.type = "prototype"
+        // }
+        edgeDefinition.priority = edgeType.getPriority();
+        edgeDefinition.immediate = edgeType.isImmediate();
+        return EdgeFactory.fromEdgeDefinition(
+            edgeDefinition,
+            sourceId,
+            targetId,
+            sourceHandleId,
+            targetHandleId,
+        );
     }
 
     static fromEdgeTypeId(

@@ -4,8 +4,7 @@ import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeData } from "../model/node/NodeData";
 import { defaultEdgeDefinitions } from "../model/edge/edgeDefinitions";
 import { StrictNode, strictNode } from "../model/node/StrictNode";
-import { defaultProcessors } from "./defaultProcessors";
-
+import { DefaultProcessors } from "./DefaultProcessors";
 
 export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
 
@@ -22,16 +21,14 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             edgeDefinition.type = edge.label as string;
             edgeDefinition.priority = edge.data!.priority;
             edgeDefinition.immediate = edge.data!.immediate;
-            if (defaultProcessors[edge.label as string]) {
-                edgeDefinition.processor = defaultProcessors[edge.label as string]
-            } 
+            edgeDefinition.processor = DefaultProcessors.getProcessor(edge.label as string);
             if (!graph.getEdgeTypeById(edge.label as string)) {
                 const edgeType = graph.createEdgeType(edge.label as string, edgeDefinition.priority).setImmediate(edgeDefinition.immediate);
                 if (edgeDefinition.transformationDirection === "dependency") {
                     edgeType.setTransformationDirection(TransformationDirection.DEPENDENCY);
                 }
                 graph.getTransformationConfiguration().setById(edge.label as string, edgeDefinition.processor);
-                console.log(`Added edge type ${edgeDefinition.type}`)
+                console.log(`Added edge type ${edgeDefinition.type}`);
             }
         }
 
