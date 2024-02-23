@@ -12,10 +12,10 @@ import { EdgeDataFactory } from "./EdgeDataFactory";
 export class EdgeFactory {
 
     static fromCreationEdge(edge: Edge<EdgeDataCreate>, edgeDefinition: EdgeDefinition): Edge<EdgeData> {
-        if(!isSourceHandleId(edge.sourceHandle)){
+        if (!isSourceHandleId(edge.sourceHandle)) {
             throw new Error("edge.sourceHandle is not from type SourceHandleId");
         }
-        if(!isTargetHandleId(edge.targetHandle)){
+        if (!isTargetHandleId(edge.targetHandle)) {
             throw new Error("edge.targetHandle is not from type TargetHandleId");
         }
         return EdgeFactory.fromEdgeDefinition(
@@ -56,23 +56,30 @@ export class EdgeFactory {
         const edgeData: EdgeData = edge.getAnnotationData<EdgeData>("edgeData");
         const sourceId = edge.getSourceNode().getId();
         const targetId = edge.getTargetNode().getId();
-        const edgeType = edge.getType().getId();
         if (!sourceId) {
             throw new Error("Returned sourceId is undefined");
         }
         if (!targetId) {
             throw new Error("Returned targetId is undefined");
         }
-        if (!isEdgeTypeIndicator(edgeType)) {
-            throw new Error("EdgeType is not a valid edgeTypeIndicator");
-        }
         return EdgeFactory.fromEdgeType(
-            edgeType,
+            this.edgeTypeIndicator(edge),
             sourceId,
             targetId,
             edgeData.sourceHandle,
             edgeData.targetHandle
         );
+    }
+
+    private static edgeTypeIndicator(edge: TransformationEdge): EdgeTypeIndicator {
+        const edgeType: string = edge.getType().getId();
+        if (!isEdgeTypeIndicator(edgeType)) {
+            // if edgeType is not a valid indicator,
+            // we create an unknown edge so that the
+            // graph can still be rendered
+            return "unknown";
+        }
+        return edgeType;
     }
 
     static fromEdgeType(

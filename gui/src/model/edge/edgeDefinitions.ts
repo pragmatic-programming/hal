@@ -6,6 +6,7 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import AddIcon from "@mui/icons-material/Add";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import TableChartIcon from "@mui/icons-material/TableChart";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
 import { ExecuteProcessor } from "../../processor/edgeTypes/execute/ExecuteProcessor";
@@ -18,8 +19,21 @@ import { TranspileProcessor } from "../../processor/edgeTypes/transpile/Transpil
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
 import { SequenceProcessor } from "../../processor/edgeTypes/SequenceProcessor";
+import { UnknownProcessor } from "../../processor/edgeTypes/UnknownProcessor";
 
 // new edge (step 2): add a new edge definition here
+export const edgeDefinitionUnknown: EdgeDefinition = {
+    type: "unknown",
+    animated: false,
+    component: EdgeDefault,
+    icon: QuestionMarkIcon,
+    edgePathStyle: "Smooth",
+    immediate: false,
+    priority: 1,
+    processor: UnknownProcessor,
+    targetNodeTypes: ["create", "editor", "image"]
+};
+
 export const edgeDefinitionCreate: EdgeDefinition = {
     type: "create",
     animated: false,
@@ -115,7 +129,7 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
     icon: HardwareIcon,
     edgePathStyle: "Smooth",
     immediate: true,
-    priority: 0,
+    priority: 1,
     processor: TranspileProcessor,
     targetNodeTypes: ["editor"],
     transformationDirection: "dependency"
@@ -124,7 +138,10 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
 
 // new edge (step 3): add the new edge definition to the following array
 export const edgeDefinitions: EdgeDefinition[] = [
+    // default edges
+    edgeDefinitionUnknown,
     edgeDefinitionCreate,
+    // custom edges
     edgeDefinitionArduino,
     edgeDefinitionExecute,
     edgeDefinitionSCChartCode,
@@ -137,8 +154,12 @@ export const edgeDefinitions: EdgeDefinition[] = [
 // new edge (step 4): add the edge type indicator as case to return new edge definition
 export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): EdgeDefinition {
     switch (edgeTypeIndicator) {
+        // default edges
+        case "unknown":
+            return edgeDefinitionUnknown;
         case "create":
             return edgeDefinitionCreate;
+        // custom edges
         case "arduino":
             return edgeDefinitionArduino;
         case "execute":

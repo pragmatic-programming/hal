@@ -11,6 +11,7 @@ import { exampleGraphsSCChart } from "./graphs/30.scchart";
 import { exampleGraphsPythonExecute } from "./graphs/40.python-execute";
 import { exampleGraphsJavaScriptSequence } from "./graphs/50.javascript-sequence";
 import { exampleGraphsPythonTranspile } from "./graphs/60.python-transpile";
+import { exampleGraphsArduinoCompile } from "./graphs/11.arduino-compile";
 
 
 export const examples: Example[] = [
@@ -34,18 +35,24 @@ export const examples: Example[] = [
     },
     {
         id: 4,
+        name: "Arduino Compile",
+        value: exampleGraphsArduinoCompile(),
+        icon: DeveloperBoardIcon,
+    },
+    {
+        id: 5,
         name: "Unit Test",
         value: exampleGraphsWYTIWYGSum(),
         icon: BiotechIcon,
     },
     {
-        id: 5,
+        id: 6,
         name: "Python Execute",
         value: exampleGraphsPythonExecute(),
         icon: GestureIcon,
     },
     {
-        id: 6,
+        id: 7,
         name: "Python Transpile",
         value: exampleGraphsPythonTranspile(),
         icon: HardwareIcon,

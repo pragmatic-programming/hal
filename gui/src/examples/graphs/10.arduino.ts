@@ -23,11 +23,11 @@ export function exampleGraphsArduino(): IHGraphFactoryInterface {
         edgeTypes: [
             {
                 id: "sequence",
-                priority: 2
+                priority: 10
             },
             {
                 id: "arduino",
-                priority: 1
+                priority: 9
             }
         ],
         edges: [
