@@ -3,7 +3,7 @@ import { exampleGraphsArduino } from "./10.arduino";
 import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsArduinoCompile(): IHGraphFactoryInterface {
-    return {
+    return sanitizeDataAnnotations({
         ...exampleGraphsArduino(),
         nodes: [...exampleGraphsArduino().nodes,
             {
@@ -39,5 +39,5 @@ export function exampleGraphsArduinoCompile(): IHGraphFactoryInterface {
                 targetNode: "Deploy"
             }
         ]
-    }
+    });
 }
