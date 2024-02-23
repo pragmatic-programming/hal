@@ -6,6 +6,7 @@ import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
 import { EdgeDefaultLabelCross } from "./EdgeDefaultLabelCross";
 import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
+import { EdgeDefaultLabelIcon } from "./EdgeDefaultLabelIcon";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
@@ -23,7 +24,6 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
             edgeDefinition={props.edgeDefinition}
             edgePathStyle={props.edgePathStyle}
             id={props.id}
-            showCross={!verboseMode}
         />
     );
     if (verboseMode) {
@@ -39,7 +39,10 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
                         },
                         startAdornment: (
                             <InputAdornment position="start">
-                                {content}
+                                <EdgeDefaultLabelIcon
+                                    edgeDefinition={props.edgeDefinition}
+                                    id={props.id}
+                                />
                             </InputAdornment>
                         ),
                     }}
