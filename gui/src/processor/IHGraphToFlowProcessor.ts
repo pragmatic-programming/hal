@@ -29,8 +29,9 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
         // TODO: workaround. it should be possible to provide an unknown type and the view then just shows the prototype.
         edges.forEach(edge => { if (edgeTypeIndicators.find(edgeTypeIndicator => edgeTypeIndicator === edge.type) === undefined) { edge.type = "prototype"; } });
         this.setModel({nodes, edges});
-        console.log(ihGraph.toStringDebugGraph());
-        console.log({nodes, edges});
+
+        console.debug(ihGraph.toStringDebugGraph());
+        console.debug({nodes, edges});
     }
 
 }

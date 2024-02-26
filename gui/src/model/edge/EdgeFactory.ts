@@ -90,11 +90,7 @@ export class EdgeFactory {
         targetHandleId: TargetHandleId,
     ): Edge {
         const edgeDefinition = edgeDefinitionPrototype
-        // if (edgeTypeIndicators.find((value: string) => value === edgeType.getId()) !== undefined) {
-            edgeDefinition.type = edgeType.getId();
-        // } else {
-            // edgeDefinition.type = "prototype"
-        // }
+        edgeDefinition.type = edgeType.getId();
         edgeDefinition.priority = edgeType.getPriority();
         edgeDefinition.immediate = edgeType.isImmediate();
         return EdgeFactory.fromEdgeDefinition(

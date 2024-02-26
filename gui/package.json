@@ -19,7 +19,7 @@
     "@monaco-editor/react": "^4.5.1",
     "@mui/icons-material": "^5.14.12",
     "@mui/material": "^5.14.12",
-    "@pragmatic-programming/ihgraph": "file:../../ihgraph",
+    "@pragmatic-programming/ihgraph": "0.0.1-rc.2",
     "@pragmatic-programming/kico": "0.0.1-rc.1",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^5.16.5",
