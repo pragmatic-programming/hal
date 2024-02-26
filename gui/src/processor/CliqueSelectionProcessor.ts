@@ -55,6 +55,7 @@ export class CliqueSelectionProcessor extends CliqueProcessor {
         const edgeType = clique.getEdges()[0].getType();
         const transformationConfiguration = clique.getTransformationConfiguration();
         const processorType = transformationConfiguration.get(edgeType);
+        this.setProperty(CliqueProcessor.NEXT_CLIQUE_ORIGIN, clique);
         this.setProperty(CliqueProcessor.NEXT_CLIQUE, clique);
 
         if (processorType === undefined) {

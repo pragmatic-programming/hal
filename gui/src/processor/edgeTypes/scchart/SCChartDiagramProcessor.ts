@@ -20,13 +20,13 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
     }
 
     async processAsync(): Promise<void> {
-        const cliqueNodes = this.getCliqueNodes();
         try {
-            const scChartImage: SCChartDiagram = new SCChartDiagram(cliqueNodes[0]);
+            const scChartImage: SCChartDiagram = new SCChartDiagram(this.getSourceNodes()[0]);
             const image: HTMLImageElement = await this.htmlImageElement(
                 await scChartImage.diagram()
             );
-            for (const targetNode of cliqueNodes.slice(1)) {
+
+            for (const targetNode of this.getTargetNodes()) {
                 targetNode.createAnnotation(
                     FlowToIHGraphProcessor.ANNOTATION_NODE_DATA,
                     this.nodeData(image)
@@ -36,6 +36,12 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
         } catch (e) {
             this.addError(String(e));
         }
+
+        for (const sourceNode of this.getSourceNodes()) {
+            sourceNode.getParent().removeNode(sourceNode);
+        }
+
+        this.set();
     }
 
 
