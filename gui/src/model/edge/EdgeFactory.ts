@@ -93,6 +93,7 @@ export class EdgeFactory {
         edgeDefinition.type = edgeType.getId();
         edgeDefinition.priority = edgeType.getPriority();
         edgeDefinition.immediate = edgeType.isImmediate();
+        edgeDefinition.animated = edgeDefinition.immediate;
         return EdgeFactory.fromEdgeDefinition(
             edgeDefinition,
             sourceId,
