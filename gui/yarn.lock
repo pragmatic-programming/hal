@@ -2198,12 +2198,12 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
-"@pragmatic-programming/ihgraph@0.0.1-rc.2":
-  version "0.0.1-rc.2"
-  resolved "https://registry.yarnpkg.com/@pragmatic-programming/ihgraph/-/ihgraph-0.0.1-rc.2.tgz#333f0cc179eaca4eb74f9f0f9460e4ea5d540e8a"
-  integrity sha512-l8K3TGuBjCoUISunuNJDtjzI9rVyGEy4M/pZnSj7A+k41ynLD1p9TyJSXXGsTUPQGDwU84BTjtWfKgoKXzkCYw==
+"@pragmatic-programming/ihgraph@0.0.1-rc.3":
+  version "0.0.1-rc.3"
+  resolved "https://registry.yarnpkg.com/@pragmatic-programming/ihgraph/-/ihgraph-0.0.1-rc.3.tgz#8bc22beb1ed1b32765e214ac33556d461e47c399"
+  integrity sha512-eXAm1xFb3J6+IhzDhVjZo0hBMw3taZSVsNq8iwpcYfUw9ARlWe+lGLWXWq9UVfVwjZeeR19LqpmAwKoEts/z5w==
 
-"@pragmatic-programming/kico@0.0.1-rc.1":
+"@pragmatic-programming/kico@^0.0.1-rc.1":
   version "0.0.1-rc.1"
   resolved "https://registry.yarnpkg.com/@pragmatic-programming/kico/-/kico-0.0.1-rc.1.tgz#2b6d019465446251bbb81923b2c949a8967e5099"
   integrity sha512-Jngg5N2gcKFnzuEnVp1l852bhIqtf41240O3eOHgyH3x5oky8DgLG1Hq+70sLRl5wMHdnxtUy3YU0Py4KeQdXQ==
