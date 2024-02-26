@@ -54,7 +54,10 @@ export class PromptFrameProcessor extends CliqueProcessor {
             return;
         }
 
-        const request = this.getRequest(this.format(precursorNode.getContentAsString()), this.format(promptNode.getContentAsString()));
+        const request = PromptFrameProcessor.getRequest(
+            PromptFrameProcessor.format(precursorNode.getContentAsString()), 
+            PromptFrameProcessor.format(promptNode.getContentAsString())
+        );
 
         const newClique = this.getNextClique().clone();
         newClique.removeNodeById(PromptFrameProcessor.PROMPT_NODE_ID);
@@ -85,7 +88,7 @@ export class PromptFrameProcessor extends CliqueProcessor {
         let responseContent: string = "";
 
         if (keyNode.getContentAsString() === "debug") {
-            responseContent = this.getDebugResponse();
+            responseContent = PromptFrameProcessor.getDebugResponse();
         } else {
             const response = await fetch(PromptFrameProcessor.API_ENDPOINT, {
                 method: 'POST',
@@ -139,17 +142,37 @@ export class PromptFrameProcessor extends CliqueProcessor {
             return;
         }
 
-        const scchart = responseJSON.choices[0].message.content.replace(/^(.*)```scchart/, "").replace(/```(.*)$/, "");
+        const scchart = PromptFrameProcessor.extractSCChart(responseJSON.choices[0].message.content)
         resultNode.setContent(scchart);
         graph.removeNodeById(PromptFrameProcessor.RESPONSE_NODE_ID);
         this.setNewClique(graph);
     }
 
-    protected format(s: string): string{
+    protected static format(s: string): string {
         return s.replace(/"/g, '\\"').replace(/\n/g, "\\n").replace(/\r/g, "");
     }
 
-    protected getRequest(system: string, prompt: string): string {
+    protected static extractSCChart(s: string): string {
+        let result = "";
+        let inSCChart = false;
+        const lines = s.split("\n");
+
+        for (const line of lines) {
+            if (line.includes("```scchart")) {
+                inSCChart = true;
+            } else if (line.includes("```")) {
+                inSCChart = false;
+            } else {
+                if (inSCChart) {
+                  result += line + "\n";
+                }
+            }
+        }
+
+        return result;
+    }
+
+    protected static getRequest(system: string, prompt: string): string {
         return `{
 "model": "gpt-4",
 "messages": [
@@ -171,7 +194,7 @@ export class PromptFrameProcessor extends CliqueProcessor {
 }`;
     };
 
-    protected getDebugResponse(): string {
+    protected static getDebugResponse(): string {
         return `{
 "id": "debug",
 "object": "chat.completion",
