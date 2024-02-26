@@ -29,7 +29,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
                 }
                 graph.getTransformationConfiguration().setById(edge.label as string, edgeDefinition.processor);
                 
-                console.debug(`Added edge type ${edgeDefinition.type}`);
+                console.debug(`Added edge type ${edgeDefinition.type}, ${edgeDefinition.priority}, ${edgeDefinition.immediate}`);
             }
         }
 
