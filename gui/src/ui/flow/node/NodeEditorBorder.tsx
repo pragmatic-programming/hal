@@ -27,6 +27,7 @@ export default function NodeEditorBorder(props: Props): React.JSX.Element {
     return (
         <BoxBackgroundLight
             borderColor={borderColor(props.sourceNodeStatus, !props.visible, theme, theme.palette.primary.main)}
+            borderWidth={props.sourceNodeStatus === SimpleNodeStatus.UNDEFINED ? 1 : 3}
             border={border}
             style={{
                 width: width,
