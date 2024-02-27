@@ -9,6 +9,7 @@ interface Props {
     onClick: () => void;
     placement?: Placement;
     style?: CSSProperties;
+    iconStyle?: CSSProperties;
     tooltip?: string;
 }
 
@@ -26,7 +27,7 @@ export function IconDynamic(props: Props): React.JSX.Element {
                 onMouseLeave={() => setInputValue(props.iconDefault)}
                 style={props.style}
             >
-                <SvgIcon component={inputValue}></SvgIcon>
+                <SvgIcon component={inputValue} style={props.iconStyle}></SvgIcon>
             </IconButton>
         </Tooltip>
     );

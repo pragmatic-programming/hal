@@ -4,8 +4,8 @@ import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
-import { EdgeDefaultLabelIcon } from "./EdgeDefaultLabelIcon";
 import { EdgeData } from "../../../model/edge/EdgeData";
+import { EdgeDefaultLabelIconVerbose } from "./EdgeDefaultLabelIconVerbose";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
@@ -37,12 +37,14 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
                     inputProps: {
                         style: {
                             textAlign: "center",
-                            paddingRight: 0,
+                            padding: 4,
+                            fontSize: 12,
+                            borderRadius: 5
                         }
                     },
                     startAdornment: (
                         <InputAdornment position="start">
-                            <EdgeDefaultLabelIcon
+                            <EdgeDefaultLabelIconVerbose
                                 icon={props.edgeDefinition.icon}
                                 id={props.id}
                             />
@@ -54,7 +56,7 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
                 onBlur={onBlur}
                 style={{
                     backgroundColor: theme.palette.primary.main,
-                    width: 60,
+                    width: 40,
                 }}
             />
             <EdgeDefaultLabelTextField
@@ -62,7 +64,12 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
                 InputProps={{
                     inputProps: {
                         style: {
-                            paddingRight: 0,
+                            paddingLeft: 0,
+                            paddingRight: 4,
+                            paddingTop: 4,
+                            paddingBottom: 4,
+                            fontSize: 12,
+                            borderRadius: 5,
                         }
                     },
                 }}
@@ -70,7 +77,7 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEdgeLabel(props.id, event.target.value)}
                 style={{
                     backgroundColor: theme.palette.primary.main,
-                    width: Math.max(100, props.label.length * 12),
+                    width: Math.max(64, props.label.length * 7),
                 }}
             />
         </>
