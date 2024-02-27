@@ -6,7 +6,6 @@ import { Add } from "@mui/icons-material";
 import { defaultEdgeDefinitions } from "../../../model/edge/edgeDefinitions";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import { firstCharUpperCase } from "../../../util";
-import { EdgeTypeIndicator } from "../../../model/edge/EdgeTypeIndicator";
 import { EdgePath } from "../../../model/edge/EdgePath";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import TooltipIconButton from "../../util/TooltipIconButton";

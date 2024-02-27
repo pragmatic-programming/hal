@@ -1,6 +1,5 @@
 import { EdgeData, EdgeDataCommon, EdgeDataCreate, EdgeDataEmpty } from "./EdgeData";
 import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
-import { EdgeDataTypeIndicator } from "./EdgeDataTypeIndicator";
 import { SourceHandleId } from "./SourceHandleId";
 import { TargetHandleId } from "./TargetHandleId";
 

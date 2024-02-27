@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { TransformationDirection, TransformationEdge } from "@pragmatic-programming/ihgraph";
+import { TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { Processor, Property } from "@pragmatic-programming/kico";
 import { CliqueSelectionProcessor } from "./CliqueSelectionProcessor";
 import { CliqueProcessor } from "./CliqueProcessor";
