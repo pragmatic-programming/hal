@@ -37,8 +37,10 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
             this.addError(String(e));
         }
 
-        for (const sourceNode of this.getSourceNodes()) {
-            sourceNode.getParent().removeNode(sourceNode);
+        if (!this.isImmediate()) {
+            for (const sourceNode of this.getSourceNodes()) {
+                sourceNode.getParent().removeNode(sourceNode);
+            }
         }
 
         this.set();

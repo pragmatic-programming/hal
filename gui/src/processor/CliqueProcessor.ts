@@ -77,6 +77,11 @@ export class CliqueProcessor extends TransformationProcessor {
         this.executeCliqueReplacement();
     }
 
+    protected isImmediate(): boolean {
+        const graph = this.getNextClique();
+        return graph.getEdgeTypes().every(edgeType => edgeType.isImmediate());
+    }
+
     protected set(): void {
         this.setNewClique(this.getNextClique());
     }
