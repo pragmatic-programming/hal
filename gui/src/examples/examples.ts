@@ -14,6 +14,7 @@ import { exampleGraphsPythonExecute } from "./graphs/40.python-execute";
 import { exampleGraphsJavaScriptSequence } from "./graphs/50.javascript-sequence";
 import { exampleGraphsPythonTranspile } from "./graphs/60.python-transpile";
 import { exampleGraphsPromptEngineering } from "./graphs/70.prompt-engineering";
+import { exampleGraphsSCChartArduino } from "./graphs/31.scchart-arduino";
 
 
 export const examples: Example[] = [
@@ -64,5 +65,11 @@ export const examples: Example[] = [
         name: "AI Prompt Engineering",
         value: exampleGraphsPromptEngineering(),
         icon: AirlineStopsIcon,
+    },
+    {
+        id: 8,
+        name: "SCChart Arduino Example",
+        value: exampleGraphsSCChartArduino(),
+        icon: TableChartIcon,
     },
 ];
