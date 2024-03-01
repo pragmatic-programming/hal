@@ -1,7 +1,7 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
 import { edgeDefinitionCreate, edgeDefinitionPrototype, retrieveEdgeDefinition } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
-import { EdgeData, EdgeDataCreate } from "./EdgeData";
+import { EdgeData, EdgeDataCreate, EdgeDataHandlesAnnotation } from "./EdgeData";
 import { EdgeType, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
@@ -56,18 +56,28 @@ export class EdgeFactory {
         const sourceId = edge.getSourceNode().getId();
         const targetId = edge.getTargetNode().getId();
         const edgeType = edge.getType()
+        let sourceHandleId: SourceHandleId = "right";
+        let targetHandleId: TargetHandleId = "left";
+
         if (!sourceId) {
             throw new Error("Returned sourceId is undefined");
         }
         if (!targetId) {
             throw new Error("Returned targetId is undefined");
         }
+
+        if (edge.hasAnnotation("edgeData")) {
+            const edgeData = edge.getAnnotationData<EdgeDataHandlesAnnotation>("edgeData");
+            sourceHandleId = edgeData.sourceHandle;
+            targetHandleId = edgeData.targetHandle;
+        }
+        
         return EdgeFactory.fromEdgeType(
             edgeType,
             sourceId,
             targetId,
-            "right",
-            "left"
+            sourceHandleId,
+            targetHandleId
         );
     }
 

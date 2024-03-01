@@ -21,3 +21,8 @@ export interface EdgeDataCreate extends EdgeDataCommon {
     type: "create";
     deniedEdgeTypes: EdgeTypeIndicator[];
 }
+
+export interface EdgeDataHandlesAnnotation {
+    sourceHandle: SourceHandleId;
+    targetHandle: TargetHandleId;
+}
