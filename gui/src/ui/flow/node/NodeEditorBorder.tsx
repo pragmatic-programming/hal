@@ -24,10 +24,14 @@ export default function NodeEditorBorder(props: Props): React.JSX.Element {
         height -= 2;
         border = "top-bottom-left-right";
     }
+    let borderWidth: number = 3;
+    if (props.sourceNodeStatus === SimpleNodeStatus.UNDEFINED) {
+        borderWidth = 1;
+    }
     return (
         <BoxBackgroundLight
             borderColor={borderColor(props.sourceNodeStatus, !props.visible, theme, theme.palette.primary.main)}
-            borderWidth={props.sourceNodeStatus === SimpleNodeStatus.UNDEFINED ? 1 : 3}
+            borderWidth={borderWidth}
             border={border}
             style={{
                 width: width,
