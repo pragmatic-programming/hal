@@ -134,19 +134,19 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
 
 
 // new edge (step 3): add the new edge definition to the following array
-export const defaultEdgeDefinitions: { [key: string]: EdgeDefinition } = {
+export const defaultEdgeDefinitions: EdgeDefinition[] = [
     // default edges
-    prototype: edgeDefinitionPrototype,
+    edgeDefinitionPrototype,
     // custom edges
-    create: edgeDefinitionCreate,
-    arduino: edgeDefinitionArduino,
-    execute: edgeDefinitionExecute,
-    scchartcode: edgeDefinitionSCChartCode,
-    scchartdiagram: edgeDefinitionSCChartDiagram,
-    sequence: edgeDefinitionSequence,
-    test: edgeDefinitionTest,
-    transpile: edgeDefinitionTranspile,
-};
+    edgeDefinitionCreate,
+    edgeDefinitionArduino,
+    edgeDefinitionExecute,
+    edgeDefinitionSCChartCode,
+    edgeDefinitionSCChartDiagram,
+    edgeDefinitionSequence,
+    edgeDefinitionTest,
+    edgeDefinitionTranspile,
+];
 
 // new edge (step 4): add the edge type indicator as case to return new edge definition
 export function retrieveEdgeDefinition(edgeTypeIndicator: string): EdgeDefinition {
