@@ -18,8 +18,8 @@ export function exampleGraphsSCChart(): IHGraphFactoryInterface {
         edgeTypes: [
             {
                 id: "scchartdiagram",
-                priority: 8,
-                immediate: false
+                priority: 0,
+                immediate: true
             }
         ],
         edges: [

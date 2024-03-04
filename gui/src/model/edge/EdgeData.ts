@@ -10,6 +10,7 @@ export interface EdgeDataCommon {
     targetHandle: TargetHandleId;
     edgePathStyle: EdgePathStyle;
     priority: number;
+    immediate: boolean;
 }
 
 export interface EdgeDataEmpty extends EdgeDataCommon {

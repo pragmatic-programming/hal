@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { TransformationDirection, TransformationEdge } from "@pragmatic-programming/ihgraph";
+import { TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { Processor, Property } from "@pragmatic-programming/kico";
 import { CliqueSelectionProcessor } from "./CliqueSelectionProcessor";
 import { CliqueProcessor } from "./CliqueProcessor";
@@ -52,14 +52,27 @@ export class HALGraphProcessor extends CliqueProcessor {
         const graph = this.getModel();
 
         // todo: delete whole node chains of not connected otherwise
-        if (edge.getType().getTransformationDirection() === TransformationDirection.CONTROLFLOW) {
-            const targetNode = edge.getTargetNode();
-            graph.removeNode(targetNode);
-        } else {
-            const sourceNode = edge.getSourceNode();
+        // if (edge.getType().getTransformationDirection() === TransformationDirection.CONTROLFLOW) {
+        //     const targetNode = edge.getTargetNode();
+        //     graph.removeNode(targetNode);
+        // } else {
+        //     const sourceNode = edge.getSourceNode();
+        //     graph.removeNode(sourceNode);
+        // }
+
+        console.log(graph.toStringDebugGraph());
+        
+        const sourceNode = edge.getSourceNode();
+        const targetNode = edge.getTargetNode();
+        graph.removeEdge(edge);
+
+        if (sourceNode.getIncomingEdges().length + sourceNode.getOutgoingEdges().length === 0) {
             graph.removeNode(sourceNode);
         }
+        if (targetNode.getIncomingEdges().length + targetNode.getOutgoingEdges().length === 0) {
+            graph.removeNode(targetNode);
+        }
 
-        graph.removeEdge(edge);
+        console.log(graph.toStringDebugGraph());
     }
 }

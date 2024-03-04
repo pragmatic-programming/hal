@@ -3,6 +3,7 @@ import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import { SourceHandleId } from "./SourceHandleId";
 import { TargetHandleId } from "./TargetHandleId";
 import { EdgeDefinition } from "./EdgeDefinition";
+import { EdgeType } from "@pragmatic-programming/ihgraph";
 
 export class EdgeDataFactory {
 
@@ -27,16 +28,41 @@ export class EdgeDataFactory {
     }
 
     static edgeDataCommon(
+        edgeDefinition: EdgeDefinition,
         sourceHandle: SourceHandleId,
         targetHandle: TargetHandleId,
-        priority: number,
     ): EdgeDataCommon {
         return {
-            edgePathStyle: "Smooth",
-            priority: priority,
             sourceHandle: sourceHandle,
             targetHandle: targetHandle,
+            edgePathStyle: "Smooth",
+            priority: edgeDefinition.priority,
+            immediate: edgeDefinition.immediate,
         };
+    }
+
+    static edgeDataCommonFromEdgeType(
+        edgeType: EdgeType,
+        sourceHandle: SourceHandleId,
+        targetHandle: TargetHandleId,
+    ): EdgeDataCommon {
+        return {
+            sourceHandle: sourceHandle,
+            targetHandle: targetHandle,
+            edgePathStyle: "Smooth",
+            priority: edgeType.getPriority(),
+            immediate: edgeType.isImmediate(),
+        };
+    }
+
+    static edgeDataFromEdgeType(
+        edgeType: EdgeType,
+        sourceHandle: SourceHandleId,
+        targetHandle: TargetHandleId,
+    ): EdgeData {
+        return EdgeDataFactory.edgeDataEmpty(
+            EdgeDataFactory.edgeDataCommonFromEdgeType(edgeType, sourceHandle, targetHandle)
+        );
     }
 
     static edgeDataFromCreationEdge(
@@ -44,7 +70,7 @@ export class EdgeDataFactory {
         sourceHandle: SourceHandleId,
         targetHandle: TargetHandleId,
     ): EdgeData {
-        const edgeDataCommon: EdgeDataCommon = EdgeDataFactory.edgeDataCommon(sourceHandle, targetHandle, edgeDefinition.priority);
+        const edgeDataCommon: EdgeDataCommon = EdgeDataFactory.edgeDataCommon(edgeDefinition, sourceHandle, targetHandle);
         switch (edgeDefinition.type) {
             case "create":
                 return EdgeDataFactory.edgeDataCreate(

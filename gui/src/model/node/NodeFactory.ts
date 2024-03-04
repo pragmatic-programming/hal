@@ -46,30 +46,42 @@ export class NodeFactory {
         }
     }
 
-    static fromSourceNode(sourceNode: SimpleNode): Node<NodeData> {
-        const nodeData: NodeData = sourceNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
+    static fromSourceNode(simpleNode: SimpleNode): Node<NodeData> {
+        if (!simpleNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
+            return NodeFactory.nodeEditor(
+                simpleNode.getId(),
+                simpleNode.getContent(),
+                simpleNode.getId(),
+                "PlainText",
+                0,
+                0,
+                simpleNode.getStatus(),
+            );
+        }
+
+        const nodeData: NodeData = simpleNode.getAnnotationData<NodeData>(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA);
         switch (nodeData.type) {
             case "create":
                 return NodeFactory.nodeCreate(
-                    sourceNode.getId(),
+                    simpleNode.getId(),
                     0,
                     0,
                     Position.Left
                 );
             case "editor":
                 return NodeFactory.nodeEditor(
-                    sourceNode.getId(),
-                    sourceNode.getContent(),
+                    simpleNode.getId(),
+                    simpleNode.getContent(),
                     nodeData.label,
                     nodeData.language,
                     0,
                     0,
-                    sourceNode.getStatus(),
+                    simpleNode.getStatus(),
                 );
             case "image":
                 return NodeFactory.nodeImage(
-                    sourceNode.getId(),
-                    sourceNode.getContent(),
+                    simpleNode.getId(),
+                    simpleNode.getContent(),
                     0,
                     0,
                     nodeData.width,
@@ -77,8 +89,8 @@ export class NodeFactory {
                 );
             case "file":
                 return NodeFactory.nodeFile(
-                    sourceNode.getId(),
-                    sourceNode.getContent(),
+                    simpleNode.getId(),
+                    simpleNode.getContent(),
                     // todo
                     undefined,
                     0,
