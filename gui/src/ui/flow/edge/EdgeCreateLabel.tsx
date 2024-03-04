@@ -9,9 +9,10 @@ import { firstCharUpperCase } from "../../../util";
 import { EdgePath } from "../../../model/edge/EdgePath";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import TooltipIconButton from "../../util/TooltipIconButton";
+import { EdgeTypeIndicator } from "../../../model/edge/EdgeTypeIndicator";
 
 interface Props {
-    deniedEdgeTypes: string[];
+    deniedEdgeTypes: EdgeTypeIndicator[];
     edgePath: EdgePath;
     id: string;
     targetNodeId: string;
@@ -20,7 +21,7 @@ interface Props {
 export default function EdgeCreateLabel(props: Props): React.JSX.Element {
     const [numberOfShownEdgeDefinitions, setNumberOfShownEdgeDefinitions] = useState<number>(4);
     const transformCreationEdge = useStore((state: State) => state.flow.transformCreateEdge);
-    const filteredEdgeDefinitions: EdgeDefinition[] = Object.values(defaultEdgeDefinitions).filter(
+    const filteredEdgeDefinitions: EdgeDefinition[] = defaultEdgeDefinitions.filter(
         (edgeDefinition: EdgeDefinition): boolean => edgeDefinition.type !== "create" && !props.deniedEdgeTypes.includes(edgeDefinition.type)
     );
     return (

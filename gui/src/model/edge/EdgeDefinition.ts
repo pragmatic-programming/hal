@@ -1,13 +1,13 @@
-import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import { ComponentType, CSSProperties } from "react";
 import { EdgeProps } from "@reactflow/core/dist/esm/types/edges";
 import { SvgIconComponent } from "@mui/icons-material";
 import { TransformationProcessor } from "@pragmatic-programming/ihgraph";
 import { NodeTypeIndicator } from "../node/NodeTypeIndicator";
 import { EdgePathStyle } from "./EdgePathStyle";
+import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 
 export interface EdgeDefinition {
-    type: string;
+    type: EdgeTypeIndicator;
     animated: boolean;
     component: ComponentType<EdgeProps>;
     icon: SvgIconComponent;
@@ -16,6 +16,5 @@ export interface EdgeDefinition {
     processor: typeof TransformationProcessor;
     priority: number;
     style?: CSSProperties;
-    targetNodeTypes: NodeTypeIndicator[]
-    transformationDirection?: "controlflow" | "dependency";
+    targetNodeTypes: NodeTypeIndicator[];
 }

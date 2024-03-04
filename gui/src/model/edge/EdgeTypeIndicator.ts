@@ -1,6 +1,5 @@
 // new edge (step 1): add a new edge type indicator here
 export const edgeTypeIndicators = [
-    "unknown",
     "prototype",
     "create",
     "arduino",
