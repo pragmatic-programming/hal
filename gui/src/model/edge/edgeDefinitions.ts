@@ -118,7 +118,6 @@ export const edgeDefinitionTest: EdgeDefinition = {
     priority: 0,
     processor: TestProcessor,
     targetNodeTypes: ["editor"],
-    transformationDirection: "dependency"
 };
 
 export const edgeDefinitionTranspile: EdgeDefinition = {
@@ -131,7 +130,6 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
     priority: 1,
     processor: TranspileProcessor,
     targetNodeTypes: ["editor"],
-    transformationDirection: "dependency"
 };
 
 

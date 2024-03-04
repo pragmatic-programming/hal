@@ -13,8 +13,6 @@ export class DefaultProcessors {
 
     static getProcessor(processorId: string): typeof ihgraph.TransformationProcessor {
         switch (processorId) {
-            case "unknown":
-                return UnknownProcessor;
             case "arduino":
                 return ArduinoProcessor;
             case "execute":
