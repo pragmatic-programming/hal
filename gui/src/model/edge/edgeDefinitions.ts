@@ -6,8 +6,7 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import AddIcon from "@mui/icons-material/Add";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import TableChartIcon from "@mui/icons-material/TableChart";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
 import { ExecuteProcessor } from "../../processor/edgeTypes/execute/ExecuteProcessor";
 import { SCChartDiagramProcessor } from "../../processor/edgeTypes/scchart/SCChartDiagramProcessor";
@@ -22,18 +21,6 @@ import { SequenceProcessor } from "../../processor/edgeTypes/SequenceProcessor";
 import { UnknownProcessor } from "../../processor/edgeTypes/UnknownProcessor";
 
 // new edge (step 2): add a new edge definition here
-export const edgeDefinitionUnknown: EdgeDefinition = {
-    type: "unknown",
-    animated: false,
-    component: EdgeDefault,
-    icon: QuestionMarkIcon,
-    edgePathStyle: "Smooth",
-    immediate: false,
-    priority: 0,
-    processor: UnknownProcessor,
-    targetNodeTypes: [],
-};
-
 export const edgeDefinitionPrototype: EdgeDefinition = {
     type: "prototype",
     animated: false,
@@ -149,9 +136,8 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
 
 
 // new edge (step 3): add the new edge definition to the following array
-export const defaultEdgeDefinitions: { [ key: string ]: EdgeDefinition } = {
+export const defaultEdgeDefinitions: { [key: string]: EdgeDefinition } = {
     // default edges
-    edgeDefinitionUnknown,
     prototype: edgeDefinitionPrototype,
     // custom edges
     create: edgeDefinitionCreate,
@@ -168,8 +154,6 @@ export const defaultEdgeDefinitions: { [ key: string ]: EdgeDefinition } = {
 export function retrieveEdgeDefinition(edgeTypeIndicator: string): EdgeDefinition {
     switch (edgeTypeIndicator) {
         // default edges
-        case "unknown":
-            return edgeDefinitionUnknown;
         case "create":
             return edgeDefinitionCreate;
         // custom edges
