@@ -5,6 +5,7 @@ import { BoxBackground } from "./BoxBackground";
 interface Props {
     border?: "top" | "bottom" | "left" | "right" | "top-bottom-left-right";
     borderColor?: string;
+    borderWidth?: number;
     style?: CSSProperties;
     children: React.ReactNode;
 }
@@ -16,6 +17,7 @@ export function BoxBackgroundLight(props: Props): React.JSX.Element {
             backgroundColor={theme.palette.primary.light}
             border={props.border}
             borderColor={props.borderColor}
+            borderWidth={props.borderWidth}
             style={props.style}
         >
             {props.children}

@@ -5,6 +5,7 @@ interface Props {
     backgroundColor: string;
     border?: "top" | "bottom" | "left" | "right" | "top-bottom-left-right";
     borderColor?: string;
+    borderWidth?: number;
     children: React.ReactNode;
     style?: CSSProperties;
 }
@@ -12,7 +13,8 @@ interface Props {
 export function BoxBackground(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
     const borderColor: string = props.borderColor ? props.borderColor : theme.palette.primary.dark
-    const border: string = "1px solid " + borderColor;
+    const borderWidth: number = props.borderWidth ? props.borderWidth : 1;
+    const border: string = borderWidth + "px solid " + borderColor;
     let style: CSSProperties = {
         ...props.style,
         backgroundColor: props.backgroundColor,
