@@ -6,7 +6,6 @@ import { EdgeType, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";
-import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
 
 
 export class EdgeFactory {
@@ -55,7 +54,7 @@ export class EdgeFactory {
     static fromTransformationEdge(edge: TransformationEdge): Edge {
         const sourceId = edge.getSourceNode().getId();
         const targetId = edge.getTargetNode().getId();
-        const edgeType = edge.getType()
+        const edgeType = edge.getType();
         if (!sourceId) {
             throw new Error("Returned sourceId is undefined");
         }
@@ -71,17 +70,6 @@ export class EdgeFactory {
         );
     }
 
-    private static edgeTypeIndicator(edge: TransformationEdge): EdgeTypeIndicator {
-        const edgeType: string = edge.getType().getId();
-        if (!isEdgeTypeIndicator(edgeType)) {
-            // if edgeType is not a valid indicator,
-            // we create an unknown edge so that the
-            // graph can still be rendered
-            return "unknown";
-        }
-        return edgeType;
-    }
-
     static fromEdgeType(
         edgeType: EdgeType,
         sourceId: string,
@@ -89,7 +77,7 @@ export class EdgeFactory {
         sourceHandleId: SourceHandleId,
         targetHandleId: TargetHandleId,
     ): Edge {
-        const edgeDefinition = edgeDefinitionPrototype
+        const edgeDefinition = edgeDefinitionPrototype;
         edgeDefinition.type = edgeType.getId();
         edgeDefinition.priority = edgeType.getPriority();
         edgeDefinition.immediate = edgeType.isImmediate();
@@ -154,7 +142,7 @@ export class EdgeFactory {
                 width: 30,
                 height: 30,
             },
-            data: EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition.type, sourceHandleId, targetHandleId, edgeDefinition.priority, edgeDefinition.immediate)
+            data: EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition, sourceHandleId, targetHandleId)
         };
     }
 }
