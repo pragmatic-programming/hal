@@ -60,7 +60,7 @@ export const examples: Example[] = [
         icon: HardwareIcon,
     },
     {
-        id: 7,
+        id: 8,
         name: "AI Prompt Engineering",
         value: exampleGraphsPromptEngineering(),
         icon: AirlineStopsIcon,
