@@ -7,21 +7,20 @@ import {
 import { AnnotationWithNodeData } from "./AnnotationWithNodeData";
 import { LanguageIndicator } from "../model/node/LanguageIndicator";
 import { NodeDataEditor, NodeDataFile, NodeDataImage } from "../model/node/NodeData";
+import { NodeDataFactory } from "../model/node/NodeDataFactory";
 
 export function createFileNodeData(): AnnotationWithNodeData<NodeDataFile> {
     return {
         nodeData: {
             id: "nodeData",
-            // todo use NodeDataFactory
-            data: {
-                content: "",
-                type: "file",
-                fileType: undefined,
-                x: 0,
-                y: 0,
-                width: 300,
-                height: 200,
-            }
+            data: NodeDataFactory.nodeDataFile(
+                "",
+                undefined,
+                0,
+                0,
+                300,
+                200,
+            )
         }
     };
 }
@@ -31,18 +30,16 @@ export function createEditorNodeData(language: LanguageIndicator = "PlainText", 
     return {
         nodeData: {
             id: "nodeData",
-            // todo use NodeDataFactory
-            data: {
-                content: "",
-                type: "editor",
-                label: label,
-                language: language,
-                x: 0,
-                y: 0,
-                width: 300,
-                height: 200,
-                status: SimpleNodeStatus.UNDEFINED,
-            }
+            data: NodeDataFactory.nodeDataEditor(
+                "",
+                label,
+                language,
+                SimpleNodeStatus.UNDEFINED,
+                0,
+                0,
+                300,
+                200,
+            ),
         }
     };
 }
@@ -52,15 +49,14 @@ export function createImageNodeData(): AnnotationWithNodeData<NodeDataImage> {
         nodeData: {
             id: "nodeData",
             // todo use NodeDataFactory
-            data: {
-                content: "",
-                type: "image",
-                x: 0,
-                y: 0,
-                width: 300,
-                height: 200,
-                status: SimpleNodeStatus.UNDEFINED,
-            }
+            data: NodeDataFactory.nodeDataImage(
+                "",
+                0,
+                0,
+                300,
+                200,
+                SimpleNodeStatus.UNDEFINED,
+            )
         }
     };
 }
