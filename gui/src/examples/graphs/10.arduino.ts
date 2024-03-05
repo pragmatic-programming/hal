@@ -1,21 +1,21 @@
 import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
-import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
+import { createEditorNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsArduino(): IHGraphFactoryInterface {
     return sanitizeDataAnnotations({
         nodes: [
             {
-                annotations: createNodeData("C"),
+                annotations: createEditorNodeData("C"),
                 id: "Define",
                 content: "const int LED_PIN = 13;"
             },
             {
-                annotations: createNodeData("C"),
+                annotations: createEditorNodeData("C"),
                 id: "Setup",
                 content: "pinMode(LED_PIN, OUTPUT);"
             },
             {
-                annotations: createNodeData("C"),
+                annotations: createEditorNodeData("C"),
                 id: "Loop",
                 content: "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);"
             }

@@ -52,8 +52,8 @@ export class NodeFactory {
                 simpleNode.getContent(),
                 simpleNode.getId(),
                 "PlainText",
-                1,
-                1,
+                0,
+                0,
                 simpleNode.getStatus(),
             );
         }

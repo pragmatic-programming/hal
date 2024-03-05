@@ -46,8 +46,8 @@ export class SCChartCodeProcessor extends CliqueProcessor {
             label: "Generated Code",
             type: "editor",
             status: SimpleNodeStatus.UNDEFINED,
-            x: 1,
-            y: 1,
+            x: 0,
+            y: 0,
             height: 0,
             width: 0,
         };

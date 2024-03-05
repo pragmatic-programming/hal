@@ -1,16 +1,65 @@
-import { AnnotationFactoryType, IHGraphFactoryInterface, SourceNodeInterface } from "@pragmatic-programming/ihgraph";
+import {
+    AnnotationFactoryType,
+    IHGraphFactoryInterface,
+    SimpleNodeStatus,
+    SourceNodeInterface
+} from "@pragmatic-programming/ihgraph";
+import { AnnotationWithNodeData } from "./AnnotationWithNodeData";
+import { LanguageIndicator } from "../model/node/LanguageIndicator";
+import { NodeDataEditor, NodeDataFile, NodeDataImage } from "../model/node/NodeData";
 
-export function createNodeData(language: string = "PlainText", type: string = "editor", label: string = ""): AnnotationFactoryType {
+export function createFileNodeData(): AnnotationWithNodeData<NodeDataFile> {
     return {
         nodeData: {
             id: "nodeData",
+            // todo use NodeDataFactory
             data: {
                 content: "",
-                type: type,
+                type: "file",
+                fileType: undefined,
+                x: 0,
+                y: 0,
+                width: 300,
+                height: 200,
+            }
+        }
+    };
+}
+
+
+export function createEditorNodeData(language: LanguageIndicator = "PlainText", label: string = ""): AnnotationWithNodeData<NodeDataEditor> {
+    return {
+        nodeData: {
+            id: "nodeData",
+            // todo use NodeDataFactory
+            data: {
+                content: "",
+                type: "editor",
                 label: label,
                 language: language,
+                x: 0,
+                y: 0,
                 width: 300,
-                height: 200
+                height: 200,
+                status: SimpleNodeStatus.UNDEFINED,
+            }
+        }
+    };
+}
+
+export function createImageNodeData(): AnnotationWithNodeData<NodeDataImage> {
+    return {
+        nodeData: {
+            id: "nodeData",
+            // todo use NodeDataFactory
+            data: {
+                content: "",
+                type: "image",
+                x: 0,
+                y: 0,
+                width: 300,
+                height: 200,
+                status: SimpleNodeStatus.UNDEFINED,
             }
         }
     };

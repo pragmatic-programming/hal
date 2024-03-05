@@ -1,11 +1,11 @@
 import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
-import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
+import { createEditorNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
     return sanitizeDataAnnotations({
         nodes: [
             {
-                annotations: createNodeData("JavaScript"),
+                annotations: createEditorNodeData("JavaScript"),
                 id: "Function",
                 content:
 `function sum(n) {
@@ -17,27 +17,27 @@ export function exampleGraphsWYTIWYGSum(): IHGraphFactoryInterface {
 }`
             },
             {
-                annotations: createNodeData("JavaScript"),
+                annotations: createEditorNodeData("JavaScript"),
                 id: "Test 1",
                 content: "sum(3) == 6"
             },
             {
-                annotations: createNodeData("JavaScript"),
+                annotations: createEditorNodeData("JavaScript"),
                 id: "Test 2",
                 content: "sum(1)"
             },
             {
-                annotations: createNodeData("JavaScript"),
+                annotations: createEditorNodeData("JavaScript"),
                 id: "Test 3",
                 content: "sum(-1) == -1"
             },
             {
-                annotations: createNodeData("JavaScript"),
+                annotations: createEditorNodeData("JavaScript"),
                 id: "Usage",
                 content: `sum(3) + sum(1);`
             },
             {
-                annotations: createNodeData(),
+                annotations: createEditorNodeData(),
                 id: "Result",
                 content: ""
             }
