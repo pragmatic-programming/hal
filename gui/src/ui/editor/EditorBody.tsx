@@ -20,8 +20,9 @@ interface Props {
 
 // We also need to provide the opportunity to set this to the correct VSCode
 // resource URI when used in a WebView.
-// Instead of casting to any, we should consider extending the global Window interface 
+// Instead of casting to any, we should consider extending the global Window interface
 // (cf. https://stackoverflow.com/questions/12709074/how-do-you-explicitly-set-a-new-property-on-window-in-typescript)
+// noinspection JSUnresolvedReference
 loader.config({
     paths: {
         vs: (window as any).__monacoLoadUri || "/vs"

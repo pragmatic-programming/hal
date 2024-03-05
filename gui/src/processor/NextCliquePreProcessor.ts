@@ -36,6 +36,7 @@ export class NextCliquePreProcessor extends CliqueProcessor {
         }
 
         const clique = this.getModel().getNextClique();
+        this.setProperty(CliqueProcessor.NEXT_CLIQUE_ORIGIN, clique);
         this.setProperty(CliqueProcessor.NEXT_CLIQUE, clique);
     }
 }
