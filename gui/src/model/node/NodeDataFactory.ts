@@ -4,9 +4,14 @@ import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 
 export class NodeDataFactory {
 
-    static nodeDataCreate(): NodeDataCreate {
+    static nodeDataCreate(
+        x: number,
+        y: number,
+    ): NodeDataCreate {
         return {
             type: "create",
+            x: x,
+            y: y,
         };
     }
 
@@ -15,6 +20,10 @@ export class NodeDataFactory {
         label: string,
         language: LanguageIndicator,
         status: SimpleNodeStatus,
+        x: number,
+        y: number,
+        width: number,
+        height: number,
     ): NodeDataEditor {
         return {
             content: content,
@@ -22,23 +31,27 @@ export class NodeDataFactory {
             language: language,
             status: status,
             type: "editor",
-            // todo remove
-            height: 0,
-            width: 0,
-
+            x: x,
+            y: y,
+            width: width,
+            height: height,
         };
     }
 
     static nodeDataImage(
         content: string | undefined,
-        height: number,
+        x: number,
+        y: number,
         width: number,
+        height: number,
         status: SimpleNodeStatus,
     ): NodeDataImage {
         return {
             type: "image",
             content: content,
             status: status,
+            x: x,
+            y: y,
             width: width,
             height: height,
         };
@@ -47,6 +60,8 @@ export class NodeDataFactory {
     static nodeDataFile(
         content: string | undefined,
         fileType: "text/plain" | undefined,
+        x: number,
+        y: number,
         height: number,
         width: number,
     ): NodeDataFile {
@@ -54,6 +69,8 @@ export class NodeDataFactory {
             type: "file",
             content: content,
             fileType: fileType,
+            x: x,
+            y: y,
             width: width,
             height: height,
         };

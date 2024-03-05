@@ -3,17 +3,17 @@ import { AnnotationFactoryType, IHGraphFactoryInterface, SourceNodeInterface } f
 export function createNodeData(language: string = "PlainText", type: string = "editor", label: string = ""): AnnotationFactoryType {
     return {
         nodeData: {
-        id: "nodeData",
-        data: {
-            content: "",
-            type: type,
-            label: label,
-            language: language,
-            width: 0,
-            height: 0
+            id: "nodeData",
+            data: {
+                content: "",
+                type: type,
+                label: label,
+                language: language,
+                width: 300,
+                height: 200
             }
         }
-    }
+    };
 }
 
 export function createEdgeData(): AnnotationFactoryType {
@@ -25,7 +25,7 @@ export function createEdgeData(): AnnotationFactoryType {
                 targetHandle: "left",
             }
         }
-    }
+    };
 }
 
 export function sanitizeDataAnnotations(graph: IHGraphFactoryInterface): IHGraphFactoryInterface {

@@ -32,13 +32,17 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
         for (let unsafeNode of model.nodes) {
             const node: StrictNode<NodeData> = strictNode(unsafeNode);
             const sourceNode: SimpleNode = graph.createSimpleNode(node.id);
-            let data: NodeData = {
+            const data: NodeData = {
                 ...node.data,
+                x: node.position.x,
+                y: node.position.y,
             };
-            // set content from node data,
-            // because reactFlow has no content field and
-            // ihgraph processors don't work with node data annotation
             if (data.type !== "create") {
+                data.width = node.width;
+                data.height = node.height;
+                // set content from node data,
+                // because reactFlow has no content field and
+                // ihgraph processors don't work with node data annotation
                 sourceNode.setContent(data.content ? data.content : "");
             }
             // set node data annotation in case the ihgraph will be rendered

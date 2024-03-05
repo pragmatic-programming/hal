@@ -5,8 +5,6 @@ import { CompilationContext } from "@pragmatic-programming/kico";
 import { iHGraphToFlow } from "../../processor/compilationContexts";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
-import { layoutedNodes } from "../layoutedNodes";
-import { layoutOptions } from "../../util";
 import { NodesAndEdges } from "../../model/NodesAndEdges";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -25,14 +23,10 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         const context: CompilationContext = iHGraphToFlow(ihGraph);
         await context.compileAsync();
         const nodesAndEdges: NodesAndEdges = context.getResult();
-        const reactFlow = {
-            ...getState().flow,
-            ...nodesAndEdges,
-        };
         setState({
             flow: {
-                ...reactFlow,
-                nodes: await layoutedNodes(reactFlow, layoutOptions(getState().flow.layoutOption))
+                ...getState().flow,
+                ...nodesAndEdges,
             }
         });
         window.requestAnimationFrame(() => {

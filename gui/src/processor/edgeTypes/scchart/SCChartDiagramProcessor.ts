@@ -55,10 +55,13 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
     }
 
     private nodeData(img: HTMLImageElement): NodeDataImage {
+        // todo use NodeDataFactory
         return NodeDataFactory.nodeDataImage(
             img.src,
-            img.height,
+            1,
+            1,
             img.width,
+            img.height,
             SimpleNodeStatus.UNDEFINED,
         );
     }

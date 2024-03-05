@@ -9,6 +9,8 @@ export type NodeData =
 
 export interface NodeDataCreate {
     type: "create",
+    x: number,
+    y: number,
 }
 
 export interface NodeDataEditor {
@@ -17,6 +19,8 @@ export interface NodeDataEditor {
     label: string,
     language: LanguageIndicator,
     status: SimpleNodeStatus,
+    x: number,
+    y: number,
     height: number,
     width: number,
 }
@@ -25,6 +29,8 @@ export interface NodeDataFile {
     type: "file",
     fileType: "text/plain" | undefined
     content: string | undefined,
+    x: number,
+    y: number,
     height: number,
     width: number,
 }
@@ -33,6 +39,8 @@ export interface NodeDataImage {
     type: "image",
     content: string | undefined,
     status: SimpleNodeStatus,
+    x: number,
+    y: number,
     height: number,
     width: number,
 }

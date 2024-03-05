@@ -1,5 +1,5 @@
 import { SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
-import { Node, Position } from "reactflow";
+import { Dimensions, Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../../processor/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage, } from "./NodeData";
@@ -39,7 +39,6 @@ export class NodeFactory {
                     undefined,
                     node.position.x,
                     node.position.y,
-                    // todo remove
                     100,
                     100
                 );
@@ -53,8 +52,8 @@ export class NodeFactory {
                 simpleNode.getContent(),
                 simpleNode.getId(),
                 "PlainText",
-                0,
-                0,
+                1,
+                1,
                 simpleNode.getStatus(),
             );
         }
@@ -64,26 +63,28 @@ export class NodeFactory {
             case "create":
                 return NodeFactory.nodeCreate(
                     simpleNode.getId(),
-                    0,
-                    0,
+                    nodeData.x,
+                    nodeData.y,
                     Position.Left
                 );
             case "editor":
-                return NodeFactory.nodeEditor(
+                return NodeFactory.nodeEditorWithDimensions(
                     simpleNode.getId(),
                     simpleNode.getContent(),
                     nodeData.label,
                     nodeData.language,
-                    0,
-                    0,
+                    nodeData.x,
+                    nodeData.y,
+                    nodeData.width,
+                    nodeData.height,
                     simpleNode.getStatus(),
                 );
             case "image":
                 return NodeFactory.nodeImage(
                     simpleNode.getId(),
                     simpleNode.getContent(),
-                    0,
-                    0,
+                    nodeData.x,
+                    nodeData.y,
                     nodeData.width,
                     nodeData.height,
                 );
@@ -93,8 +94,8 @@ export class NodeFactory {
                     simpleNode.getContent(),
                     // todo
                     undefined,
-                    0,
-                    0,
+                    nodeData.x,
+                    nodeData.y,
                     nodeData.width,
                     nodeData.height,
                 );
@@ -113,7 +114,14 @@ export class NodeFactory {
         return {
             id: id,
             type: "image",
-            data: NodeDataFactory.nodeDataImage(content, height, width, SimpleNodeStatus.UNDEFINED),
+            data: NodeDataFactory.nodeDataImage(
+                content,
+                x,
+                y,
+                width,
+                height,
+                SimpleNodeStatus.UNDEFINED
+            ),
             position: {x: x, y: y},
             width: width,
             height: height,
@@ -130,7 +138,7 @@ export class NodeFactory {
         return {
             id: id,
             type: "create",
-            data: NodeDataFactory.nodeDataCreate(),
+            data: NodeDataFactory.nodeDataCreate(x, y),
             position: {x: x, y: y},
             targetPosition: targetPosition,
             width: 0,
@@ -152,12 +160,52 @@ export class NodeFactory {
         if (content !== undefined) {
             dimensionsForContent = new DimensionsForContent(content);
         }
+        const dimensions: Dimensions = dimensionsForContent.dimension();
         return {
-            ...dimensionsForContent.dimension(),
+            ...dimensions,
             id: id,
             type: "editor",
-            data: NodeDataFactory.nodeDataEditor(content, label, language, status),
+            data: NodeDataFactory.nodeDataEditor(
+                content,
+                label,
+                language,
+                status,
+                x,
+                y,
+                dimensions.width,
+                dimensions.height
+            ),
             position: {x: x, y: y},
+        };
+    }
+
+    static nodeEditorWithDimensions(
+        id: string,
+        content: string | undefined,
+        label: string,
+        language: LanguageIndicator,
+        x: number,
+        y: number,
+        width: number,
+        height: number,
+        status: SimpleNodeStatus,
+    ): Node<NodeDataEditor> {
+        return {
+            id: id,
+            type: "editor",
+            data: NodeDataFactory.nodeDataEditor(
+                content,
+                label,
+                language,
+                status,
+                x,
+                y,
+                width,
+                height,
+            ),
+            position: {x: x, y: y},
+            width: width,
+            height: height,
         };
     }
 
@@ -176,6 +224,8 @@ export class NodeFactory {
             data: NodeDataFactory.nodeDataFile(
                 content,
                 fileType,
+                x,
+                y,
                 height,
                 width,
             ),
