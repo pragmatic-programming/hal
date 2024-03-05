@@ -50,9 +50,9 @@ export class CliqueProcessor extends TransformationProcessor {
         this.executeCliqueReplacement();
     }
 
-    public getSourceNodes(): SimpleNode[] {
+    protected getSourceNodes(): SimpleNode[] {
         const graph = this.getNextClique();
-        return graph.getSimpleNodes().filter(node => node.getOutgoingEdges().length > 0);
+        return graph.getSimpleNodes().filter(node => node.getIncomingEdges().length === 0);
     }
 
     public getTargetNodes(): SimpleNode[] {
