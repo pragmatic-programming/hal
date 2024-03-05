@@ -29,6 +29,7 @@ import { addNodeCreate } from "./flow/addNodeCreate";
 import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
 import { toggleVerboseMode } from "./flow/toggleVerboseMode";
 import { setEdgePriority } from "./flow/setEdgePriority";
+import { toggleHierarchyMode } from "./flow/toggleHierarchyMode";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -74,6 +75,8 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         transformCreateEdge: transformCreateEdge(setState, getState),
         transformCreateNode: transformCreateNode(setState, getState),
         verboseMode: true,
+        toggleHierarchyMode: toggleHierarchyMode(setState),
+        hierarchyMode: false,
     },
     ui: {
         busy: false,

@@ -32,4 +32,6 @@ export interface StateFlow {
     transformCreateEdge: (edgeId: string, edgeDefinition: EdgeDefinition, targetNodeId: string) => void,
     transformCreateNode: (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | null | undefined) => void,
     verboseMode: boolean,
+    toggleHierarchyMode: () => void,
+    hierarchyMode: boolean,
 }
