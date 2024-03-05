@@ -10,6 +10,7 @@ import MenuButtonAddNodeCreate from "./MenuButtonAddNodeCreate";
 import MenuButtonImport from "./MenuButtonImport";
 import MenuButtonExport from "./MenuButtonExport";
 import MenuButtonVerboseMode from "./MenuButtonVerboseMode";
+import MenuCompilations from "./compilations/MenuCompilations";
 
 export const menuWidth: number = 100;
 
@@ -28,7 +29,7 @@ export default function Menu(): React.JSX.Element {
             <MenuDivider/>
             <MenuButtonAddNodeCreate/>
             <MenuDivider/>
-            <MenuButtonPlay/>
+            <MenuCompilations/>
             <MenuButtonImmediatePlay/>
             <MenuDivider/>
             <MenuLayouts/>

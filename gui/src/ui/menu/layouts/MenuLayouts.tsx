@@ -13,7 +13,7 @@ import MenuLayoutsButtonLayout from "./MenuLayoutsButtonLayout";
 import MenuLayoutsButtonEdgePathStyle from "./MenuLayoutsButtonEdgePathStyle";
 import MenuButtonLayout from "../MenuButtonLayout";
 
-const menuExamplesWidth: number = 200;
+const menuLayoutsWidth: number = 200;
 
 export default function MenuLayouts(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.ui.layouts.open);
@@ -28,7 +28,7 @@ export default function MenuLayouts(): React.JSX.Element {
             >
                 <List
                     style={{
-                        width: menuExamplesWidth
+                        width: menuLayoutsWidth
                     }}
                     subheader={
                         <ListSubheader>Layout Settings</ListSubheader>
@@ -54,7 +54,7 @@ export default function MenuLayouts(): React.JSX.Element {
                 </List>
                 <List
                     style={{
-                        width: menuExamplesWidth
+                        width: menuLayoutsWidth
                     }}
                     subheader={
                         <ListSubheader>Edge Settings</ListSubheader>

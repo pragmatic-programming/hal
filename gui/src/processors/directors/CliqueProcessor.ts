@@ -16,8 +16,9 @@
 
 import { IHGraph, SimpleNode, TransformationProcessor, SimpleNodeContent, assert } from "@pragmatic-programming/ihgraph";
 import { Property } from "@pragmatic-programming/kico";
+import { DirectorProcessor } from "./DirectorProcessor";
 
-export class CliqueProcessor extends TransformationProcessor {
+export class CliqueProcessor extends DirectorProcessor {
 
     // The clique that was identified by the CSP. This is used for the replacement.
     public static readonly NEXT_CLIQUE_ORIGIN: Property<IHGraph | null> =

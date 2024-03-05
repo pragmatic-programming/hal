@@ -1,10 +1,10 @@
 import { SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
-import { FlowToIHGraphProcessor } from "../../processor/FlowToIHGraphProcessor";
+import { FlowToIHGraphProcessor } from "../../processors/FlowToIHGraphProcessor";
 import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage, } from "./NodeData";
 import { NodeDataFactory } from "./NodeDataFactory";
-import { DimensionsForContent } from "../../processor/edgeTypes/DimensionsForContent";
+import { DimensionsForContent } from "../../processors/edgeTypes/DimensionsForContent";
 import { NodeTypeIndicator } from "./NodeTypeIndicator";
 
 export class NodeFactory {
