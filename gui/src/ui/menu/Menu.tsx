@@ -1,5 +1,4 @@
 import React from "react";
-import MenuButtonPlay from "./MenuButtonPlay";
 import MenuDivider from "./MenuDivider";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import { bottomHeight } from "../bottom/Bottom";
