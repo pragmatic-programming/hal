@@ -43,8 +43,8 @@ export class ArduinoProcessor extends CliqueProcessor {
                     "Arduino",
                     "C",
                     SimpleNodeStatus.UNDEFINED,
-                    1,
-                    1,
+                    0,
+                    0,
                     300,
                     200
                 )

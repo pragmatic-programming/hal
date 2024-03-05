@@ -52,8 +52,8 @@ export class ExecuteProcessor extends CliqueProcessor {
             "Result",
             "PlainText",
             SimpleNodeStatus.SUCCESS,
-            1,
-            1,
+            0,
+            0,
             300,
             200
         );
