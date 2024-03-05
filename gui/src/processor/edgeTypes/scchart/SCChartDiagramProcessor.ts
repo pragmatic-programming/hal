@@ -58,8 +58,8 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
         // todo use NodeDataFactory
         return NodeDataFactory.nodeDataImage(
             img.src,
-            1,
-            1,
+            0,
+            0,
             img.width,
             img.height,
             SimpleNodeStatus.UNDEFINED,
