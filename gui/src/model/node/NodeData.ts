@@ -6,6 +6,7 @@ export type NodeData =
     | NodeDataEditor
     | NodeDataFile
     | NodeDataImage
+    | NodeDataHierarchy
 
 export interface NodeDataCreate {
     type: "create",
@@ -37,3 +38,8 @@ export interface NodeDataImage {
     width: number,
 }
 
+export interface NodeDataHierarchy {
+    type: "hierarchy",
+    height: number,
+    width: number,
+}

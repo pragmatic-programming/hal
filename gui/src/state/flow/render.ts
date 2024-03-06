@@ -8,6 +8,7 @@ import { StoreApi } from "zustand";
 import { layoutedNodes } from "../layoutedNodes";
 import { layoutOptions } from "../../util";
 import { NodesAndEdges } from "../../model/NodesAndEdges";
+import { IHGraphToFlowProcessor } from "../../processor/IHGraphToFlowProcessor";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string): Promise<void> => {
@@ -22,7 +23,9 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
                 }
             },
         });
+        const induceHierarchy: boolean = getState().flow.hierarchyMode;
         const context: CompilationContext = iHGraphToFlow(ihGraph);
+        context.startEnvironment.setProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY, induceHierarchy);
         await context.compileAsync();
         const nodesAndEdges: NodesAndEdges = context.getResult();
         const reactFlow = {
@@ -42,6 +45,13 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
             ui: {
                 ...getState().ui,
                 busy: false,
+            },
+        });
+        setState({
+            flow: {
+                ...getState().flow,
+                lastRenderGraph: ihGraph,
+                lastFitView: fitView,
             },
         });
     };

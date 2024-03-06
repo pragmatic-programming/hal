@@ -1,4 +1,4 @@
-import { Processor } from "@pragmatic-programming/kico";
+import { Processor, Property } from "@pragmatic-programming/kico";
 import { IHGraph, assert } from "@pragmatic-programming/ihgraph";
 import { Edge, Node } from "reactflow";
 import { NodesAndEdges } from "../model/NodesAndEdges";
@@ -7,6 +7,10 @@ import { EdgeFactory } from "../model/edge/EdgeFactory";
 import { edgeTypeIndicators } from "../model/edge/EdgeTypeIndicator";
 
 export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
+
+    public static readonly IHGRAPH_HIERARCHY: Property<boolean> =
+        new Property<boolean>("HAL.ihgraph.hierarchy", () => false);
+
     getId() {
         return "hal.flow.to";
     }
@@ -16,22 +20,39 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
     }
 
     process(): void {
-        const ihGraph: IHGraph = this.getModel();
+        const ihGraph: IHGraph = this.getProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY) ? 
+            this.getModel().getInducedHierarchy() :
+            this.getModel();
+        console.debug(ihGraph.toStringDebugGraph());
         assert(ihGraph.consistency());
+
+        const flowGraph: NodesAndEdges = this.createFlow(ihGraph);
+        this.setModel(flowGraph);
+
+        console.debug(flowGraph);
+    }
+
+    protected createFlow(ihGraph: IHGraph): NodesAndEdges {
         const nodes: Node[] = [];
-        for (const sourceNode of ihGraph.getSimpleNodes()) {
-            nodes.push(NodeFactory.fromSourceNode(sourceNode));
+        const edges: Edge[] = [];       
+        
+        for (const simpleNode of ihGraph.getSimpleNodes()) {
+            nodes.push(NodeFactory.fromSourceNode(simpleNode));
         }
-        const edges: Edge[] = [];
+        for (const graphNode of ihGraph.getGraphNodes()) {
+            nodes.push(NodeFactory.fromGraphNode(graphNode));
+            const subFlowGraph: NodesAndEdges = this.createFlow(graphNode);
+            subFlowGraph.nodes.forEach(node => node.parentNode = graphNode.getId());
+            nodes.push(...subFlowGraph.nodes);
+            edges.push(...subFlowGraph.edges);
+        }
         for (const edge of ihGraph.getEdges()) {
             edges.push(EdgeFactory.fromTransformationEdge(edge));
         }
         // TODO: workaround. it should be possible to provide an unknown type and the view then just shows the prototype.
         edges.forEach(edge => { if (edgeTypeIndicators.find(edgeTypeIndicator => edgeTypeIndicator === edge.type) === undefined) { edge.type = "prototype"; } });
-        this.setModel({nodes, edges});
 
-        console.debug(ihGraph.toStringDebugGraph());
-        console.debug({nodes, edges});
+        return {nodes, edges};
     }
 
 }

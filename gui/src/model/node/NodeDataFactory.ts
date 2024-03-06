@@ -1,4 +1,4 @@
-import { NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage } from "./NodeData";
+import { NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataHierarchy, NodeDataImage } from "./NodeData";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 
@@ -54,6 +54,17 @@ export class NodeDataFactory {
             type: "file",
             content: content,
             fileType: fileType,
+            width: width,
+            height: height,
+        };
+    }
+
+    static nodeDataHierarchy(
+        height: number,
+        width: number,
+    ): NodeDataHierarchy {
+        return {
+            type: "hierarchy",
             width: width,
             height: height,
         };

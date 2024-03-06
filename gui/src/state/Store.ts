@@ -30,6 +30,7 @@ import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
 import { toggleVerboseMode } from "./flow/toggleVerboseMode";
 import { setEdgePriority } from "./flow/setEdgePriority";
 import { toggleHierarchyMode } from "./flow/toggleHierarchyMode";
+import { reRender } from "./flow/reRender";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -75,8 +76,11 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         transformCreateEdge: transformCreateEdge(setState, getState),
         transformCreateNode: transformCreateNode(setState, getState),
         verboseMode: true,
-        toggleHierarchyMode: toggleHierarchyMode(setState),
+        toggleHierarchyMode: toggleHierarchyMode(setState, getState),
         hierarchyMode: false,
+        lastRenderGraph: null,
+        lastFitView: () => { },
+        reRender: reRender(getState),
     },
     ui: {
         busy: false,

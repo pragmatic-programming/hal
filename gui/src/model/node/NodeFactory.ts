@@ -1,8 +1,8 @@
-import { SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
+import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 import { Node, Position } from "reactflow";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { FlowToIHGraphProcessor } from "../../processor/FlowToIHGraphProcessor";
-import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage, } from "./NodeData";
+import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataHierarchy, NodeDataImage, } from "./NodeData";
 import { NodeDataFactory } from "./NodeDataFactory";
 import { DimensionsForContent } from "../../processor/edgeTypes/DimensionsForContent";
 import { NodeTypeIndicator } from "./NodeTypeIndicator";
@@ -43,6 +43,8 @@ export class NodeFactory {
                     100,
                     100
                 );
+            case "hierarchy":
+                throw new Error("Creation nodes cannot be of type hierarchy!");
         }
     }
 
@@ -98,7 +100,17 @@ export class NodeFactory {
                     nodeData.width,
                     nodeData.height,
                 );
+            case "hierarchy":
+                throw new Error("Simple nodes cannot be of type hierarchy!");
         }
+    }
+
+    static fromGraphNode(graphNode: IHGraph): Node<NodeData> {
+        return NodeFactory.nodeHierarchy(
+            graphNode.getId(),
+            200,
+            100,
+        );
     }
 
 
@@ -161,7 +173,7 @@ export class NodeFactory {
         };
     }
 
-    private static nodeFile(
+    static nodeFile(
         id: string,
         content: string | undefined,
         fileType: "text/plain" | undefined,
@@ -179,6 +191,23 @@ export class NodeFactory {
                 height,
                 width,
             ),
+            position: {x: x, y: y},
+            width: width,
+            height: height,
+        };
+    }
+
+    static nodeHierarchy(
+        id: string,
+        x: number,
+        y: number,
+    ): Node<NodeDataHierarchy> {
+        const width = 400;
+        const height = 200;
+        return {
+            id: id,
+            type: "hierarchy",
+            data: NodeDataFactory.nodeDataHierarchy(height, width),
             position: {x: x, y: y},
             width: width,
             height: height,

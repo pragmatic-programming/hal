@@ -49,7 +49,7 @@ export function layoutOptions(layoutOptionType: LayoutOptionTypeIndicator): Layo
         "org.eclipse.elk.layered.wrapping.correctionFactor": "1.9",
         // "org.eclipse.elk.layered.compaction.postCompaction.strategy": "LEFT",
         // "org.eclipse.elk.layered.compaction.postCompaction.constraints": "QUADRATIC",
-        "org.eclipse.elk.alignment": "RIGHT"
+        "org.eclipse.elk.alignment": "RIGHT",
     };
     switch (layoutOptionType) {
         case "horizontal":
