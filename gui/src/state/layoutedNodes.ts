@@ -72,7 +72,6 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
         throw new Error("Children are undefined");
     }
     const nodes: Node[] = applyLayoutData(root, nodeMap, layoutOptions);
-    // const nodes: Node[] = [];
 
     return nodes;
 }
