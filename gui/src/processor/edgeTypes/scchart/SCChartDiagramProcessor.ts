@@ -1,9 +1,9 @@
-import { NodeDataImage } from "../../../model/node/NodeData";
-import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
-import { SCChartDiagram } from "./SCChartDiagram";
-import { NodeDataFactory } from "../../../model/node/NodeDataFactory";
-import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
-import { CliqueProcessor } from "../../CliqueProcessor";
+import {NodeDataImage} from "../../../model/node/NodeData";
+import {FlowToIHGraphProcessor} from "../../FlowToIHGraphProcessor";
+import {SCChartDiagram} from "./SCChartDiagram";
+import {NodeDataFactory} from "../../../model/node/NodeDataFactory";
+import {SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
+import {CliqueProcessor} from "../../CliqueProcessor";
 
 export class SCChartDiagramProcessor extends CliqueProcessor {
 
@@ -55,11 +55,9 @@ export class SCChartDiagramProcessor extends CliqueProcessor {
     }
 
     private nodeData(img: HTMLImageElement): NodeDataImage {
-        // todo use NodeDataFactory
         return NodeDataFactory.nodeDataImage(
             img.src,
-            0,
-            0,
+            undefined,
             img.width,
             img.height,
             SimpleNodeStatus.UNDEFINED,

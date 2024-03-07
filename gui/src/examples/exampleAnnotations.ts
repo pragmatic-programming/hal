@@ -4,10 +4,10 @@ import {
     SimpleNodeStatus,
     SourceNodeInterface
 } from "@pragmatic-programming/ihgraph";
-import { AnnotationWithNodeData } from "./AnnotationWithNodeData";
-import { LanguageIndicator } from "../model/node/LanguageIndicator";
-import { NodeDataEditor, NodeDataFile, NodeDataImage } from "../model/node/NodeData";
-import { NodeDataFactory } from "../model/node/NodeDataFactory";
+import {AnnotationWithNodeData} from "./AnnotationWithNodeData";
+import {LanguageIndicator} from "../model/node/LanguageIndicator";
+import {NodeDataEditor, NodeDataFile, NodeDataImage} from "../model/node/NodeData";
+import {NodeDataFactory} from "../model/node/NodeDataFactory";
 
 export function createFileNodeData(): AnnotationWithNodeData<NodeDataFile> {
     return {
@@ -16,8 +16,7 @@ export function createFileNodeData(): AnnotationWithNodeData<NodeDataFile> {
             data: NodeDataFactory.nodeDataFile(
                 "",
                 undefined,
-                0,
-                0,
+                undefined,
                 300,
                 200,
             )
@@ -35,8 +34,7 @@ export function createEditorNodeData(language: LanguageIndicator = "PlainText", 
                 label,
                 language,
                 SimpleNodeStatus.UNDEFINED,
-                0,
-                0,
+                undefined,
                 300,
                 200,
             ),
@@ -51,8 +49,7 @@ export function createImageNodeData(): AnnotationWithNodeData<NodeDataImage> {
             // todo use NodeDataFactory
             data: NodeDataFactory.nodeDataImage(
                 "",
-                0,
-                0,
+                undefined,
                 300,
                 200,
                 SimpleNodeStatus.UNDEFINED,

@@ -1,17 +1,16 @@
-import { NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage } from "./NodeData";
-import { LanguageIndicator } from "./LanguageIndicator";
-import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
+import {NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage} from "./NodeData";
+import {LanguageIndicator} from "./LanguageIndicator";
+import {SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
+import {XYPosition} from "reactflow";
 
 export class NodeDataFactory {
 
     static nodeDataCreate(
-        x: number,
-        y: number,
+        position: XYPosition | undefined
     ): NodeDataCreate {
         return {
             type: "create",
-            x: x,
-            y: y,
+            position: position,
         };
     }
 
@@ -20,8 +19,7 @@ export class NodeDataFactory {
         label: string,
         language: LanguageIndicator,
         status: SimpleNodeStatus,
-        x: number,
-        y: number,
+        position: XYPosition | undefined,
         width: number,
         height: number,
     ): NodeDataEditor {
@@ -31,8 +29,7 @@ export class NodeDataFactory {
             language: language,
             status: status,
             type: "editor",
-            x: x,
-            y: y,
+            position: position,
             width: width,
             height: height,
         };
@@ -40,8 +37,7 @@ export class NodeDataFactory {
 
     static nodeDataImage(
         content: string | undefined,
-        x: number,
-        y: number,
+        position: XYPosition | undefined,
         width: number,
         height: number,
         status: SimpleNodeStatus,
@@ -50,8 +46,7 @@ export class NodeDataFactory {
             type: "image",
             content: content,
             status: status,
-            x: x,
-            y: y,
+            position: position,
             width: width,
             height: height,
         };
@@ -60,8 +55,7 @@ export class NodeDataFactory {
     static nodeDataFile(
         content: string | undefined,
         fileType: "text/plain" | undefined,
-        x: number,
-        y: number,
+        position: XYPosition | undefined,
         height: number,
         width: number,
     ): NodeDataFile {
@@ -69,8 +63,7 @@ export class NodeDataFactory {
             type: "file",
             content: content,
             fileType: fileType,
-            x: x,
-            y: y,
+            position: position,
             width: width,
             height: height,
         };

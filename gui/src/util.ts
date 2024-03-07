@@ -1,6 +1,7 @@
-import { Theme } from "@mui/material";
-import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
-import { LayoutOptions } from "elkjs/lib/elk-api";
+import {Theme} from "@mui/material";
+import {SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
+import {LayoutOptions} from "elkjs/lib/elk-api";
+import {XYPosition} from "reactflow";
 
 export function firstCharUpperCase(value: string): string {
     return value.charAt(0).toUpperCase() + value.slice(1);
@@ -76,5 +77,12 @@ export function layoutOptions(layoutOptionType: LayoutOptionTypeIndicator): Layo
                 "elk.algorithm": "org.eclipse.elk.force",
                 "elk.direction": "DOWN"
             };
+    }
+}
+
+export function originOfCoordinates(): XYPosition {
+    return {
+        x: 0,
+        y: 0,
     }
 }

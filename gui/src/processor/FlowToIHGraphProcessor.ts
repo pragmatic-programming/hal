@@ -34,8 +34,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             const sourceNode: SimpleNode = graph.createSimpleNode(node.id);
             const data: NodeData = {
                 ...node.data,
-                x: node.position.x,
-                y: node.position.y,
+                position: node.position,
             };
             if (data.type !== "create") {
                 data.width = node.width;
