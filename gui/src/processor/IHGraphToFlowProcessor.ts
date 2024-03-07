@@ -54,7 +54,6 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
             }
             nodes.push(hierarchyNode);
             const subFlowGraph: NodesAndEdges = this.createFlow(graphNode, hierarchyNode);
-            // subFlowGraph.nodes.forEach(node => node.parentNode = graphNode.getId());
             nodes.push(...subFlowGraph.nodes);
             edges.push(...subFlowGraph.edges);
         }
