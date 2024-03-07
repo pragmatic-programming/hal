@@ -2,7 +2,7 @@ import { NodeDataEditor } from "../../../model/node/NodeData";
 import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
 import { SCChartCode } from "./SCChartCode";
 import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
-import { CliqueProcessor } from "../../CliqueProcessor";
+import { CliqueProcessor } from "../../directors/CliqueProcessor";
 
 export class SCChartCodeProcessor extends CliqueProcessor {
 

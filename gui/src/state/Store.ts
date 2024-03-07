@@ -21,6 +21,7 @@ import { runImmediate } from "./compilation/runImmediate";
 import { transformCreateEdge } from "./flow/transformCreateEdge";
 import { Position } from "@reactflow/core";
 import { nextNodeId } from "./flow/nextNodeId";
+import { compilationsOpenToggle } from "./ui/compilations/compilationsOpenToggle";
 import { layoutsOpenToggle } from "./ui/layout/layoutsOpenToggle";
 import { NodeFactory } from "../model/node/NodeFactory";
 import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
@@ -29,10 +30,14 @@ import { addNodeCreate } from "./flow/addNodeCreate";
 import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
 import { toggleVerboseMode } from "./flow/toggleVerboseMode";
 import { setEdgePriority } from "./flow/setEdgePriority";
+import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
+import { setDirector } from "./compilation/setDirector";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
         context: new CompilationContext(new System("empty", [])),
+        director: HALGraphProcessor,
+        setDirector: setDirector(setState, getState),
         run: run(setState, getState),
     },
     immediateCompilation: {
@@ -77,6 +82,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     },
     ui: {
         busy: false,
+        compilations: {
+            open: false,
+            compilationsOpenToggle: compilationsOpenToggle(setState),
+        },
         mode: "light",
         message: {
             content: undefined,

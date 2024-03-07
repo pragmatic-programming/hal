@@ -1,4 +1,4 @@
-import { DimensionsForContent } from "../../../processor/edgeTypes/DimensionsForContent";
+import { DimensionsForContent } from "../../../processors/edgeTypes/DimensionsForContent";
 import { Dimensions } from "reactflow";
 
 test("minimum", () => {
