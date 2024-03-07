@@ -5,15 +5,16 @@ import { DirectorProcessor } from "../../processors/directors/DirectorProcessor"
 
 export function setDirector(setState: StoreApi<State>["setState"], getState: () => State) {
     return (director: typeof DirectorProcessor): void => {
+        const state: State = getState();
         setState({
             compilation: {
-                ...getState().compilation,
+                ...state.compilation,
                 director: director,
             },
             ui: {
-                ...getState().ui,
+                ...state.ui,
                 compilations: {
-                    ...getState().ui.compilations,
+                    ...state.ui.compilations,
                     open: false,
                 }
             },
