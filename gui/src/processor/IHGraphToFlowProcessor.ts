@@ -26,23 +26,35 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
         console.debug(ihGraph.toStringDebugGraph());
         assert(ihGraph.consistency());
 
-        const flowGraph: NodesAndEdges = this.createFlow(ihGraph);
+        const flowGraph: NodesAndEdges = this.createFlow(ihGraph, null);
         this.setModel(flowGraph);
 
         console.debug(flowGraph);
     }
 
-    protected createFlow(ihGraph: IHGraph): NodesAndEdges {
+    protected createFlow(ihGraph: IHGraph, parent: Node | null): NodesAndEdges {
         const nodes: Node[] = [];
         const edges: Edge[] = [];       
         
         for (const simpleNode of ihGraph.getSimpleNodes()) {
-            nodes.push(NodeFactory.fromSourceNode(simpleNode));
+            const node: Node = NodeFactory.fromSourceNode(simpleNode)
+            if (parent) {
+                node.parentNode = parent.id;
+            }
+            nodes.push(node);
         }
         for (const graphNode of ihGraph.getGraphNodes()) {
-            nodes.push(NodeFactory.fromGraphNode(graphNode));
-            const subFlowGraph: NodesAndEdges = this.createFlow(graphNode);
-            subFlowGraph.nodes.forEach(node => node.parentNode = graphNode.getId());
+            // Workaround. The induces hierarchy currently also clones the ids, so that they are not unique. 
+            // Therefore, the ids are re-set to the hash code of the graph node, which is unique.
+            // TODO: Remove after upgrading to ihgraph rc4.
+            graphNode.setId("id" + graphNode.hashCode());
+            const hierarchyNode: Node = NodeFactory.fromGraphNode(graphNode);
+            if (parent) {
+                hierarchyNode.parentNode = parent.id;
+            }
+            nodes.push(hierarchyNode);
+            const subFlowGraph: NodesAndEdges = this.createFlow(graphNode, hierarchyNode);
+            // subFlowGraph.nodes.forEach(node => node.parentNode = graphNode.getId());
             nodes.push(...subFlowGraph.nodes);
             edges.push(...subFlowGraph.edges);
         }

@@ -18,6 +18,8 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
     const children: Node[] = [];
     const rootElkNodes: ElkNode[] = [];
 
+    // Create elk nodes for each node and store them in a map.
+    // Nodes that appear to be in a hierarchy are stored separately to allow post processing.
     for (const node of nodesAndEdges.nodes) {
         const elkNode = {
             id: node.id,
@@ -34,6 +36,8 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
         }
     }
 
+    // Go through all nodes that are included in a hierarchy and and add the correct parent node id.
+    // Also propagate the layout options to the nested hierarchy nodes as elk options only work for the current hierarchy level.
     for (const child of children) {
         const elkNode = elkNodeMap.get(child)!;
         const parentElkNode = elkNodeMap.get(nodeMap.get(child.parentNode!)!);
@@ -47,6 +51,7 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
         parentElkNode.layoutOptions = layoutOptions;
     }
 
+    // Create the elk root node.
     const graph: ElkNode = {
         id: "root",
         layoutOptions: layoutOptions,
@@ -58,15 +63,16 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
         })),
     };
 
-
+    // Do the actual layout.
     console.debug(graph);
     const root: ElkNode = await elk.layout(graph);
 
+    // Apply the node position and sizes to the flow graph.
     if (!root.children) {
         throw new Error("Children are undefined");
     }
-
     const nodes: Node[] = applyLayoutData(root, nodeMap, layoutOptions);
+    // const nodes: Node[] = [];
 
     return nodes;
 }
