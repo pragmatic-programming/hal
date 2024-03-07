@@ -17,8 +17,8 @@
 import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
 import { testGraphSequence } from "./DemoGraphs";
-import { SequenceProcessor } from "../processor/SequenceProcessor";
-import { NextCliquePreProcessor } from "../processor/NextCliquePreProcessor";
+import { SequenceProcessor } from "../processors/compilationUnits/SequenceProcessor";
+import { NextCliquePreProcessor } from "../processors/directors/NextCliquePreProcessor";
 
 test("processSequence", () => {
     const ihGraph = testGraphSequence();

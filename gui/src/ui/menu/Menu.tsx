@@ -1,5 +1,4 @@
 import React from "react";
-import MenuButtonPlay from "./MenuButtonPlay";
 import MenuDivider from "./MenuDivider";
 import { BoxBackgroundMain } from "../util/BoxBackgroundMain";
 import { bottomHeight } from "../bottom/Bottom";
@@ -11,6 +10,7 @@ import MenuButtonImport from "./MenuButtonImport";
 import MenuButtonExport from "./MenuButtonExport";
 import MenuButtonVerboseMode from "./MenuButtonVerboseMode";
 import MenuButtonHierarchyMode from "./MenuButtonHierarchyMode";
+import MenuCompilations from "./compilations/MenuCompilations";
 
 export const menuWidth: number = 100;
 
@@ -29,7 +29,7 @@ export default function Menu(): React.JSX.Element {
             <MenuDivider/>
             <MenuButtonAddNodeCreate/>
             <MenuDivider/>
-            <MenuButtonPlay/>
+            <MenuCompilations/>
             <MenuButtonImmediatePlay/>
             <MenuDivider/>
             <MenuButtonHierarchyMode/>

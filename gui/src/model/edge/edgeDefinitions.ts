@@ -8,17 +8,17 @@ import HardwareIcon from "@mui/icons-material/Hardware";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
-import { ExecuteProcessor } from "../../processor/edgeTypes/execute/ExecuteProcessor";
-import { SCChartDiagramProcessor } from "../../processor/edgeTypes/scchart/SCChartDiagramProcessor";
-import { TestProcessor } from "../../processor/edgeTypes/TestProcessor";
-import { CreateProcessor } from "../../processor/edgeTypes/CreateProcessor";
-import { SCChartCodeProcessor } from "../../processor/edgeTypes/scchart/SCChartCodeProcessor";
+import { ExecuteProcessor } from "../../processors/edgeTypes/execute/ExecuteProcessor";
+import { SCChartDiagramProcessor } from "../../processors/edgeTypes/scchart/SCChartDiagramProcessor";
+import { TestProcessor } from "../../processors/edgeTypes/TestProcessor";
+import { CreateProcessor } from "../../processors/edgeTypes/CreateProcessor";
+import { SCChartCodeProcessor } from "../../processors/edgeTypes/scchart/SCChartCodeProcessor";
 import EngineeringIcon from "@mui/icons-material/Engineering";
-import { TranspileProcessor } from "../../processor/edgeTypes/transpile/TranspileProcessor";
+import { TranspileProcessor } from "../../processors/edgeTypes/transpile/TranspileProcessor";
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
-import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
-import { SequenceProcessor } from "../../processor/edgeTypes/SequenceProcessor";
-import { UnknownProcessor } from "../../processor/edgeTypes/UnknownProcessor";
+import { ArduinoProcessor } from "../../processors/edgeTypes/ArduinoProcessor";
+import { SequenceProcessor } from "../../processors/edgeTypes/SequenceProcessor";
+import { UnknownProcessor } from "../../processors/edgeTypes/UnknownProcessor";
 
 // new edge (step 2): add a new edge definition here
 export const edgeDefinitionPrototype: EdgeDefinition = {

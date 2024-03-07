@@ -3,7 +3,7 @@ import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { FlowToIHGraphProcessor } from "./FlowToIHGraphProcessor";
 import { IHGraphToFlowProcessor } from "./IHGraphToFlowProcessor";
 import { StateFlow } from "../state/flow/StateFlow";
-import { HALGraphProcessor } from "./HALGraphProcessor";
+import { HALGraphProcessor } from "./directors/HALGraphProcessor";
 
 
 export function ihGraphToHalGraph(ihgraph: IHGraph): CompilationContext {

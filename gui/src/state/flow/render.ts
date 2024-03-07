@@ -2,13 +2,13 @@ import { State } from "../State";
 import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { FitViewOptions } from "reactflow";
 import { CompilationContext } from "@pragmatic-programming/kico";
-import { iHGraphToFlow } from "../../processor/compilationContexts";
+import { iHGraphToFlow } from "../../processors/compilationContexts";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 import { layoutedNodes } from "../layoutedNodes";
 import { layoutOptions } from "../../util";
 import { NodesAndEdges } from "../../model/NodesAndEdges";
-import { IHGraphToFlowProcessor } from "../../processor/IHGraphToFlowProcessor";
+import { IHGraphToFlowProcessor } from "../../processors/IHGraphToFlowProcessor";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string): Promise<void> => {
