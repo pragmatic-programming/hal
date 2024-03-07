@@ -1,0 +1,81 @@
+{
+  "_objectId": "0x0000d190",
+  "annotations": {},
+  "nodes": [
+    {
+      "_objectId": "0x0000d191",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "x = 1\nif x == 1:\n# indented four spaces\n    print(\"x is 1.\")",
+            "label": "Source",
+            "language": "Python",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 12,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Source",
+      "content": "x = 1\nif x == 1:\n# indented four spaces\n    print(\"x is 1.\")"
+    },
+    {
+      "_objectId": "0x0000d192",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "label": "Result",
+            "language": "PlainText",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 512,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Result",
+      "content": ""
+    }
+  ],
+  "edgeTypes": [
+    {
+      "_objectId": "0x0000d193",
+      "annotations": {},
+      "id": "execute",
+      "priority": 8,
+      "immediate": false
+    }
+  ],
+  "edges": [
+    {
+      "_objectId": "0x0000d194",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 8,
+            "immediate": false
+          }
+        }
+      },
+      "edgeType": "execute",
+      "sourceNode": "Source",
+      "targetNode": "Result"
+    }
+  ]
+}
