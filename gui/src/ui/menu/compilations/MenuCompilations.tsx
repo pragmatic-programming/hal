@@ -11,12 +11,15 @@ import { Director } from "../../../processors/directors/Director";
 import { directors } from "../../../processors/directors/directors";
 import { MenuCompilationsDirectorButton } from "./MenuCompilationsDirectorButton";
 import MenuButtonPlay from "../MenuButtonPlay";
+import MenuCompilationsOptionButton from "./MenuCompilationsOptionButton";
 
 const menuCompilationsWidth: number = 350;
 
 export default function MenuCompilations(): React.JSX.Element {
     const open: boolean = useStore((state: State) => state.ui.compilations.open);
     const menuOpenToggle = useStore((state: State) => state.ui.compilations.compilationsOpenToggle);
+    const showHALProcessor: boolean = useStore((state: State) => state.compilation.options.showHALProcessor);
+    const toggleShowHALProcessor = useStore((state: State) => state.compilation.options.toggleShowHALProcessor);
     return (
         <>
             <MenuButtonPlay/>
@@ -43,6 +46,21 @@ export default function MenuCompilations(): React.JSX.Element {
                             icon={director.icon}
                           />
                         )}
+                </List>
+                <List
+                    style={{
+                        width: menuCompilationsWidth
+                    }}
+                    subheader={
+                        <ListSubheader>Compilation Options</ListSubheader>
+                    }
+                >
+                    <Divider/>
+                    <MenuCompilationsOptionButton
+                        on={showHALProcessor}
+                        onClick={toggleShowHALProcessor}
+                        optionName={"Show HAL processor"}
+                    />
                 </List>
             </Drawer>
         </>

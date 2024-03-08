@@ -33,6 +33,7 @@ import {originOfCoordinates} from "../util";
 import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
 import { setDirector } from "./compilation/setDirector";
 import { compilationsOpenToggle } from "./ui/compilations/compilationsOpenToggle";
+import { toggleShowHALProcessor } from "./compilation/options/toggleShowHALProcessor";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -40,6 +41,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         director: HALGraphProcessor,
         setDirector: setDirector(setState, getState),
         run: run(setState, getState),
+        options: {
+            showHALProcessor: false,
+            toggleShowHALProcessor: toggleShowHALProcessor(setState, getState),
+        }
     },
     immediateCompilation: {
         context: new CompilationContext(new System("empty", [])),
