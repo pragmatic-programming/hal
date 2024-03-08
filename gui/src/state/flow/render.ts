@@ -45,7 +45,6 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
             ...nodesAndEdges,
         };
         // layout graph
-        // todo
         if (isLayoutNecessary(nodesAndEdges)) {
             flow.nodes = await layoutedNodes(flow, layoutOptions(getState().flow.layoutOption));
         }
