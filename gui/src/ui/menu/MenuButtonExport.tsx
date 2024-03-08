@@ -3,7 +3,7 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import TooltipIconButton from "../util/TooltipIconButton";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import { flowToIHGraph } from "../../processor/compilationContexts";
+import { flowToIHGraph } from "../../processors/compilationContexts";
 import { StateFlow } from "../../state/flow/StateFlow";
 import MenuButtonBox from "./MenuButtonBox";
 import { CompilationContext } from "@pragmatic-programming/kico";

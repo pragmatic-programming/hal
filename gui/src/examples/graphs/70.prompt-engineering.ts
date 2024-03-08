@@ -1,21 +1,21 @@
 import * as ihgraph from "@pragmatic-programming/ihgraph";
-import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
+import { createFileNodeData, createEditorNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsPromptEngineering(): ihgraph.IHGraphFactoryInterface {
     return sanitizeDataAnnotations({
         annotations: {},
         nodes: [
             {
-                annotations: createNodeData(),
+                annotations: createEditorNodeData(),
                 id: "Prompt",
-                content: 
+                content:
 `Create an SCChart with 3 states red, greed, and blue 
 and transition every 3 seconds.`
             },
             {
-                annotations: createNodeData(),
+                annotations: createEditorNodeData(),
                 id: "Precursor",
-                content: 
+                content:
 `I will give you a description of the SCCharts language.
         
 **Key Concepts:**
@@ -59,12 +59,12 @@ and transition every 3 seconds.`
 - To wait a specific amount of time, declare a tick or second input variable (e.g., 'input bool tick') and use count delay feature to wait to specify the amount (e.g., if 3 tick go to <state>). `
             },
             {
-                annotations: createNodeData("PlainText", "file"),
+                annotations: createFileNodeData(),
                 id: "Key",
                 content: ""
             },
             {
-                annotations: createNodeData(),
+                annotations: createEditorNodeData(),
                 id: "Result",
                 content: ""
             }

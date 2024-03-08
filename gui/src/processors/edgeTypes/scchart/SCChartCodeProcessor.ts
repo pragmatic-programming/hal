@@ -1,8 +1,8 @@
-import { NodeDataEditor } from "../../../model/node/NodeData";
-import { FlowToIHGraphProcessor } from "../../FlowToIHGraphProcessor";
-import { SCChartCode } from "./SCChartCode";
-import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
-import { CliqueProcessor } from "../../CliqueProcessor";
+import {FlowToIHGraphProcessor} from "../../FlowToIHGraphProcessor";
+import {SCChartCode} from "./SCChartCode";
+import {IHGraph, SimpleNode, SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
+import {NodeDataFactory} from "../../../model/node/NodeDataFactory";
+import { CliqueProcessor } from "../../directors/CliqueProcessor";
 
 export class SCChartCodeProcessor extends CliqueProcessor {
 
@@ -29,7 +29,15 @@ export class SCChartCodeProcessor extends CliqueProcessor {
             const code: string = await scChartCode.code();
             targetNode.createAnnotation(
                 FlowToIHGraphProcessor.ANNOTATION_NODE_DATA,
-                this.nodeData(code)
+                NodeDataFactory.nodeDataEditor(
+                    code,
+                    "Generated Code",
+                    "C",
+                    SimpleNodeStatus.UNDEFINED,
+                    undefined,
+                    0,
+                    0
+                )
             );
             targetNode.setContent(code);
             this.setNewClique(targetGraph);
@@ -38,16 +46,4 @@ export class SCChartCodeProcessor extends CliqueProcessor {
         }
     }
 
-    private nodeData(code: string): NodeDataEditor {
-        // todo use NodeDataFactory
-        return {
-            content: code,
-            language: "C",
-            label: "Generated Code",
-            type: "editor",
-            status: SimpleNodeStatus.UNDEFINED,
-            height: 0,
-            width: 0,
-        };
-    }
 }

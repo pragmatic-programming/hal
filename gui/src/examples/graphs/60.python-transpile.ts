@@ -1,22 +1,22 @@
 import * as ihgraph from "@pragmatic-programming/ihgraph";
-import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
+import { createEditorNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsPythonTranspile(): ihgraph.IHGraphFactoryInterface {
     return sanitizeDataAnnotations({
         annotations: {},
         nodes: [
             {
-                annotations: createNodeData("Python"),
+                annotations: createEditorNodeData("Python"),
                 id: "Python",
                 content: "hello = \"World!\"\nprint(hello)\n"
             },
             {
-                annotations: createNodeData("JavaScript"),
+                annotations: createEditorNodeData("JavaScript"),
                 id: "JavaScript",
                 content: ""
             },
             {
-                annotations: createNodeData(),
+                annotations: createEditorNodeData(),
                 id: "Result",
                 content: ""
             }

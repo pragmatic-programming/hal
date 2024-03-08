@@ -15,8 +15,8 @@
  ********************************************************************************/
 
 import { testGraphSequence } from "./DemoGraphs";
-import { HALGraphProcessor } from "../processor/HALGraphProcessor";
-import { loadDefaultTransformationConfiguration } from "../processor/HALFactory";
+import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
+import { loadDefaultTransformationConfiguration } from "../processors/directors/HALFactory";
 import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
 
 test("HALGraphPRocessorTestGraph01", () => {

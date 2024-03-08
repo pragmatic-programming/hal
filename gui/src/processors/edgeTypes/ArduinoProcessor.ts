@@ -4,7 +4,7 @@ import { FlowToIHGraphProcessor } from "../FlowToIHGraphProcessor";
 import { IndentedString } from "./IndentedString";
 import { ArduinoSetupLoop } from "./ArduinoSetupLoop";
 import { NodeDataFactory } from "../../model/node/NodeDataFactory";
-import { CliqueProcessor } from "../CliqueProcessor";
+import { CliqueProcessor } from "../directors/CliqueProcessor";
 
 export class ArduinoProcessor extends CliqueProcessor {
 
@@ -43,6 +43,9 @@ export class ArduinoProcessor extends CliqueProcessor {
                     "Arduino",
                     "C",
                     SimpleNodeStatus.UNDEFINED,
+                    undefined,
+                    300,
+                    200
                 )
             );
             target.setContent(content);
