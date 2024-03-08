@@ -4,7 +4,7 @@ import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ih
 import { RemoteExecution } from "./RemoteExecution";
 import { LocalExecution } from "./LocalExecution";
 import { NodeDataFactory } from "../../../model/node/NodeDataFactory";
-import { CliqueProcessor } from "../../CliqueProcessor";
+import { CliqueProcessor } from "../../directors/CliqueProcessor";
 
 export class ExecuteProcessor extends CliqueProcessor {
 

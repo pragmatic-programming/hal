@@ -14,27 +14,31 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
 
-import { IHGraph }  from "@pragmatic-programming/ihgraph";
-import { SequenceProcessor } from "./SequenceProcessor";
+import { CliqueProcessor } from "../directors/CliqueProcessor";
 
-export type HALGraph = IHGraph;
+export class SequenceProcessor extends CliqueProcessor {
 
-export function createHALGraph(): HALGraph {
-    return new IHGraph();
-}
-
-function getOrCreateEdgeType(graph: HALGraph, id: string, defaultPriority: number) {
-    const edgeType = graph.getEdgeTypeById(id);
-
-    if (edgeType === undefined) {
-        return graph.createEdgeType(id, defaultPriority);
+    public getId(): string {
+        return "SequenceProcessor";
     }
 
-    return edgeType;
-}
+    public getName(): string {
+        return "Sequence";
+    }
 
-export function loadDefaultTransformationConfiguration(graph: HALGraph) {
-    const sequenceEdgeType = getOrCreateEdgeType(graph, "Sequence", 10);
+    public process() {
+        const targetGraph = this.createTargetGraph();
+        const sourceNode = targetGraph.createSimpleNode("Sequence");
+        const cliqueNodes = this.getCliqueNodes();
+        let content = "";
 
-    graph.setEdgeTypeTransformation(sequenceEdgeType, SequenceProcessor);
+        cliqueNodes.forEach(node => {
+            content += node.getContent() + "\n";
+        });
+
+        sourceNode.setContent(content);
+        cliqueNodes[0].cloneAnnotationsTo(sourceNode);
+        this.setNewClique(targetGraph);
+    }
+
 }

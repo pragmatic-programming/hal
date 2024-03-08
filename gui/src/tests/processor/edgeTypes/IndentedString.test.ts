@@ -1,4 +1,4 @@
-import { IndentedString } from "../../../processor/edgeTypes/IndentedString";
+import { IndentedString } from "../../../processors/edgeTypes/IndentedString";
 
 test("empty value", () => {
     //given
