@@ -16,9 +16,9 @@
 
 import { createCompilationContextFromProcessors } from "@pragmatic-programming/kico";
 import { testGraphSequenceExecute } from "./DemoGraphs";
-import { SequenceProcessor } from "../processor/SequenceProcessor";
-import { HALGraphProcessor } from "../processor/HALGraphProcessor";
-import { EvalProcessor } from "../processor/EvalProcessor";
+import { SequenceProcessor } from "../processors/compilationUnits/SequenceProcessor";
+import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
+import { EvalProcessor } from "../processors/compilationUnits/EvalProcessor";
 
 test("HALGraphPRocessorTestGraph01", () => {
     const graph = testGraphSequenceExecute();

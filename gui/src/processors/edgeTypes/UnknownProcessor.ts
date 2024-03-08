@@ -1,4 +1,4 @@
-import { CliqueProcessor } from "../CliqueProcessor";
+import { CliqueProcessor } from "../directors/CliqueProcessor";
 
 export class UnknownProcessor extends CliqueProcessor {
 

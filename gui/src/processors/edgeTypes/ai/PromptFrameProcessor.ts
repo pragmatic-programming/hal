@@ -1,5 +1,5 @@
 import { SimpleNode } from "@pragmatic-programming/ihgraph";
-import { CliqueProcessor } from "../../CliqueProcessor";
+import { CliqueProcessor } from "../../directors/CliqueProcessor";
 
 export class PromptFrameProcessor extends CliqueProcessor {
 

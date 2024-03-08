@@ -30,10 +30,15 @@ import {setEdgePathStyleForEdge} from "./flow/setEdgePathStyleForEdge";
 import {toggleVerboseMode} from "./flow/toggleVerboseMode";
 import {setEdgePriority} from "./flow/setEdgePriority";
 import {originOfCoordinates} from "../util";
+import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
+import { setDirector } from "./compilation/setDirector";
+import { compilationsOpenToggle } from "./ui/compilations/compilationsOpenToggle";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
         context: new CompilationContext(new System("empty", [])),
+        director: HALGraphProcessor,
+        setDirector: setDirector(setState, getState),
         run: run(setState, getState),
     },
     immediateCompilation: {
@@ -82,6 +87,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     },
     ui: {
         busy: false,
+        compilations: {
+            open: false,
+            compilationsOpenToggle: compilationsOpenToggle(setState),
+        },
         mode: "light",
         message: {
             content: undefined,
