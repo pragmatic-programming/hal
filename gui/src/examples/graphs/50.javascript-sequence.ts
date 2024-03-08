@@ -1,21 +1,21 @@
 import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
-import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
+import { createEditorNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsJavaScriptSequence(): IHGraphFactoryInterface {
     return sanitizeDataAnnotations({
         nodes: [
             {
-                annotations: createNodeData("JavaScript"),
+                annotations: createEditorNodeData("JavaScript"),
                 id: "Define",
                 content: "var x = 1;"
             },
             {
-                annotations: createNodeData("JavaScript"),
+                annotations: createEditorNodeData("JavaScript"),
                 id: "Usage",
                 content: "x + 2;"
             },
             {
-                annotations: createNodeData(),
+                annotations: createEditorNodeData(),
                 id: "Result",
                 content: ""
             }

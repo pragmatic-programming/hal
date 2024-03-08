@@ -1,19 +1,61 @@
-import { AnnotationFactoryType, IHGraphFactoryInterface, SourceNodeInterface } from "@pragmatic-programming/ihgraph";
+import {
+    AnnotationFactoryType,
+    IHGraphFactoryInterface,
+    SimpleNodeStatus,
+    SourceNodeInterface
+} from "@pragmatic-programming/ihgraph";
+import {AnnotationWithNodeData} from "./AnnotationWithNodeData";
+import {LanguageIndicator} from "../model/node/LanguageIndicator";
+import {NodeDataEditor, NodeDataFile, NodeDataImage} from "../model/node/NodeData";
+import {NodeDataFactory} from "../model/node/NodeDataFactory";
 
-export function createNodeData(language: string = "PlainText", type: string = "editor", label: string = ""): AnnotationFactoryType {
+export function createFileNodeData(): AnnotationWithNodeData<NodeDataFile> {
     return {
         nodeData: {
-        id: "nodeData",
-        data: {
-            content: "",
-            type: type,
-            label: label,
-            language: language,
-            width: 0,
-            height: 0
-            }
+            id: "nodeData",
+            data: NodeDataFactory.nodeDataFile(
+                "",
+                undefined,
+                undefined,
+                300,
+                200,
+            )
         }
-    }
+    };
+}
+
+
+export function createEditorNodeData(language: LanguageIndicator = "PlainText", label: string = ""): AnnotationWithNodeData<NodeDataEditor> {
+    return {
+        nodeData: {
+            id: "nodeData",
+            data: NodeDataFactory.nodeDataEditor(
+                "",
+                label,
+                language,
+                SimpleNodeStatus.UNDEFINED,
+                undefined,
+                300,
+                200,
+            ),
+        }
+    };
+}
+
+export function createImageNodeData(): AnnotationWithNodeData<NodeDataImage> {
+    return {
+        nodeData: {
+            id: "nodeData",
+            // todo use NodeDataFactory
+            data: NodeDataFactory.nodeDataImage(
+                "",
+                undefined,
+                300,
+                200,
+                SimpleNodeStatus.UNDEFINED,
+            )
+        }
+    };
 }
 
 export function createEdgeData(): AnnotationFactoryType {
@@ -25,7 +67,7 @@ export function createEdgeData(): AnnotationFactoryType {
                 targetHandle: "left",
             }
         }
-    }
+    };
 }
 
 export function sanitizeDataAnnotations(graph: IHGraphFactoryInterface): IHGraphFactoryInterface {

@@ -1,18 +1,18 @@
 import { IHGraphFactoryInterface } from "@pragmatic-programming/ihgraph";
 import { exampleGraphsArduino } from "./10.arduino";
-import { createNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
+import { createEditorNodeData, sanitizeDataAnnotations } from "../exampleAnnotations";
 
 export function exampleGraphsArduinoCompile(): IHGraphFactoryInterface {
     return sanitizeDataAnnotations({
         ...exampleGraphsArduino(),
         nodes: [...exampleGraphsArduino().nodes,
             {
-                annotations: createNodeData("C"),
+                annotations: createEditorNodeData("C"),
                 id: "Result",
                 content: ""
             },
             {
-                annotations: createNodeData("C"),
+                annotations: createEditorNodeData("C"),
                 id: "Deploy",
                 content: ""
             }

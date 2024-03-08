@@ -51,7 +51,10 @@ export class ExecuteProcessor extends CliqueProcessor {
             node.getContent(),
             "Result",
             "PlainText",
-            SimpleNodeStatus.SUCCESS
+            SimpleNodeStatus.SUCCESS,
+            undefined,
+            300,
+            200
         );
         node.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, nodeData);
     }
