@@ -1,0 +1,130 @@
+{
+  "_objectId": "0x0000c9d7",
+  "annotations": {},
+  "nodes": [
+    {
+      "_objectId": "0x0000c9d8",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "var x = 1;",
+            "label": "Define",
+            "language": "JavaScript",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 12,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Define",
+      "content": "var x = 1;"
+    },
+    {
+      "_objectId": "0x0000c9ee",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "x + 2;",
+            "label": "Usage",
+            "language": "JavaScript",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 512,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Usage",
+      "content": "x + 2;"
+    },
+    {
+      "_objectId": "0x0000c9ef",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "label": "Result",
+            "language": "PlainText",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 1012,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Result",
+      "content": ""
+    }
+  ],
+  "edgeTypes": [
+    {
+      "_objectId": "0x0000c9f0",
+      "annotations": {},
+      "id": "sequence",
+      "priority": 8,
+      "immediate": false
+    },
+    {
+      "_objectId": "0x0000c9f1",
+      "annotations": {},
+      "id": "execute",
+      "priority": 2,
+      "immediate": false
+    }
+  ],
+  "edges": [
+    {
+      "_objectId": "0x0000c9f2",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 8,
+            "immediate": false
+          }
+        }
+      },
+      "edgeType": "sequence",
+      "sourceNode": "Define",
+      "targetNode": "Usage"
+    },
+    {
+      "_objectId": "0x0000c9f3",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 2,
+            "immediate": false
+          }
+        }
+      },
+      "edgeType": "execute",
+      "sourceNode": "Usage",
+      "targetNode": "Result"
+    }
+  ]
+}
