@@ -9,12 +9,13 @@ import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 export interface EdgeDefinition {
     type: EdgeTypeIndicator;
     animated: boolean;
+    bidirectional: boolean;
     component: ComponentType<EdgeProps>;
-    icon: SvgIconComponent;
     edgePathStyle: EdgePathStyle;
+    icon: SvgIconComponent;
     immediate: boolean;
-    processor: typeof TransformationProcessor;
     priority: number;
+    processor: typeof TransformationProcessor;
     style?: CSSProperties;
     targetNodeTypes: NodeTypeIndicator[];
 }

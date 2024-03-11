@@ -1,9 +1,9 @@
 {
-  "_objectId": "0x0000cd1d",
+  "_objectId": "0x0000d1b5",
   "annotations": {},
   "nodes": [
     {
-      "_objectId": "0x0000cd33",
+      "_objectId": "0x0000d1b6",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -26,7 +26,7 @@
       "content": "function sum(n) {\n    if (n > 0) {\n        return n + sum(n - 1);\n    } else {\n        return 0;\n    }\n}"
     },
     {
-      "_objectId": "0x0000cd34",
+      "_objectId": "0x0000d1b7",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -37,8 +37,8 @@
             "status": "UNDEFINED",
             "type": "editor",
             "position": {
-              "x": 12,
-              "y": 472
+              "x": 10.91208791208794,
+              "y": 542.7142857142858
             },
             "width": 300,
             "height": 200
@@ -49,7 +49,7 @@
       "content": "sum(3) == 6"
     },
     {
-      "_objectId": "0x0000cd35",
+      "_objectId": "0x0000d1cd",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -72,7 +72,7 @@
       "content": "sum(1)"
     },
     {
-      "_objectId": "0x0000cd36",
+      "_objectId": "0x0000d1ce",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -83,8 +83,8 @@
             "status": "UNDEFINED",
             "type": "editor",
             "position": {
-              "x": 12,
-              "y": 12
+              "x": 6.56043956043959,
+              "y": -57.626373626373635
             },
             "width": 300,
             "height": 200
@@ -95,7 +95,7 @@
       "content": "sum(-1) == -1"
     },
     {
-      "_objectId": "0x0000cd37",
+      "_objectId": "0x0000d1cf",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -118,7 +118,7 @@
       "content": "sum(3) + sum(1);"
     },
     {
-      "_objectId": "0x0000cd38",
+      "_objectId": "0x0000d1d0",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -142,21 +142,21 @@
   ],
   "edgeTypes": [
     {
-      "_objectId": "0x0000cd39",
+      "_objectId": "0x0000d1d1",
       "annotations": {},
       "id": "test",
       "priority": 0,
       "immediate": true
     },
     {
-      "_objectId": "0x0000cd3a",
+      "_objectId": "0x0000d1d2",
       "annotations": {},
       "id": "sequence",
       "priority": 2,
       "immediate": false
     },
     {
-      "_objectId": "0x0000cd3b",
+      "_objectId": "0x0000d1d3",
       "annotations": {},
       "id": "execute",
       "priority": 1,
@@ -165,12 +165,13 @@
   ],
   "edges": [
     {
-      "_objectId": "0x0000cd3c",
+      "_objectId": "0x0000d1d4",
       "annotations": {
         "edgeData": {
           "id": "edgeData",
           "data": {
             "type": "empty",
+            "bidirectional": false,
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",
@@ -184,12 +185,13 @@
       "targetNode": "Function"
     },
     {
-      "_objectId": "0x0000cd52",
+      "_objectId": "0x0000d1d5",
       "annotations": {
         "edgeData": {
           "id": "edgeData",
           "data": {
             "type": "empty",
+            "bidirectional": false,
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",
@@ -203,12 +205,13 @@
       "targetNode": "Function"
     },
     {
-      "_objectId": "0x0000cd53",
+      "_objectId": "0x0000d1d6",
       "annotations": {
         "edgeData": {
           "id": "edgeData",
           "data": {
             "type": "empty",
+            "bidirectional": false,
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",
@@ -222,12 +225,13 @@
       "targetNode": "Function"
     },
     {
-      "_objectId": "0x0000cd54",
+      "_objectId": "0x0000d477",
       "annotations": {
         "edgeData": {
           "id": "edgeData",
           "data": {
             "type": "empty",
+            "bidirectional": false,
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",
@@ -241,12 +245,13 @@
       "targetNode": "Usage"
     },
     {
-      "_objectId": "0x0000cd55",
+      "_objectId": "0x0000d478",
       "annotations": {
         "edgeData": {
           "id": "edgeData",
           "data": {
             "type": "empty",
+            "bidirectional": false,
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",

@@ -11,6 +11,7 @@ export interface EdgeDataCommon {
     edgePathStyle: EdgePathStyle;
     priority: number;
     immediate: boolean;
+    bidirectional: boolean;
 }
 
 export interface EdgeDataEmpty extends EdgeDataCommon {
