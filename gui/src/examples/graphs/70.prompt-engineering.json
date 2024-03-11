@@ -1,0 +1,161 @@
+{
+  "_objectId": "0x0000c576",
+  "annotations": {},
+  "nodes": [
+    {
+      "_objectId": "0x0000c577",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "Create an SCChart with 3 states red, greed, and blue \nand transition every 3 seconds.",
+            "label": "Prompt",
+            "language": "PlainText",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 95,
+              "y": 552
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Prompt",
+      "content": "Create an SCChart with 3 states red, greed, and blue \nand transition every 3 seconds."
+    },
+    {
+      "_objectId": "0x0000c578",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "I will give you a description of the SCCharts language.\n        \n**Key Concepts:**\n\n1. **Synchronous Paradigm:** All computations are viewed as taking place in discrete, logical ticks or steps.\n2. **States and Transitions:** SCCharts have both initial and regular states. Transitions, by default, are not immediate. They are checked one tick after their parent state is entered.\n3. **Count Delays:** Require a condition to be true for several consecutive ticks before the transition fires. An integer in front of the condition indicates how often the trigger has to be true to continue.\n4. **Expressions:** Expression for declared variables follow the C style. Hostcode is embedded with `...`.\n5. **Declarations:** The keywords input or output declare input and output variables for communication with the environment. Local variables omit these keywords.\n6. **Concurrency:** Processes can run concurrently in dedicated regions. They are included in the inner behaviour in superstates.\n7. **Sequential Constructiveness:** Only assign values to variables in one concurrent region. Other regions are then only allowed to read them.\n\n**Grammar:**\n\n<scchart>          ::= 'scchart' <identifier> '{' <declarations> <states> '}'\n<declarations>     ::= ( <declaration> )*\n<declaration>      ::= <type> <identifier> ( '=' <expression> )?\n<type>             ::= 'int' | 'bool' | 'float'\n\n<states>           ::= ( <state> )+\n<state>            ::= ( 'initial' )? ( 'final' )? 'state' <identifier> <state_body> \n<state_body>       ::= ('{' ( <entry_action> | <exit_action> )? <regions> '}')? <transitions>\n<entry_action>     ::= 'entry' 'do' <action>\n<exit_action>      ::= 'exit' 'do' <action>\n<action>           ::= <identifier> '=' <expression> \n<transitions>      ::= ( <transition> )*\n<transition>       ::= ( 'immediate' )? ('if' <condition>)? ('do' <action> )? 'go' 'to' <identifier>\n\n<condition>        ::= <expression>\n<expression>       ::= <identifier> | <literal> | <expression> <operator> <expression> | ...\n<literal>          ::= <number> | 'true' | 'false' | ...\n<operator>         ::= '+' | '-' | '*' | '/' | '&&' | '||' | ...\n\n<identifier>       ::= [a-zA-Z_][a-zA-Z0-9_]*\n<number>           ::= [0-9]+ ('.' [0-9]+)?\n\n<regions>          ::= ( <region> )+ | <states>\n<region>           ::= 'region' <identifier> ':' <states>\n\n**Tipps:**\n- To wait a specific amount of time, declare a tick or second input variable (e.g., 'input bool tick') and use count delay feature to wait to specify the amount (e.g., if 3 tick go to <state>). ",
+            "label": "Precursor",
+            "language": "PlainText",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": -38,
+              "y": 146
+            },
+            "width": 430,
+            "height": 378
+          }
+        }
+      },
+      "id": "Precursor",
+      "content": "I will give you a description of the SCCharts language.\n        \n**Key Concepts:**\n\n1. **Synchronous Paradigm:** All computations are viewed as taking place in discrete, logical ticks or steps.\n2. **States and Transitions:** SCCharts have both initial and regular states. Transitions, by default, are not immediate. They are checked one tick after their parent state is entered.\n3. **Count Delays:** Require a condition to be true for several consecutive ticks before the transition fires. An integer in front of the condition indicates how often the trigger has to be true to continue.\n4. **Expressions:** Expression for declared variables follow the C style. Hostcode is embedded with `...`.\n5. **Declarations:** The keywords input or output declare input and output variables for communication with the environment. Local variables omit these keywords.\n6. **Concurrency:** Processes can run concurrently in dedicated regions. They are included in the inner behaviour in superstates.\n7. **Sequential Constructiveness:** Only assign values to variables in one concurrent region. Other regions are then only allowed to read them.\n\n**Grammar:**\n\n<scchart>          ::= 'scchart' <identifier> '{' <declarations> <states> '}'\n<declarations>     ::= ( <declaration> )*\n<declaration>      ::= <type> <identifier> ( '=' <expression> )?\n<type>             ::= 'int' | 'bool' | 'float'\n\n<states>           ::= ( <state> )+\n<state>            ::= ( 'initial' )? ( 'final' )? 'state' <identifier> <state_body> \n<state_body>       ::= ('{' ( <entry_action> | <exit_action> )? <regions> '}')? <transitions>\n<entry_action>     ::= 'entry' 'do' <action>\n<exit_action>      ::= 'exit' 'do' <action>\n<action>           ::= <identifier> '=' <expression> \n<transitions>      ::= ( <transition> )*\n<transition>       ::= ( 'immediate' )? ('if' <condition>)? ('do' <action> )? 'go' 'to' <identifier>\n\n<condition>        ::= <expression>\n<expression>       ::= <identifier> | <literal> | <expression> <operator> <expression> | ...\n<literal>          ::= <number> | 'true' | 'false' | ...\n<operator>         ::= '+' | '-' | '*' | '/' | '&&' | '||' | ...\n\n<identifier>       ::= [a-zA-Z_][a-zA-Z0-9_]*\n<number>           ::= [0-9]+ ('.' [0-9]+)?\n\n<regions>          ::= ( <region> )+ | <states>\n<region>           ::= 'region' <identifier> ':' <states>\n\n**Tipps:**\n- To wait a specific amount of time, declare a tick or second input variable (e.g., 'input bool tick') and use count delay feature to wait to specify the amount (e.g., if 3 tick go to <state>). "
+    },
+    {
+      "_objectId": "0x0000c579",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "type": "file",
+            "position": {
+              "x": 286,
+              "y": 3
+            },
+            "width": 102,
+            "height": 102
+          }
+        }
+      },
+      "id": "Key",
+      "content": ""
+    },
+    {
+      "_objectId": "0x0000c57a",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "label": "Result",
+            "language": "PlainText",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 642,
+              "y": 233
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Result",
+      "content": ""
+    }
+  ],
+  "edgeTypes": [
+    {
+      "_objectId": "0x0000c57b",
+      "annotations": {},
+      "id": "promptframe",
+      "priority": 16,
+      "immediate": true
+    }
+  ],
+  "edges": [
+    {
+      "_objectId": "0x0000c57c",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 16,
+            "immediate": true
+          }
+        }
+      },
+      "edgeType": "promptframe",
+      "sourceNode": "Prompt",
+      "targetNode": "Result"
+    },
+    {
+      "_objectId": "0x0000c592",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 16,
+            "immediate": true
+          }
+        }
+      },
+      "edgeType": "promptframe",
+      "sourceNode": "Precursor",
+      "targetNode": "Result"
+    },
+    {
+      "_objectId": "0x0000c593",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 16,
+            "immediate": true
+          }
+        }
+      },
+      "edgeType": "promptframe",
+      "sourceNode": "Key",
+      "targetNode": "Result"
+    }
+  ]
+}

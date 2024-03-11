@@ -9,6 +9,11 @@ import { bottomFooterHeight } from "./BottomFooter";
 
 export function BottomBody(): React.JSX.Element {
     const context: CompilationContext = useStore((state: State) => state.compilation.context);
+    const processors: Processor<any, any>[] = [...context.processors];
+    const showHALProcessor: boolean = useStore((state: State) => state.compilation.options.showHALProcessor);
+    if (!showHALProcessor) {
+        processors.shift();
+    }
     return (
         <Stack
             alignItems="center"
@@ -31,7 +36,7 @@ export function BottomBody(): React.JSX.Element {
                     width: "100%",
                 }}
             >
-                {context.processors.map((processor: Processor<any, any>, index: number) => (
+                {processors.map((processor: Processor<any, any>, index: number) => (
                     <BottomBodyStep
                         index={index}
                         key={processor.getId() + index}

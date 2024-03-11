@@ -1,9 +1,9 @@
-import { State } from "../State";
-import { Position } from "reactflow";
-import { StoreApi } from "zustand";
-import { StateFlow } from "./StateFlow";
-import { NodeFactory } from "../../model/node/NodeFactory";
-import { nextNodeId } from "./nextNodeId";
+import {State} from "../State";
+import {Position} from "reactflow";
+import {StoreApi} from "zustand";
+import {StateFlow} from "./StateFlow";
+import {NodeFactory} from "../../model/node/NodeFactory";
+import {nextNodeId} from "./nextNodeId";
 
 
 export function addNodeCreate(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -16,8 +16,8 @@ export function addNodeCreate(setState: StoreApi<State>["setState"], getState: (
                     ...reactFlow.nodes,
                     NodeFactory.nodeCreate(
                         nextNodeId(getState)(),
-                        100,
-                        100,
+                        // todo why 100/100?
+                        {x: 100, y: 100},
                         Position.Left
                     )
                 ]

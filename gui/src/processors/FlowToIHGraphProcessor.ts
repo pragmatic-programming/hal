@@ -30,7 +30,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             }
         }
 
-        const nodeMap: Map<string, IHNode | undefined> = new Map<string, IHNode | undefined>() 
+        const nodeMap: Map<string, IHNode | undefined> = new Map<string, IHNode | undefined>();
         for (let unsafeNode of model.nodes) {
             this.createIHNode(unsafeNode, model.nodes, graph, nodeMap);
         }
@@ -50,8 +50,6 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             const transformationEdge: TransformationEdge = graph.createTransformationEdge(edgeType, source, target);
             transformationEdge.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA, edge.data);
         }
-
-        console.debug(graph.toStringDebugGraph());
         this.setModel(graph);
     }
 
@@ -69,7 +67,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
         if (nodeMap.has(unsafeNode.id)) {
             return;
         }
-        
+
         const node: StrictNode<NodeData> = strictNode(unsafeNode);
         nodeMap.set(node.id, undefined);
 
@@ -101,6 +99,8 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             // because reactFlow has no content field and
             // ihgraph processors don't work with node data annotation
             if (data.type !== "create") {
+                data.width = node.width;
+                data.height = node.height;
                 sourceNode.setContent(data.content ? data.content : "");
             }
         }

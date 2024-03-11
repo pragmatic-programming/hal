@@ -31,8 +31,10 @@ import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
 import { toggleVerboseMode } from "./flow/toggleVerboseMode";
 import { setEdgePriority } from "./flow/setEdgePriority";
 import { toggleHierarchyMode } from "./flow/toggleHierarchyMode";
+import { originOfCoordinates } from "../util";
 import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
 import { setDirector } from "./compilation/setDirector";
+import { toggleShowHALProcessor } from "./compilation/options/toggleShowHALProcessor";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -40,6 +42,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         director: HALGraphProcessor,
         setDirector: setDirector(setState, getState),
         run: run(setState, getState),
+        options: {
+            showHALProcessor: false,
+            toggleShowHALProcessor: toggleShowHALProcessor(setState, getState),
+        }
     },
     immediateCompilation: {
         context: new CompilationContext(new System("empty", [])),
@@ -62,7 +68,11 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         nextNodeId: nextNodeId(getState),
         nodes: [
             // crate first node
-            NodeFactory.nodeCreate("1", 100, 100, Position.Left)
+            NodeFactory.nodeCreate(
+                "1",
+                originOfCoordinates(),
+                Position.Left
+            )
         ],
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),

@@ -9,8 +9,9 @@ import {
 } from "@mui/material";
 import { Director } from "../../../processors/directors/Director";
 import { directors } from "../../../processors/directors/directors";
-import { MenuCompilationsDirectorButton } from "./MenuCompilationsDirectorButton";
+import { MenuCompilationsButtonDirector } from "./MenuCompilationsButtonDirector";
 import MenuButtonPlay from "../MenuButtonPlay";
+import { MenuCompilationsButtonShowHALProcessor } from "./MenuCompilationsButtonShowHALProcessor";
 
 const menuCompilationsWidth: number = 350;
 
@@ -36,13 +37,24 @@ export default function MenuCompilations(): React.JSX.Element {
                     <Divider/>
                     {directors
                         .map((director: Director) =>
-                          <MenuCompilationsDirectorButton 
+                          <MenuCompilationsButtonDirector
                             id={director.id}
                             name={director.name}
                             processor={director.processor}
                             icon={director.icon}
                           />
                         )}
+                </List>
+                <List
+                    style={{
+                        width: menuCompilationsWidth
+                    }}
+                    subheader={
+                        <ListSubheader>Compilation Options</ListSubheader>
+                    }
+                >
+                    <Divider/>
+                    <MenuCompilationsButtonShowHALProcessor/>
                 </List>
             </Drawer>
         </>
