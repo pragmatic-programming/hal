@@ -5,17 +5,23 @@ import HandleTargetLeft from "../handle/HandleTargetLeft";
 import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
 import { NodeDataHierarchy } from "../../../model/node/NodeData";
+import { Theme, useTheme } from "@mui/material";
+import { BoxBackgroundDark } from "../../util/BoxBackgroundDark";
 
 export default function NodeHierarchy(props: NodeProps<NodeDataHierarchy>): React.JSX.Element {
-    let style: CSSProperties = {
-        borderColor: "#000000",
+    const theme: Theme = useTheme();
+    const style: CSSProperties = {
+        borderColor: theme.palette.primary.light,
         borderStyle: "solid",
         borderWidth: 1,
         width: props.data.width,
         height: props.data.height,
+        // set zIndex (lower than the zIndex of edges)
+        // so that edges "inside" of hierarchy nodes are visible
+        zIndex: props.zIndex
     };
     return (
-        <div
+        <BoxBackgroundDark
             style={style}
         >
             <HandleTargetTop
@@ -30,6 +36,6 @@ export default function NodeHierarchy(props: NodeProps<NodeDataHierarchy>): Reac
             <HandleSourceBottom
                 nodeId={props.id}
             />
-        </div>
+        </BoxBackgroundDark>
     );
 }

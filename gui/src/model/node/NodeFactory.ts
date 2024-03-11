@@ -202,8 +202,8 @@ export class NodeFactory {
         x: number,
         y: number,
     ): Node<NodeDataHierarchy> {
-        const width = 400;
-        const height = 200;
+        const width: number = 400;
+        const height: number = 200;
         return {
             id: id,
             type: "hierarchy",
@@ -211,6 +211,8 @@ export class NodeFactory {
             position: {x: x, y: y},
             width: width,
             height: height,
+            // lower zIndex so that edges "inside" of hierarchy nodes are visible
+            zIndex: -1,
         };
     }
 }
