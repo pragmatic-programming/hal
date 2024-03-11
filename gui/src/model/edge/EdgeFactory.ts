@@ -53,10 +53,14 @@ export class EdgeFactory {
         if (!targetId) {
             throw new Error("Returned targetId is undefined");
         }
+        const sourceHandleId: SourceHandleId = "right";
+        const targetHandleId: TargetHandleId = "left";
         return EdgeFactory.fromEdgeType(
             edge.getType(),
             sourceId,
             targetId,
+            sourceHandleId,
+            targetHandleId,
             EdgeFactory.isBidirectional(edge)
         );
     }
@@ -81,10 +85,10 @@ export class EdgeFactory {
         edgeType: EdgeType,
         sourceId: string,
         targetId: string,
+        sourceHandleId: SourceHandleId,
+        targetHandleId: TargetHandleId,
         bidirectional: boolean,
     ): Edge<EdgeData> {
-        const sourceHandleId: SourceHandleId = "right";
-        const targetHandleId: TargetHandleId = "left";
         return EdgeFactory.edge(
             EdgeFactory.edgeId(
                 sourceId,
