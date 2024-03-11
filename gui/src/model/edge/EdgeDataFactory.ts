@@ -3,16 +3,26 @@ import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
 import { SourceHandleId } from "./SourceHandleId";
 import { TargetHandleId } from "./TargetHandleId";
 import { EdgeDefinition } from "./EdgeDefinition";
-import { EdgeType } from "@pragmatic-programming/ihgraph";
 
 export class EdgeDataFactory {
-
     static edgeDataEmpty(
         edgeDataCommon: EdgeDataCommon,
     ): EdgeDataEmpty {
         return {
             type: "empty",
             ...edgeDataCommon,
+        };
+    }
+
+    static default(): EdgeData {
+        return {
+            type: "empty",
+            bidirectional: false,
+            edgePathStyle: "Smooth",
+            immediate: false,
+            priority: 1,
+            sourceHandle: "bottom",
+            targetHandle: "left",
         };
     }
 
@@ -40,38 +50,6 @@ export class EdgeDataFactory {
             immediate: edgeDefinition.immediate,
             bidirectional: edgeDefinition.bidirectional,
         };
-    }
-
-    static edgeDataCommonFromEdgeType(
-        edgeType: EdgeType,
-        sourceHandle: SourceHandleId,
-        targetHandle: TargetHandleId,
-        bidirectional: boolean,
-    ): EdgeDataCommon {
-        return {
-            sourceHandle: sourceHandle,
-            targetHandle: targetHandle,
-            edgePathStyle: "Smooth",
-            priority: edgeType.getPriority(),
-            immediate: edgeType.isImmediate(),
-            bidirectional: bidirectional,
-        };
-    }
-
-    static edgeDataFromEdgeType(
-        edgeType: EdgeType,
-        sourceHandle: SourceHandleId,
-        targetHandle: TargetHandleId,
-        bidirectional: boolean,
-    ): EdgeData {
-        return EdgeDataFactory.edgeDataEmpty(
-            EdgeDataFactory.edgeDataCommonFromEdgeType(
-                edgeType,
-                sourceHandle,
-                targetHandle,
-                bidirectional
-            )
-        );
     }
 
     static edgeDataFromCreationEdge(
