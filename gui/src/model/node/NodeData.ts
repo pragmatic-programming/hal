@@ -1,4 +1,5 @@
 import { LanguageIndicator } from "./LanguageIndicator";
+import { XYPosition } from "reactflow";
 import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 
 export type NodeData =
@@ -6,12 +7,18 @@ export type NodeData =
     | NodeDataEditor
     | NodeDataFile
     | NodeDataImage
+    | NodeDataHierarchy
 
-export interface NodeDataCreate {
+interface NodeCommon {
+    // if position is undefined, the render function will automatically lay out the whole graph
+    position: XYPosition | undefined;
+}
+
+export interface NodeDataCreate extends NodeCommon {
     type: "create",
 }
 
-export interface NodeDataEditor {
+export interface NodeDataEditor extends NodeCommon {
     type: "editor",
     content: string | undefined,
     label: string,
@@ -21,7 +28,7 @@ export interface NodeDataEditor {
     width: number,
 }
 
-export interface NodeDataFile {
+export interface NodeDataFile extends NodeCommon {
     type: "file",
     fileType: "text/plain" | undefined
     content: string | undefined,
@@ -29,7 +36,7 @@ export interface NodeDataFile {
     width: number,
 }
 
-export interface NodeDataImage {
+export interface NodeDataImage extends NodeCommon {
     type: "image",
     content: string | undefined,
     status: SimpleNodeStatus,
@@ -37,3 +44,8 @@ export interface NodeDataImage {
     width: number,
 }
 
+export interface NodeDataHierarchy extends NodeCommon {
+    type: "hierarchy",
+    height: number,
+    width: number,
+}

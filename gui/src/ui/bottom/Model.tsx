@@ -16,7 +16,7 @@ interface Props {
 export default function Model(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
     const reactFlow: ReactFlowInstance = useReactFlow();
-    const renderIHGraph = useStore((state: State) => state.flow.render);
+    const render = useStore((state: State) => state.flow.render);
     let borderStyle: "dotted" | "solid" | "double";
     let borderWidth: number;
     let marginLeft: "-10px" | "0px" = "0px";
@@ -48,7 +48,7 @@ export default function Model(props: Props): React.JSX.Element {
         <TooltipIconButton
             placement="top"
             title={title}
-            onClick={() => renderIHGraph(property, reactFlow.fitView)}
+            onClick={() => render(property, reactFlow.fitView)}
             sx={{
                 marginLeft: marginLeft,
                 marginRight: marginRight,

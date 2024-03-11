@@ -6,32 +6,31 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import AddIcon from "@mui/icons-material/Add";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import TableChartIcon from "@mui/icons-material/TableChart";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
-import { EdgeTypeIndicator } from "./EdgeTypeIndicator";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
-import { ExecuteProcessor } from "../../processor/edgeTypes/execute/ExecuteProcessor";
-import { SCChartDiagramProcessor } from "../../processor/edgeTypes/scchart/SCChartDiagramProcessor";
-import { TestProcessor } from "../../processor/edgeTypes/TestProcessor";
-import { CreateProcessor } from "../../processor/edgeTypes/CreateProcessor";
-import { SCChartCodeProcessor } from "../../processor/edgeTypes/scchart/SCChartCodeProcessor";
+import { ExecuteProcessor } from "../../processors/edgeTypes/execute/ExecuteProcessor";
+import { SCChartDiagramProcessor } from "../../processors/edgeTypes/scchart/SCChartDiagramProcessor";
+import { TestProcessor } from "../../processors/edgeTypes/TestProcessor";
+import { CreateProcessor } from "../../processors/edgeTypes/CreateProcessor";
+import { SCChartCodeProcessor } from "../../processors/edgeTypes/scchart/SCChartCodeProcessor";
 import EngineeringIcon from "@mui/icons-material/Engineering";
-import { TranspileProcessor } from "../../processor/edgeTypes/transpile/TranspileProcessor";
+import { TranspileProcessor } from "../../processors/edgeTypes/transpile/TranspileProcessor";
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
-import { ArduinoProcessor } from "../../processor/edgeTypes/ArduinoProcessor";
-import { SequenceProcessor } from "../../processor/edgeTypes/SequenceProcessor";
-import { UnknownProcessor } from "../../processor/edgeTypes/UnknownProcessor";
+import { ArduinoProcessor } from "../../processors/edgeTypes/ArduinoProcessor";
+import { SequenceProcessor } from "../../processors/edgeTypes/SequenceProcessor";
+import { UnknownProcessor } from "../../processors/edgeTypes/UnknownProcessor";
 
 // new edge (step 2): add a new edge definition here
-export const edgeDefinitionUnknown: EdgeDefinition = {
-    type: "unknown",
+export const edgeDefinitionPrototype: EdgeDefinition = {
+    type: "prototype",
     animated: false,
     component: EdgeDefault,
-    icon: QuestionMarkIcon,
-    edgePathStyle: "Smooth",
+    icon: WarningAmberIcon,
+    edgePathStyle: "Bezier",
     immediate: false,
-    priority: 1,
+    priority: 0,
     processor: UnknownProcessor,
-    targetNodeTypes: ["create", "editor", "image"]
+    targetNodeTypes: [],
 };
 
 export const edgeDefinitionCreate: EdgeDefinition = {
@@ -119,7 +118,6 @@ export const edgeDefinitionTest: EdgeDefinition = {
     priority: 0,
     processor: TestProcessor,
     targetNodeTypes: ["editor"],
-    transformationDirection: "dependency"
 };
 
 export const edgeDefinitionTranspile: EdgeDefinition = {
@@ -132,14 +130,14 @@ export const edgeDefinitionTranspile: EdgeDefinition = {
     priority: 1,
     processor: TranspileProcessor,
     targetNodeTypes: ["editor"],
-    transformationDirection: "dependency"
 };
 
 
 // new edge (step 3): add the new edge definition to the following array
-export const edgeDefinitions: EdgeDefinition[] = [
+export const defaultEdgeDefinitions: EdgeDefinition[] = [
     // default edges
-    edgeDefinitionUnknown,
+    edgeDefinitionPrototype,
+    // custom edges
     edgeDefinitionCreate,
     // custom edges
     edgeDefinitionArduino,
@@ -152,11 +150,9 @@ export const edgeDefinitions: EdgeDefinition[] = [
 ];
 
 // new edge (step 4): add the edge type indicator as case to return new edge definition
-export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): EdgeDefinition {
+export function retrieveEdgeDefinition(edgeTypeIndicator: string): EdgeDefinition {
     switch (edgeTypeIndicator) {
         // default edges
-        case "unknown":
-            return edgeDefinitionUnknown;
         case "create":
             return edgeDefinitionCreate;
         // custom edges
@@ -175,4 +171,5 @@ export function retrieveEdgeDefinition(edgeTypeIndicator: EdgeTypeIndicator): Ed
         case "transpile":
             return edgeDefinitionTranspile;
     }
+    return edgeDefinitionPrototype;
 }

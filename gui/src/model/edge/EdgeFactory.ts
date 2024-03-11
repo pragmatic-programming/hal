@@ -1,12 +1,12 @@
 import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
-import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
-import { edgeDefinitionCreate, retrieveEdgeDefinition } from "./edgeDefinitions";
+import { edgeDefinitionCreate } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 import { EdgeData, EdgeDataCreate } from "./EdgeData";
-import { TransformationEdge } from "@pragmatic-programming/ihgraph";
+import { EdgeType, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";
+import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
 
 
 export class EdgeFactory {
@@ -25,7 +25,6 @@ export class EdgeFactory {
             edge.sourceHandle,
             edge.targetHandle,
         );
-
     }
 
     static fromOnConnectStartParams(onConnectStartParams: OnConnectStartParams, targetId: string): Edge {
@@ -36,8 +35,7 @@ export class EdgeFactory {
         if (!isSourceHandleId(sourceHandleId)) {
             throw new Error("OnConnectStartParams.handleId is not from type SourceHandleId");
         }
-        return EdgeFactory.fromEdgeType(
-            "create",
+        return EdgeFactory.edgeCreate(
             onConnectStartParams.nodeId,
             targetId,
             sourceHandleId,
@@ -45,57 +43,17 @@ export class EdgeFactory {
         );
     }
 
-    static targetHandleId(sourceHandleId: SourceHandleId): TargetHandleId {
-        if (sourceHandleId === "right") {
-            return "left";
-        }
-        return "top";
-    }
-
     static fromTransformationEdge(edge: TransformationEdge): Edge {
-        const edgeData: EdgeData = edge.getAnnotationData<EdgeData>("edgeData");
         const sourceId = edge.getSourceNode().getId();
         const targetId = edge.getTargetNode().getId();
+        const edgeType = edge.getType();
         if (!sourceId) {
             throw new Error("Returned sourceId is undefined");
         }
         if (!targetId) {
             throw new Error("Returned targetId is undefined");
         }
-        return EdgeFactory.fromEdgeType(
-            this.edgeTypeIndicator(edge),
-            sourceId,
-            targetId,
-            edgeData.sourceHandle,
-            edgeData.targetHandle
-        );
-    }
-
-    private static edgeTypeIndicator(edge: TransformationEdge): EdgeTypeIndicator {
-        const edgeType: string = edge.getType().getId();
-        if (!isEdgeTypeIndicator(edgeType)) {
-            // if edgeType is not a valid indicator,
-            // we create an unknown edge so that the
-            // graph can still be rendered
-            return "unknown";
-        }
-        return edgeType;
-    }
-
-    static fromEdgeType(
-        edgeType: EdgeTypeIndicator,
-        sourceId: string,
-        targetId: string,
-        sourceHandleId: SourceHandleId,
-        targetHandleId: TargetHandleId,
-    ): Edge {
-        return EdgeFactory.fromEdgeDefinition(
-            retrieveEdgeDefinition(edgeType),
-            sourceId,
-            targetId,
-            sourceHandleId,
-            targetHandleId,
-        );
+        return EdgeFactory.fromEdgeType(edgeType, sourceId, targetId);
     }
 
     static edgeCreate(
@@ -107,34 +65,95 @@ export class EdgeFactory {
         return EdgeFactory.fromEdgeDefinition(edgeDefinitionCreate, sourceId, targetId, sourceHandleId, targetHandleId);
     }
 
-
-    static edgeId(sourceId: string, targetId: string, sourceHandleId: string, targetHandleId: string, edgeTypeIndication: EdgeTypeIndicator): string {
-        return "e-" + sourceId + "-" + targetId + "-" + sourceHandleId + "-" + targetHandleId + "-" + edgeTypeIndication;
+    private static targetHandleId(sourceHandleId: SourceHandleId): TargetHandleId {
+        if (sourceHandleId === "right") {
+            return "left";
+        }
+        return "top";
     }
 
-    static fromEdgeDefinition(
+    private static fromEdgeType(
+        edgeType: EdgeType,
+        sourceId: string,
+        targetId: string,
+    ): Edge<EdgeData> {
+        const sourceHandleId: SourceHandleId = "right";
+        const targetHandleId: TargetHandleId = "left";
+        return EdgeFactory.edge(
+            EdgeFactory.edgeId(sourceId, targetId, sourceHandleId, targetHandleId, edgeType.getId()),
+            sourceId,
+            targetId,
+            sourceHandleId,
+            targetHandleId,
+            edgeType.isImmediate(),
+            EdgeFactory.edgeTypeIndicator(edgeType),
+            edgeType.getId(),
+            EdgeDataFactory.edgeDataFromEdgeType(edgeType, sourceHandleId, targetHandleId)
+        );
+    }
+
+    private static fromEdgeDefinition(
         edgeDefinition: EdgeDefinition,
         sourceId: string,
         targetId: string,
         sourceHandleId: SourceHandleId,
         targetHandleId: TargetHandleId,
     ): Edge<EdgeData> {
+        return EdgeFactory.edge(
+            EdgeFactory.edgeId(sourceId, targetId, sourceHandleId, targetHandleId, edgeDefinition.type),
+            sourceId,
+            targetId,
+            sourceHandleId,
+            targetHandleId,
+            edgeDefinition.animated,
+            edgeDefinition.type,
+            edgeDefinition.type,
+            EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition, sourceHandleId, targetHandleId)
+        );
+    }
+
+    private static edge(
+        id: string,
+        sourceId: string,
+        targetId: string,
+        sourceHandleId: string,
+        targetHandleId: string,
+        animated: boolean,
+        type: EdgeTypeIndicator,
+        label: string,
+        data: EdgeData,
+    ): Edge<EdgeData> {
         return {
-            id: EdgeFactory.edgeId(sourceId, targetId, sourceHandleId, targetHandleId, edgeDefinition.type),
+            id: id,
             source: sourceId,
             target: targetId,
-            animated: edgeDefinition.animated,
+            animated: animated,
             sourceHandle: sourceHandleId,
             targetHandle: targetHandleId,
-            label: edgeDefinition.type,
-            type: edgeDefinition.type,
+            label: label,
+            type: type,
             markerEnd: {
                 type: MarkerType.ArrowClosed,
                 width: 30,
                 height: 30,
             },
-            data: EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition.type, sourceHandleId, targetHandleId)
+            data: data
         };
+    }
+
+    private static edgeId(sourceId: string, targetId: string, sourceHandleId: string, targetHandleId: string, edgeTypeIndication: string): string {
+        return "e-" + sourceId + "-" + targetId + "-" + sourceHandleId + "-" + targetHandleId + "-" + edgeTypeIndication;
+    }
+
+    private static edgeTypeIndicator(edgeType: EdgeType): EdgeTypeIndicator {
+        const id: string | EdgeTypeIndicator = edgeType.getId();
+        if (!isEdgeTypeIndicator(id)) {
+            // if edgeType is not a valid indicator,
+            // we create an unknown edge so that the
+            // graph can still be rendered
+            return "prototype";
+        }
+        return id;
     }
 }
 

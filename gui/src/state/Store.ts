@@ -21,6 +21,7 @@ import { runImmediate } from "./compilation/runImmediate";
 import { transformCreateEdge } from "./flow/transformCreateEdge";
 import { Position } from "@reactflow/core";
 import { nextNodeId } from "./flow/nextNodeId";
+import { compilationsOpenToggle } from "./ui/compilations/compilationsOpenToggle";
 import { layoutsOpenToggle } from "./ui/layout/layoutsOpenToggle";
 import { NodeFactory } from "../model/node/NodeFactory";
 import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
@@ -28,11 +29,23 @@ import { setContent } from "./ui/message/setContent";
 import { addNodeCreate } from "./flow/addNodeCreate";
 import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
 import { toggleVerboseMode } from "./flow/toggleVerboseMode";
+import { setEdgePriority } from "./flow/setEdgePriority";
+import { toggleHierarchyMode } from "./flow/toggleHierarchyMode";
+import { originOfCoordinates } from "../util";
+import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
+import { setDirector } from "./compilation/setDirector";
+import { toggleShowHALProcessor } from "./compilation/options/toggleShowHALProcessor";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
         context: new CompilationContext(new System("empty", [])),
+        director: HALGraphProcessor,
+        setDirector: setDirector(setState, getState),
         run: run(setState, getState),
+        options: {
+            showHALProcessor: false,
+            toggleShowHALProcessor: toggleShowHALProcessor(setState, getState),
+        }
     },
     immediateCompilation: {
         context: new CompilationContext(new System("empty", [])),
@@ -55,7 +68,11 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         nextNodeId: nextNodeId(getState),
         nodes: [
             // crate first node
-            NodeFactory.nodeCreate("1", 100, 100, Position.Left)
+            NodeFactory.nodeCreate(
+                "1",
+                originOfCoordinates(),
+                Position.Left
+            )
         ],
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),
@@ -65,6 +82,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setEdgeLabel: setEdgeLabel(setState, getState),
         setEdgePathStyleForAll: setEdgePathStyleForAll(setState, getState),
         setEdgePathStyleForEdge: setEdgePathStyleForEdge(setState, getState),
+        setEdgePriority: setEdgePriority(setState, getState),
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
@@ -72,9 +90,16 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         transformCreateEdge: transformCreateEdge(setState, getState),
         transformCreateNode: transformCreateNode(setState, getState),
         verboseMode: true,
+        toggleHierarchyMode: toggleHierarchyMode(setState, getState),
+        hierarchyMode: false,
+        lastRenderGraph: null,
     },
     ui: {
         busy: false,
+        compilations: {
+            open: false,
+            compilationsOpenToggle: compilationsOpenToggle(setState),
+        },
         mode: "light",
         message: {
             content: undefined,

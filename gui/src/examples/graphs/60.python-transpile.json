@@ -1,0 +1,129 @@
+{
+  "_objectId": "0x0000d53a",
+  "annotations": {},
+  "nodes": [
+    {
+      "_objectId": "0x0000d550",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "hello = \"World!\"\nprint(hello)\n",
+            "label": "Python",
+            "language": "Python",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 12,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Python",
+      "content": "hello = \"World!\"\nprint(hello)\n"
+    },
+    {
+      "_objectId": "0x0000d551",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "label": "JavaScript",
+            "language": "JavaScript",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 512,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "JavaScript",
+      "content": ""
+    },
+    {
+      "_objectId": "0x0000d552",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "label": "Result",
+            "language": "PlainText",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 1012,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Result",
+      "content": ""
+    }
+  ],
+  "edgeTypes": [
+    {
+      "_objectId": "0x0000d553",
+      "annotations": {},
+      "id": "transpile",
+      "priority": 0,
+      "immediate": true
+    },
+    {
+      "_objectId": "0x0000d554",
+      "annotations": {},
+      "id": "execute",
+      "priority": 1,
+      "immediate": false
+    }
+  ],
+  "edges": [
+    {
+      "_objectId": "0x0000d555",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 0,
+            "immediate": true
+          }
+        }
+      },
+      "edgeType": "transpile",
+      "sourceNode": "Python",
+      "targetNode": "JavaScript"
+    },
+    {
+      "_objectId": "0x0000d556",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 1,
+            "immediate": false
+          }
+        }
+      },
+      "edgeType": "execute",
+      "sourceNode": "JavaScript",
+      "targetNode": "Result"
+    }
+  ]
+}

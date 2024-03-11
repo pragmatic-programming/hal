@@ -1,6 +1,6 @@
 import { State } from "../State";
 import { CompilationContext, createCompilationContextFromProcessors, Processor } from "@pragmatic-programming/kico";
-import { flowToIHGraph, iHGraphToFlow } from "../../processor/compilationContexts";
+import { flowToIHGraph, iHGraphToFlow } from "../../processors/compilationContexts";
 import { StoreApi } from "zustand";
 import { EdgeType, IHGraph, TransformationConfiguration } from "@pragmatic-programming/ihgraph";
 import { layoutedNodes } from "../layoutedNodes";
@@ -18,11 +18,12 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
                 busy: true,
             }
         });
+        const hierarchyMode: boolean = getState().flow.hierarchyMode;
 
         const preContext: CompilationContext = flowToIHGraph(oldState.flow);
         await preContext.compileAsync();
 
-        const ihGraph: IHGraph = preContext.getResult() as IHGraph;
+        const ihGraph = hierarchyMode ? (preContext.getResult() as IHGraph).getFlattenedHierarchy() : preContext.getResult();
         const immediateCliques: IHGraph[] = ihGraph.getImmediateCliques();
 
         for (const clique of immediateCliques) {

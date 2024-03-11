@@ -1,18 +1,18 @@
-import ReactFlow, { Background, Controls, OnConnectStartParams, ReactFlowInstance, useReactFlow } from "reactflow";
+import ReactFlow, {Background, Controls, OnConnectStartParams, ReactFlowInstance, useReactFlow} from "reactflow";
 import "reactflow/dist/style.css";
-import { State } from "../../state/State";
-import React, { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef } from "react";
-import { useStore } from "../../state/Store";
-import { shallow } from "zustand/shallow";
-import { nodeTypesMapping } from "../../model/node/nodeTypesMapping";
-import { bottomHeight } from "../bottom/Bottom";
-import { menuWidth } from "../menu/Menu";
-import { edgeTypesMapping } from "../../model/edge/edgeTypesMapping";
-import { targetPosition } from "../../state/flow/LayoutDirectionIndicator";
-import { layoutOptions } from "../../util";
-import { NodeFactory } from "../../model/node/NodeFactory";
-import { EdgeFactory } from "../../model/edge/EdgeFactory";
-import { isSourceHandleId } from "../../model/edge/SourceHandleId";
+import {State} from "../../state/State";
+import React, {MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent, useCallback, useRef} from "react";
+import {useStore} from "../../state/Store";
+import {shallow} from "zustand/shallow";
+import {nodeTypesMapping} from "../../model/node/nodeTypesMapping";
+import {bottomHeight} from "../bottom/Bottom";
+import {menuWidth} from "../menu/Menu";
+import {edgeTypesMapping} from "../../model/edge/edgeTypesMapping";
+import {targetPosition} from "../../state/flow/LayoutDirectionIndicator";
+import {layoutOptions} from "../../util";
+import {NodeFactory} from "../../model/node/NodeFactory";
+import {EdgeFactory} from "../../model/edge/EdgeFactory";
+import {isSourceHandleId} from "../../model/edge/SourceHandleId";
 
 const selector = (state: State) => ({
     edges: state.flow.edges,
@@ -70,8 +70,10 @@ export default function Flow(): React.JSX.Element {
                                 type: "add",
                                 item: NodeFactory.nodeCreate(
                                     targetId,
-                                    position.x,
-                                    position.y - creationNodeHalfHeight,
+                                    {
+                                        x: position.x,
+                                        y: position.y - creationNodeHalfHeight
+                                    },
                                     targetPosition(layoutOptions(store.layoutOption)),
                                 )
                             }]);

@@ -3,13 +3,13 @@ import { SvgIcon } from "@mui/material";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 import { Add } from "@mui/icons-material";
-import { edgeDefinitions } from "../../../model/edge/edgeDefinitions";
+import { defaultEdgeDefinitions } from "../../../model/edge/edgeDefinitions";
 import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
 import { firstCharUpperCase } from "../../../util";
-import { EdgeTypeIndicator } from "../../../model/edge/EdgeTypeIndicator";
 import { EdgePath } from "../../../model/edge/EdgePath";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import TooltipIconButton from "../../util/TooltipIconButton";
+import { EdgeTypeIndicator } from "../../../model/edge/EdgeTypeIndicator";
 
 interface Props {
     deniedEdgeTypes: EdgeTypeIndicator[];
@@ -21,7 +21,9 @@ interface Props {
 export default function EdgeCreateLabel(props: Props): React.JSX.Element {
     const [numberOfShownEdgeDefinitions, setNumberOfShownEdgeDefinitions] = useState<number>(4);
     const transformCreationEdge = useStore((state: State) => state.flow.transformCreateEdge);
-    const filteredEdgeDefinitions: EdgeDefinition[] = edgeDefinitions.filter((edgeDefinition: EdgeDefinition): boolean => edgeDefinition.type !== "create" && !props.deniedEdgeTypes.includes(edgeDefinition.type));
+    const filteredEdgeDefinitions: EdgeDefinition[] = defaultEdgeDefinitions.filter(
+        (edgeDefinition: EdgeDefinition): boolean => edgeDefinition.type !== "create" && !props.deniedEdgeTypes.includes(edgeDefinition.type)
+    );
     return (
         <BoxBackgroundMain>
             {filteredEdgeDefinitions

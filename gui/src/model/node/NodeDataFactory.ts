@@ -1,12 +1,16 @@
-import { NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage } from "./NodeData";
+import { NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataHierarchy, NodeDataImage } from "./NodeData";
 import { LanguageIndicator } from "./LanguageIndicator";
 import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
+import { XYPosition } from "reactflow";
 
 export class NodeDataFactory {
 
-    static nodeDataCreate(): NodeDataCreate {
+    static nodeDataCreate(
+        position: XYPosition | undefined
+    ): NodeDataCreate {
         return {
             type: "create",
+            position: position,
         };
     }
 
@@ -15,6 +19,9 @@ export class NodeDataFactory {
         label: string,
         language: LanguageIndicator,
         status: SimpleNodeStatus,
+        position: XYPosition | undefined,
+        width: number,
+        height: number,
     ): NodeDataEditor {
         return {
             content: content,
@@ -22,23 +29,24 @@ export class NodeDataFactory {
             language: language,
             status: status,
             type: "editor",
-            // todo remove
-            height: 0,
-            width: 0,
-
+            position: position,
+            width: width,
+            height: height,
         };
     }
 
     static nodeDataImage(
         content: string | undefined,
-        height: number,
+        position: XYPosition | undefined,
         width: number,
+        height: number,
         status: SimpleNodeStatus,
     ): NodeDataImage {
         return {
             type: "image",
             content: content,
             status: status,
+            position: position,
             width: width,
             height: height,
         };
@@ -47,6 +55,7 @@ export class NodeDataFactory {
     static nodeDataFile(
         content: string | undefined,
         fileType: "text/plain" | undefined,
+        position: XYPosition | undefined,
         height: number,
         width: number,
     ): NodeDataFile {
@@ -54,6 +63,20 @@ export class NodeDataFactory {
             type: "file",
             content: content,
             fileType: fileType,
+            position: position,
+            width: width,
+            height: height,
+        };
+    }
+
+    static nodeDataHierarchy(
+        position: XYPosition | undefined,
+        height: number,
+        width: number,
+    ): NodeDataHierarchy {
+        return {
+            type: "hierarchy",
+            position: position,
             width: width,
             height: height,
         };

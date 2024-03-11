@@ -1,0 +1,131 @@
+{
+  "_objectId": "0x0000c2d2",
+  "annotations": {},
+  "nodes": [
+    {
+      "_objectId": "0x0000c573",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "const int LED_PIN = 13;",
+            "label": "Define",
+            "language": "C",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 12,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Define",
+      "content": "const int LED_PIN = 13;"
+    },
+    {
+      "_objectId": "0x0000c574",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "pinMode(LED_PIN, OUTPUT);",
+            "label": "Setup",
+            "language": "C",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 512,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Setup",
+      "content": "pinMode(LED_PIN, OUTPUT);"
+    },
+    {
+      "_objectId": "0x0000c575",
+      "annotations": {
+        "nodeData": {
+          "id": "nodeData",
+          "data": {
+            "content": "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);",
+            "label": "Loop",
+            "language": "C",
+            "status": "UNDEFINED",
+            "type": "editor",
+            "position": {
+              "x": 1012,
+              "y": 12
+            },
+            "width": 300,
+            "height": 200
+          }
+        }
+      },
+      "id": "Loop",
+      "content": "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);"
+    }
+  ],
+  "edgeTypes": [
+    {
+      "_objectId": "0x0000c576",
+      "annotations": {},
+      "id": "sequence",
+      "priority": 10,
+      "immediate": false
+    },
+    {
+      "_objectId": "0x0000c577",
+      "annotations": {},
+      "id": "arduino",
+      "priority": 9,
+      "immediate": false
+    }
+  ],
+  "edges": [
+    {
+      "_objectId": "0x0000c578",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 10,
+            "immediate": false
+          }
+        }
+      },
+      "edgeType": "sequence",
+      "sourceNode": "Define",
+      "targetNode": "Setup"
+    },
+    {
+      "_objectId": "0x0000c579",
+      "annotations": {
+        "edgeData": {
+          "id": "edgeData",
+          "data": {
+            "type": "empty",
+            "sourceHandle": "right",
+            "targetHandle": "left",
+            "edgePathStyle": "Smooth",
+            "priority": 9,
+            "immediate": false
+          }
+        }
+      },
+      "edgeType": "arduino",
+      "sourceNode": "Setup",
+      "targetNode": "Loop"
+    }
+  ]
+}

@@ -1,9 +1,10 @@
 import { State } from "../State";
 import { CompilationContext, Processor, StatusEntry } from "@pragmatic-programming/kico";
-import { flowToIHGraph, ihGraphToHalGraph } from "../../processor/compilationContexts";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
+import { flowToIHGraph, ihGraphToHalGraph } from "../../processors/compilationContexts";
 import { StoreApi } from "zustand";
 import { StateMessage } from "../ui/message/StateMessage";
-import { CliqueSelectionProcessor } from "../../processor/CliqueSelectionProcessor";
+import { CliqueSelectionProcessor } from "../../processors/directors/CliqueSelectionProcessor";
 
 
 export function run(setState: StoreApi<State>["setState"], getState: () => State) {
@@ -15,9 +16,11 @@ export function run(setState: StoreApi<State>["setState"], getState: () => State
                 busy: true,
             }
         });
+        const hierarchyMode: boolean = state.flow.hierarchyMode;
         const preContext: CompilationContext = flowToIHGraph(state.flow);
         await preContext.compileAsync();
-        const context: CompilationContext = ihGraphToHalGraph(preContext.getResult());
+        const ihGraph = hierarchyMode ? (preContext.getResult() as IHGraph).getFlattenedHierarchy() : preContext.getResult();
+        const context: CompilationContext = ihGraphToHalGraph(ihGraph);
         context.startEnvironment.setProperty(CliqueSelectionProcessor.CSP_LOG, false);
         await context.compileAsync();
         setState({

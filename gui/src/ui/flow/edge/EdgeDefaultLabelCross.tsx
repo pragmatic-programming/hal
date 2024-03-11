@@ -24,7 +24,7 @@ export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
             onMouseEnter={() => setShowCross(true)}
         >
             <EdgeDefaultLabelIcon
-                edgeDefinition={props.edgeDefinition} id={props.id}
+                icon={props.edgeDefinition.icon} id={props.id}
             />
         </div>;
     if (showCross) {
