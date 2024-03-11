@@ -38,6 +38,7 @@ export class EdgeDataFactory {
             edgePathStyle: "Smooth",
             priority: edgeDefinition.priority,
             immediate: edgeDefinition.immediate,
+            bidirectional: edgeDefinition.bidirectional,
         };
     }
 
@@ -45,6 +46,7 @@ export class EdgeDataFactory {
         edgeType: EdgeType,
         sourceHandle: SourceHandleId,
         targetHandle: TargetHandleId,
+        bidirectional: boolean,
     ): EdgeDataCommon {
         return {
             sourceHandle: sourceHandle,
@@ -52,6 +54,7 @@ export class EdgeDataFactory {
             edgePathStyle: "Smooth",
             priority: edgeType.getPriority(),
             immediate: edgeType.isImmediate(),
+            bidirectional: bidirectional,
         };
     }
 
@@ -59,9 +62,15 @@ export class EdgeDataFactory {
         edgeType: EdgeType,
         sourceHandle: SourceHandleId,
         targetHandle: TargetHandleId,
+        bidirectional: boolean,
     ): EdgeData {
         return EdgeDataFactory.edgeDataEmpty(
-            EdgeDataFactory.edgeDataCommonFromEdgeType(edgeType, sourceHandle, targetHandle)
+            EdgeDataFactory.edgeDataCommonFromEdgeType(
+                edgeType,
+                sourceHandle,
+                targetHandle,
+                bidirectional
+            )
         );
     }
 

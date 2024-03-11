@@ -95,6 +95,7 @@
           "id": "edgeData",
           "data": {
             "type": "empty",
+            "bidirectional": false,
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",
@@ -114,6 +115,7 @@
           "id": "edgeData",
           "data": {
             "type": "empty",
+            "bidirectional": false,
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",

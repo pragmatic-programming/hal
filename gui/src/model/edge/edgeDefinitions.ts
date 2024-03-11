@@ -24,6 +24,7 @@ import { UnknownProcessor } from "../../processors/edgeTypes/UnknownProcessor";
 export const edgeDefinitionPrototype: EdgeDefinition = {
     type: "prototype",
     animated: false,
+    bidirectional: false,
     component: EdgeDefault,
     icon: WarningAmberIcon,
     edgePathStyle: "Bezier",
@@ -36,6 +37,7 @@ export const edgeDefinitionPrototype: EdgeDefinition = {
 export const edgeDefinitionCreate: EdgeDefinition = {
     type: "create",
     animated: false,
+    bidirectional: false,
     component: EdgeCreate,
     icon: AddIcon,
     edgePathStyle: "Smooth",
@@ -51,6 +53,7 @@ export const edgeDefinitionCreate: EdgeDefinition = {
 export const edgeDefinitionArduino: EdgeDefinition = {
     type: "arduino",
     animated: false,
+    bidirectional: true,
     component: EdgeDefault,
     icon: DeveloperBoardIcon,
     edgePathStyle: "Smooth",
@@ -63,6 +66,7 @@ export const edgeDefinitionArduino: EdgeDefinition = {
 export const edgeDefinitionExecute: EdgeDefinition = {
     type: "execute",
     animated: false,
+    bidirectional: false,
     component: EdgeDefault,
     icon: DirectionsRunIcon,
     edgePathStyle: "Smooth",
@@ -75,6 +79,7 @@ export const edgeDefinitionExecute: EdgeDefinition = {
 export const edgeDefinitionSequence: EdgeDefinition = {
     type: "sequence",
     animated: false,
+    bidirectional: false,
     component: EdgeDefault,
     icon: KeyboardDoubleArrowRightIcon,
     edgePathStyle: "Smooth",
@@ -87,6 +92,7 @@ export const edgeDefinitionSequence: EdgeDefinition = {
 export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
     type: "scchartdiagram",
     animated: true,
+    bidirectional: false,
     component: EdgeDefault,
     icon: TableChartIcon,
     edgePathStyle: "Smooth",
@@ -99,6 +105,7 @@ export const edgeDefinitionSCChartDiagram: EdgeDefinition = {
 export const edgeDefinitionSCChartCode: EdgeDefinition = {
     type: "scchartcode",
     animated: false,
+    bidirectional: false,
     component: EdgeDefault,
     edgePathStyle: "Smooth",
     icon: EngineeringIcon,
@@ -111,6 +118,7 @@ export const edgeDefinitionSCChartCode: EdgeDefinition = {
 export const edgeDefinitionTest: EdgeDefinition = {
     type: "test",
     animated: true,
+    bidirectional: false,
     component: EdgeDefault,
     icon: BiotechIcon,
     edgePathStyle: "Smooth",
@@ -123,6 +131,7 @@ export const edgeDefinitionTest: EdgeDefinition = {
 export const edgeDefinitionTranspile: EdgeDefinition = {
     type: "transpile",
     animated: true,
+    bidirectional: false,
     component: EdgeDefault,
     icon: HardwareIcon,
     edgePathStyle: "Smooth",
