@@ -56,12 +56,17 @@ function transformEdges(reactFlow: StateFlow, nodeDefinition: NodeDefinition, ed
             return edge;
         });
     }
+    // if nodeDefinition has more than one sourceEdgeType we can not transform the edge,
+    // but we might update the deniedEdgeTypes, based on the sourceEdgeType of the nodeDefinition
     return reactFlow.edges.map((edge: Edge) => {
         if (edge.id === edgeId) {
+            // if edge is not from type create,
+            // there is no need for updating the deniedEdgeTypes
             if (edge.type !== "create") {
-                throw new Error("Edge is not from type create");
+                return edge;
             }
-            edge.data = EdgeDataFactory.edgeDataCreate(edge.data,
+            edge.data = EdgeDataFactory.edgeDataCreate(
+                edge.data,
                 // add denied edge types to new create edge data,
                 // based on the allowed edge type from nodeDefinition
                 deniedEdgeTypes(nodeDefinition)
