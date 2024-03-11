@@ -18,11 +18,12 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
                 busy: true,
             }
         });
+        const hierarchyMode: boolean = getState().flow.hierarchyMode;
 
         const preContext: CompilationContext = flowToIHGraph(oldState.flow);
         await preContext.compileAsync();
 
-        const ihGraph: IHGraph = preContext.getResult() as IHGraph;
+        const ihGraph = hierarchyMode ? (preContext.getResult() as IHGraph).getFlattenedHierarchy() : preContext.getResult();
         const immediateCliques: IHGraph[] = ihGraph.getImmediateCliques();
 
         for (const clique of immediateCliques) {

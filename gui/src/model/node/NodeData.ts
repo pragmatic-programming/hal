@@ -1,19 +1,20 @@
-import {LanguageIndicator} from "./LanguageIndicator";
-import {XYPosition} from "reactflow";
-import {SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
+import { LanguageIndicator } from "./LanguageIndicator";
+import { XYPosition } from "reactflow";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
 
 export type NodeData =
     NodeDataCreate
     | NodeDataEditor
     | NodeDataFile
     | NodeDataImage
+    | NodeDataHierarchy
 
-interface NodeCommon{
+interface NodeCommon {
     // if position is undefined, the render function will automatically lay out the whole graph
-    position: XYPosition | undefined
+    position: XYPosition | undefined;
 }
 
-export interface NodeDataCreate extends NodeCommon{
+export interface NodeDataCreate extends NodeCommon {
     type: "create",
 }
 
@@ -43,3 +44,8 @@ export interface NodeDataImage extends NodeCommon {
     width: number,
 }
 
+export interface NodeDataHierarchy extends NodeCommon {
+    type: "hierarchy",
+    height: number,
+    width: number,
+}

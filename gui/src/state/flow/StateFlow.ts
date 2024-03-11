@@ -19,7 +19,7 @@ export interface StateFlow {
     onConnect: OnConnect,
     onEdgesChange: OnEdgesChange,
     onNodesChange: OnNodesChange,
-    render: (ihGraph: IHGraph, fitView: () => void, projectName?: string) => void,
+    render: (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string) => void,
     setConnectingSource: (handleType: "right" | "bottom" | null, nodeId: string | null) => void,
     setEdgeLabel: (edgeId: string, label: string) => void,
     setEdgePathStyleForAll: (edgePathStyle: EdgePathStyle) => void,
@@ -32,4 +32,7 @@ export interface StateFlow {
     transformCreateEdge: (edgeId: string, edgeDefinition: EdgeDefinition, targetNodeId: string) => void,
     transformCreateNode: (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | null | undefined) => void,
     verboseMode: boolean,
+    toggleHierarchyMode: (fitView: (fitViewOptions: FitViewOptions) => void) => void,
+    hierarchyMode: boolean,
+    lastRenderGraph: IHGraph | null,
 }
