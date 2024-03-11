@@ -1,9 +1,9 @@
 {
-    "_objectId": "0x0000c292",
+    "_objectId": "0x0000c959",
     "annotations": {},
     "nodes": [
         {
-            "_objectId": "0x0000c293",
+            "_objectId": "0x0000c95a",
             "annotations": {
                 "nodeData": {
                     "id": "nodeData",
@@ -14,8 +14,8 @@
                         "status": "UNDEFINED",
                         "type": "editor",
                         "position": {
-                            "x": -403.7842377541667,
-                            "y": 1138.6615722992292
+                            "x": -143.22657818561402,
+                            "y": 849.9911126193329
                         },
                         "width": 300,
                         "height": 200
@@ -26,7 +26,7 @@
             "content": "public static void main(String[] args) {\r\n    CoffeeMaker machine = new CoffeeMaker();\r\n    machine.orderCoffee();\r\n    machine.getCoffee();\r\n}"
         },
         {
-            "_objectId": "0x0000c294",
+            "_objectId": "0x0000c95b",
             "annotations": {
                 "nodeData": {
                     "id": "nodeData",
@@ -37,11 +37,11 @@
                         "status": "UNDEFINED",
                         "type": "editor",
                         "position": {
-                            "x": -224,
-                            "y": 626
+                            "x": 79.98393616331145,
+                            "y": 416.86819429366176
                         },
                         "width": 300,
-                        "height": 200
+                        "height": 162
                     }
                 }
             },
@@ -49,7 +49,7 @@
             "content": "void checkBeans() {\r\n    \r\n}"
         },
         {
-            "_objectId": "0x0000c2aa",
+            "_objectId": "0x0000c95c",
             "annotations": {
                 "nodeData": {
                     "id": "nodeData",
@@ -60,8 +60,8 @@
                         "status": "UNDEFINED",
                         "type": "editor",
                         "position": {
-                            "x": -148,
-                            "y": 478
+                            "x": 80.55935049873034,
+                            "y": 127.1613969844488
                         },
                         "width": 300,
                         "height": 200
@@ -72,7 +72,7 @@
             "content": "void checkWater() {\r\n    \r\n}"
         },
         {
-            "_objectId": "0x0000c2ab",
+            "_objectId": "0x0000c972",
             "annotations": {
                 "nodeData": {
                     "id": "nodeData",
@@ -83,8 +83,8 @@
                         "status": "UNDEFINED",
                         "type": "editor",
                         "position": {
-                            "x": -435.79159429372805,
-                            "y": 714.9681646836747
+                            "x": -367.22378914410893,
+                            "y": 562.9761966020191
                         },
                         "width": 300,
                         "height": 200
@@ -95,7 +95,7 @@
             "content": "bool getCoffee() {\r\n    if (coffeesInQueue > 0) {\r\n        coffeesInQueue--;\r\n        return true;\r\n    }\r\n    return false;\r\n}"
         },
         {
-            "_objectId": "0x0000c2ac",
+            "_objectId": "0x0000c973",
             "annotations": {
                 "nodeData": {
                     "id": "nodeData",
@@ -106,8 +106,8 @@
                         "status": "UNDEFINED",
                         "type": "editor",
                         "position": {
-                            "x": -405,
-                            "y": 283.5
+                            "x": -367.28770716770947,
+                            "y": 268.6436422175825
                         },
                         "width": 300,
                         "height": 200
@@ -118,7 +118,7 @@
             "content": "void orderCoffee() {\r\n    checkWater();\r\n    checkBeans();\r\n    coffeesInQueue++;\r\n}"
         },
         {
-            "_objectId": "0x0000c2ad",
+            "_objectId": "0x0000c974",
             "annotations": {
                 "nodeData": {
                     "id": "nodeData",
@@ -141,7 +141,7 @@
             "content": "CoffeeMaker() {\r\n    coffeesInQueue = 0;\r\n}"
         },
         {
-            "_objectId": "0x0000c2ae",
+            "_objectId": "0x0000c975",
             "annotations": {
                 "nodeData": {
                     "id": "nodeData",
@@ -152,8 +152,8 @@
                         "status": "UNDEFINED",
                         "type": "editor",
                         "position": {
-                            "x": 12,
-                            "y": 12
+                            "x": -370.83691208537346,
+                            "y": -320.5538549756527
                         },
                         "width": 300,
                         "height": 200
@@ -166,21 +166,21 @@
     ],
     "edgeTypes": [
         {
-            "_objectId": "0x0000c2af",
+            "_objectId": "0x0000c976",
             "annotations": {},
             "id": "instance",
             "priority": 2,
             "immediate": false
         },
         {
-            "_objectId": "0x0000c2b0",
+            "_objectId": "0x0000c977",
             "annotations": {},
             "id": "private",
             "priority": 9,
             "immediate": false
         },
         {
-            "_objectId": "0x0000c2b1",
+            "_objectId": "0x0000c978",
             "annotations": {},
             "id": "class",
             "priority": 10,
@@ -189,7 +189,7 @@
     ],
     "edges": [
         {
-            "_objectId": "0x0000c2b2",
+            "_objectId": "0x0000c979",
             "annotations": {
                 "edgeData": {
                     "id": "edgeData",
@@ -208,7 +208,7 @@
             "targetNode": "7"
         },
         {
-            "_objectId": "0x0000c2b3",
+            "_objectId": "0x0000c97a",
             "annotations": {
                 "edgeData": {
                     "id": "edgeData",
@@ -227,7 +227,7 @@
             "targetNode": "6"
         },
         {
-            "_objectId": "0x0000c2c9",
+            "_objectId": "0x0000c97b",
             "annotations": {
                 "edgeData": {
                     "id": "edgeData",
@@ -246,7 +246,7 @@
             "targetNode": "5"
         },
         {
-            "_objectId": "0x0000c2ca",
+            "_objectId": "0x0000c991",
             "annotations": {
                 "edgeData": {
                     "id": "edgeData",
@@ -265,7 +265,7 @@
             "targetNode": "4"
         },
         {
-            "_objectId": "0x0000c2cb",
+            "_objectId": "0x0000c992",
             "annotations": {
                 "edgeData": {
                     "id": "edgeData",
@@ -284,7 +284,7 @@
             "targetNode": "3"
         },
         {
-            "_objectId": "0x0000c2cc",
+            "_objectId": "0x0000c993",
             "annotations": {
                 "edgeData": {
                     "id": "edgeData",
