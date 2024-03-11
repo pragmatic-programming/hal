@@ -116,6 +116,7 @@ export default function Flow(): React.JSX.Element {
                 onEdgesChange={store.onEdgesChange}
                 onInit={(reactFlowInstance: ReactFlowInstance) => store.layout(reactFlowInstance.fitView, store.layoutOption)}
                 onNodesChange={store.onNodesChange}
+                snapToGrid={true}
             >
                 <Background/>
                 <Controls
