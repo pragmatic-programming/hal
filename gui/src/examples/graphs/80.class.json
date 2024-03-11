@@ -1,0 +1,306 @@
+{
+    "_objectId": "0x0000c292",
+    "annotations": {},
+    "nodes": [
+        {
+            "_objectId": "0x0000c293",
+            "annotations": {
+                "nodeData": {
+                    "id": "nodeData",
+                    "data": {
+                        "content": "public static void main(String[] args) {\r\n    CoffeeMaker machine = new CoffeeMaker();\r\n    machine.orderCoffee();\r\n    machine.getCoffee();\r\n}",
+                        "label": "Editor",
+                        "language": "JavaScript",
+                        "status": "UNDEFINED",
+                        "type": "editor",
+                        "position": {
+                            "x": -403.7842377541667,
+                            "y": 1138.6615722992292
+                        },
+                        "width": 300,
+                        "height": 200
+                    }
+                }
+            },
+            "id": "7",
+            "content": "public static void main(String[] args) {\r\n    CoffeeMaker machine = new CoffeeMaker();\r\n    machine.orderCoffee();\r\n    machine.getCoffee();\r\n}"
+        },
+        {
+            "_objectId": "0x0000c294",
+            "annotations": {
+                "nodeData": {
+                    "id": "nodeData",
+                    "data": {
+                        "content": "void checkBeans() {\r\n    \r\n}",
+                        "label": "Editor",
+                        "language": "JavaScript",
+                        "status": "UNDEFINED",
+                        "type": "editor",
+                        "position": {
+                            "x": -224,
+                            "y": 626
+                        },
+                        "width": 300,
+                        "height": 200
+                    }
+                }
+            },
+            "id": "6",
+            "content": "void checkBeans() {\r\n    \r\n}"
+        },
+        {
+            "_objectId": "0x0000c2aa",
+            "annotations": {
+                "nodeData": {
+                    "id": "nodeData",
+                    "data": {
+                        "content": "void checkWater() {\r\n    \r\n}",
+                        "label": "Editor",
+                        "language": "JavaScript",
+                        "status": "UNDEFINED",
+                        "type": "editor",
+                        "position": {
+                            "x": -148,
+                            "y": 478
+                        },
+                        "width": 300,
+                        "height": 200
+                    }
+                }
+            },
+            "id": "5",
+            "content": "void checkWater() {\r\n    \r\n}"
+        },
+        {
+            "_objectId": "0x0000c2ab",
+            "annotations": {
+                "nodeData": {
+                    "id": "nodeData",
+                    "data": {
+                        "content": "bool getCoffee() {\r\n    if (coffeesInQueue > 0) {\r\n        coffeesInQueue--;\r\n        return true;\r\n    }\r\n    return false;\r\n}",
+                        "label": "Editor",
+                        "language": "JavaScript",
+                        "status": "UNDEFINED",
+                        "type": "editor",
+                        "position": {
+                            "x": -435.79159429372805,
+                            "y": 714.9681646836747
+                        },
+                        "width": 300,
+                        "height": 200
+                    }
+                }
+            },
+            "id": "4",
+            "content": "bool getCoffee() {\r\n    if (coffeesInQueue > 0) {\r\n        coffeesInQueue--;\r\n        return true;\r\n    }\r\n    return false;\r\n}"
+        },
+        {
+            "_objectId": "0x0000c2ac",
+            "annotations": {
+                "nodeData": {
+                    "id": "nodeData",
+                    "data": {
+                        "content": "void orderCoffee() {\r\n    checkWater();\r\n    checkBeans();\r\n    coffeesInQueue++;\r\n}",
+                        "label": "Editor",
+                        "language": "JavaScript",
+                        "status": "UNDEFINED",
+                        "type": "editor",
+                        "position": {
+                            "x": -405,
+                            "y": 283.5
+                        },
+                        "width": 300,
+                        "height": 200
+                    }
+                }
+            },
+            "id": "3",
+            "content": "void orderCoffee() {\r\n    checkWater();\r\n    checkBeans();\r\n    coffeesInQueue++;\r\n}"
+        },
+        {
+            "_objectId": "0x0000c2ad",
+            "annotations": {
+                "nodeData": {
+                    "id": "nodeData",
+                    "data": {
+                        "content": "CoffeeMaker() {\r\n    coffeesInQueue = 0;\r\n}",
+                        "label": "Editor",
+                        "language": "JavaScript",
+                        "status": "UNDEFINED",
+                        "type": "editor",
+                        "position": {
+                            "x": -369,
+                            "y": -27.5
+                        },
+                        "width": 300,
+                        "height": 200
+                    }
+                }
+            },
+            "id": "2",
+            "content": "CoffeeMaker() {\r\n    coffeesInQueue = 0;\r\n}"
+        },
+        {
+            "_objectId": "0x0000c2ae",
+            "annotations": {
+                "nodeData": {
+                    "id": "nodeData",
+                    "data": {
+                        "content": "int coffeesInQueue",
+                        "label": "Define",
+                        "language": "JavaScript",
+                        "status": "UNDEFINED",
+                        "type": "editor",
+                        "position": {
+                            "x": 12,
+                            "y": 12
+                        },
+                        "width": 300,
+                        "height": 200
+                    }
+                }
+            },
+            "id": "1",
+            "content": "int coffeesInQueue"
+        }
+    ],
+    "edgeTypes": [
+        {
+            "_objectId": "0x0000c2af",
+            "annotations": {},
+            "id": "instance",
+            "priority": 2,
+            "immediate": false
+        },
+        {
+            "_objectId": "0x0000c2b0",
+            "annotations": {},
+            "id": "private",
+            "priority": 9,
+            "immediate": false
+        },
+        {
+            "_objectId": "0x0000c2b1",
+            "annotations": {},
+            "id": "class",
+            "priority": 10,
+            "immediate": false
+        }
+    ],
+    "edges": [
+        {
+            "_objectId": "0x0000c2b2",
+            "annotations": {
+                "edgeData": {
+                    "id": "edgeData",
+                    "data": {
+                        "type": "empty",
+                        "sourceHandle": "bottom",
+                        "targetHandle": "top",
+                        "edgePathStyle": "Smooth",
+                        "priority": 2,
+                        "immediate": false
+                    }
+                }
+            },
+            "edgeType": "instance",
+            "sourceNode": "4",
+            "targetNode": "7"
+        },
+        {
+            "_objectId": "0x0000c2b3",
+            "annotations": {
+                "edgeData": {
+                    "id": "edgeData",
+                    "data": {
+                        "type": "empty",
+                        "sourceHandle": "right",
+                        "targetHandle": "left",
+                        "edgePathStyle": "Smooth",
+                        "priority": 9,
+                        "immediate": false
+                    }
+                }
+            },
+            "edgeType": "private",
+            "sourceNode": "3",
+            "targetNode": "6"
+        },
+        {
+            "_objectId": "0x0000c2c9",
+            "annotations": {
+                "edgeData": {
+                    "id": "edgeData",
+                    "data": {
+                        "type": "empty",
+                        "sourceHandle": "right",
+                        "targetHandle": "left",
+                        "edgePathStyle": "Smooth",
+                        "priority": 9,
+                        "immediate": false
+                    }
+                }
+            },
+            "edgeType": "private",
+            "sourceNode": "3",
+            "targetNode": "5"
+        },
+        {
+            "_objectId": "0x0000c2ca",
+            "annotations": {
+                "edgeData": {
+                    "id": "edgeData",
+                    "data": {
+                        "type": "empty",
+                        "sourceHandle": "bottom",
+                        "targetHandle": "top",
+                        "edgePathStyle": "Smooth",
+                        "priority": 10,
+                        "immediate": false
+                    }
+                }
+            },
+            "edgeType": "class",
+            "sourceNode": "3",
+            "targetNode": "4"
+        },
+        {
+            "_objectId": "0x0000c2cb",
+            "annotations": {
+                "edgeData": {
+                    "id": "edgeData",
+                    "data": {
+                        "type": "empty",
+                        "sourceHandle": "bottom",
+                        "targetHandle": "top",
+                        "edgePathStyle": "Smooth",
+                        "priority": 10,
+                        "immediate": false
+                    }
+                }
+            },
+            "edgeType": "class",
+            "sourceNode": "2",
+            "targetNode": "3"
+        },
+        {
+            "_objectId": "0x0000c2cc",
+            "annotations": {
+                "edgeData": {
+                    "id": "edgeData",
+                    "data": {
+                        "type": "empty",
+                        "sourceHandle": "bottom",
+                        "targetHandle": "top",
+                        "edgePathStyle": "Smooth",
+                        "priority": 10,
+                        "immediate": false
+                    }
+                }
+            },
+            "edgeType": "class",
+            "sourceNode": "1",
+            "targetNode": "2"
+        }
+    ]
+}

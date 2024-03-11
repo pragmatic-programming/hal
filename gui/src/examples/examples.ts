@@ -6,6 +6,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import DeveloperBoardIcon from "@mui/icons-material/DeveloperBoard";
 import GestureIcon from "@mui/icons-material/Gesture";
 import AirlineStopsIcon from '@mui/icons-material/AirlineStops';
+import TokenIcon from '@mui/icons-material/Token';
 import arduino10 from "./graphs/10.arduino.json";
 import arduinoCompile11 from "./graphs/11.arduino-compile.json";
 import testSum20 from "./graphs/20.test-sum.json";
@@ -14,7 +15,7 @@ import pythonExecute40 from "./graphs/40.python-execute.json";
 import pythonTranspile60 from "./graphs/60.python-transpile.json";
 import promptEngineering70 from "./graphs/70.prompt-engineering.json";
 import javaScriptExecute50 from "./graphs/50.javascript-sequence.json";
-
+import class80 from "./graphs/80.class.json";
 
 export const examples: Example[] = [
     {
@@ -64,5 +65,11 @@ export const examples: Example[] = [
         name: "AI Prompt Engineering",
         value: promptEngineering70,
         icon: AirlineStopsIcon,
+    },
+    {
+        id: 9,
+        name: "Class",
+        value: class80,
+        icon: TokenIcon,
     },
 ];
