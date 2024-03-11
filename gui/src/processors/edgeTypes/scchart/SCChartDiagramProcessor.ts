@@ -4,6 +4,7 @@ import {SCChartDiagram} from "./SCChartDiagram";
 import {NodeDataFactory} from "../../../model/node/NodeDataFactory";
 import {SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
 import { CliqueProcessor } from "../../directors/CliqueProcessor";
+
 export class SCChartDiagramProcessor extends CliqueProcessor {
 
     getId() {

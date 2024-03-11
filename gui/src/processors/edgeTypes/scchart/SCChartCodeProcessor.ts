@@ -3,6 +3,7 @@ import {SCChartCode} from "./SCChartCode";
 import {IHGraph, SimpleNode, SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
 import {NodeDataFactory} from "../../../model/node/NodeDataFactory";
 import { CliqueProcessor } from "../../directors/CliqueProcessor";
+
 export class SCChartCodeProcessor extends CliqueProcessor {
 
     getId() {
