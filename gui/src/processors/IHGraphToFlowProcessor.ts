@@ -20,10 +20,10 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
     }
 
     process(): void {
-        const ihGraph: IHGraph = this.getProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY) ? 
-            this.getModel().getInducedHierarchy() :
-            this.getModel();
-        console.debug(ihGraph.toStringDebugGraph());
+        let ihGraph: IHGraph = this.getModel();
+        if (this.getProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY)) {
+            ihGraph = this.getModel().getInducedHierarchy();
+        }
         assert(ihGraph.consistency());
 
         const flowGraph: NodesAndEdges = this.createFlow(ihGraph, null);
@@ -34,8 +34,8 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
 
     protected createFlow(ihGraph: IHGraph, parent: Node | null): NodesAndEdges {
         const nodes: Node[] = [];
-        const edges: Edge[] = [];       
-        
+        const edges: Edge[] = [];
+
         for (const simpleNode of ihGraph.getSimpleNodes()) {
             const node: Node = NodeFactory.fromSourceNode(simpleNode)
             if (parent) {
@@ -44,7 +44,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
             nodes.push(node);
         }
         for (const graphNode of ihGraph.getGraphNodes()) {
-            // Workaround. The induces hierarchy currently also clones the ids, so that they are not unique. 
+            // Workaround. The induces hierarchy currently also clones the ids, so that they are not unique.
             // Therefore, the ids are re-set to the hash code of the graph node, which is unique.
             // TODO: Remove after upgrading to ihgraph rc4.
             graphNode.setId("id" + graphNode.hashCode());

@@ -36,5 +36,4 @@ export interface StateFlow {
     hierarchyMode: boolean,
     lastRenderGraph: IHGraph | null,
     lastFitView: (fitViewOptions: FitViewOptions) => void,
-    reRender: () => void,
 }
