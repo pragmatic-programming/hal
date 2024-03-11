@@ -7,6 +7,7 @@ import { isSourceHandleId, SourceHandleId } from "./SourceHandleId";
 import { isTargetHandleId, TargetHandleId } from "./TargetHandleId";
 import { EdgeDataFactory } from "./EdgeDataFactory";
 import { EdgeTypeIndicator, isEdgeTypeIndicator } from "./EdgeTypeIndicator";
+import { FlowToIHGraphProcessor } from "../../processors/FlowToIHGraphProcessor";
 
 
 export class EdgeFactory {
@@ -44,16 +45,20 @@ export class EdgeFactory {
     }
 
     static fromTransformationEdge(edge: TransformationEdge): Edge {
-        const sourceId = edge.getSourceNode().getId();
-        const targetId = edge.getTargetNode().getId();
-        const edgeType = edge.getType();
+        const sourceId: string = edge.getSourceNode().getId();
+        const targetId: string = edge.getTargetNode().getId();
         if (!sourceId) {
             throw new Error("Returned sourceId is undefined");
         }
         if (!targetId) {
             throw new Error("Returned targetId is undefined");
         }
-        return EdgeFactory.fromEdgeType(edgeType, sourceId, targetId);
+        return EdgeFactory.fromEdgeType(
+            edge.getType(),
+            sourceId,
+            targetId,
+            EdgeFactory.isBidirectional(edge)
+        );
     }
 
     static edgeCreate(
@@ -76,21 +81,32 @@ export class EdgeFactory {
         edgeType: EdgeType,
         sourceId: string,
         targetId: string,
+        bidirectional: boolean,
     ): Edge<EdgeData> {
         const sourceHandleId: SourceHandleId = "right";
         const targetHandleId: TargetHandleId = "left";
         return EdgeFactory.edge(
-            EdgeFactory.edgeId(sourceId, targetId, sourceHandleId, targetHandleId, edgeType.getId()),
+            EdgeFactory.edgeId(
+                sourceId,
+                targetId,
+                sourceHandleId,
+                targetHandleId,
+                edgeType.getId()
+            ),
             sourceId,
             targetId,
             sourceHandleId,
             targetHandleId,
             edgeType.isImmediate(),
-            // todo
-            false,
+            bidirectional,
             EdgeFactory.edgeTypeIndicator(edgeType),
             edgeType.getId(),
-            EdgeDataFactory.edgeDataFromEdgeType(edgeType, sourceHandleId, targetHandleId)
+            EdgeDataFactory.edgeDataFromEdgeType(
+                edgeType,
+                sourceHandleId,
+                targetHandleId,
+                bidirectional,
+            )
         );
     }
 
@@ -165,6 +181,14 @@ export class EdgeFactory {
             return "prototype";
         }
         return id;
+    }
+
+    private static isBidirectional(edge: TransformationEdge): boolean {
+        if (edge.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA)) {
+            const edgeData: EdgeData = edge.getAnnotationData(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA);
+            return edgeData.bidirectional;
+        }
+        return false;
     }
 }
 
