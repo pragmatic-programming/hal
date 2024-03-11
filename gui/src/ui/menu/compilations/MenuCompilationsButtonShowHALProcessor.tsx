@@ -1,12 +1,12 @@
-import MenuCompilationsOptionButton from "./MenuCompilationsOptionButton";
+import MenuCompilationsButtonOption from "./MenuCompilationsButtonOption";
 import { useStore } from "../../../state/Store";
 import { State } from "../../../state/State";
 
-export function MenuCompilationsShowHALProcessor() {
+export function MenuCompilationsButtonShowHALProcessor() {
     const showHALProcessor: boolean = useStore((state: State) => state.compilation.options.showHALProcessor);
     const toggleShowHALProcessor = useStore((state: State) => state.compilation.options.toggleShowHALProcessor);
     return (
-        <MenuCompilationsOptionButton
+        <MenuCompilationsButtonOption
             on={showHALProcessor}
             onClick={toggleShowHALProcessor}
             optionName={"Show HAL processor"}

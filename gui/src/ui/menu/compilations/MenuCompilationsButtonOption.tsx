@@ -9,7 +9,7 @@ interface Props {
     optionName: string;
 }
 
-export default function MenuCompilationsOptionButton(props: Props): React.JSX.Element {
+export default function MenuCompilationsButtonOption(props: Props): React.JSX.Element {
     return (
         <ListItem>
             <ListItemButton

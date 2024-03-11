@@ -13,7 +13,7 @@ interface Props extends Director {
     icon: SvgIconComponent;
 }
 
-export function MenuCompilationsDirectorButton(props: Props): React.JSX.Element {
+export function MenuCompilationsButtonDirector(props: Props): React.JSX.Element {
     const setDirector = useStore((state: State) => state.compilation.setDirector);
     return (
         <ListItem key={props.id}>
