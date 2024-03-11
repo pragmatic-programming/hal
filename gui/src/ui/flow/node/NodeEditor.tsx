@@ -17,9 +17,8 @@ import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import DeleteIcon from "@mui/icons-material/Delete";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
-const editorBodyReducedWidth: number = 2;
-const editorBodyReducedHeight: number = editorHeaderHeight + editorFooterHeight;
 
+const editorBodyReducedWidth: number = 2;
 
 export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Element {
     const openEditor = useStore((state: State) => state.editor.editorOpen);
@@ -31,6 +30,37 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
     const setNodeNodeDataLabel = useStore((state: State) => state.flow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.flow.setNodeNodeDataContent);
     const resizerIsVisible: boolean = props.selected;
+    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
+    let editorHeader = null;
+    let editorFooter = null;
+    let editorBodyReducedHeight: number = 0;
+    if (verboseMode) {
+        editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;
+        editorHeader = <EditorHeader
+            value={props.data.label}
+            onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}
+            nodeId={props.id}
+            iconLeft={
+                <Icon
+                    iconDefault={InsertDriveFileIcon}
+                    iconHover={DeleteIcon}
+                    onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}
+                    tooltip={"Delete Editor Node"}
+                />
+            }
+            iconRight={
+                <Icon
+                    iconDefault={OpenInNewIcon}
+                    onClick={() => openEditor(reactFlow.getNode, props.id)}
+                    tooltip={"Open Fullscreen"}
+                />
+            }
+        />;
+        editorFooter = <EditorFooter
+            nodeId={props.id}
+            language={props.data.language}
+        />;
+    }
     return (
         <NodeEditorBorder
             height={node.height}
@@ -55,26 +85,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
             <HandleSourceBottom
                 nodeId={props.id}
             />
-            <EditorHeader
-                value={props.data.label}
-                onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}
-                nodeId={props.id}
-                iconLeft={
-                    <Icon
-                        iconDefault={InsertDriveFileIcon}
-                        iconHover={DeleteIcon}
-                        onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}
-                        tooltip={"Delete Editor Node"}
-                    />
-                }
-                iconRight={
-                    <Icon
-                        iconDefault={OpenInNewIcon}
-                        onClick={() => openEditor(reactFlow.getNode, props.id)}
-                        tooltip={"Open Fullscreen"}
-                    />
-                }
-            />
+            {editorHeader}
             <EditorBody
                 height={"calc(100% - " + editorBodyReducedHeight + "px)"}
                 language={props.data.language}
@@ -82,10 +93,7 @@ export default function NodeEditor(props: NodeProps<NodeData>): React.JSX.Elemen
                 value={props.data.content}
                 width={"calc(100% - " + editorBodyReducedWidth + "px)"}
             />
-            <EditorFooter
-                nodeId={props.id}
-                language={props.data.language}
-            />
+            {editorFooter}
         </NodeEditorBorder>
     );
 }
