@@ -1,7 +1,7 @@
-import {NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage} from "./NodeData";
-import {LanguageIndicator} from "./LanguageIndicator";
-import {SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
-import {XYPosition} from "reactflow";
+import { NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataHierarchy, NodeDataImage } from "./NodeData";
+import { LanguageIndicator } from "./LanguageIndicator";
+import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
+import { XYPosition } from "reactflow";
 
 export class NodeDataFactory {
 
@@ -63,6 +63,19 @@ export class NodeDataFactory {
             type: "file",
             content: content,
             fileType: fileType,
+            position: position,
+            width: width,
+            height: height,
+        };
+    }
+
+    static nodeDataHierarchy(
+        position: XYPosition | undefined,
+        height: number,
+        width: number,
+    ): NodeDataHierarchy {
+        return {
+            type: "hierarchy",
             position: position,
             width: width,
             height: height,

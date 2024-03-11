@@ -1,9 +1,9 @@
 {
-  "_objectId": "0x0000c5d5",
+  "_objectId": "0x0000c2d2",
   "annotations": {},
   "nodes": [
     {
-      "_objectId": "0x0000c5d6",
+      "_objectId": "0x0000c573",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -14,8 +14,8 @@
             "status": "UNDEFINED",
             "type": "editor",
             "position": {
-              "x": 0,
-              "y": -200
+              "x": 12,
+              "y": 12
             },
             "width": 300,
             "height": 200
@@ -26,7 +26,7 @@
       "content": "const int LED_PIN = 13;"
     },
     {
-      "_objectId": "0x0000c5d7",
+      "_objectId": "0x0000c574",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -49,7 +49,7 @@
       "content": "pinMode(LED_PIN, OUTPUT);"
     },
     {
-      "_objectId": "0x0000c5d8",
+      "_objectId": "0x0000c575",
       "annotations": {
         "nodeData": {
           "id": "nodeData",
@@ -60,8 +60,8 @@
             "status": "UNDEFINED",
             "type": "editor",
             "position": {
-              "x": 1151,
-              "y": 282
+              "x": 1012,
+              "y": 12
             },
             "width": 300,
             "height": 200
@@ -74,14 +74,14 @@
   ],
   "edgeTypes": [
     {
-      "_objectId": "0x0000c5d9",
+      "_objectId": "0x0000c576",
       "annotations": {},
       "id": "sequence",
       "priority": 10,
       "immediate": false
     },
     {
-      "_objectId": "0x0000c5ef",
+      "_objectId": "0x0000c577",
       "annotations": {},
       "id": "arduino",
       "priority": 9,
@@ -90,7 +90,7 @@
   ],
   "edges": [
     {
-      "_objectId": "0x0000c5f0",
+      "_objectId": "0x0000c578",
       "annotations": {
         "edgeData": {
           "id": "edgeData",
@@ -109,7 +109,7 @@
       "targetNode": "Setup"
     },
     {
-      "_objectId": "0x0000c5f1",
+      "_objectId": "0x0000c579",
       "annotations": {
         "edgeData": {
           "id": "edgeData",

@@ -1,12 +1,12 @@
-import {SimpleNode, SimpleNodeStatus} from "@pragmatic-programming/ihgraph";
-import {Dimensions, Node, Position, XYPosition} from "reactflow";
-import {LanguageIndicator} from "./LanguageIndicator";
-import {FlowToIHGraphProcessor} from "../../processors/FlowToIHGraphProcessor";
-import {NodeData, NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataImage,} from "./NodeData";
-import {NodeDataFactory} from "./NodeDataFactory";
-import {DimensionsForContent} from "../../processors/edgeTypes/DimensionsForContent";
-import {NodeTypeIndicator} from "./NodeTypeIndicator";
-import {originOfCoordinates} from "../../util";
+import { IHGraph, SimpleNode, SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
+import { Dimensions, Node, Position, XYPosition } from "reactflow";
+import { LanguageIndicator } from "./LanguageIndicator";
+import { FlowToIHGraphProcessor } from "../../processors/FlowToIHGraphProcessor";
+import { NodeData, NodeDataCreate, NodeDataEditor, NodeDataFile, NodeDataHierarchy, NodeDataImage } from "./NodeData";
+import { NodeDataFactory } from "./NodeDataFactory";
+import { DimensionsForContent } from "../../processors/edgeTypes/DimensionsForContent";
+import { NodeTypeIndicator } from "./NodeTypeIndicator";
+import { originOfCoordinates } from "../../util";
 
 export class NodeFactory {
 
@@ -40,6 +40,8 @@ export class NodeFactory {
                     100,
                     100
                 );
+            case "hierarchy":
+                throw new Error("Creation nodes cannot be of type hierarchy!");
         }
     }
 
@@ -91,7 +93,19 @@ export class NodeFactory {
                     nodeData.width,
                     nodeData.height,
                 );
+            case "hierarchy":
+                throw new Error("Simple nodes cannot be of type hierarchy!");
         }
+    }
+
+    static fromGraphNode(graphNode: IHGraph): Node<NodeData> {
+        return NodeFactory.nodeHierarchy(
+            graphNode.getId(),
+            {
+                x: 200,
+                y: 100
+            },
+        );
     }
 
 
@@ -225,7 +239,7 @@ export class NodeFactory {
         };
     }
 
-    private static nodeFile(
+    static nodeFile(
         id: string,
         content: string | undefined,
         fileType: "text/plain" | undefined,
@@ -246,6 +260,25 @@ export class NodeFactory {
             position: NodeFactory.nodePosition(position),
             width: width,
             height: height,
+        };
+    }
+
+
+    static nodeHierarchy(
+        id: string,
+        position: XYPosition | undefined,
+    ): Node<NodeDataHierarchy> {
+        const width: number = 400;
+        const height: number = 200;
+        return {
+            id: id,
+            type: "hierarchy",
+            data: NodeDataFactory.nodeDataHierarchy(position, height, width),
+            position: NodeFactory.nodePosition(position),
+            width: width,
+            height: height,
+            // lower zIndex so that edges "inside" of hierarchy nodes are visible
+            zIndex: -1,
         };
     }
 

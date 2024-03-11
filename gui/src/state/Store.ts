@@ -1,38 +1,40 @@
-import {State} from "./State";
-import {CompilationContext, System} from "@pragmatic-programming/kico";
-import {onNodesChange} from "./flow/onNodesChange";
-import {onEdgesChange} from "./flow/onEdgesChange";
-import {onConnect} from "./flow/onConnect";
-import {run} from "./compilation/run";
-import {layout} from "./flow/layout";
-import {render} from "./flow/render";
-import {setEdgeLabel} from "./flow/setEdgeLabel";
-import {editorOpen} from "./editor/editorOpen";
-import {editorContentSet} from "./editor/editorContentSet";
-import {editorLabelSet} from "./editor/editorLabelSet";
-import {createWithEqualityFn} from "zustand/traditional";
-import {transformCreateNode} from "./flow/transformCreateNode";
-import {setConnectingSource} from "./flow/setConnectingSource";
-import {setNodeNodeDataLanguage} from "./flow/setNodeNodeDataLanguage";
-import {setEdgePathStyleForAll} from "./flow/setEdgePathStyleForAll";
-import {setNodeNodeDataLabel} from "./flow/setNodeNodeDataLabel";
-import {setNodeNodeDataContent} from "./flow/setNodeNodeDataContent";
-import {runImmediate} from "./compilation/runImmediate";
-import {transformCreateEdge} from "./flow/transformCreateEdge";
-import {Position} from "@reactflow/core";
-import {nextNodeId} from "./flow/nextNodeId";
-import {layoutsOpenToggle} from "./ui/layout/layoutsOpenToggle";
-import {NodeFactory} from "../model/node/NodeFactory";
-import {examplesOpenToggle} from "./ui/examples/examplesOpenToggle";
-import {setContent} from "./ui/message/setContent";
-import {addNodeCreate} from "./flow/addNodeCreate";
-import {setEdgePathStyleForEdge} from "./flow/setEdgePathStyleForEdge";
-import {toggleVerboseMode} from "./flow/toggleVerboseMode";
-import {setEdgePriority} from "./flow/setEdgePriority";
-import {originOfCoordinates} from "../util";
+import { State } from "./State";
+import { CompilationContext, System } from "@pragmatic-programming/kico";
+import { onNodesChange } from "./flow/onNodesChange";
+import { onEdgesChange } from "./flow/onEdgesChange";
+import { onConnect } from "./flow/onConnect";
+import { run } from "./compilation/run";
+import { layout } from "./flow/layout";
+import { render } from "./flow/render";
+import { setEdgeLabel } from "./flow/setEdgeLabel";
+import { editorOpen } from "./editor/editorOpen";
+import { editorContentSet } from "./editor/editorContentSet";
+import { editorLabelSet } from "./editor/editorLabelSet";
+import { createWithEqualityFn } from "zustand/traditional";
+import { transformCreateNode } from "./flow/transformCreateNode";
+import { setConnectingSource } from "./flow/setConnectingSource";
+import { setNodeNodeDataLanguage } from "./flow/setNodeNodeDataLanguage";
+import { setEdgePathStyleForAll } from "./flow/setEdgePathStyleForAll";
+import { setNodeNodeDataLabel } from "./flow/setNodeNodeDataLabel";
+import { setNodeNodeDataContent } from "./flow/setNodeNodeDataContent";
+import { runImmediate } from "./compilation/runImmediate";
+import { transformCreateEdge } from "./flow/transformCreateEdge";
+import { Position } from "@reactflow/core";
+import { nextNodeId } from "./flow/nextNodeId";
+import { compilationsOpenToggle } from "./ui/compilations/compilationsOpenToggle";
+import { layoutsOpenToggle } from "./ui/layout/layoutsOpenToggle";
+import { NodeFactory } from "../model/node/NodeFactory";
+import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
+import { setContent } from "./ui/message/setContent";
+import { addNodeCreate } from "./flow/addNodeCreate";
+import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
+import { toggleVerboseMode } from "./flow/toggleVerboseMode";
+import { setEdgePriority } from "./flow/setEdgePriority";
+import { toggleHierarchyMode } from "./flow/toggleHierarchyMode";
+import { originOfCoordinates } from "../util";
 import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
 import { setDirector } from "./compilation/setDirector";
-import { compilationsOpenToggle } from "./ui/compilations/compilationsOpenToggle";
+import { toggleShowHALProcessor } from "./compilation/options/toggleShowHALProcessor";
 
 export const useStore = createWithEqualityFn<State>((setState, getState) => ({
     compilation: {
@@ -40,6 +42,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         director: HALGraphProcessor,
         setDirector: setDirector(setState, getState),
         run: run(setState, getState),
+        options: {
+            showHALProcessor: false,
+            toggleShowHALProcessor: toggleShowHALProcessor(setState, getState),
+        }
     },
     immediateCompilation: {
         context: new CompilationContext(new System("empty", [])),
@@ -84,6 +90,9 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         transformCreateEdge: transformCreateEdge(setState, getState),
         transformCreateNode: transformCreateNode(setState, getState),
         verboseMode: true,
+        toggleHierarchyMode: toggleHierarchyMode(setState, getState),
+        hierarchyMode: false,
+        lastRenderGraph: null,
     },
     ui: {
         busy: false,

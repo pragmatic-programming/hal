@@ -1,15 +1,15 @@
-import {State} from "../State";
-import {IHGraph} from "@pragmatic-programming/ihgraph";
-import {FitViewOptions} from "reactflow";
-import {CompilationContext} from "@pragmatic-programming/kico";
-import {iHGraphToFlow} from "../../processors/compilationContexts";
-import {globalFitViewOptions} from "../../constants";
-import {StoreApi} from "zustand";
-import {layoutedNodes} from "../layoutedNodes";
-import {layoutOptions} from "../../util";
-import {NodesAndEdges} from "../../model/NodesAndEdges";
-import {NodeData} from "../../model/node/NodeData";
-import {Node} from "reactflow";
+import { State } from "../State";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
+import { FitViewOptions, Node } from "reactflow";
+import { CompilationContext } from "@pragmatic-programming/kico";
+import { iHGraphToFlow } from "../../processors/compilationContexts";
+import { globalFitViewOptions } from "../../constants";
+import { StoreApi } from "zustand";
+import { layoutedNodes } from "../layoutedNodes";
+import { layoutOptions } from "../../util";
+import { NodesAndEdges } from "../../model/NodesAndEdges";
+import { IHGraphToFlowProcessor } from "../../processors/IHGraphToFlowProcessor";
+import { NodeData } from "../../model/node/NodeData";
 
 function isLayoutNecessary(nodesAndEdges: NodesAndEdges): boolean {
     return nodesAndEdges
@@ -18,7 +18,6 @@ function isLayoutNecessary(nodesAndEdges: NodesAndEdges): boolean {
 }
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
-
     return async (
         ihGraph: IHGraph,
         fitView: (fitViewOptions: FitViewOptions) => void,
@@ -37,7 +36,9 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
             },
         });
         // compile graph
+        const induceHierarchy: boolean = getState().flow.hierarchyMode;
         const context: CompilationContext = iHGraphToFlow(ihGraph);
+        context.startEnvironment.setProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY, induceHierarchy);
         await context.compileAsync();
         const nodesAndEdges: NodesAndEdges = context.getResult();
         const flow = {
@@ -61,6 +62,12 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
             ui: {
                 ...getState().ui,
                 busy: false,
+            },
+        });
+        setState({
+            flow: {
+                ...getState().flow,
+                lastRenderGraph: ihGraph,
             },
         });
     };

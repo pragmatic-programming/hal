@@ -1,9 +1,10 @@
 import { Processor } from "@pragmatic-programming/kico";
-import { EdgeType, IHGraph, IHNode, SimpleNode, TransformationEdge } from "@pragmatic-programming/ihgraph";
+import { EdgeType, IHGraph, IHNode, TransformationEdge } from "@pragmatic-programming/ihgraph";
 import { NodesAndEdges } from "../model/NodesAndEdges";
 import { NodeData } from "../model/node/NodeData";
 import { StrictNode, strictNode } from "../model/node/StrictNode";
 import { DefaultProcessors } from "./DefaultProcessors";
+import { Node } from "reactflow";
 
 export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
 
@@ -29,23 +30,9 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             }
         }
 
+        const nodeMap: Map<string, IHNode | undefined> = new Map<string, IHNode | undefined>();
         for (let unsafeNode of model.nodes) {
-            const node: StrictNode<NodeData> = strictNode(unsafeNode);
-            const sourceNode: SimpleNode = graph.createSimpleNode(node.id);
-            const data: NodeData = {
-                ...node.data,
-                position: node.position,
-            };
-            if (data.type !== "create") {
-                data.width = node.width;
-                data.height = node.height;
-                // set content from node data,
-                // because reactFlow has no content field and
-                // ihgraph processors don't work with node data annotation
-                sourceNode.setContent(data.content ? data.content : "");
-            }
-            // set node data annotation in case the ihgraph will be rendered
-            sourceNode.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, data);
+            this.createIHNode(unsafeNode, model.nodes, graph, nodeMap);
         }
         for (const edge of model.edges) {
             const source: IHNode | undefined = graph.getNodeById(edge.source);
@@ -63,8 +50,6 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             const transformationEdge: TransformationEdge = graph.createTransformationEdge(edgeType, source, target);
             transformationEdge.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA, edge.data);
         }
-
-
         this.setModel(graph);
     }
 
@@ -74,5 +59,54 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
 
     getName() {
         return "From Flow";
+    }
+
+    // Topologically sort the nodes according to their relationship.
+    // If no hierarchical nodes are present, this simply creates a simple node as previously.
+    protected createIHNode(unsafeNode: Node<NodeData>, nodes: Node<NodeData>[], root: IHGraph, nodeMap: Map<string, IHNode | undefined>): void {
+        if (nodeMap.has(unsafeNode.id)) {
+            return;
+        }
+
+        const node: StrictNode<NodeData> = strictNode(unsafeNode);
+        nodeMap.set(node.id, undefined);
+
+        let parent: IHGraph = root;
+        if (node.parentNode) {
+            if (!nodeMap.has(node.parentNode)) {
+                const parentNode = nodes.find(n => n.id === node.parentNode);
+                if (!parentNode) {
+                    throw new Error(`Parent node ${node.parentNode} not found!`);
+                }
+                this.createIHNode(parentNode, nodes, root, nodeMap);
+            }
+            parent = nodeMap.get(node.parentNode)! as IHGraph;
+        }
+
+        let data: NodeData = {
+            ...node.data,
+        };
+
+        let sourceNode: IHNode;
+        if (data.type === "hierarchy") {
+            // TODO: Check later in rc4 if there is a dedicated createGraphNode method.
+            sourceNode = new IHGraph();
+            sourceNode.setId(node.id);
+            parent.addNode(sourceNode);
+        } else {
+            sourceNode = parent.createSimpleNode(node.id);
+            // set content from node data,
+            // because reactFlow has no content field and
+            // ihgraph processors don't work with node data annotation
+            if (data.type !== "create") {
+                data.width = node.width;
+                data.height = node.height;
+                sourceNode.setContent(data.content ? data.content : "");
+            }
+        }
+
+        // set node data annotation in case the ihgraph will be rendered
+        sourceNode.createAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA, data);
+        nodeMap.set(node.id, sourceNode);
     }
 }
