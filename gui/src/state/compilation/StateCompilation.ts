@@ -6,4 +6,8 @@ export interface StateCompilation {
     director: typeof DirectorProcessor,
     setDirector: (director: typeof DirectorProcessor) => void,
     run: () => void,
+    options: {
+        showHALProcessor: boolean,
+        toggleShowHALProcessor: () => void,
+    }
 }

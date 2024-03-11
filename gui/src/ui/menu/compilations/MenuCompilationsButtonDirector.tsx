@@ -4,15 +4,16 @@ import { useStore } from "../../../state/Store";
 import { Director } from "../../../processors/directors/Director";
 import { HALGraphProcessor } from "../../../processors/directors/HALGraphProcessor";
 import { SvgIconComponent } from "@mui/icons-material";
+import React from "react";
 
 interface Props extends Director {
     id: number,
     name: string,
     processor: typeof HALGraphProcessor,
     icon: SvgIconComponent;
-};
+}
 
-export function MenuCompilationsDirectorButton(props: Props): React.JSX.Element {
+export function MenuCompilationsButtonDirector(props: Props): React.JSX.Element {
     const setDirector = useStore((state: State) => state.compilation.setDirector);
     return (
         <ListItem key={props.id}>
