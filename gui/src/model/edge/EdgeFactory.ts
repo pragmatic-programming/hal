@@ -1,4 +1,4 @@
-import { Edge, MarkerType, OnConnectStartParams } from "reactflow";
+import { Edge, EdgeMarkerType, MarkerType, OnConnectStartParams } from "reactflow";
 import { edgeDefinitionCreate } from "./edgeDefinitions";
 import { EdgeDefinition } from "./EdgeDefinition";
 import { EdgeData, EdgeDataCreate } from "./EdgeData";
@@ -86,6 +86,8 @@ export class EdgeFactory {
             sourceHandleId,
             targetHandleId,
             edgeType.isImmediate(),
+            // todo
+            false,
             EdgeFactory.edgeTypeIndicator(edgeType),
             edgeType.getId(),
             EdgeDataFactory.edgeDataFromEdgeType(edgeType, sourceHandleId, targetHandleId)
@@ -106,6 +108,7 @@ export class EdgeFactory {
             sourceHandleId,
             targetHandleId,
             edgeDefinition.animated,
+            edgeDefinition.bidirectional,
             edgeDefinition.type,
             edgeDefinition.type,
             EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition, sourceHandleId, targetHandleId)
@@ -119,6 +122,7 @@ export class EdgeFactory {
         sourceHandleId: string,
         targetHandleId: string,
         animated: boolean,
+        bidirectional: boolean,
         type: EdgeTypeIndicator,
         label: string,
         data: EdgeData,
@@ -132,12 +136,19 @@ export class EdgeFactory {
             targetHandle: targetHandleId,
             label: label,
             type: type,
-            markerEnd: {
-                type: MarkerType.ArrowClosed,
-                width: 30,
-                height: 30,
-            },
+            markerEnd: EdgeFactory.marker(bidirectional),
             data: data
+        };
+    }
+
+    private static marker(bidirectional: boolean): EdgeMarkerType | undefined {
+        if (bidirectional) {
+            return undefined;
+        }
+        return {
+            type: MarkerType.ArrowClosed,
+            width: 30,
+            height: 30,
         };
     }
 
