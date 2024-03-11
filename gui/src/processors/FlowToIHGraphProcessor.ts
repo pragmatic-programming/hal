@@ -101,6 +101,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             if (data.type !== "create") {
                 data.width = node.width;
                 data.height = node.height;
+                data.position = node.position
                 sourceNode.setContent(data.content ? data.content : "");
             }
         }

@@ -53,11 +53,15 @@ export class EdgeFactory {
         if (!targetId) {
             throw new Error("Returned targetId is undefined");
         }
-        return EdgeFactory.fromEdgeType(
+        let edgeData: EdgeData = EdgeDataFactory.default();
+        if (edge.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA)) {
+            edgeData = edge.getAnnotationData(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA);
+        }
+        return EdgeFactory.fromEdgeTypeAndEdgeData(
             edge.getType(),
+            edgeData,
             sourceId,
             targetId,
-            EdgeFactory.isBidirectional(edge)
         );
     }
 
@@ -77,36 +81,29 @@ export class EdgeFactory {
         return "top";
     }
 
-    private static fromEdgeType(
+    private static fromEdgeTypeAndEdgeData(
         edgeType: EdgeType,
+        edgeData: EdgeData,
         sourceId: string,
         targetId: string,
-        bidirectional: boolean,
     ): Edge<EdgeData> {
-        const sourceHandleId: SourceHandleId = "right";
-        const targetHandleId: TargetHandleId = "left";
         return EdgeFactory.edge(
             EdgeFactory.edgeId(
                 sourceId,
                 targetId,
-                sourceHandleId,
-                targetHandleId,
+                edgeData.sourceHandle,
+                edgeData.targetHandle,
                 edgeType.getId()
             ),
             sourceId,
             targetId,
-            sourceHandleId,
-            targetHandleId,
+            edgeData.sourceHandle,
+            edgeData.targetHandle,
             edgeType.isImmediate(),
-            bidirectional,
+            edgeData.bidirectional,
             EdgeFactory.edgeTypeIndicator(edgeType),
             edgeType.getId(),
-            EdgeDataFactory.edgeDataFromEdgeType(
-                edgeType,
-                sourceHandleId,
-                targetHandleId,
-                bidirectional,
-            )
+            edgeData,
         );
     }
 
@@ -183,12 +180,4 @@ export class EdgeFactory {
         return id;
     }
 
-    private static isBidirectional(edge: TransformationEdge): boolean {
-        if (edge.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA)) {
-            const edgeData: EdgeData = edge.getAnnotationData(FlowToIHGraphProcessor.ANNOTATION_EDGE_DATA);
-            return edgeData.bidirectional;
-        }
-        return false;
-    }
 }
-

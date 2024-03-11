@@ -1,6 +1,7 @@
 export const languageIndicators = [
     "C",
     "HTML",
+    "Java",
     "JavaScript",
     "TypeScript",
     "PlainText",
