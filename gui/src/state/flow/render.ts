@@ -11,7 +11,11 @@ import { NodesAndEdges } from "../../model/NodesAndEdges";
 import { IHGraphToFlowProcessor } from "../../processors/IHGraphToFlowProcessor";
 
 export function render(setState: StoreApi<State>["setState"], getState: () => State) {
-    return async (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string): Promise<void> => {
+    return async (
+        ihGraph: IHGraph,
+        fitView: (fitViewOptions: FitViewOptions) => void,
+        projectName?: string
+    ): Promise<void> => {
         setState({
             ui: {
                 ...getState().ui,
@@ -51,7 +55,6 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
             flow: {
                 ...getState().flow,
                 lastRenderGraph: ihGraph,
-                lastFitView: fitView,
             },
         });
     };

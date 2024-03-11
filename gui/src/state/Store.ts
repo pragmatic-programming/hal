@@ -83,7 +83,6 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         toggleHierarchyMode: toggleHierarchyMode(setState, getState),
         hierarchyMode: false,
         lastRenderGraph: null,
-        lastFitView: () => { },
     },
     ui: {
         busy: false,

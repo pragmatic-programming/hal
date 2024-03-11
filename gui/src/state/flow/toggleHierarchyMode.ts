@@ -1,9 +1,12 @@
 import { State } from "../State";
 import { StoreApi } from "zustand";
 import { reRender } from "../reRender";
+import { FitViewOptions } from "reactflow";
 
 export function toggleHierarchyMode(setState: StoreApi<State>["setState"], getState: () => State) {
-    return (): void => {
+    return (
+        fitView: (fitViewOptions: FitViewOptions) => void,
+    ): void => {
         const state: State = getState();
         setState({
             ...state,
@@ -12,6 +15,6 @@ export function toggleHierarchyMode(setState: StoreApi<State>["setState"], getSt
                 hierarchyMode: !state.flow.hierarchyMode
             }
         });
-        reRender(state);
+        reRender(state, fitView);
     };
 }
