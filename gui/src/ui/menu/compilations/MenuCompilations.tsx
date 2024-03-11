@@ -38,10 +38,11 @@ export default function MenuCompilations(): React.JSX.Element {
                     {directors
                         .map((director: Director) =>
                           <MenuCompilationsButtonDirector
+                            icon={director.icon}
                             id={director.id}
+                            key={director.id}
                             name={director.name}
                             processor={director.processor}
-                            icon={director.icon}
                           />
                         )}
                 </List>
