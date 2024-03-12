@@ -33,13 +33,28 @@ export function borderColor(
 
 export type LayoutOptionTypeIndicator = "horizontal" | "vertical" | "radial" | "force"
 
+export const staticLayoutOptions: LayoutOptions = {
+        // "elk.algorithm": "layered",
+        // "elk.direction": "RIGHT",
+        // "elk.layered.spacing.nodeNodeBetweenLayers": "200.0",
+        // "org.eclipse.elk.spacing.edgeNode": "80",
+        // "org.eclipse.elk.spacing.nodeNode": "30",
+        // "org.eclipse.elk.layered.nodePlacement.strategy": "NETWORK_SIMPLEX",
+        // "org.eclipse.elk.layered.cycleBreaking.strategy": "DEPTH_FIRST",
+        // "org.eclipse.elk.layered.thoroughness": "100",
+        // "org.eclipse.elk.layered.wrapping.strategy": "SINGLE_EDGE",
+        // "org.eclipse.elk.layered.wrapping.additionalEdgeSpacing": "0.0",
+        // "org.eclipse.elk.layered.wrapping.correctionFactor": "1.9",
+    };
+
 export function layoutOptions(layoutOptionType: LayoutOptionTypeIndicator): LayoutOptions {
     const layoutOption: LayoutOptions = {
+        ...staticLayoutOptions,
         "elk.algorithm": "layered",
         "elk.direction": "RIGHT",
         "elk.layered.spacing.nodeNodeBetweenLayers": "200.0",
         "org.eclipse.elk.spacing.edgeNode": "80",
-        "elk.spacing.nodeNode": "40",
+        // "elk.spacing.nodeNode": "40",
         "org.eclipse.elk.spacing.nodeNode": "30",
         "org.eclipse.elk.layered.nodePlacement.strategy": "NETWORK_SIMPLEX",
         "org.eclipse.elk.layered.cycleBreaking.strategy": "DEPTH_FIRST",

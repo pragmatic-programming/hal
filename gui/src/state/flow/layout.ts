@@ -6,6 +6,7 @@ import { StoreApi } from "zustand";
 import { layoutOptions, LayoutOptionTypeIndicator } from "../../util";
 
 export function layout(setState: StoreApi<State>["setState"], getState: () => State) {
+    
     return async (fitView: (fitViewOptions: FitViewOptions) => void, layoutOption: LayoutOptionTypeIndicator) => {
         const state = getState();
         setState({
@@ -15,11 +16,13 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
             },
         });
         const reactFlow = state.flow;
+        const nodesAndEdges = await layoutedNodes(reactFlow, layoutOptions(layoutOption));
         setState({
             flow: {
                 ...reactFlow,
                 layoutOption: layoutOption,
-                nodes: await layoutedNodes(reactFlow, layoutOptions(layoutOption)),
+                nodes: nodesAndEdges.nodes,
+                edges: nodesAndEdges.edges,
             }
         });
         window.requestAnimationFrame(() => {

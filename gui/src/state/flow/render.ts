@@ -47,7 +47,9 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         };
         // layout graph
         if (isLayoutNecessary(nodesAndEdges)) {
-            flow.nodes = await layoutedNodes(flow, layoutOptions(getState().flow.layoutOption));
+            const nodesAndEdges = await layoutedNodes(flow, layoutOptions(getState().flow.layoutOption));
+            flow.nodes = nodesAndEdges.nodes;
+            flow.edges = nodesAndEdges.edges;
         }
         // set compiled graph
         setState({

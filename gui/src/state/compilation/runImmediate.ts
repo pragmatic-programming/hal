@@ -44,10 +44,12 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
             ...newState.flow,
             ...nodesAndEdges,
         };
+        const layoutedNodesAndEdges = await layoutedNodes(nodesAndEdges, layoutOptions(newState.flow.layoutOption));
         setState({
             flow: {
                 ...reactFlow,
-                nodes: await layoutedNodes(nodesAndEdges, layoutOptions(newState.flow.layoutOption)),
+                nodes: layoutedNodesAndEdges.nodes,
+                edges: layoutedNodesAndEdges.edges,
             },
             ui: {
                 ...newState.ui,

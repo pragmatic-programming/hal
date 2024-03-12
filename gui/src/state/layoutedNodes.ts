@@ -12,11 +12,13 @@ const elk = new ELK({
     }
 });
 
-export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions: LayoutOptions) {
+export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions: LayoutOptions): Promise<NodesAndEdges> {
     const nodeMap = new Map<string, Node>();
-    const elkNodeMap = new Map<Node, ElkNode>();
+    const nodeElkMap = new Map<Node, ElkNode>();
+    const elkNodeMap = new Map<ElkNode, Node>();
     const children: Node[] = [];
     const rootElkNodes: ElkNode[] = [];
+    const elkEdgeEdgeMap = new Map<ElkExtendedEdge, Edge>();
 
     // Create elk nodes for each node and store them in a map.
     // Nodes that appear to be in a hierarchy are stored separately to allow post processing.
@@ -26,7 +28,8 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
             width: node.width ? node.width : 100,
             height: node.height ? node.height : 100,
         };
-        elkNodeMap.set(node, elkNode);
+        nodeElkMap.set(node, elkNode);
+        elkNodeMap.set(elkNode, node);
         nodeMap.set(node.id, node);
 
         if (node.parentNode) {
@@ -39,8 +42,8 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
     // Go through all nodes that are included in a hierarchy and and add the correct parent node id.
     // Also propagate the layout options to the nested hierarchy nodes as elk options only work for the current hierarchy level.
     for (const child of children) {
-        const elkNode = elkNodeMap.get(child)!;
-        const parentElkNode = elkNodeMap.get(nodeMap.get(child.parentNode!)!);
+        const elkNode = nodeElkMap.get(child)!;
+        const parentElkNode = nodeElkMap.get(nodeMap.get(child.parentNode!)!);
         if (!parentElkNode) {
             throw new Error("ParentElkNode is undefined!");
         }
@@ -48,32 +51,59 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
             parentElkNode.children = [];
         }
         parentElkNode.children.push(elkNode);
-        parentElkNode.layoutOptions = layoutOptions;
     }
 
     // Create the elk root node.
-    const graph: ElkNode = {
-        id: "root",
-        layoutOptions: layoutOptions,
-        children: rootElkNodes,
-        edges: nodesAndEdges.edges.map((edge: Edge): ElkExtendedEdge => ({
+    const elkEdges: ElkExtendedEdge[] = [];
+    for (const edge of nodesAndEdges.edges) {
+        const elkEdge: ElkExtendedEdge = {
             id: edge.id,
             sources: [edge.source],
             targets: [edge.target]
-        })),
+        };
+        elkEdgeEdgeMap.set(elkEdge, edge);
+        elkEdges.push(elkEdge);
+    }
+
+    for (const edge of [...elkEdges]) {
+        const source = edge.sources[0];
+        const sourceNode = nodeMap.get(source);
+
+        if (sourceNode && sourceNode.parentNode) {
+            const elkParentNode = nodeElkMap.get(nodeMap.get(sourceNode.parentNode!)!);
+            if (elkParentNode) {
+                elkParentNode.edges = elkParentNode.edges || [];
+                elkParentNode.edges.push(edge);
+                elkEdges.splice(elkEdges.indexOf(edge), 1);
+                
+            }
+        }
+    }
+
+    const graph: ElkNode = {
+        id: "root",
+        layoutOptions: {
+            // ...layoutOptions,
+            "elk.direction": "DOWN"
+        },
+        children: rootElkNodes,
+        edges: elkEdges
     };
+
+    applyHVLayout([graph], elkEdgeEdgeMap, layoutOptions);
 
     // Do the actual layout.
     console.debug(graph);
     const root: ElkNode = await elk.layout(graph);
 
+    
     // Apply the node position and sizes to the flow graph.
     if (!root.children) {
         throw new Error("Children are undefined");
     }
     const nodes: Node[] = applyLayoutData(root, nodeMap, layoutOptions);
 
-    return nodes;
+    return {nodes: nodes, edges: nodesAndEdges.edges};
 }
 
 function applyLayoutData(elkNode: ElkNode, nodeMap: Map<string, Node>, layoutOptions: LayoutOptions): Node[] {
@@ -108,4 +138,29 @@ function applyLayoutData(elkNode: ElkNode, nodeMap: Map<string, Node>, layoutOpt
     }
 
     return nodes;
+}
+
+function applyHVLayout(nodes: ElkNode[], elkEdgeEdgeMap: Map<ElkExtendedEdge, Edge>, layoutOptions: LayoutOptions, hvToggle: boolean = true) {
+    const direction = hvToggle ? "DOWN" : "RIGHT";
+    for (const node of nodes) {
+        if (node.children) {
+            node.layoutOptions = {
+                // ...layoutOptions,
+                "elk.direction": direction
+            };
+            applyHVLayout(node.children, elkEdgeEdgeMap, layoutOptions, !hvToggle);
+
+            if (direction === "DOWN") {
+                if (node.edges) {
+                    for (const elkEdge of node.edges) {
+                        const edge = elkEdgeEdgeMap.get(elkEdge);
+                        if (edge) {
+                            edge.sourceHandle = "bottom";
+                            edge.targetHandle = "top";
+                        }
+                    }
+                }
+                }
+        } 
+    }
 }
