@@ -36,7 +36,16 @@ export function EditorBody(props: Props) {
             height={props.height}
             language={props.language.toLowerCase()}
             onChange={props.onChange}
-            options={{minimap: {enabled: false}}}
+            options={{
+                minimap: {enabled: false},
+                renderLineHighlight: "none",
+                overviewRulerBorder: false,
+                overviewRulerLanes: 0,
+                scrollbar: {
+                    horizontal: "auto",
+                    vertical: "hidden",
+                }
+            }}
             value={props.value}
             width={props.width}
         />
