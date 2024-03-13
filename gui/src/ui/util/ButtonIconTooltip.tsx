@@ -6,7 +6,7 @@ interface Props {
     children: React.JSX.Element;
     disabled?: boolean;
     onClick?: () => void;
-    placement: Placement;
+    placement?: Placement;
     buttonRef?: MutableRefObject<null>;
     size?: "large";
     style?: CSSProperties;
@@ -14,7 +14,7 @@ interface Props {
     title: string;
 }
 
-export default function TooltipIconButton(props: Props): React.JSX.Element {
+export default function ButtonIconTooltip(props: Props): React.JSX.Element {
     const button: React.JSX.Element =
         <IconButton
             disabled={props.disabled}

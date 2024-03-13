@@ -115,7 +115,13 @@ export class EdgeFactory {
         targetHandleId: TargetHandleId,
     ): Edge<EdgeData> {
         return EdgeFactory.edge(
-            EdgeFactory.edgeId(sourceId, targetId, sourceHandleId, targetHandleId, edgeDefinition.type),
+            EdgeFactory.edgeId(
+                sourceId,
+                targetId,
+                sourceHandleId,
+                targetHandleId,
+                edgeDefinition.type
+            ),
             sourceId,
             targetId,
             sourceHandleId,
@@ -124,7 +130,11 @@ export class EdgeFactory {
             edgeDefinition.bidirectional,
             edgeDefinition.type,
             edgeDefinition.type,
-            EdgeDataFactory.edgeDataFromCreationEdge(edgeDefinition, sourceHandleId, targetHandleId)
+            EdgeDataFactory.edgeDataFromCreationEdge(
+                edgeDefinition,
+                sourceHandleId,
+                targetHandleId,
+            )
         );
     }
 

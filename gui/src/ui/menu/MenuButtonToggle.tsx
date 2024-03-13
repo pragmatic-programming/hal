@@ -1,6 +1,6 @@
 import React from "react";
-import TooltipIconButton from "../util/TooltipIconButton";
 import MenuButtonBox from "./MenuButtonBox";
+import ButtonToggle from "../util/ButtonToggle";
 
 interface Props {
     disabled?: boolean;
@@ -15,15 +15,9 @@ interface Props {
 export default function MenuButtonToggle(props: Props): React.JSX.Element {
     return (
         <MenuButtonBox>
-            <TooltipIconButton
-                disabled={props.disabled}
-                onClick={props.onClick}
-                placement={"right"}
-                size="large"
-                title={props.on ? props.tooltipOn : props.tooltipOff}
-            >
-                {props.on ? props.iconOn : props.iconOff}
-            </TooltipIconButton>
+            <ButtonToggle
+                {...props}
+            />
         </MenuButtonBox>
     );
 }

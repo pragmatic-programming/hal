@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
-import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
-import { IconDynamic } from "../../util/IconDynamic";
+import { BoxBackgroundMain } from "../../../../util/BoxBackgroundMain";
+import { IconDynamic } from "../../../../util/IconDynamic";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { SvgIconComponent } from "@mui/icons-material";

@@ -21,6 +21,7 @@ export interface StateFlow {
     onNodesChange: OnNodesChange,
     render: (ihGraph: IHGraph, fitView: (fitViewOptions: FitViewOptions) => void, projectName?: string) => void,
     setConnectingSource: (handleType: "right" | "bottom" | null, nodeId: string | null) => void,
+    setEdgeEdgeDataDescription: (edgeId: string, description: string) => void,
     setEdgeLabel: (edgeId: string, label: string) => void,
     setEdgePathStyleForAll: (edgePathStyle: EdgePathStyle) => void,
     setEdgePathStyleForEdge: (edgeId: string, edgePathStyle: EdgePathStyle) => void,

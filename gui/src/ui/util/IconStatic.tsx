@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 import { SvgIcon } from "@mui/material";
 import { SvgIconComponent } from "@mui/icons-material";
-import TooltipIconButton from "./TooltipIconButton";
+import ButtonIconTooltip from "./ButtonIconTooltip";
 import { Placement } from "./Placement";
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 
 export function IconStatic(props: Props): React.JSX.Element {
     return (
-        <TooltipIconButton
+        <ButtonIconTooltip
             disabled={props.disabled}
             onClick={props.onClick}
             placement={props.placement === undefined ? "top" : props.placement}
@@ -23,6 +23,6 @@ export function IconStatic(props: Props): React.JSX.Element {
             title={props.tooltip}
         >
             <SvgIcon component={props.icon}></SvgIcon>
-        </TooltipIconButton>
+        </ButtonIconTooltip>
     );
 }

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import useDoubleClick from "use-double-click";
-import TooltipIconButton from "../util/TooltipIconButton";
+import ButtonIconTooltip from "../util/ButtonIconTooltip";
 import MenuButtonBox from "./MenuButtonBox";
 
 interface Props {
@@ -29,7 +29,7 @@ export default function MenuButtonDoubleClick(props: Props): React.JSX.Element {
     });
     return (
         <MenuButtonBox>
-            <TooltipIconButton
+            <ButtonIconTooltip
                 buttonRef={buttonRef}
                 disabled={props.disabled}
                 placement={"right"}
@@ -37,7 +37,7 @@ export default function MenuButtonDoubleClick(props: Props): React.JSX.Element {
                 title={props.tooltip}
             >
                 {props.icon}
-            </TooltipIconButton>
+            </ButtonIconTooltip>
         </MenuButtonBox>
     );
 }

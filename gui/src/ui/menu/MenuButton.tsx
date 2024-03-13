@@ -1,5 +1,5 @@
 import React from "react";
-import TooltipIconButton from "../util/TooltipIconButton";
+import ButtonIconTooltip from "../util/ButtonIconTooltip";
 import MenuButtonBox from "./MenuButtonBox";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 export default function MenuButton(props: Props): React.JSX.Element {
     return (
         <MenuButtonBox>
-            <TooltipIconButton
+            <ButtonIconTooltip
                 disabled={props.disabled}
                 onClick={props.onClick}
                 placement={"right"}
@@ -20,7 +20,7 @@ export default function MenuButton(props: Props): React.JSX.Element {
                 title={props.tooltip}
             >
                 {props.icon}
-            </TooltipIconButton>
+            </ButtonIconTooltip>
         </MenuButtonBox>
     );
 }

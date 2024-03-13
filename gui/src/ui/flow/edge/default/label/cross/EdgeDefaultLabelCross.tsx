@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
+import { EdgeDefinition } from "../../../../../../model/edge/EdgeDefinition";
 import RedoIcon from "@mui/icons-material/Redo";
 import CallMadeIcon from "@mui/icons-material/CallMade";
 import MovingIcon from "@mui/icons-material/Moving";
 import EdgeDefaultLabelCrossButton from "./EdgeDefaultLabelCrossButton";
-import { useStore } from "../../../state/Store";
-import { State } from "../../../state/State";
+import { useStore } from "../../../../../../state/Store";
+import { State } from "../../../../../../state/State";
 import { Autorenew } from "@mui/icons-material";
-import { EdgePathStyle } from "../../../model/edge/EdgePathStyle";
-import { EdgeDefaultLabelIcon } from "./EdgeDefaultLabelIcon";
+import { EdgePathStyle } from "../../../../../../model/edge/EdgePathStyle";
+import { EdgeDefaultLabelIcon } from "../EdgeDefaultLabelIcon";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
@@ -24,7 +24,8 @@ export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
             onMouseEnter={() => setShowCross(true)}
         >
             <EdgeDefaultLabelIcon
-                icon={props.edgeDefinition.icon} id={props.id}
+                icon={props.edgeDefinition.icon}
+                id={props.id}
             />
         </div>;
     if (showCross) {

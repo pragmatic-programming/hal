@@ -7,6 +7,7 @@ import { run } from "./compilation/run";
 import { layout } from "./flow/layout";
 import { render } from "./flow/render";
 import { setEdgeLabel } from "./flow/setEdgeLabel";
+import { setEdgeEdgeDataDescription } from "./flow/setEdgeEdgeDataDescription";
 import { editorOpen } from "./editor/editorOpen";
 import { editorContentSet } from "./editor/editorContentSet";
 import { editorLabelSet } from "./editor/editorLabelSet";
@@ -79,6 +80,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         onNodesChange: onNodesChange(setState, getState),
         render: render(setState, getState),
         setConnectingSource: setConnectingSource(setState),
+        setEdgeEdgeDataDescription: setEdgeEdgeDataDescription(setState, getState),
         setEdgeLabel: setEdgeLabel(setState, getState),
         setEdgePathStyleForAll: setEdgePathStyleForAll(setState, getState),
         setEdgePathStyleForEdge: setEdgePathStyleForEdge(setState, getState),
