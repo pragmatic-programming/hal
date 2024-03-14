@@ -12,7 +12,7 @@ interface Props {
     tooltip: string;
 }
 
-export default function EdgeDefaultLabelCrossButton(props: Props): React.JSX.Element {
+export default function EdgeDefaultLabelCompactButton(props: Props): React.JSX.Element {
     return (
         <BoxBackgroundMain>
             <IconStatic

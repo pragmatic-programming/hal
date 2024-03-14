@@ -3,7 +3,7 @@ import { EdgeDefinition } from "../../../../../../model/edge/EdgeDefinition";
 import RedoIcon from "@mui/icons-material/Redo";
 import CallMadeIcon from "@mui/icons-material/CallMade";
 import MovingIcon from "@mui/icons-material/Moving";
-import EdgeDefaultLabelCrossButton from "./EdgeDefaultLabelCrossButton";
+import EdgeDefaultLabelCompactButton from "./EdgeDefaultLabelCompactButton";
 import { useStore } from "../../../../../../state/Store";
 import { State } from "../../../../../../state/State";
 import { Autorenew } from "@mui/icons-material";
@@ -16,7 +16,7 @@ interface Props {
     id: string;
 }
 
-export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
+export function EdgeDefaultLabelCompact(props: Props): React.JSX.Element {
     const setEdgePathStyleForEdge = useStore((state: State) => state.flow.setEdgePathStyleForEdge);
     const [showCross, setShowCross] = useState<boolean>(false);
     const icon: React.JSX.Element =
@@ -41,7 +41,7 @@ export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
                 }}
             >
                 <div/>
-                <EdgeDefaultLabelCrossButton
+                <EdgeDefaultLabelCompactButton
                     disabled={props.edgePathStyle === props.edgeDefinition.edgePathStyle}
                     onClick={() => setEdgePathStyleForEdge(props.id, props.edgeDefinition.edgePathStyle)}
                     icon={Autorenew}
@@ -49,7 +49,7 @@ export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
                     tooltip={"Default (" + props.edgeDefinition.edgePathStyle + ")"}
                 />
                 <div/>
-                <EdgeDefaultLabelCrossButton
+                <EdgeDefaultLabelCompactButton
                     disabled={props.edgePathStyle === "Bezier"}
                     onClick={() => setEdgePathStyleForEdge(props.id, "Bezier")}
                     icon={RedoIcon}
@@ -57,7 +57,7 @@ export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
                     tooltip={"Bezier"}
                 />
                 {icon}
-                <EdgeDefaultLabelCrossButton
+                <EdgeDefaultLabelCompactButton
                     disabled={props.edgePathStyle === "Straight"}
                     onClick={() => setEdgePathStyleForEdge(props.id, "Straight")}
                     icon={CallMadeIcon}
@@ -65,7 +65,7 @@ export function EdgeDefaultLabelCross(props: Props): React.JSX.Element {
                     tooltip={"Straight"}
                 />
                 <div/>
-                <EdgeDefaultLabelCrossButton
+                <EdgeDefaultLabelCompactButton
                     disabled={props.edgePathStyle === "Smooth"}
                     icon={MovingIcon}
                     onClick={() => setEdgePathStyleForEdge(props.id, "Smooth")}
