@@ -2,10 +2,10 @@ import React from "react";
 import { EdgeDefinition } from "../../../../../../model/edge/EdgeDefinition";
 import { EdgeDefaultLabelIcon } from "../EdgeDefaultLabelIcon";
 import { Stack } from "@mui/material";
+import { edgeDefaultLabelVerboseIconSize } from "./EdgeDefaultLabelVerbose";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
-    iconSize: number;
     id: string;
     rowWidth: number;
 }
@@ -22,7 +22,7 @@ export default function EdgeDefaultLabelVerboseTop(props: Props): React.JSX.Elem
             <EdgeDefaultLabelIcon
                 icon={props.edgeDefinition.icon}
                 id={props.id}
-                style={{width: props.iconSize}}
+                style={{width: edgeDefaultLabelVerboseIconSize}}
             />
         </Stack>
     );

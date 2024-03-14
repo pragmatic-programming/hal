@@ -13,17 +13,26 @@ interface Props {
     type: string;
 }
 
-const iconSize: number = 40;
-const minimumRowWidth: number = iconSize * 3;
-const characterPixelFactor = 12;
+export const edgeDefaultLabelVerboseIconSize: number = 40;
+
+function calculateRowWidth(labelLength: number, showIcon: boolean): number {
+    const minimumRowWidth: number = edgeDefaultLabelVerboseIconSize * 3;
+    const characterPixelFactor: number = 12;
+    const rowWidth: number = Math.max(
+        minimumRowWidth,
+        labelLength * characterPixelFactor
+    );
+    // if we want to show the icon we must add the iconSize to the rowWidth,
+    // so that the overall label is still centered
+    if (showIcon) {
+        return rowWidth + edgeDefaultLabelVerboseIconSize;
+    }
+    return rowWidth;
+}
 
 export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element {
     const [showIcon, setShowIcon] = useState<boolean>(false);
-
-    // todo
-    let rowWidth: number = Math.max(minimumRowWidth, props.label.length * characterPixelFactor);
-    rowWidth = rowWidth + (showIcon ? iconSize : 0);
-
+    const rowWidth: number = calculateRowWidth(props.label.length, showIcon);
     return (
         <div
             onMouseEnter={() => setShowIcon(true)}
@@ -31,21 +40,18 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
         >
             <EdgeDefaultLabelVerboseTop
                 edgeDefinition={props.edgeDefinition}
-                iconSize={iconSize}
                 id={props.id}
                 rowWidth={rowWidth}
             />
             <EdgeDefaultLabelVerboseMiddle
+                description={props.edgeData.description}
                 id={props.id}
                 label={props.label}
-                iconSize={iconSize}
                 rowWidth={rowWidth}
                 showIcon={showIcon}
-                description={props.edgeData.description}
             />
             <EdgeDefaultLabelVerboseBottom
                 edgeData={props.edgeData}
-                iconSize={iconSize}
                 id={props.id}
                 rowWidth={rowWidth}
             />

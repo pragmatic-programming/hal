@@ -23,7 +23,6 @@ export class EdgeDataFactory {
             priority: 1,
             sourceHandle: "bottom",
             targetHandle: "left",
-            // todo
             description: "",
         };
     }

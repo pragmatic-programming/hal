@@ -4,10 +4,10 @@ import ButtonToggle from "../../../../../util/ButtonToggle";
 import Description from "@mui/icons-material/Description";
 import LabelOnIcon from "@mui/icons-material/Label";
 import EdgeDefaultLabelVerboseMiddleTextField from "./EdgeDefaultLabelVerboseMiddleTextField";
+import { edgeDefaultLabelVerboseIconSize } from "./EdgeDefaultLabelVerbose";
 
 interface Props {
     description: string,
-    iconSize: number,
     id: string,
     label: string,
     rowWidth: number,
@@ -28,9 +28,9 @@ export default function EdgeDefaultLabelVerboseMiddle(props: Props): React.JSX.E
                 on={showLabel}
                 onClick={() => setShowLabel(!showLabel)}
                 placement={"top"}
-                style={{width: props.iconSize, height: props.iconSize}}
-                tooltipOff={"Description"}
-                tooltipOn={"Label"}
+                style={{width: edgeDefaultLabelVerboseIconSize, height: edgeDefaultLabelVerboseIconSize}}
+                tooltipOn={"Show Description"}
+                tooltipOff={"Show Label"}
             />
             </InputAdornment>
         )

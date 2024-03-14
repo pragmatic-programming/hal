@@ -4,10 +4,10 @@ import { useStore } from "../../../../../../state/Store";
 import { State } from "../../../../../../state/State";
 import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
 import { EdgeData } from "../../../../../../model/edge/EdgeData";
+import { edgeDefaultLabelVerboseIconSize } from "./EdgeDefaultLabelVerbose";
 
 interface Props {
     edgeData: EdgeData;
-    iconSize: number;
     id: string;
     rowWidth: number;
 }
@@ -38,7 +38,7 @@ export default function EdgeDefaultLabelVerboseBottom(props: Props): React.JSX.E
                 onChange={(value: string) => setTempPriority(value)}
                 style={{
                     backgroundColor: theme.palette.primary.main,
-                    width: props.iconSize,
+                    width: edgeDefaultLabelVerboseIconSize,
                 }}
                 value={tempPriority}
             />
