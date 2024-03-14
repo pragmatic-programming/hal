@@ -13,17 +13,17 @@ const elk = new ELK({
 });
 
 export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions: LayoutOptions): Promise<NodesAndEdges> {
-    const nodeMap = new Map<string, Node>();
-    const nodeElkMap = new Map<Node, ElkNode>();
-    const elkNodeMap = new Map<ElkNode, Node>();
+    const nodeMap: Map<string, Node> = new Map<string, Node>();
+    const nodeElkMap: Map<Node, ElkNode> = new Map<Node, ElkNode>();
+    const elkNodeMap: Map<ElkNode, Node> = new Map<ElkNode, Node>();
     const children: Node[] = [];
     const rootElkNodes: ElkNode[] = [];
-    const elkEdgeEdgeMap = new Map<ElkExtendedEdge, Edge>();
+    const elkEdgeEdgeMap: Map<ElkExtendedEdge, Edge> = new Map<ElkExtendedEdge, Edge>();
 
     // Create elk nodes for each node and store them in a map.
-    // Nodes that appear to be in a hierarchy are stored separately to allow post processing.
+    // Nodes that appear to be in a hierarchy are stored separately to allow post-processing.
     for (const node of nodesAndEdges.nodes) {
-        const elkNode = {
+        const elkNode: ElkNode = {
             id: node.id,
             width: node.width ? node.width : 100,
             height: node.height ? node.height : 100,
@@ -75,7 +75,7 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
                 elkParentNode.edges = elkParentNode.edges || [];
                 elkParentNode.edges.push(edge);
                 elkEdges.splice(elkEdges.indexOf(edge), 1);
-                
+
             }
         }
     }
@@ -96,7 +96,7 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
     console.debug(graph);
     const root: ElkNode = await elk.layout(graph);
 
-    
+
     // Apply the node position and sizes to the flow graph.
     if (!root.children) {
         throw new Error("Children are undefined");
@@ -160,7 +160,7 @@ function applyHVLayout(nodes: ElkNode[], elkEdgeEdgeMap: Map<ElkExtendedEdge, Ed
                         }
                     }
                 }
-                }
-        } 
+            }
+        }
     }
 }

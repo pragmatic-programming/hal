@@ -10,14 +10,19 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
         fitView: (fitViewOptions: FitViewOptions) => void,
         layoutOption: LayoutOptionTypeIndicator
     ): Promise<void> => {
-        const state: State = getState();
+        let state: State = getState();
         // show that ui is busy
         setState({
             ui: {
                 ...state.ui,
                 busy: true,
+                layouts: {
+                    ...state.ui.layouts,
+                    open: false,
+                }
             },
         });
+        state = getState();
         // set compiled graph
         setState({
             flow: {
@@ -30,15 +35,12 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
         window.requestAnimationFrame(() => {
             fitView(globalFitViewOptions);
         });
+        state = getState();
         // show that ui is not busy anymore
         setState({
             ui: {
                 ...state.ui,
                 busy: false,
-                layouts: {
-                    ...state.ui.layouts,
-                    open: false,
-                }
             },
         });
     };
