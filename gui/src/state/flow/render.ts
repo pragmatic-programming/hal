@@ -42,7 +42,7 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         fitView: (fitViewOptions: FitViewOptions) => void,
         projectName?: string
     ): Promise<void> => {
-        const state: State = getState();
+        let state: State = getState();
         // show that ui is busy and close example menu
         setState({
             ui: {
@@ -55,6 +55,7 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
                 }
             },
         });
+        state = getState();
         // compile graph
         const nodesAndEdges = await compile(state.flow.hierarchyMode, ihGraph);
         // set compiled graph
@@ -69,6 +70,7 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         window.requestAnimationFrame(() => {
             fitView(globalFitViewOptions);
         });
+        state = getState();
         // show that ui is not busy anymore
         setState({
             ui: {

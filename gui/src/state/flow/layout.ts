@@ -6,28 +6,31 @@ import { StoreApi } from "zustand";
 import { layoutOptions, LayoutOptionTypeIndicator } from "../../util";
 
 export function layout(setState: StoreApi<State>["setState"], getState: () => State) {
-    
-    return async (fitView: (fitViewOptions: FitViewOptions) => void, layoutOption: LayoutOptionTypeIndicator) => {
-        const state = getState();
+    return async (
+        fitView: (fitViewOptions: FitViewOptions) => void,
+        layoutOption: LayoutOptionTypeIndicator
+    ): Promise<void> => {
+        const state: State = getState();
+        // show that ui is busy
         setState({
             ui: {
                 ...state.ui,
                 busy: true,
             },
         });
-        const reactFlow = state.flow;
-        const nodesAndEdges = await layoutedNodes(reactFlow, layoutOptions(layoutOption));
+        // set compiled graph
         setState({
             flow: {
-                ...reactFlow,
+                ...state.flow,
                 layoutOption: layoutOption,
-                nodes: nodesAndEdges.nodes,
-                edges: nodesAndEdges.edges,
+                ...await layoutedNodes(state.flow, layoutOptions(layoutOption))
             }
         });
+        // fit view
         window.requestAnimationFrame(() => {
             fitView(globalFitViewOptions);
         });
+        // show that ui is not busy anymore
         setState({
             ui: {
                 ...state.ui,
