@@ -10,6 +10,25 @@ import { layoutOptions } from "../../util";
 import { NodesAndEdges } from "../../model/NodesAndEdges";
 import { IHGraphToFlowProcessor } from "../../processors/IHGraphToFlowProcessor";
 import { NodeData } from "../../model/node/NodeData";
+import { StateFlow } from "./StateFlow";
+
+
+async function compile(hierachyMode: boolean, ihGraph: IHGraph): Promise<NodesAndEdges> {
+    const context: CompilationContext = iHGraphToFlow(ihGraph);
+    context.startEnvironment.setProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY, hierachyMode);
+    await context.compileAsync();
+    return context.getResult();
+}
+
+async function layout(state: StateFlow, nodesAndEdges: NodesAndEdges): Promise<NodesAndEdges> {
+    if (isLayoutNecessary(nodesAndEdges)) {
+        return layoutedNodes(
+            nodesAndEdges,
+            layoutOptions(state.layoutOption)
+        )
+    }
+    return nodesAndEdges
+}
 
 function isLayoutNecessary(nodesAndEdges: NodesAndEdges): boolean {
     return nodesAndEdges
@@ -23,37 +42,28 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         fitView: (fitViewOptions: FitViewOptions) => void,
         projectName?: string
     ): Promise<void> => {
+        const state: State = getState();
         // show that ui is busy and close example menu
         setState({
             ui: {
-                ...getState().ui,
-                projectName: projectName ? projectName : getState().ui.projectName,
+                ...state.ui,
+                projectName: projectName ? projectName : state.ui.projectName,
                 busy: true,
                 examples: {
-                    ...getState().ui.examples,
+                    ...state.ui.examples,
                     open: false,
                 }
             },
         });
         // compile graph
-        const induceHierarchy: boolean = getState().flow.hierarchyMode;
-        const context: CompilationContext = iHGraphToFlow(ihGraph);
-        context.startEnvironment.setProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY, induceHierarchy);
-        await context.compileAsync();
-        const nodesAndEdges: NodesAndEdges = context.getResult();
-        const flow = {
-            ...getState().flow,
-            ...nodesAndEdges,
-        };
-        // layout graph
-        if (isLayoutNecessary(nodesAndEdges)) {
-            const nodesAndEdges = await layoutedNodes(flow, layoutOptions(getState().flow.layoutOption));
-            flow.nodes = nodesAndEdges.nodes;
-            flow.edges = nodesAndEdges.edges;
-        }
+        const nodesAndEdges = await compile(state.flow.hierarchyMode, ihGraph);
         // set compiled graph
         setState({
-            flow: flow
+            flow: {
+                ...state.flow,
+                ...await layout(state.flow, nodesAndEdges),
+                lastRenderGraph: ihGraph,
+            }
         });
         // fit view
         window.requestAnimationFrame(() => {
@@ -62,14 +72,8 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         // show that ui is not busy anymore
         setState({
             ui: {
-                ...getState().ui,
+                ...state.ui,
                 busy: false,
-            },
-        });
-        setState({
-            flow: {
-                ...getState().flow,
-                lastRenderGraph: ihGraph,
             },
         });
     };
