@@ -64,6 +64,7 @@
           "data": {
             "type": "empty",
             "bidirectional": false,
+            "description": "",
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",

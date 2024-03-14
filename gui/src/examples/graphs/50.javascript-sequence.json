@@ -96,6 +96,7 @@
           "data": {
             "type": "empty",
             "bidirectional": false,
+            "description": "",
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",
@@ -116,6 +117,7 @@
           "data": {
             "type": "empty",
             "bidirectional": false,
+            "description": "",
             "sourceHandle": "right",
             "targetHandle": "left",
             "edgePathStyle": "Smooth",
