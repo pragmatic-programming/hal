@@ -1,4 +1,4 @@
-import { InputProps, styled, TextField } from "@mui/material";
+import { InputProps, styled, TextField, Theme, useTheme } from "@mui/material";
 import React, { CSSProperties } from "react";
 
 // todo why not as regular styles?
@@ -19,11 +19,12 @@ interface Props {
     onChange: (value: string) => void,
     placeholder: string,
     startAdornment?: React.JSX.Element,
-    style: CSSProperties,
     value: string,
+    width: number,
 }
 
 export function EdgeDefaultLabelTextField(props: Props): React.JSX.Element {
+    const theme: Theme = useTheme();
     const labelAndPriorityInputProps: Partial<InputProps> = {
         inputProps: {
             style: {
@@ -41,7 +42,10 @@ export function EdgeDefaultLabelTextField(props: Props): React.JSX.Element {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => props.onChange(event.target.value)}
             placeholder={props.placeholder}
             size="small"
-            style={props.style}
+            style={{
+                backgroundColor: theme.palette.primary.main,
+                width: props.width,
+            }}
             value={props.value}
         />
     )

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Stack, Theme, useTheme } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useStore } from "../../../../../../state/Store";
 import { State } from "../../../../../../state/State";
 import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
@@ -13,7 +13,6 @@ interface Props {
 }
 
 export default function EdgeDefaultLabelVerboseBottom(props: Props): React.JSX.Element {
-    const theme: Theme = useTheme();
     const setEdgePriority = useStore((state: State) => state.flow.setEdgePriority);
     const [tempPriority, setTempPriority] = useState(props.edgeData.priority.toString());
 
@@ -34,15 +33,11 @@ export default function EdgeDefaultLabelVerboseBottom(props: Props): React.JSX.E
             justifyContent="center"
         >
             <EdgeDefaultLabelTextField
-                placeholder={"1"}
                 onBlur={onBlur}
                 onChange={(value: string) => setTempPriority(value)}
-                style={{
-                    // todo
-                    backgroundColor: theme.palette.primary.main,
-                    width: edgeDefaultLabelVerboseIconSize,
-                }}
+                placeholder={"1"}
                 value={tempPriority}
+                width={edgeDefaultLabelVerboseIconSize}
             />
         </Stack>
     );

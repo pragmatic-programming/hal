@@ -1,5 +1,5 @@
 import React from "react";
-import { Stack, Theme, useTheme } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useStore } from "../../../../../../state/Store";
 import { State } from "../../../../../../state/State";
 import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
@@ -15,36 +15,27 @@ interface Props {
 
 
 export default function EdgeDefaultLabelVerboseMiddleTextField(props: Props): React.JSX.Element {
-    const theme: Theme = useTheme();
     const setEdgeLabel = useStore((state: State) => state.flow.setEdgeLabel);
     const setEdgeType = useStore((state: State) => state.flow.setEdgeEdgeDataDescription);
 
     let textField: React.JSX.Element = (
         <EdgeDefaultLabelTextField
+            onChange={(value: string) => setEdgeType(props.id, value)}
             placeholder={"Description"}
             startAdornment={props.startAdornment}
-            onChange={(value: string) => setEdgeType(props.id, value)}
-            style={{
-                // todo
-                backgroundColor: theme.palette.primary.main,
-                width: props.rowWidth,
-            }}
             value={props.description}
+            width={props.rowWidth}
         />
     )
 
     if (props.showLabel) {
         textField = (
             <EdgeDefaultLabelTextField
+                onChange={(value: string) => setEdgeLabel(props.id, value)}
                 placeholder={"Label"}
                 startAdornment={props.startAdornment}
-                onChange={(value: string) => setEdgeLabel(props.id, value)}
-                style={{
-                    // todo
-                    backgroundColor: theme.palette.primary.main,
-                    width: props.rowWidth,
-                }}
                 value={props.label}
+                width={props.rowWidth}
             />
         )
     }
