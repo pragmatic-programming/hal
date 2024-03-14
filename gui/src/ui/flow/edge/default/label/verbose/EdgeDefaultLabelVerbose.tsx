@@ -6,13 +6,12 @@ import EdgeDefaultLabelVerboseTop from "./EdgeDefaultLabelVerboseTop";
 import EdgeDefaultLabelVerboseBottom from "./EdgeDefaultLabelVerboseBottom";
 
 interface Props {
-    edgeDefinition: EdgeDefinition;
     edgeData: EdgeData;
+    edgeDefinition: EdgeDefinition;
     id: string;
     label: string;
     type: string;
 }
-
 
 const iconSize: number = 40;
 const minimumRowWidth: number = iconSize * 3;
@@ -20,8 +19,8 @@ const characterPixelFactor = 12;
 
 export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element {
     const [showIcon, setShowIcon] = useState<boolean>(false);
-    const [showLabel, setShowLabel] = useState<boolean>(false);
 
+    // todo
     let rowWidth: number = Math.max(minimumRowWidth, props.label.length * characterPixelFactor);
     rowWidth = rowWidth + (showIcon ? iconSize : 0);
 
@@ -41,9 +40,7 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
                 label={props.label}
                 iconSize={iconSize}
                 rowWidth={rowWidth}
-                setShowLabel={() => setShowLabel(!showLabel)}
                 showIcon={showIcon}
-                showLabel={showLabel}
                 description={props.edgeData.description}
             />
             <EdgeDefaultLabelVerboseBottom
