@@ -1,18 +1,5 @@
-import { InputProps, styled, TextField, Theme, useTheme } from "@mui/material";
-import React, { CSSProperties } from "react";
-
-// todo why not as regular styles?
-const EdgeDefaultLabelTextFieldStyled = styled(TextField)({
-    "& .MuiOutlinedInput-root": {
-        padding: 0,
-        "& fieldset": {
-            border: "none",
-        }
-    },
-    "& .MuiInputAdornment-root": {
-        marginRight: 0,
-    },
-});
+import { InputProps, SxProps, TextField, Theme, useTheme } from "@mui/material";
+import React from "react";
 
 interface Props {
     onBlur?: () => void,
@@ -25,23 +12,38 @@ interface Props {
 
 export function EdgeDefaultLabelTextField(props: Props): React.JSX.Element {
     const theme: Theme = useTheme();
-    const labelAndPriorityInputProps: Partial<InputProps> = {
+    const inputProps: Partial<InputProps> = {
         inputProps: {
             style: {
                 textAlign: "center",
                 paddingLeft: 4,
                 paddingRight: 4,
+                border: "none",
             }
         },
         startAdornment: props.startAdornment,
     };
+    // I am not sure if this is a good way to style nested components
+    // see https://mui.com/material-ui/customization/how-to-customize/#overriding-nested-component-styles
+    const sx: SxProps = {
+        "& .MuiOutlinedInput-root": {
+            padding: 0,
+            "& fieldset": {
+                border: "none",
+            }
+        },
+        "& .MuiInputAdornment-root": {
+            marginRight: 0,
+        },
+    };
     return (
-        <EdgeDefaultLabelTextFieldStyled
-            InputProps={labelAndPriorityInputProps}
+        <TextField
+            InputProps={inputProps}
             onBlur={props.onBlur}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => props.onChange(event.target.value)}
             placeholder={props.placeholder}
-            size="small"
+            size={"small"}
+            sx={sx}
             style={{
                 backgroundColor: theme.palette.primary.main,
                 width: props.width,
