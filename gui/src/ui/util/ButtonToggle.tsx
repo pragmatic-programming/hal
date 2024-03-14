@@ -21,8 +21,7 @@ export default function ButtonToggle(props: Props): React.JSX.Element {
             disabled={props.disabled}
             onClick={props.onClick}
             placement={props.placement}
-            // todo
-            size="large"
+            size={"large"}
             style={props.style}
             title={props.on ? props.tooltipOn : props.tooltipOff}
         >
