@@ -1,6 +1,6 @@
 import { State } from "../State";
 import { FitViewOptions } from "reactflow";
-import { layoutedNodes } from "../layoutedNodes";
+import { layoutedNodes } from "./layout/layoutedNodes";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
 import { layoutOptions, LayoutOptionTypeIndicator } from "../../util";

@@ -3,7 +3,7 @@ import { CompilationContext, createCompilationContextFromProcessors, Processor }
 import { flowToIHGraph, iHGraphToFlow } from "../../processors/compilationContexts";
 import { StoreApi } from "zustand";
 import { EdgeType, IHGraph, TransformationConfiguration } from "@pragmatic-programming/ihgraph";
-import { layoutedNodes } from "../layoutedNodes";
+import { layoutedNodes } from "../flow/layout/layoutedNodes";
 import { layoutOptions } from "../../util";
 import { StateFlow } from "../flow/StateFlow";
 import { NodesAndEdges } from "../../model/NodesAndEdges";

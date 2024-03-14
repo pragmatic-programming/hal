@@ -5,7 +5,7 @@ import { CompilationContext } from "@pragmatic-programming/kico";
 import { iHGraphToFlow } from "../../processors/compilationContexts";
 import { globalFitViewOptions } from "../../constants";
 import { StoreApi } from "zustand";
-import { layoutedNodes } from "../layoutedNodes";
+import { layoutedNodes } from "./layout/layoutedNodes";
 import { layoutOptions } from "../../util";
 import { NodesAndEdges } from "../../model/NodesAndEdges";
 import { IHGraphToFlowProcessor } from "../../processors/IHGraphToFlowProcessor";

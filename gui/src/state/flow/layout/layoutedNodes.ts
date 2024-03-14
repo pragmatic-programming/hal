@@ -1,9 +1,8 @@
 import { Edge, Node } from "reactflow";
 import ELK, { ElkExtendedEdge, ElkNode, LayoutOptions } from "elkjs/lib/elk-api";
-import { sourcePosition, targetPosition } from "./flow/LayoutDirectionIndicator";
-import { NodesAndEdges } from "../model/NodesAndEdges";
-import { strictNode, StrictNode } from "../model/node/StrictNode";
-import { NodeData, NodeDataHierarchy } from "../model/node/NodeData";
+import { NodesAndEdges } from "../../../model/NodesAndEdges";
+import { applyLayoutData } from "./applyLayoutData";
+import { applyHVLayout } from "./applyHVLayout";
 
 const elk = new ELK({
     workerFactory: function (url) { // the value of 'url' is irrelevant here
@@ -39,7 +38,7 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
         }
     }
 
-    // Go through all nodes that are included in a hierarchy and and add the correct parent node id.
+    // Go through all nodes that are included in a hierarchy and add the correct parent node id.
     // Also propagate the layout options to the nested hierarchy nodes as elk options only work for the current hierarchy level.
     for (const child of children) {
         const elkNode = nodeElkMap.get(child)!;
@@ -93,9 +92,7 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
     applyHVLayout([graph], elkEdgeEdgeMap, layoutOptions);
 
     // Do the actual layout.
-    console.debug(graph);
     const root: ElkNode = await elk.layout(graph);
-
 
     // Apply the node position and sizes to the flow graph.
     if (!root.children) {
@@ -104,63 +101,4 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
     const nodes: Node[] = applyLayoutData(root, nodeMap, layoutOptions);
 
     return {nodes: nodes, edges: nodesAndEdges.edges};
-}
-
-function applyLayoutData(elkNode: ElkNode, nodeMap: Map<string, Node>, layoutOptions: LayoutOptions): Node[] {
-    const nodes: Node[] = [];
-
-    if (!elkNode.children) {
-        return nodes;
-    }
-
-    for (const child of elkNode.children) {
-        const node: StrictNode<NodeData> = strictNode(nodeMap.get(child.id));
-        if (!child.x) {
-            throw new Error("Child.x is undefined");
-        }
-        if (!child.y) {
-            throw new Error("Child.y is undefined");
-        }
-        node.sourcePosition = sourcePosition(layoutOptions);
-        node.targetPosition = targetPosition(layoutOptions);
-        node.position = {
-            x: child.x,
-            y: child.y,
-        };
-        nodes.push(node);
-
-        if (child.children) {
-            (node.data as NodeDataHierarchy).width = child.width ? child.width : 800;
-            (node.data as NodeDataHierarchy).height = child.height ? child.height : 800;
-            const subNodes = applyLayoutData(child, nodeMap, layoutOptions);
-            nodes.push(...subNodes);
-        }
-    }
-
-    return nodes;
-}
-
-function applyHVLayout(nodes: ElkNode[], elkEdgeEdgeMap: Map<ElkExtendedEdge, Edge>, layoutOptions: LayoutOptions, hvToggle: boolean = true) {
-    const direction = hvToggle ? "DOWN" : "RIGHT";
-    for (const node of nodes) {
-        if (node.children) {
-            node.layoutOptions = {
-                // ...layoutOptions,
-                "elk.direction": direction
-            };
-            applyHVLayout(node.children, elkEdgeEdgeMap, layoutOptions, !hvToggle);
-
-            if (direction === "DOWN") {
-                if (node.edges) {
-                    for (const elkEdge of node.edges) {
-                        const edge = elkEdgeEdgeMap.get(elkEdge);
-                        if (edge) {
-                            edge.sourceHandle = "bottom";
-                            edge.targetHandle = "top";
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
