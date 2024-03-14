@@ -17,6 +17,7 @@ const EdgeDefaultLabelTextFieldStyled = styled(TextField)({
 interface Props {
     onBlur?: () => void,
     onChange: (value: string) => void,
+    placeholder: string,
     startAdornment?: React.JSX.Element,
     style: CSSProperties,
     value: string,
@@ -33,12 +34,15 @@ export function EdgeDefaultLabelTextField(props: Props): React.JSX.Element {
         },
         startAdornment: props.startAdornment,
     };
-    return <EdgeDefaultLabelTextFieldStyled
-        InputProps={labelAndPriorityInputProps}
-        onBlur={props.onBlur}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => props.onChange(event.target.value)}
-        size="small"
-        style={props.style}
-        value={props.value}
-    />
+    return (
+        <EdgeDefaultLabelTextFieldStyled
+            InputProps={labelAndPriorityInputProps}
+            onBlur={props.onBlur}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => props.onChange(event.target.value)}
+            placeholder={props.placeholder}
+            size="small"
+            style={props.style}
+            value={props.value}
+        />
+    )
 }

@@ -50,7 +50,7 @@ export class EdgeDataFactory {
             priority: edgeDefinition.priority,
             immediate: edgeDefinition.immediate,
             bidirectional: edgeDefinition.bidirectional,
-            description: edgeDefinition.type,
+            description: "",
         };
     }
 

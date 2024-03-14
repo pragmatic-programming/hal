@@ -34,9 +34,11 @@ export default function EdgeDefaultLabelVerboseBottom(props: Props): React.JSX.E
             justifyContent="center"
         >
             <EdgeDefaultLabelTextField
+                placeholder={"1"}
                 onBlur={onBlur}
                 onChange={(value: string) => setTempPriority(value)}
                 style={{
+                    // todo
                     backgroundColor: theme.palette.primary.main,
                     width: edgeDefaultLabelVerboseIconSize,
                 }}

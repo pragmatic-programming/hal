@@ -21,9 +21,11 @@ export default function EdgeDefaultLabelVerboseMiddleTextField(props: Props): Re
 
     let textField: React.JSX.Element = (
         <EdgeDefaultLabelTextField
+            placeholder={"Description"}
             startAdornment={props.startAdornment}
             onChange={(value: string) => setEdgeType(props.id, value)}
             style={{
+                // todo
                 backgroundColor: theme.palette.primary.main,
                 width: props.rowWidth,
             }}
@@ -34,9 +36,11 @@ export default function EdgeDefaultLabelVerboseMiddleTextField(props: Props): Re
     if (props.showLabel) {
         textField = (
             <EdgeDefaultLabelTextField
+                placeholder={"Label"}
                 startAdornment={props.startAdornment}
                 onChange={(value: string) => setEdgeLabel(props.id, value)}
                 style={{
+                    // todo
                     backgroundColor: theme.palette.primary.main,
                     width: props.rowWidth,
                 }}
