@@ -9,7 +9,7 @@ interface Props {
     on: boolean;
     onClick: () => void;
     tooltipOff: string;
-    placement?: Placement;
+    placement: Placement;
     // todo
     style?: CSSProperties,
     tooltipOn: string;

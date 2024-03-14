@@ -16,6 +16,7 @@ export default function MenuButtonToggle(props: Props): React.JSX.Element {
     return (
         <MenuButtonBox>
             <ButtonToggle
+                placement={"right"}
                 {...props}
             />
         </MenuButtonBox>
