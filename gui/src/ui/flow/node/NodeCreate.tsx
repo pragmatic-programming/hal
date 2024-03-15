@@ -10,7 +10,7 @@ import HandleTargetTop from "../handle/HandleTargetTop";
 import HandleTargetLeft from "../handle/HandleTargetLeft";
 import NodeCreateButton from "./NodeCreateButton";
 import { EdgeData } from "../../../model/edge/EdgeData";
-import TooltipIconButton from "../../util/TooltipIconButton";
+import ButtonIconTooltip from "../../util/ButtonIconTooltip";
 
 export default function NodeCreate(props: NodeProps): React.JSX.Element {
     const theme: Theme = useTheme();
@@ -51,13 +51,13 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         placement={"bottom"}
                         targetEdgeId={targetEdge?.id}
                     />
-                    <TooltipIconButton
+                    <ButtonIconTooltip
                         placement="top"
                         title={"Show more options"}
                         disabled={true}
                     >
                         <Add/>
-                    </TooltipIconButton>
+                    </ButtonIconTooltip>
                 </div>
             </BoxBackgroundMain>
         </BoxBorder>

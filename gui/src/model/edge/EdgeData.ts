@@ -12,6 +12,7 @@ export interface EdgeDataCommon {
     priority: number;
     immediate: boolean;
     bidirectional: boolean;
+    description: string;
 }
 
 export interface EdgeDataEmpty extends EdgeDataCommon {

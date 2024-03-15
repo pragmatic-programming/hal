@@ -1,11 +1,11 @@
 import React from "react";
 import { BaseEdge, EdgeLabelRenderer, EdgeProps, ReactFlowInstance, useReactFlow } from "reactflow";
-import { retrieveEdgeDefinition } from "../../../model/edge/edgeDefinitions";
-import EdgeDefaultLabel from "./EdgeDefaultLabel";
-import { EdgeData } from "../../../model/edge/EdgeData";
-import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
-import { StrictEdge, strictEdge } from "../../../model/edge/StrictEdge";
-import { EdgePath, getEdgePath } from "../../../model/edge/EdgePath";
+import { retrieveEdgeDefinition } from "../../../../model/edge/edgeDefinitions";
+import EdgeDefaultLabel from "./label/EdgeDefaultLabel";
+import { EdgeData } from "../../../../model/edge/EdgeData";
+import { EdgeDefinition } from "../../../../model/edge/EdgeDefinition";
+import { StrictEdge, strictEdge } from "../../../../model/edge/StrictEdge";
+import { EdgePath, getEdgePath } from "../../../../model/edge/EdgePath";
 
 export default function EdgeDefault(props: EdgeProps<EdgeData>): React.JSX.Element {
     const reactFlow: ReactFlowInstance = useReactFlow();
@@ -37,6 +37,7 @@ export default function EdgeDefault(props: EdgeProps<EdgeData>): React.JSX.Eleme
                         edgeDefinition={edgeDefinition}
                         id={props.id}
                         label={props.label}
+                        type={edge.type}
                     />
                 </div>
             </EdgeLabelRenderer>

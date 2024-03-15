@@ -1,6 +1,6 @@
 import React from "react";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import TooltipIconButton from "../util/TooltipIconButton";
+import ButtonIconTooltip from "../util/ButtonIconTooltip";
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
 import { flowToIHGraph } from "../../processors/compilationContexts";
@@ -13,7 +13,7 @@ export default function MenuButtonExport(): React.JSX.Element {
     const stateFlow: StateFlow = useStore((state: State) => state.flow);
     return (
         <MenuButtonBox>
-            <TooltipIconButton
+            <ButtonIconTooltip
                 title={"Export"}
                 placement={"right"}
                 size={"large"}
@@ -35,7 +35,7 @@ export default function MenuButtonExport(): React.JSX.Element {
                 }}
             >
                 <FileDownloadIcon/>
-            </TooltipIconButton>
+            </ButtonIconTooltip>
         </MenuButtonBox>
     );
 }

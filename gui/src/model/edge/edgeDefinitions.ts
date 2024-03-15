@@ -1,5 +1,5 @@
 import { EdgeDefinition } from "./EdgeDefinition";
-import EdgeCreate from "../../ui/flow/edge/EdgeCreate";
+import EdgeCreate from "../../ui/flow/edge/create/EdgeCreate";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
 import BiotechIcon from "@mui/icons-material/Biotech";
@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import HardwareIcon from "@mui/icons-material/Hardware";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
-import EdgeDefault from "../../ui/flow/edge/EdgeDefault";
+import EdgeDefault from "../../ui/flow/edge/default/EdgeDefault";
 import { ExecuteProcessor } from "../../processors/edgeTypes/execute/ExecuteProcessor";
 import { SCChartDiagramProcessor } from "../../processors/edgeTypes/scchart/SCChartDiagramProcessor";
 import { TestProcessor } from "../../processors/edgeTypes/TestProcessor";

@@ -14,7 +14,6 @@ interface Props {
 
 export function IconDynamic(props: Props): React.JSX.Element {
     const [inputValue, setInputValue] = useState<SvgIconComponent>(props.iconDefault);
-
     return (
         <Tooltip
             placement={props.placement === undefined ? "top" : props.placement}

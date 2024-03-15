@@ -6,7 +6,7 @@ import { State } from "../../state/State";
 import { Environment, Processor } from "@pragmatic-programming/kico";
 import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
-import TooltipIconButton from "../util/TooltipIconButton";
+import ButtonIconTooltip from "../util/ButtonIconTooltip";
 
 interface Props {
     position: "start" | "inter" | "end";
@@ -45,7 +45,7 @@ export default function Model(props: Props): React.JSX.Element {
 
     }
     return (
-        <TooltipIconButton
+        <ButtonIconTooltip
             placement="top"
             title={title}
             onClick={() => render(property, reactFlow.fitView)}
@@ -65,6 +65,6 @@ export default function Model(props: Props): React.JSX.Element {
             >
                 <AccountTreeIcon color="secondary"/>
             </Avatar>
-        </TooltipIconButton>
+        </ButtonIconTooltip>
     );
 }

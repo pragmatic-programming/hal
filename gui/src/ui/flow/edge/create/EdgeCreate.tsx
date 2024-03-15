@@ -1,9 +1,9 @@
 import React from "react";
 import { BaseEdge, EdgeLabelRenderer, EdgeProps } from "reactflow";
-import { retrieveEdgeDefinition } from "../../../model/edge/edgeDefinitions";
-import { EdgeDefinition } from "../../../model/edge/EdgeDefinition";
-import { EdgeDataCreate } from "../../../model/edge/EdgeData";
-import { EdgePath, getEdgePath } from "../../../model/edge/EdgePath";
+import { retrieveEdgeDefinition } from "../../../../model/edge/edgeDefinitions";
+import { EdgeDefinition } from "../../../../model/edge/EdgeDefinition";
+import { EdgeDataCreate } from "../../../../model/edge/EdgeData";
+import { EdgePath, getEdgePath } from "../../../../model/edge/EdgePath";
 import EdgeCreateLabel from "./EdgeCreateLabel";
 
 export default function EdgeCreate(props: EdgeProps<EdgeDataCreate>): React.JSX.Element {

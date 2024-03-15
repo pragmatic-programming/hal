@@ -23,6 +23,7 @@ export class EdgeDataFactory {
             priority: 1,
             sourceHandle: "bottom",
             targetHandle: "left",
+            description: "",
         };
     }
 
@@ -49,6 +50,7 @@ export class EdgeDataFactory {
             priority: edgeDefinition.priority,
             immediate: edgeDefinition.immediate,
             bidirectional: edgeDefinition.bidirectional,
+            description: "",
         };
     }
 
@@ -57,7 +59,11 @@ export class EdgeDataFactory {
         sourceHandle: SourceHandleId,
         targetHandle: TargetHandleId,
     ): EdgeData {
-        const edgeDataCommon: EdgeDataCommon = EdgeDataFactory.edgeDataCommon(edgeDefinition, sourceHandle, targetHandle);
+        const edgeDataCommon: EdgeDataCommon = EdgeDataFactory.edgeDataCommon(
+            edgeDefinition,
+            sourceHandle,
+            targetHandle,
+        );
         switch (edgeDefinition.type) {
             case "create":
                 return EdgeDataFactory.edgeDataCreate(
