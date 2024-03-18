@@ -10,7 +10,7 @@ interface Props {
     placement?: Placement;
     size: "small" | "medium" | "large";
     style?: CSSProperties;
-    tooltip?: string;
+    tooltip: string;
 }
 
 export function ButtonIconDynamic(props: Props): React.JSX.Element {

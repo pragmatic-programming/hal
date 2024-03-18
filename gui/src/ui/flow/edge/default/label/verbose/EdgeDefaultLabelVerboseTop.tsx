@@ -23,6 +23,7 @@ export default function EdgeDefaultLabelVerboseTop(props: Props): React.JSX.Elem
                 icon={props.edgeDefinition.icon}
                 id={props.id}
                 style={{width: edgeDefaultLabelVerboseIconSize}}
+                tooltip={"Delete Edge"}
             />
         </Stack>
     );

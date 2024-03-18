@@ -9,6 +9,7 @@ interface Props {
     icon: SvgIconComponent;
     id: string;
     style?: CSSProperties;
+    tooltip: string;
 }
 
 export function EdgeDefaultLabelIcon(props: Props): React.JSX.Element {
@@ -22,6 +23,7 @@ export function EdgeDefaultLabelIcon(props: Props): React.JSX.Element {
                 iconHover={DeleteIcon}
                 onClick={() => reactFlow.deleteElements({edges: [{id: props.id}]})}
                 size={"medium"}
+                tooltip={props.tooltip}
             />
         </BoxBackgroundMain>
     );
