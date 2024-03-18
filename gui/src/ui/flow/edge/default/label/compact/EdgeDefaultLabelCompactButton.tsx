@@ -1,7 +1,7 @@
 import { SvgIconComponent } from "@mui/icons-material";
 import React from "react";
 import { BoxBackgroundMain } from "../../../../../util/BoxBackgroundMain";
-import { IconStatic } from "../../../../../util/IconStatic";
+import { ButtonIconStatic } from "../../../../../util/ButtonIconStatic";
 import { Placement } from "../../../../../util/Placement";
 
 interface Props {
@@ -15,7 +15,7 @@ interface Props {
 export default function EdgeDefaultLabelCompactButton(props: Props): React.JSX.Element {
     return (
         <BoxBackgroundMain>
-            <IconStatic
+            <ButtonIconStatic
                 {...props}
             />
         </BoxBackgroundMain>

@@ -9,7 +9,7 @@ import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { IconButton, Theme, useTheme } from "@mui/material";
 import { borderColor } from "../../../util";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { IconDynamic } from "../../util/IconDynamic";
+import { ButtonIconDynamic } from "../../util/ButtonIconDynamic";
 import HandleSourceRight from "../handle/HandleSourceRight";
 import HandleSourceBottom from "../handle/HandleSourceBottom";
 import { SimpleNodeStatus } from "@pragmatic-programming/ihgraph";
@@ -28,7 +28,7 @@ export default function NodeFile(props: NodeProps<NodeDataFile>): React.JSX.Elem
         target.files[0].text().then((text: string) => setNodeNodeDataContent(props.id, text));
     };
     let icon =
-        <IconDynamic
+        <ButtonIconDynamic
             iconDefault={AttachFile}
             iconHover={DeleteIcon}
             onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}

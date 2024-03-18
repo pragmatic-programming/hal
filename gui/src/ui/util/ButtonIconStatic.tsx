@@ -13,7 +13,7 @@ interface Props {
     tooltip: string;
 }
 
-export function IconStatic(props: Props): React.JSX.Element {
+export function ButtonIconStatic(props: Props): React.JSX.Element {
     return (
         <ButtonIconTooltip
             disabled={props.disabled}

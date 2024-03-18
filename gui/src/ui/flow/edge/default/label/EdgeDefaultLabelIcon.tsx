@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 import { BoxBackgroundMain } from "../../../../util/BoxBackgroundMain";
-import { IconDynamic } from "../../../../util/IconDynamic";
+import { ButtonIconDynamic } from "../../../../util/ButtonIconDynamic";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
 import { SvgIconComponent } from "@mui/icons-material";
@@ -17,7 +17,7 @@ export function EdgeDefaultLabelIcon(props: Props): React.JSX.Element {
         <BoxBackgroundMain
             style={props.style}
         >
-            <IconDynamic
+            <ButtonIconDynamic
                 iconDefault={props.icon}
                 iconHover={DeleteIcon}
                 onClick={() => reactFlow.deleteElements({edges: [{id: props.id}]})}

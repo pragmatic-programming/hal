@@ -12,7 +12,7 @@ interface Props {
     tooltip?: string;
 }
 
-export function IconDynamic(props: Props): React.JSX.Element {
+export function ButtonIconDynamic(props: Props): React.JSX.Element {
     const [inputValue, setInputValue] = useState<SvgIconComponent>(props.iconDefault);
     return (
         <Tooltip

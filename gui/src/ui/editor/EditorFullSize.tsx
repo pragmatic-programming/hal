@@ -9,7 +9,7 @@ import EditorFooter, { editorFooterHeight } from "./EditorFooter";
 import { EditorBody } from "./EditorBody";
 import { NodeData } from "../../model/node/NodeData";
 import { StrictNode, strictNode } from "../../model/node/StrictNode";
-import { Icon } from "../util/Icon";
+import { ButtonIcon } from "../util/ButtonIcon";
 import InsertDriveFile from "@mui/icons-material/InsertDriveFile";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseFullscreenIcon from "@mui/icons-material/CloseFullscreen";
@@ -51,7 +51,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                 onChange={(value: string) => editorOpenSetLabel(value)}
                 value={props.editorState.label}
                 iconLeft={
-                    <Icon
+                    <ButtonIcon
                         iconDefault={InsertDriveFile}
                         iconHover={DeleteIcon}
                         onClick={(): void => {
@@ -62,7 +62,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                     />
                 }
                 iconRight={
-                    <Icon
+                    <ButtonIcon
                         iconDefault={CloseFullscreenIcon}
                         onClick={() => openEditor(reactFlow.getNode, undefined)}
                         tooltip={"Exit Fullscreen"}
