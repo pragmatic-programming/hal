@@ -40,7 +40,7 @@ export function BottomBody(): React.JSX.Element {
                     <BottomBodyStep
                         index={index}
                         key={processor.getId() + index}
-                        length={context.processors.length}
+                        length={processors.length}
                         processor={processor}
                     />
                 ))}
