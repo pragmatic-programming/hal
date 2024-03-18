@@ -12,6 +12,7 @@ export default function MenuButtonPlay(): React.JSX.Element {
             icon={<PlayArrow fontSize="inherit" color={"success"}/>}
             onClick={run}
             onDoubleClick={menuOpenToggle}
+            size={"large"}
             tooltip="Compile"
         />
     );

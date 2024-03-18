@@ -16,7 +16,7 @@ export default function MenuButton(props: Props): React.JSX.Element {
                 disabled={props.disabled}
                 onClick={props.onClick}
                 placement={"right"}
-                size="large"
+                size={"large"}
                 title={props.tooltip}
             >
                 {props.icon}

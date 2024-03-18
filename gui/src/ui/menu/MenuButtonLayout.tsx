@@ -17,6 +17,7 @@ export default function MenuButtonLayout(): React.JSX.Element {
             icon={<Polyline/>}
             onClick={() => layout(reactFlow.fitView, layoutOptions)}
             onDoubleClick={menuOpenToggle}
+            size={"large"}
             tooltip="Layout"
         />
     );

@@ -17,9 +17,10 @@ export default function NodeCreateButton(props: Props): React.JSX.Element {
     const transformCreateNode = useStore((state: State) => state.flow.transformCreateNode);
     return (
         <ButtonIconTooltip
-            placement={props.placement}
-            title={"Create new " + firstCharUpperCase(props.nodeDefinition.type) + " Node"}
             onClick={() => transformCreateNode(props.nodeId, props.nodeDefinition, props.targetEdgeId)}
+            placement={props.placement}
+            size={"medium"}
+            title={"Create new " + firstCharUpperCase(props.nodeDefinition.type) + " Node"}
         >
             <SvgIcon component={props.nodeDefinition.icon}></SvgIcon>
         </ButtonIconTooltip>

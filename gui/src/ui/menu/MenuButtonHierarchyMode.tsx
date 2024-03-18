@@ -13,8 +13,8 @@ export default function MenuButtonHierarchyMode(): React.JSX.Element {
     const hierarchyMode: boolean = useStore((state: State) => state.flow.hierarchyMode);
     return (
         <MenuButtonToggle
-            iconOn={<AutoAwesomeMosaicIcon fontSize="inherit"/>}
             iconOff={<AutoAwesomeMotionIcon fontSize="inherit"/>}
+            iconOn={<AutoAwesomeMosaicIcon fontSize="inherit"/>}
             on={hierarchyMode}
             onClick={() => toggleHierarchyMode(reactFlow.fitView)}
             tooltipOff="Hierarchy"

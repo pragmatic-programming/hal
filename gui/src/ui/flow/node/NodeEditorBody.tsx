@@ -41,6 +41,7 @@ export function NodeEditorBody(props: NodeProps<NodeData>): React.JSX.Element {
                             iconDefault={InsertDriveFileIcon}
                             iconHover={DeleteIcon}
                             onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}
+                            size={"medium"}
                             tooltip={"Delete Editor Node"}
                         />
                     }
@@ -48,6 +49,7 @@ export function NodeEditorBody(props: NodeProps<NodeData>): React.JSX.Element {
                         <ButtonIcon
                             iconDefault={OpenInNewIcon}
                             onClick={() => openEditor(reactFlow.getNode, props.id)}
+                            size={"medium"}
                             tooltip={"Open Fullscreen"}
                         />
                     }

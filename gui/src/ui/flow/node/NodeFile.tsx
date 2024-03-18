@@ -32,6 +32,7 @@ export default function NodeFile(props: NodeProps<NodeDataFile>): React.JSX.Elem
             iconDefault={AttachFile}
             iconHover={DeleteIcon}
             onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}
+            size={"medium"}
             tooltip={"Delete File Node"}
         />;
 

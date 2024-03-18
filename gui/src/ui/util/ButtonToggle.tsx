@@ -10,6 +10,7 @@ interface Props {
     onClick: () => void;
     tooltipOff: string;
     placement: Placement;
+    size: "small" | "medium" | "large";
     // todo
     style?: CSSProperties,
     tooltipOn: string;
@@ -21,7 +22,7 @@ export default function ButtonToggle(props: Props): React.JSX.Element {
             disabled={props.disabled}
             onClick={props.onClick}
             placement={props.placement}
-            size={"large"}
+            size={props.size}
             style={props.style}
             title={props.on ? props.tooltipOn : props.tooltipOff}
         >

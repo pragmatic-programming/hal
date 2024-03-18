@@ -46,13 +46,14 @@ export default function Model(props: Props): React.JSX.Element {
     }
     return (
         <ButtonIconTooltip
-            placement="top"
-            title={title}
             onClick={() => render(property, reactFlow.fitView)}
+            placement="top"
+            size={"medium"}
             sx={{
                 marginLeft: marginLeft,
                 marginRight: marginRight,
             }}
+            title={title}
         >
             <Avatar
                 style={{

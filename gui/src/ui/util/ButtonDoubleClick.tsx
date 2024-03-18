@@ -8,6 +8,7 @@ interface Props {
     icon: React.JSX.Element;
     onClick: () => void;
     onDoubleClick: () => void;
+    size: "small" | "medium" | "large";
     tooltip: string;
 }
 
@@ -33,7 +34,7 @@ export default function ButtonDoubleClick(props: Props): React.JSX.Element {
                 buttonRef={buttonRef}
                 disabled={props.disabled}
                 placement={"right"}
-                size="large"
+                size={props.size}
                 title={props.tooltip}
             >
                 {props.icon}

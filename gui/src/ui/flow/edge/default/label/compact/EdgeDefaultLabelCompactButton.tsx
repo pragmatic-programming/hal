@@ -16,6 +16,7 @@ export default function EdgeDefaultLabelCompactButton(props: Props): React.JSX.E
     return (
         <BoxBackgroundMain>
             <ButtonIconStatic
+                size={"medium"}
                 {...props}
             />
         </BoxBackgroundMain>

@@ -21,6 +21,7 @@ export function EdgeDefaultLabelIcon(props: Props): React.JSX.Element {
                 iconDefault={props.icon}
                 iconHover={DeleteIcon}
                 onClick={() => reactFlow.deleteElements({edges: [{id: props.id}]})}
+                size={"medium"}
             />
         </BoxBackgroundMain>
     );

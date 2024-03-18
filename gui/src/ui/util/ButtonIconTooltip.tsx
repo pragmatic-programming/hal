@@ -8,7 +8,7 @@ interface Props {
     onClick?: () => void;
     placement?: Placement;
     buttonRef?: MutableRefObject<null>;
-    size?: "large";
+    size: "small" | "medium" | "large";
     style?: CSSProperties;
     sx?: CSSProperties;
     title: string;

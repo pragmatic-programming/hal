@@ -58,6 +58,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                             reactFlow.deleteElements({nodes: [{id: props.editorState.nodeId}]});
                             openEditor(reactFlow.getNode, undefined);
                         }}
+                        size={"medium"}
                         tooltip={"Delete Editor Node"}
                     />
                 }
@@ -65,6 +66,7 @@ export default function EditorFullSize(props: Props): React.JSX.Element {
                     <ButtonIcon
                         iconDefault={CloseFullscreenIcon}
                         onClick={() => openEditor(reactFlow.getNode, undefined)}
+                        size={"medium"}
                         tooltip={"Exit Fullscreen"}
                     />
                 }

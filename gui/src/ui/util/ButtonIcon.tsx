@@ -7,6 +7,7 @@ interface Props {
     iconDefault: SvgIconComponent;
     iconHover?: SvgIconComponent;
     onClick: () => void;
+    size: "small" | "medium" | "large";
     tooltip: string;
 }
 
