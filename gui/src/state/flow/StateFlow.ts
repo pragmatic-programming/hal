@@ -32,7 +32,8 @@ export interface StateFlow {
     toggleVerboseMode: () => void,
     transformCreateEdge: (edgeId: string, edgeDefinition: EdgeDefinition, targetNodeId: string) => void,
     transformCreateNode: (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | null | undefined) => void,
-    verboseMode: boolean,
+    // todo
+    verboseMode: "compact" | "middle" | "verbose",
     toggleHierarchyMode: (fitView: (fitViewOptions: FitViewOptions) => void) => void,
     hierarchyMode: boolean,
     lastRenderGraph: IHGraph | null,

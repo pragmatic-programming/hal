@@ -22,7 +22,7 @@ export function NodeEditorBody(props: NodeProps<NodeData>): React.JSX.Element {
     const openEditor = useStore((state: State) => state.editor.editorOpen);
     const setNodeNodeDataLabel = useStore((state: State) => state.flow.setNodeNodeDataLabel);
     const setNodeNodeDataContent = useStore((state: State) => state.flow.setNodeNodeDataContent);
-    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
+    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode !== "compact");
     let editorBodyReducedHeight: number = 0;
     if (verboseMode) {
         editorBodyReducedHeight = editorHeaderHeight + editorFooterHeight;

@@ -5,6 +5,7 @@ import { EdgeDefinition } from "../../../../../model/edge/EdgeDefinition";
 import { EdgeDefaultLabelCompact } from "./compact/EdgeDefaultLabelCompact";
 import { EdgeData } from "../../../../../model/edge/EdgeData";
 import EdgeDefaultLabelVerbose from "./verbose/EdgeDefaultLabelVerbose";
+import EdgeDefaultLabelMiddle from "./middle/EdgeDefaultLabelMiddle";
 
 interface Props {
     edgeDefinition: EdgeDefinition;
@@ -15,10 +16,21 @@ interface Props {
 }
 
 export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
-    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
-    if (verboseMode) {
+    const verboseMode = useStore((state: State) => state.flow.verboseMode);
+    if (verboseMode === "verbose") {
         return (
             <EdgeDefaultLabelVerbose
+                edgeData={props.edgeData}
+                edgeDefinition={props.edgeDefinition}
+                id={props.id}
+                label={props.label}
+                type={props.type}
+            />
+        );
+    }
+    if (verboseMode === "middle") {
+        return (
+            <EdgeDefaultLabelMiddle
                 edgeData={props.edgeData}
                 edgeDefinition={props.edgeDefinition}
                 id={props.id}

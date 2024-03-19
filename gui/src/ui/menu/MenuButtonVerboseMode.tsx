@@ -7,12 +7,14 @@ import MenuButtonToggle from "./MenuButtonToggle";
 
 export default function MenuButtonVerboseMode(): React.JSX.Element {
     const toggleVerboseMode = useStore((state: State) => state.flow.toggleVerboseMode);
-    const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
+    // todo
+    //const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
     return (
         <MenuButtonToggle
             iconOff={<VisibilityOff fontSize="inherit"/>}
             iconOn={<Visibility fontSize="inherit"/>}
-            on={verboseMode}
+            // todo
+            on={true}
             onClick={toggleVerboseMode}
             tooltipOff="Verbose"
             tooltipOn="Compact"
