@@ -52,9 +52,10 @@ export default function NodeCreate(props: NodeProps): React.JSX.Element {
                         targetEdgeId={targetEdge?.id}
                     />
                     <ButtonIconTooltip
-                        placement="top"
-                        title={"Show more options"}
                         disabled={true}
+                        placement="top"
+                        size={"medium"}
+                        title={"Show more options"}
                     >
                         <Add/>
                     </ButtonIconTooltip>

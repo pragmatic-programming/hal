@@ -28,9 +28,10 @@ export default function EdgeDefaultLabelVerboseMiddle(props: Props): React.JSX.E
                 on={showLabel}
                 onClick={() => setShowLabel(!showLabel)}
                 placement={"top"}
+                size={"medium"}
                 style={{width: edgeDefaultLabelVerboseIconSize, height: edgeDefaultLabelVerboseIconSize}}
-                tooltipOn={"Show Description"}
                 tooltipOff={"Show Label"}
+                tooltipOn={"Show Description"}
             />
             </InputAdornment>
         )

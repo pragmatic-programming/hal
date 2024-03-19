@@ -1,17 +1,18 @@
 import React, { useRef } from "react";
 import useDoubleClick from "use-double-click";
-import ButtonIconTooltip from "../util/ButtonIconTooltip";
-import MenuButtonBox from "./MenuButtonBox";
+import ButtonIconTooltip from "./ButtonIconTooltip";
+import MenuButtonBox from "../menu/MenuButtonBox";
 
 interface Props {
     disabled?: boolean;
     icon: React.JSX.Element;
     onClick: () => void;
     onDoubleClick: () => void;
+    size: "small" | "medium" | "large";
     tooltip: string;
 }
 
-export default function MenuButtonDoubleClick(props: Props): React.JSX.Element {
+export default function ButtonDoubleClick(props: Props): React.JSX.Element {
     // see https://www.timellenberger.com/libraries/use-double-click
     const buttonRef = useRef(null);
     useDoubleClick({
@@ -33,7 +34,7 @@ export default function MenuButtonDoubleClick(props: Props): React.JSX.Element {
                 buttonRef={buttonRef}
                 disabled={props.disabled}
                 placement={"right"}
-                size="large"
+                size={props.size}
                 title={props.tooltip}
             >
                 {props.icon}

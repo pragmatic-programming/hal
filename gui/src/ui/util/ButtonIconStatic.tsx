@@ -9,16 +9,18 @@ interface Props {
     icon: SvgIconComponent;
     onClick?: () => void;
     placement?: Placement;
+    size: "small" | "medium" | "large";
     style?: CSSProperties;
     tooltip: string;
 }
 
-export function IconStatic(props: Props): React.JSX.Element {
+export function ButtonIconStatic(props: Props): React.JSX.Element {
     return (
         <ButtonIconTooltip
             disabled={props.disabled}
             onClick={props.onClick}
             placement={props.placement === undefined ? "top" : props.placement}
+            size={props.size}
             style={props.style}
             title={props.tooltip}
         >

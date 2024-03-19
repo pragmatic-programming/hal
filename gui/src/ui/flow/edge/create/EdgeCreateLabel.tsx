@@ -33,6 +33,7 @@ export default function EdgeCreateLabel(props: Props): React.JSX.Element {
                         key={edgeDefinition.type}
                         onClick={() => transformCreationEdge(props.id, edgeDefinition, props.targetNodeId,)}
                         placement="top"
+                        size={"medium"}
                         title={"Create new " + firstCharUpperCase(edgeDefinition.type) + " Edge"}
                     >
                         <SvgIcon component={edgeDefinition.icon}></SvgIcon>
@@ -43,6 +44,7 @@ export default function EdgeCreateLabel(props: Props): React.JSX.Element {
                 disabled={numberOfShownEdgeDefinitions >= filteredEdgeDefinitions.length}
                 onClick={() => setNumberOfShownEdgeDefinitions(numberOfShownEdgeDefinitions + 2)}
                 placement="top"
+                size={"medium"}
                 title={"Open new Edge Dialog"}
             >
                 <Add/>

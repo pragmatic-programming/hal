@@ -26,6 +26,7 @@ export function EdgeDefaultLabelCompact(props: Props): React.JSX.Element {
             <EdgeDefaultLabelIcon
                 icon={props.edgeDefinition.icon}
                 id={props.id}
+                tooltip={"Delete Edge"}
             />
         </div>;
     if (showCross) {

@@ -2,7 +2,7 @@ import React from "react";
 import { EditorBody } from "../../editor/EditorBody";
 import EditorHeader, { editorHeaderHeight } from "../../editor/EditorHeader";
 import EditorFooter, { editorFooterHeight } from "../../editor/EditorFooter";
-import { Icon } from "../../util/Icon";
+import { ButtonIcon } from "../../util/ButtonIcon";
 import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import DeleteIcon from "@mui/icons-material/Delete";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
@@ -37,17 +37,19 @@ export function NodeEditorBody(props: NodeProps<NodeData>): React.JSX.Element {
                     onChange={(label: string) => setNodeNodeDataLabel(props.id, label)}
                     nodeId={props.id}
                     iconLeft={
-                        <Icon
+                        <ButtonIcon
                             iconDefault={InsertDriveFileIcon}
                             iconHover={DeleteIcon}
                             onClick={() => reactFlow.deleteElements({nodes: [{id: props.id}]})}
+                            size={"medium"}
                             tooltip={"Delete Editor Node"}
                         />
                     }
                     iconRight={
-                        <Icon
+                        <ButtonIcon
                             iconDefault={OpenInNewIcon}
                             onClick={() => openEditor(reactFlow.getNode, props.id)}
+                            size={"medium"}
                             tooltip={"Open Fullscreen"}
                         />
                     }

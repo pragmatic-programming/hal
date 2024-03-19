@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import ImageIcon from "@mui/icons-material/Image";
 import { BoxBackgroundMain } from "../../util/BoxBackgroundMain";
 import { BoxBorder } from "../../util/BoxBorder";
-import { IconDynamic } from "../../util/IconDynamic";
+import { ButtonIconDynamic } from "../../util/ButtonIconDynamic";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ReactFlowInstance, useReactFlow } from "reactflow";
 
@@ -20,10 +20,11 @@ export default function NodeImageDefault(props: Props): React.JSX.Element {
             borderColor={props.borderColor}
         >
             <BoxBackgroundMain style={padding}>
-                <IconDynamic
+                <ButtonIconDynamic
                     iconDefault={ImageIcon}
                     iconHover={DeleteIcon}
                     onClick={() => reactFlow.deleteElements({nodes: [{id: props.nodeId}]})}
+                    size={"medium"}
                     tooltip={"Delete Image Node"}
                 />
             </BoxBackgroundMain>

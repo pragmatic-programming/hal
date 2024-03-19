@@ -8,11 +8,12 @@ interface Props {
     iconHover: SvgIconComponent;
     onClick: () => void;
     placement?: Placement;
+    size: "small" | "medium" | "large";
     style?: CSSProperties;
-    tooltip?: string;
+    tooltip: string;
 }
 
-export function IconDynamic(props: Props): React.JSX.Element {
+export function ButtonIconDynamic(props: Props): React.JSX.Element {
     const [inputValue, setInputValue] = useState<SvgIconComponent>(props.iconDefault);
     return (
         <Tooltip
@@ -23,6 +24,7 @@ export function IconDynamic(props: Props): React.JSX.Element {
                 onClick={props.onClick}
                 onMouseEnter={() => setInputValue(props.iconHover ? props.iconHover : props.iconDefault)}
                 onMouseLeave={() => setInputValue(props.iconDefault)}
+                size={props.size}
                 style={props.style}
             >
                 <SvgIcon component={inputValue}></SvgIcon>
