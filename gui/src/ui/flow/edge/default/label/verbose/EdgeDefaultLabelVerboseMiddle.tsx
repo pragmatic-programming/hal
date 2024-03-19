@@ -17,7 +17,6 @@ interface Props {
 
 export default function EdgeDefaultLabelVerboseMiddle(props: Props): React.JSX.Element {
     const [showLabel, setShowLabel] = useState<boolean>(true);
-
     let startAdornment: React.JSX.Element | undefined = undefined
     if (props.showIcon) {
         startAdornment = (

@@ -1,23 +1,30 @@
 import React from "react";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Games, TextFields, VisibilityOff } from "@mui/icons-material";
 
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
-import MenuButtonToggle from "./MenuButtonToggle";
+import MenuButtonThreefold from "./MenuButtonThreefold";
 
 export default function MenuButtonVerboseMode(): React.JSX.Element {
     const toggleVerboseMode = useStore((state: State) => state.flow.toggleVerboseMode);
-    // todo
-    //const verboseMode: boolean = useStore((state: State) => state.flow.verboseMode);
+    const verboseMode = useStore((state: State) => state.flow.verboseMode);
+    let step: "one" | "two" | "three" = "three";
+    if (verboseMode === "compact") {
+        step = "one";
+    }
+    if (verboseMode === "middle") {
+        step = "two";
+    }
     return (
-        <MenuButtonToggle
-            iconOff={<VisibilityOff fontSize="inherit"/>}
-            iconOn={<Visibility fontSize="inherit"/>}
-            // todo
-            on={true}
+        <MenuButtonThreefold
+            iconStepOne={<VisibilityOff fontSize="inherit"/>}
+            iconStepThree={<Games fontSize="inherit"/>}
+            iconStepTwo={<TextFields fontSize="inherit"/>}
             onClick={toggleVerboseMode}
-            tooltipOff="Verbose"
-            tooltipOn="Compact"
+            step={step}
+            tooltipStepOne="Compact"
+            tooltipStepThree="Verbose"
+            tooltipStepTwo="Middle"
         />
     );
 }
