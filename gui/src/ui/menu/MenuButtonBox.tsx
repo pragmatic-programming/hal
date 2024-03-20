@@ -10,8 +10,6 @@ export default function MenuButtonBox(props: Props): React.JSX.Element {
     return (
         <Box
             style={{
-                height: 32,
-                marginTop: 16,
                 textAlign: "center",
                 width: menuWidth,
             }}
