@@ -1,5 +1,5 @@
 import React from "react";
-import { Games, TextFields, VisibilityOff } from "@mui/icons-material";
+import { Games, TextFields, Commit } from "@mui/icons-material";
 
 import { useStore } from "../../state/Store";
 import { State } from "../../state/State";
@@ -17,7 +17,7 @@ export default function MenuButtonVerboseMode(): React.JSX.Element {
     }
     return (
         <MenuButtonThreefold
-            iconStepOne={<VisibilityOff fontSize="inherit"/>}
+            iconStepOne={<Commit fontSize="inherit"/>}
             iconStepThree={<Games fontSize="inherit"/>}
             iconStepTwo={<TextFields fontSize="inherit"/>}
             onClick={toggleVerboseMode}
