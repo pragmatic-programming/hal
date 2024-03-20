@@ -11,8 +11,12 @@ import MenuButtonExport from "./MenuButtonExport";
 import MenuButtonVerboseMode from "./MenuButtonVerboseMode";
 import MenuButtonHierarchyMode from "./MenuButtonHierarchyMode";
 import MenuCompilations from "./compilations/MenuCompilations";
+import { Stack } from "@mui/material";
+import MenuButtonDelete from "./MenuButtonDelete";
 
 export const menuWidth: number = 100;
+const paddingY = 10;
+const height = "calc(100vh - " + (bottomHeight + 2 * paddingY) + "px)";
 
 export default function Menu(): React.JSX.Element {
     return (
@@ -20,25 +24,42 @@ export default function Menu(): React.JSX.Element {
             border="right"
             style={{
                 position: "fixed",
+                paddingTop: paddingY,
+                paddingBottom: paddingY,
                 top: 0,
                 left: 0,
                 width: menuWidth - 1, // subtract 1px which is added by borderRight
-                height: "calc(100vh - " + bottomHeight + "px)",
+                height: height,
             }}>
-            <MenuExamples/>
-            <MenuDivider/>
-            <MenuButtonAddNodeCreate/>
-            <MenuDivider/>
-            <MenuCompilations/>
-            <MenuButtonImmediatePlay/>
-            <MenuDivider/>
-            <MenuButtonHierarchyMode/>
-            <MenuLayouts/>
-            <MenuDivider/>
-            <MenuButtonImport/>
-            <MenuButtonExport/>
-            <MenuDivider/>
-            <MenuButtonVerboseMode/>
+            <Stack
+                direction={"column"}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+                spacing={2}
+                style={{
+                    height: height,
+                }}
+            >
+                <div>
+                    <MenuExamples/>
+                    <MenuDivider/>
+                    <MenuButtonAddNodeCreate/>
+                    <MenuDivider/>
+                    <MenuCompilations/>
+                    <MenuButtonImmediatePlay/>
+                    <MenuDivider/>
+                    <MenuButtonHierarchyMode/>
+                    <MenuLayouts/>
+                    <MenuDivider/>
+                    <MenuButtonImport/>
+                    <MenuButtonExport/>
+                    <MenuDivider/>
+                    <MenuButtonVerboseMode/>
+                </div>
+                <div>
+                    <MenuButtonDelete/>
+                </div>
+            </Stack>
         </BoxBackgroundMain>
     );
 }
