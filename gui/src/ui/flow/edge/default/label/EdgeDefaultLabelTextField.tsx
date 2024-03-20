@@ -1,6 +1,6 @@
 import { InputProps, SxProps, TextField, Theme, useTheme } from "@mui/material";
 import React from "react";
-import { edgeDefaultLabelVerboseIconSize } from "./EdgeDefaultLabelVerbose";
+import { edgeDefaultLabelVerboseIconSize } from "./verbose/EdgeDefaultLabelVerbose";
 
 interface Props {
     onBlur?: () => void,

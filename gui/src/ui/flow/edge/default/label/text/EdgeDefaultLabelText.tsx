@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EdgeDefinition } from "../../../../../../model/edge/EdgeDefinition";
 import { EdgeData } from "../../../../../../model/edge/EdgeData";
-import EdgeDefaultLabelVerboseMiddle from "../verbose/EdgeDefaultLabelVerboseMiddle";
+import EdgeDefaultLabelTextFieldLabelOrDescriptionWithIcon from "../EdgeDefaultLabelTextFieldLabelOrDescriptionWithIcon";
 
 interface Props {
     edgeData: EdgeData;
@@ -19,7 +19,7 @@ export default function EdgeDefaultLabelText(props: Props): React.JSX.Element {
             onMouseEnter={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
         >
-            <EdgeDefaultLabelVerboseMiddle
+            <EdgeDefaultLabelTextFieldLabelOrDescriptionWithIcon
                 description={props.edgeData.description}
                 id={props.id}
                 label={props.label}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { InputAdornment } from "@mui/material";
-import ButtonToggle from "../../../../../util/ButtonToggle";
+import ButtonToggle from "../../../../util/ButtonToggle";
 import Description from "@mui/icons-material/Description";
 import LabelOnIcon from "@mui/icons-material/Label";
-import EdgeDefaultLabelVerboseMiddleTextField from "./EdgeDefaultLabelVerboseMiddleTextField";
-import { edgeDefaultLabelVerboseIconSize } from "./EdgeDefaultLabelVerbose";
+import EdgeDefaultLabelTextFieldLabelOrDescription from "./EdgeDefaultLabelTextFieldLabelOrDescription";
+import { edgeDefaultLabelVerboseIconSize } from "./verbose/EdgeDefaultLabelVerbose";
 
 interface Props {
     description: string,
@@ -14,7 +14,7 @@ interface Props {
 }
 
 
-export default function EdgeDefaultLabelVerboseMiddle(props: Props): React.JSX.Element {
+export default function EdgeDefaultLabelTextFieldLabelOrDescriptionWithIcon(props: Props): React.JSX.Element {
     const [showLabel, setShowLabel] = useState<boolean>(true);
     let startAdornment: React.JSX.Element | undefined = undefined;
     if (props.showIcon) {
@@ -36,7 +36,7 @@ export default function EdgeDefaultLabelVerboseMiddle(props: Props): React.JSX.E
     }
 
     return (
-        <EdgeDefaultLabelVerboseMiddleTextField
+        <EdgeDefaultLabelTextFieldLabelOrDescription
             description={props.description}
             id={props.id}
             label={props.label}

@@ -1,6 +1,6 @@
 import React from "react";
-import { useStore } from "../../../../../../state/Store";
-import { State } from "../../../../../../state/State";
+import { useStore } from "../../../../../state/Store";
+import { State } from "../../../../../state/State";
 import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
 
 interface Props {
@@ -12,14 +12,14 @@ interface Props {
 }
 
 
-export default function EdgeDefaultLabelVerboseMiddleTextField(props: Props): React.JSX.Element {
-    const setEdgeLabel = useStore((state: State) => state.flow.setEdgeLabel);
-    const setEdgeType = useStore((state: State) => state.flow.setEdgeEdgeDataDescription);
+export default function EdgeDefaultLabelTextFieldLabelOrDescription(props: Props): React.JSX.Element {
+    const setLabel = useStore((state: State) => state.flow.setEdgeLabel);
+    const setDescription = useStore((state: State) => state.flow.setEdgeEdgeDataDescription);
 
     if (props.showLabel) {
         return (
             <EdgeDefaultLabelTextField
-                onChange={(value: string) => setEdgeLabel(props.id, value)}
+                onChange={(value: string) => setLabel(props.id, value)}
                 placeholder={"Label"}
                 startAdornment={props.startAdornment}
                 value={props.label}
@@ -29,7 +29,7 @@ export default function EdgeDefaultLabelVerboseMiddleTextField(props: Props): Re
 
     return (
         <EdgeDefaultLabelTextField
-            onChange={(value: string) => setEdgeType(props.id, value)}
+            onChange={(value: string) => setDescription(props.id, value)}
             placeholder={"Description"}
             startAdornment={props.startAdornment}
             value={props.description}

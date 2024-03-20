@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Stack } from "@mui/material";
 import { useStore } from "../../../../../../state/Store";
 import { State } from "../../../../../../state/State";
-import { EdgeDefaultLabelTextField } from "./EdgeDefaultLabelTextField";
+import { EdgeDefaultLabelTextField } from "../EdgeDefaultLabelTextField";
 import { EdgeData } from "../../../../../../model/edge/EdgeData";
 import { edgeDefaultLabelVerboseIconSize } from "./EdgeDefaultLabelVerbose";
 

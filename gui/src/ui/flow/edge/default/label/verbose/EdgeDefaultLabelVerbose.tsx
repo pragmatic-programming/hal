@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EdgeDefinition } from "../../../../../../model/edge/EdgeDefinition";
 import { EdgeData } from "../../../../../../model/edge/EdgeData";
-import EdgeDefaultLabelVerboseMiddle from "./EdgeDefaultLabelVerboseMiddle";
+import EdgeDefaultLabelTextFieldLabelOrDescriptionWithIcon from "../EdgeDefaultLabelTextFieldLabelOrDescriptionWithIcon";
 import EdgeDefaultLabelVerboseTop from "./EdgeDefaultLabelVerboseTop";
 import EdgeDefaultLabelVerboseBottom from "./EdgeDefaultLabelVerboseBottom";
 
@@ -26,7 +26,7 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
                 edgeDefinition={props.edgeDefinition}
                 id={props.id}
             />
-            <EdgeDefaultLabelVerboseMiddle
+            <EdgeDefaultLabelTextFieldLabelOrDescriptionWithIcon
                 description={props.edgeData.description}
                 id={props.id}
                 label={props.label}
