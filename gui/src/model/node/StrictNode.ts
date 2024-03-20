@@ -1,6 +1,5 @@
 import { Node } from "reactflow";
 
-// todo introduce StrictEdge
 export interface StrictNode<T> extends Node<T> {
     height: number,
     width: number,

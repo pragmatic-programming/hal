@@ -25,7 +25,7 @@ export interface StateFlow {
     setEdgeLabel: (edgeId: string, label: string) => void,
     setEdgePathStyleForAll: (edgePathStyle: EdgePathStyle) => void,
     setEdgePathStyleForEdge: (edgeId: string, edgePathStyle: EdgePathStyle) => void,
-    setEdgePriority: (edgeId: string, priority: number) => void,
+    setEdgeEdgeDataPriority: (edgeId: string, priority: number) => void,
     setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,
     setNodeNodeDataLabel: (nodeId: string, label: string) => void,
     setNodeNodeDataLanguage: (nodeId: string, language: LanguageIndicator) => void,

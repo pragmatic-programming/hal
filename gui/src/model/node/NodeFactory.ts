@@ -87,7 +87,6 @@ export class NodeFactory {
                 return NodeFactory.nodeFile(
                     simpleNode.getId(),
                     simpleNode.getContent(),
-                    // todo
                     undefined,
                     nodeData.position,
                     nodeData.width,
