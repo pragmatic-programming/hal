@@ -8,7 +8,7 @@ import MenuLayouts from "./layouts/MenuLayouts";
 import MenuButtonAddNodeCreate from "./MenuButtonAddNodeCreate";
 import MenuButtonImport from "./MenuButtonImport";
 import MenuButtonExport from "./MenuButtonExport";
-import MenuButtonVerboseMode from "./MenuButtonVerboseMode";
+import MenuButtonMode from "./MenuButtonMode";
 import MenuButtonHierarchyMode from "./MenuButtonHierarchyMode";
 import MenuCompilations from "./compilations/MenuCompilations";
 
@@ -38,7 +38,7 @@ export default function Menu(): React.JSX.Element {
             <MenuButtonImport/>
             <MenuButtonExport/>
             <MenuDivider/>
-            <MenuButtonVerboseMode/>
+            <MenuButtonMode/>
         </BoxBackgroundMain>
     );
 }
