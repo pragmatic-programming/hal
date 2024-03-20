@@ -1,5 +1,6 @@
 import { InputProps, SxProps, TextField, Theme, useTheme } from "@mui/material";
 import React from "react";
+import { edgeDefaultLabelVerboseIconSize } from "./EdgeDefaultLabelVerbose";
 
 interface Props {
     onBlur?: () => void,
@@ -7,7 +8,22 @@ interface Props {
     placeholder: string,
     startAdornment?: React.JSX.Element,
     value: string,
-    width: number,
+    maxWidth?: number,
+}
+
+function calculateRowWidth(labelLength: number, showIcon: boolean): number {
+    const minimumRowWidth: number = edgeDefaultLabelVerboseIconSize * 3;
+    const characterPixelFactor: number = 12;
+    const rowWidth: number = Math.max(
+        minimumRowWidth,
+        labelLength * characterPixelFactor
+    );
+    // if we want to show the icon we must add the iconSize to the rowWidth,
+    // so that the overall label is still centered
+    if (showIcon) {
+        return rowWidth + edgeDefaultLabelVerboseIconSize;
+    }
+    return rowWidth;
 }
 
 export function EdgeDefaultLabelTextField(props: Props): React.JSX.Element {
@@ -36,6 +52,11 @@ export function EdgeDefaultLabelTextField(props: Props): React.JSX.Element {
             marginRight: 0,
         },
     };
+    const showIcon: boolean = props.startAdornment !== undefined;
+    let width: number = calculateRowWidth(props.value.length, showIcon);
+    if (props.maxWidth) {
+        width = Math.min(props.maxWidth, width);
+    }
     return (
         <TextField
             InputProps={inputProps}
@@ -46,9 +67,9 @@ export function EdgeDefaultLabelTextField(props: Props): React.JSX.Element {
             sx={sx}
             style={{
                 backgroundColor: theme.palette.primary.main,
-                width: props.width,
+                width: width,
             }}
             value={props.value}
         />
-    )
+    );
 }

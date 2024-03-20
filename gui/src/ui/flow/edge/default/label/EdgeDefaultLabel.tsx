@@ -5,7 +5,7 @@ import { EdgeDefinition } from "../../../../../model/edge/EdgeDefinition";
 import { EdgeDefaultLabelCompact } from "./compact/EdgeDefaultLabelCompact";
 import { EdgeData } from "../../../../../model/edge/EdgeData";
 import EdgeDefaultLabelVerbose from "./verbose/EdgeDefaultLabelVerbose";
-import EdgeDefaultLabelMiddle from "./middle/EdgeDefaultLabelMiddle";
+import EdgeDefaultLabelText from "./text/EdgeDefaultLabelText";
 import { ModeIndicator } from "../../../../../state/flow/ModeIndicator";
 
 interface Props {
@@ -29,7 +29,7 @@ export default function EdgeDefaultLabel(props: Props): React.JSX.Element {
             );
         case "text":
             return (
-                <EdgeDefaultLabelMiddle
+                <EdgeDefaultLabelText
                     edgeData={props.edgeData}
                     edgeDefinition={props.edgeDefinition}
                     id={props.id}
