@@ -16,11 +16,11 @@ interface Props {
 export const edgeDefaultLabelVerboseIconSize: number = 40;
 
 export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element {
-    const [showIcon, setShowIcon] = useState<boolean>(false);
+    const [hover, setHover] = useState<boolean>(false);
     return (
         <div
-            onMouseEnter={() => setShowIcon(true)}
-            onMouseLeave={() => setShowIcon(false)}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
         >
             <EdgeDefaultLabelVerboseTop
                 edgeDefinition={props.edgeDefinition}
@@ -30,7 +30,7 @@ export default function EdgeDefaultLabelVerbose(props: Props): React.JSX.Element
                 description={props.edgeData.description}
                 id={props.id}
                 label={props.label}
-                showIcon={showIcon}
+                showIcon={hover}
             />
             <EdgeDefaultLabelVerboseBottom
                 edgeData={props.edgeData}
