@@ -19,7 +19,7 @@ export function layout(setState: StoreApi<State>["setState"], getState: () => St
             flow: {
                 ...reactFlow,
                 layoutOption: layoutOption,
-                nodes: await layoutedNodes(reactFlow, layoutOptions(layoutOption)),
+                ...await layoutedNodes(reactFlow, layoutOptions(layoutOption)),
             }
         });
         window.requestAnimationFrame(() => {

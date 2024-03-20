@@ -12,7 +12,7 @@ const elk = new ELK({
     }
 });
 
-export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions: LayoutOptions) {
+export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions: LayoutOptions): Promise<NodesAndEdges> {
     const nodeMap = new Map<string, Node>();
     const elkNodeMap = new Map<Node, ElkNode>();
     const children: Node[] = [];
@@ -73,7 +73,10 @@ export async function layoutedNodes(nodesAndEdges: NodesAndEdges, layoutOptions:
     }
     const nodes: Node[] = applyLayoutData(root, nodeMap, layoutOptions);
 
-    return nodes;
+    return {
+        ...nodesAndEdges,
+        nodes: nodes
+    };
 }
 
 function applyLayoutData(elkNode: ElkNode, nodeMap: Map<string, Node>, layoutOptions: LayoutOptions): Node[] {

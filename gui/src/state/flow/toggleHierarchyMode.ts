@@ -1,7 +1,7 @@
 import { State } from "../State";
 import { StoreApi } from "zustand";
-import { reRender } from "../reRender";
 import { FitViewOptions } from "reactflow";
+import { IHGraph } from "@pragmatic-programming/ihgraph";
 
 export function toggleHierarchyMode(setState: StoreApi<State>["setState"], getState: () => State) {
     return (
@@ -15,6 +15,16 @@ export function toggleHierarchyMode(setState: StoreApi<State>["setState"], getSt
                 hierarchyMode: !state.flow.hierarchyMode
             }
         });
-        reRender(state, fitView);
+        // if lastRenderGraph is null, if render() was never called
+        // in this case we just exit the function and do nothing
+        const lastRenderGraph: IHGraph | null = state.flow.lastRenderGraph;
+        if (lastRenderGraph === null) {
+            return;
+        }
+        state.flow.render(
+            lastRenderGraph,
+            fitView,
+            state.ui.projectName
+        );
     };
 }
