@@ -29,7 +29,7 @@ import { examplesOpenToggle } from "./ui/examples/examplesOpenToggle";
 import { setContent } from "./ui/message/setContent";
 import { addNodeCreate } from "./flow/addNodeCreate";
 import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
-import { toggleVerboseMode } from "./flow/toggleVerboseMode";
+import { cycleMode } from "./flow/cycleMode";
 import { setEdgePriority } from "./flow/setEdgePriority";
 import { toggleHierarchyMode } from "./flow/toggleHierarchyMode";
 import { originOfCoordinates } from "../util";
@@ -75,6 +75,10 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
                 Position.Left
             )
         ],
+        cycleMode: cycleMode(setState, getState),
+        hierarchyMode: false,
+        lastRenderGraph: null,
+        mode: "compact",
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),
         onNodesChange: onNodesChange(setState, getState),
@@ -88,13 +92,9 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
-        toggleVerboseMode: toggleVerboseMode(setState, getState),
+        toggleHierarchyMode: toggleHierarchyMode(setState, getState),
         transformCreateEdge: transformCreateEdge(setState, getState),
         transformCreateNode: transformCreateNode(setState, getState),
-        verboseMode: "compact",
-        toggleHierarchyMode: toggleHierarchyMode(setState, getState),
-        hierarchyMode: false,
-        lastRenderGraph: null,
     },
     ui: {
         busy: false,

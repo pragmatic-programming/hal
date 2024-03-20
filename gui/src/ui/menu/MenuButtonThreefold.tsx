@@ -1,13 +1,14 @@
 import React from "react";
 import MenuButtonBox from "./MenuButtonBox";
-import ButtonThreefold from "../util/ButtonThreefold";
+import ButtonThreefold, { StepIndicator } from "../util/ButtonThreefold";
+
 
 interface Props {
     disabled?: boolean;
     iconStepOne: React.JSX.Element;
     iconStepTwo: React.JSX.Element;
     iconStepThree: React.JSX.Element;
-    step: "one" | "two" | "three";
+    step: StepIndicator;
     onClick: () => void;
     tooltipStepOne: string;
     tooltipStepTwo: string;

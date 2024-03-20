@@ -2,12 +2,14 @@ import React, { CSSProperties } from "react";
 import ButtonIconTooltip from "./ButtonIconTooltip";
 import { Placement } from "./Placement";
 
+export type StepIndicator = "one" | "two" | "three";
+
 interface Props {
     disabled?: boolean;
     iconStepOne: React.JSX.Element;
     iconStepTwo: React.JSX.Element;
     iconStepThree: React.JSX.Element;
-    step: "one" | "two" | "three";
+    step: StepIndicator;
     onClick: () => void;
     tooltipStepOne: string;
     tooltipStepTwo: string;
