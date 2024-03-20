@@ -12,7 +12,7 @@ interface Props {
 }
 
 export default function EdgeDefaultLabelVerboseBottom(props: Props): React.JSX.Element {
-    const setEdgePriority = useStore((state: State) => state.flow.setEdgePriority);
+    const setEdgePriority = useStore((state: State) => state.flow.setEdgeEdgeDataPriority);
     const [tempPriority, setTempPriority] = useState(props.edgeData.priority.toString());
 
     function onBlur(): void {

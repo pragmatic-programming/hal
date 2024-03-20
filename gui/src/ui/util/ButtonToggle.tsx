@@ -11,7 +11,6 @@ interface Props {
     tooltipOff: string;
     placement: Placement;
     size: "small" | "medium" | "large";
-    // todo
     style?: CSSProperties,
     tooltipOn: string;
 }

@@ -8,7 +8,6 @@ import { layoutOptions } from "../../util";
 import { StateFlow } from "../flow/StateFlow";
 import { NodesAndEdges } from "../../model/NodesAndEdges";
 
-
 export function runImmediate(setState: StoreApi<State>["setState"], getState: () => State) {
     return async (): Promise<void> => {
         const oldState: State = getState();
@@ -47,7 +46,7 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         setState({
             flow: {
                 ...reactFlow,
-                nodes: await layoutedNodes(nodesAndEdges, layoutOptions(newState.flow.layoutOption)),
+                ...await layoutedNodes(nodesAndEdges, layoutOptions(newState.flow.layoutOption)),
             },
             ui: {
                 ...newState.ui,

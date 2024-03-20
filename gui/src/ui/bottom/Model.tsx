@@ -28,7 +28,7 @@ export default function Model(props: Props): React.JSX.Element {
             borderStyle = "dotted";
             borderWidth = 2;
             marginLeft = "-10px";
-            property = props.processor.environment.getProperty(Environment.SOURCE_MODEL);
+            property = props.processor.environment.getProperty(Environment.ORIGINAL_MODEL);
             title = "Input";
             break;
         case "inter":

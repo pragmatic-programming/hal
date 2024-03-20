@@ -30,7 +30,7 @@ import { setContent } from "./ui/message/setContent";
 import { addNodeCreate } from "./flow/addNodeCreate";
 import { setEdgePathStyleForEdge } from "./flow/setEdgePathStyleForEdge";
 import { cycleMode } from "./flow/cycleMode";
-import { setEdgePriority } from "./flow/setEdgePriority";
+import { setEdgeEdgeDataPriority } from "./flow/setEdgeEdgeDataPriority";
 import { toggleHierarchyMode } from "./flow/toggleHierarchyMode";
 import { originOfCoordinates } from "../util";
 import { HALGraphProcessor } from "../processors/directors/HALGraphProcessor";
@@ -88,7 +88,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         setEdgeLabel: setEdgeLabel(setState, getState),
         setEdgePathStyleForAll: setEdgePathStyleForAll(setState, getState),
         setEdgePathStyleForEdge: setEdgePathStyleForEdge(setState, getState),
-        setEdgePriority: setEdgePriority(setState, getState),
+        setEdgeEdgeDataPriority: setEdgeEdgeDataPriority(setState, getState),
         setNodeNodeDataContent: setNodeNodeDataContent(setState, getState),
         setNodeNodeDataLabel: setNodeNodeDataLabel(setState, getState),
         setNodeNodeDataLanguage: setNodeNodeDataLanguage(setState, getState),
