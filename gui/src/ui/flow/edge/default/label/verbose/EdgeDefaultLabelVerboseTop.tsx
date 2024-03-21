@@ -7,7 +7,6 @@ import { edgeDefaultLabelVerboseIconSize } from "./EdgeDefaultLabelVerbose";
 interface Props {
     edgeDefinition: EdgeDefinition;
     id: string;
-    rowWidth: number;
 }
 
 export default function EdgeDefaultLabelVerboseTop(props: Props): React.JSX.Element {
@@ -15,15 +14,12 @@ export default function EdgeDefaultLabelVerboseTop(props: Props): React.JSX.Elem
         <Stack
             direction="row"
             justifyContent="center"
-            style={{
-                width: props.rowWidth
-            }}
         >
             <EdgeDefaultLabelIcon
                 icon={props.edgeDefinition.icon}
                 id={props.id}
-                style={{width: edgeDefaultLabelVerboseIconSize}}
                 tooltip={"Delete Edge"}
+                width={edgeDefaultLabelVerboseIconSize}
             />
         </Stack>
     );

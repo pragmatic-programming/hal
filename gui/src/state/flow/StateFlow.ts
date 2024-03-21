@@ -6,6 +6,7 @@ import { IHGraph } from "@pragmatic-programming/ihgraph";
 import { EdgeDefinition } from "../../model/edge/EdgeDefinition";
 import { NodeDefinition } from "../../model/node/NodeDefinition";
 import { LayoutOptionTypeIndicator } from "../../util";
+import { ModeIndicator } from "./ModeIndicator";
 
 export interface StateFlow {
     addNodeCreate: () => void,
@@ -29,10 +30,10 @@ export interface StateFlow {
     setNodeNodeDataContent: (nodeId: string, content: string | undefined) => void,
     setNodeNodeDataLabel: (nodeId: string, label: string) => void,
     setNodeNodeDataLanguage: (nodeId: string, language: LanguageIndicator) => void,
-    toggleVerboseMode: () => void,
+    cycleMode: () => void,
     transformCreateEdge: (edgeId: string, edgeDefinition: EdgeDefinition, targetNodeId: string) => void,
     transformCreateNode: (nodeId: string, nodeDefinition: NodeDefinition, targetEdgeId: string | null | undefined) => void,
-    verboseMode: boolean,
+    mode: ModeIndicator,
     toggleHierarchyMode: (fitView: (fitViewOptions: FitViewOptions) => void) => void,
     hierarchyMode: boolean,
     lastRenderGraph: IHGraph | null,
