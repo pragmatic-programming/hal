@@ -25,7 +25,7 @@ interface Props {
 // noinspection JSUnresolvedReference
 loader.config({
     paths: {
-        vs: (window as any).__monacoLoadUri || "/vs"
+        vs: (window as any).__monacoLoadUri || "/hal/vs"
     },
 });
 

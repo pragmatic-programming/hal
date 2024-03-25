@@ -2,6 +2,7 @@
   "name": "hal",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://pragmatic-programming.github.io/hal/",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "*",
     "jest": "^29.5.0",
