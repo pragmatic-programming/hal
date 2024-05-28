@@ -26,7 +26,7 @@ export default function NodeEditorBorder(props: Props): React.JSX.Element {
     }
     let borderWidth: number = 3;
     if (props.sourceNodeStatus === SimpleNodeStatus.UNDEFINED) {
-        borderWidth = 1;
+        borderWidth = 2;
     }
     return (
         <BoxBackgroundLight

@@ -78,7 +78,7 @@ export const useStore = createWithEqualityFn<State>((setState, getState) => ({
         cycleMode: cycleMode(setState, getState),
         hierarchyMode: false,
         lastRenderGraph: null,
-        mode: "compact",
+        mode: "text",
         onConnect: onConnect(setState, getState),
         onEdgesChange: onEdgesChange(setState, getState),
         onNodesChange: onNodesChange(setState, getState),
