@@ -48,9 +48,9 @@ export class NodeFactory {
     static fromSourceNode(simpleNode: SimpleNode): Node<NodeData> {
         if (!simpleNode.hasAnnotation(FlowToIHGraphProcessor.ANNOTATION_NODE_DATA)) {
             return NodeFactory.nodeEditorWithoutDimensionsAndPosition(
-                simpleNode.getId(),
+                simpleNode.getName(),
                 simpleNode.getContent(),
-                simpleNode.getId(),
+                simpleNode.getName(),
                 "PlainText",
                 simpleNode.getStatus(),
             );
@@ -60,13 +60,13 @@ export class NodeFactory {
         switch (nodeData.type) {
             case "create":
                 return NodeFactory.nodeCreate(
-                    simpleNode.getId(),
+                    simpleNode.getName(),
                     nodeData.position,
                     Position.Left
                 );
             case "editor":
                 return NodeFactory.nodeEditor(
-                    simpleNode.getId(),
+                    simpleNode.getName(),
                     simpleNode.getContent(),
                     nodeData.label,
                     nodeData.language,
@@ -77,7 +77,7 @@ export class NodeFactory {
                 );
             case "image":
                 return NodeFactory.nodeImage(
-                    simpleNode.getId(),
+                    simpleNode.getName(),
                     simpleNode.getContent(),
                     nodeData.position,
                     nodeData.width,
@@ -85,7 +85,7 @@ export class NodeFactory {
                 );
             case "file":
                 return NodeFactory.nodeFile(
-                    simpleNode.getId(),
+                    simpleNode.getName(),
                     simpleNode.getContent(),
                     undefined,
                     nodeData.position,
@@ -99,7 +99,7 @@ export class NodeFactory {
 
     static fromGraphNode(graphNode: IHGraph): Node<NodeData> {
         return NodeFactory.nodeHierarchy(
-            graphNode.getId(),
+            graphNode.getName(),
             {
                 x: 200,
                 y: 100

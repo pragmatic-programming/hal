@@ -47,7 +47,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
             // Workaround. The induces hierarchy currently also clones the ids, so that they are not unique.
             // Therefore, the ids are re-set to the hash code of the graph node, which is unique.
             // TODO: Remove after upgrading to ihgraph rc4.
-            graphNode.setId("id" + graphNode.hashCode());
+            graphNode.setName("id" + graphNode.hashCode());
             const hierarchyNode: Node = NodeFactory.fromGraphNode(graphNode);
             if (parent) {
                 hierarchyNode.parentNode = parent.id;
@@ -57,7 +57,7 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
             nodes.push(...subFlowGraph.nodes);
             edges.push(...subFlowGraph.edges);
         }
-        for (const edge of ihGraph.getEdges()) {
+        for (const edge of ihGraph.getAllEdges()) {
             edges.push(EdgeFactory.fromTransformationEdge(edge));
         }
         // TODO: workaround. it should be possible to provide an unknown type and the view then just shows the prototype.

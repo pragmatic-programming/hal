@@ -22,7 +22,7 @@
           }
         }
       },
-      "id": "Source",
+      "name": "Source",
       "content": "x = 1\nif x == 1:\n# indented four spaces\n    print(\"x is 1.\")"
     },
     {
@@ -44,7 +44,7 @@
           }
         }
       },
-      "id": "Result",
+      "name": "Result",
       "content": ""
     }
   ],
@@ -52,7 +52,7 @@
     {
       "_objectId": "0x0000d193",
       "annotations": {},
-      "id": "execute",
+      "name": "execute",
       "priority": 8,
       "immediate": false
     }

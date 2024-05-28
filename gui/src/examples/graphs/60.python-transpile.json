@@ -22,7 +22,7 @@
           }
         }
       },
-      "id": "Python",
+      "name": "Python",
       "content": "hello = \"World!\"\nprint(hello)\n"
     },
     {
@@ -44,7 +44,7 @@
           }
         }
       },
-      "id": "JavaScript",
+      "name": "JavaScript",
       "content": ""
     },
     {
@@ -66,7 +66,7 @@
           }
         }
       },
-      "id": "Result",
+      "name": "Result",
       "content": ""
     }
   ],
@@ -74,14 +74,14 @@
     {
       "_objectId": "0x0000d553",
       "annotations": {},
-      "id": "transpile",
+      "name": "transpile",
       "priority": 0,
       "immediate": true
     },
     {
       "_objectId": "0x0000d554",
       "annotations": {},
-      "id": "execute",
+      "name": "execute",
       "priority": 1,
       "immediate": false
     }

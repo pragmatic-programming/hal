@@ -26,11 +26,11 @@ export class PromptFrameProcessor extends CliqueProcessor {
 
     async processAsync(): Promise<void> {
         const cliqueNodes: SimpleNode[] = this.getCliqueNodes();
-        const promptNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.PROMPT_NODE_ID);
-        const precursorNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.PRECURSOR_NODE_ID);
-        const requestNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.REQUEST_NODE_ID);
-        const keyNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.KEY_NODE_ID);
-        const responseNode = cliqueNodes.find(node => node.getId() === PromptFrameProcessor.RESPONSE_NODE_ID);
+        const promptNode = cliqueNodes.find(node => node.getName() === PromptFrameProcessor.PROMPT_NODE_ID);
+        const precursorNode = cliqueNodes.find(node => node.getName() === PromptFrameProcessor.PRECURSOR_NODE_ID);
+        const requestNode = cliqueNodes.find(node => node.getName() === PromptFrameProcessor.REQUEST_NODE_ID);
+        const keyNode = cliqueNodes.find(node => node.getName() === PromptFrameProcessor.KEY_NODE_ID);
+        const responseNode = cliqueNodes.find(node => node.getName() === PromptFrameProcessor.RESPONSE_NODE_ID);
 
         if (promptNode !== undefined && precursorNode !== undefined) {
             await this.processRequest(promptNode, precursorNode);
@@ -60,14 +60,14 @@ export class PromptFrameProcessor extends CliqueProcessor {
         );
 
         const newClique = this.getNextClique().clone();
-        newClique.removeNodeById(PromptFrameProcessor.PROMPT_NODE_ID);
-        newClique.removeNodeById(PromptFrameProcessor.PRECURSOR_NODE_ID);
+        newClique.removeNodeByName(PromptFrameProcessor.PROMPT_NODE_ID);
+        newClique.removeNodeByName(PromptFrameProcessor.PRECURSOR_NODE_ID);
         const requestNode = newClique.createSimpleNode(PromptFrameProcessor.REQUEST_NODE_ID);
         requestNode.setContent(request);
 
-        const resultNode = newClique.getNodeById(PromptFrameProcessor.RESULT_NODE_ID);
+        const resultNode = newClique.getNodeByName(PromptFrameProcessor.RESULT_NODE_ID);
         if (resultNode !== undefined) {
-            newClique.createTransformationEdge(newClique.getEdgeTypeById(PromptFrameProcessor.PROMPTFRAME_EDGE_TYPE_ID)!, requestNode, resultNode);
+            newClique.createTransformationEdge(newClique.getEdgeTypeByName(PromptFrameProcessor.PROMPTFRAME_EDGE_TYPE_ID)!, requestNode, resultNode);
         }
 
         this.setNewClique(newClique);
@@ -112,7 +112,7 @@ export class PromptFrameProcessor extends CliqueProcessor {
         const resultGraph = graph.clone().clear();
         const resultNode = resultGraph.createSimpleNode(PromptFrameProcessor.RESULT_NODE_ID);
         const responseNode = resultGraph.createSimpleNode(PromptFrameProcessor.RESPONSE_NODE_ID);
-        resultGraph.createTransformationEdge(resultGraph.getEdgeTypeById(PromptFrameProcessor.PROMPTFRAME_EDGE_TYPE_ID)!, responseNode, resultNode);
+        resultGraph.createTransformationEdge(resultGraph.getEdgeTypeByName(PromptFrameProcessor.PROMPTFRAME_EDGE_TYPE_ID)!, responseNode, resultNode);
 
         responseNode.setContent(responseContent);
         resultNode.setContent("");
@@ -122,7 +122,7 @@ export class PromptFrameProcessor extends CliqueProcessor {
 
     public async processResult(responseNode: SimpleNode): Promise<void> {
         const graph = this.getNextClique().clone();
-        const resultNode = graph.getNodeById(PromptFrameProcessor.RESULT_NODE_ID) as SimpleNode;
+        const resultNode = graph.getNodeByName(PromptFrameProcessor.RESULT_NODE_ID) as SimpleNode;
 
         if (resultNode === undefined) {
             this.addError("The PromptFrame processor expects a result node named 'Result'.");
@@ -144,7 +144,7 @@ export class PromptFrameProcessor extends CliqueProcessor {
 
         const scchart = PromptFrameProcessor.extractSCChart(responseJSON.choices[0].message.content)
         resultNode.setContent(scchart);
-        graph.removeNodeById(PromptFrameProcessor.RESPONSE_NODE_ID);
+        graph.removeNodeByName(PromptFrameProcessor.RESPONSE_NODE_ID);
         this.setNewClique(graph);
     }
 

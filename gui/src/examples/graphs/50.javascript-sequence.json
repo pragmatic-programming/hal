@@ -22,7 +22,7 @@
           }
         }
       },
-      "id": "Define",
+      "name": "Define",
       "content": "var x = 1;"
     },
     {
@@ -45,7 +45,7 @@
           }
         }
       },
-      "id": "Usage",
+      "name": "Usage",
       "content": "x + 2;"
     },
     {
@@ -67,7 +67,7 @@
           }
         }
       },
-      "id": "Result",
+      "name": "Result",
       "content": ""
     }
   ],
@@ -75,14 +75,14 @@
     {
       "_objectId": "0x0000c9f0",
       "annotations": {},
-      "id": "sequence",
+      "name": "sequence",
       "priority": 8,
       "immediate": false
     },
     {
       "_objectId": "0x0000c9f1",
       "annotations": {},
-      "id": "execute",
+      "name": "execute",
       "priority": 2,
       "immediate": false
     }

@@ -22,7 +22,7 @@
           }
         }
       },
-      "id": "Define",
+      "name": "Define",
       "content": "const int LED_PIN = 13;"
     },
     {
@@ -45,7 +45,7 @@
           }
         }
       },
-      "id": "Setup",
+      "name": "Setup",
       "content": "pinMode(LED_PIN, OUTPUT);"
     },
     {
@@ -68,7 +68,7 @@
           }
         }
       },
-      "id": "Loop",
+      "name": "Loop",
       "content": "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);"
     },
     {
@@ -90,7 +90,7 @@
           }
         }
       },
-      "id": "Result",
+      "name": "Result",
       "content": ""
     },
     {
@@ -112,7 +112,7 @@
           }
         }
       },
-      "id": "Deploy",
+      "name": "Deploy",
       "content": ""
     }
   ],
@@ -120,28 +120,28 @@
     {
       "_objectId": "0x0000c935",
       "annotations": {},
-      "id": "sequence",
+      "name": "sequence",
       "priority": 10,
       "immediate": false
     },
     {
       "_objectId": "0x0000c936",
       "annotations": {},
-      "id": "arduino",
+      "name": "arduino",
       "priority": 9,
       "immediate": false
     },
     {
       "_objectId": "0x0000c937",
       "annotations": {},
-      "id": "arduinoCompile",
+      "name": "arduinoCompile",
       "priority": 5,
       "immediate": false
     },
     {
       "_objectId": "0x0000c938",
       "annotations": {},
-      "id": "arduinoDeploy",
+      "name": "arduinoDeploy",
       "priority": 4,
       "immediate": false
     }

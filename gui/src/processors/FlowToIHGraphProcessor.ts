@@ -18,7 +18,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
         // Test all included edge types beforehand because we only want to add edge types that are actually used.
         for (const edge of model.edges) {
             const label: string = edge.label as string;
-            if (!graph.getEdgeTypeById(label)) {
+            if (!graph.getEdgeTypeByName(label)) {
                 const edgeData = edge.data!;
                 graph.createEdgeType(edge.label as string, edgeData.priority).setImmediate(edgeData.immediate);
                 graph.getTransformationConfiguration().setById(
@@ -35,9 +35,9 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
             this.createIHNode(unsafeNode, model.nodes, graph, nodeMap);
         }
         for (const edge of model.edges) {
-            const source: IHNode | undefined = graph.getNodeById(edge.source);
-            const target: IHNode | undefined = graph.getNodeById(edge.target);
-            const edgeType: EdgeType | undefined = graph.getEdgeTypeById(edge.label as string);
+            const source: IHNode | undefined = graph.getNodeByName(edge.source);
+            const target: IHNode | undefined = graph.getNodeByName(edge.target);
+            const edgeType: EdgeType | undefined = graph.getEdgeTypeByName(edge.label as string);
             if (!source) {
                 throw new Error("Returned SourceNode is undefined");
             }
@@ -91,7 +91,7 @@ export class FlowToIHGraphProcessor extends Processor<NodesAndEdges, IHGraph> {
         if (data.type === "hierarchy") {
             // TODO: Check later in rc4 if there is a dedicated createGraphNode method.
             sourceNode = new IHGraph();
-            sourceNode.setId(node.id);
+            sourceNode.setName(node.id);
             parent.addNode(sourceNode);
         } else {
             sourceNode = parent.createSimpleNode(node.id);

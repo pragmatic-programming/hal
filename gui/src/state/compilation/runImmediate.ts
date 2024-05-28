@@ -26,7 +26,7 @@ export function runImmediate(setState: StoreApi<State>["setState"], getState: ()
         const immediateCliques: IHGraph[] = ihGraph.getImmediateCliques();
 
         for (const clique of immediateCliques) {
-            const edgeType: EdgeType = clique.getEdges()[0].getType();
+            const edgeType: EdgeType = clique.getAllEdges()[0].getType();
             const transformationConfiguration: TransformationConfiguration = clique.getTransformationConfiguration();
             const processorType = transformationConfiguration.get(edgeType);
             const immediateContext: CompilationContext = createCompilationContextFromProcessors(clique, processorType as typeof Processor);

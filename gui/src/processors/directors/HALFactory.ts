@@ -24,7 +24,7 @@ export function createHALGraph(): HALGraph {
 }
 
 function getOrCreateEdgeType(graph: HALGraph, id: string, defaultPriority: number) {
-    const edgeType = graph.getEdgeTypeById(id);
+    const edgeType = graph.getEdgeTypeByName(id);
 
     if (edgeType === undefined) {
         return graph.createEdgeType(id, defaultPriority);

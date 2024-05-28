@@ -45,8 +45,8 @@ export class EdgeFactory {
     }
 
     static fromTransformationEdge(edge: TransformationEdge): Edge {
-        const sourceId: string = edge.getSourceNode().getId();
-        const targetId: string = edge.getTargetNode().getId();
+        const sourceId: string = edge.getSourceNode().getName();
+        const targetId: string = edge.getTargetNode().getName();
         if (!sourceId) {
             throw new Error("Returned sourceId is undefined");
         }
@@ -93,7 +93,7 @@ export class EdgeFactory {
                 targetId,
                 edgeData.sourceHandle,
                 edgeData.targetHandle,
-                edgeType.getId()
+                edgeType.getName()
             ),
             sourceId,
             targetId,
@@ -102,7 +102,7 @@ export class EdgeFactory {
             edgeType.isImmediate(),
             edgeData.bidirectional,
             EdgeFactory.edgeTypeIndicator(edgeType),
-            edgeType.getId(),
+            edgeType.getName(),
             edgeData,
         );
     }
@@ -180,7 +180,7 @@ export class EdgeFactory {
     }
 
     private static edgeTypeIndicator(edgeType: EdgeType): EdgeTypeIndicator {
-        const id: string | EdgeTypeIndicator = edgeType.getId();
+        const id: string | EdgeTypeIndicator = edgeType.getName();
         if (!isEdgeTypeIndicator(id)) {
             // if edgeType is not a valid indicator,
             // we create an unknown edge so that the

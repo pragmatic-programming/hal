@@ -22,7 +22,7 @@
           }
         }
       },
-      "id": "Define",
+      "name": "Define",
       "content": "const int LED_PIN = 13;"
     },
     {
@@ -45,7 +45,7 @@
           }
         }
       },
-      "id": "Setup",
+      "name": "Setup",
       "content": "pinMode(LED_PIN, OUTPUT);"
     },
     {
@@ -68,7 +68,7 @@
           }
         }
       },
-      "id": "Loop",
+      "name": "Loop",
       "content": "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);"
     }
   ],
@@ -76,14 +76,14 @@
     {
       "_objectId": "0x0000c576",
       "annotations": {},
-      "id": "sequence",
+      "name": "sequence",
       "priority": 10,
       "immediate": false
     },
     {
       "_objectId": "0x0000c577",
       "annotations": {},
-      "id": "arduino",
+      "name": "arduino",
       "priority": 9,
       "immediate": false
     }

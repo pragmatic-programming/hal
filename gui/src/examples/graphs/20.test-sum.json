@@ -22,7 +22,7 @@
           }
         }
       },
-      "id": "Function",
+      "name": "Function",
       "content": "function sum(n) {\n    if (n > 0) {\n        return n + sum(n - 1);\n    } else {\n        return 0;\n    }\n}"
     },
     {
@@ -45,7 +45,7 @@
           }
         }
       },
-      "id": "Test 1",
+      "name": "Test 1",
       "content": "sum(3) == 6"
     },
     {
@@ -68,7 +68,7 @@
           }
         }
       },
-      "id": "Test 2",
+      "name": "Test 2",
       "content": "sum(1)"
     },
     {
@@ -91,7 +91,7 @@
           }
         }
       },
-      "id": "Test 3",
+      "name": "Test 3",
       "content": "sum(-1) == -1"
     },
     {
@@ -114,7 +114,7 @@
           }
         }
       },
-      "id": "Usage",
+      "name": "Usage",
       "content": "sum(3) + sum(1);"
     },
     {
@@ -136,7 +136,7 @@
           }
         }
       },
-      "id": "Result",
+      "name": "Result",
       "content": ""
     }
   ],
@@ -144,21 +144,21 @@
     {
       "_objectId": "0x0000d1d1",
       "annotations": {},
-      "id": "test",
+      "name": "test",
       "priority": 0,
       "immediate": true
     },
     {
       "_objectId": "0x0000d1d2",
       "annotations": {},
-      "id": "sequence",
+      "name": "sequence",
       "priority": 2,
       "immediate": false
     },
     {
       "_objectId": "0x0000d1d3",
       "annotations": {},
-      "id": "execute",
+      "name": "execute",
       "priority": 1,
       "immediate": false
     }

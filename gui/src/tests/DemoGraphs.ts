@@ -19,21 +19,21 @@ export function testGraphSequence(): IHGraph {
     const graph: IHGraphFactoryInterface = {
         nodes: [
             {
-                id: "Defines",
+                name: "Defines",
                 content: "const int LED_PIN = 13;"
             },
             {
-                id: "Setup",
+                name: "Setup",
                 content: "pinMode(LED_PIN, OUTPUT);"
             },
             {
-                id: "Loop",
+                name: "Loop",
                 content: "digitalWrite(LED_PIN, HIGH);\ndelay(1000);\ndigitalWrite(LED_PIN, LOW);\ndelay(1000);"
             }
         ],
         edgeTypes: [
             {
-                id: "Sequence",
+                name: "Sequence",
                 priority: 1
             }
         ],
@@ -58,25 +58,25 @@ export function testGraphSequenceExecute(): IHGraph {
     const graph: IHGraphFactoryInterface = {
         nodes: [
             {
-                id: "Define",
+                name: "Define",
                 content: "var x = 1;"
             },
             {
-                id: "Add",
+                name: "Add",
                 content: "x + 2"
             },
             {
-                id: "Result",
+                name: "Result",
                 content: ""
             }
         ],
         edgeTypes: [
             {
-                id: "Sequence",
+                name: "Sequence",
                 priority: 8
             },
             {
-                id: "Execute",
+                name: "Execute",
                 priority: 2
             }
         ],
