@@ -26,7 +26,7 @@ export function borderColor(
             break;
     }
     if (selected) {
-        borderColor = theme.palette.info.light;
+        borderColor = theme.palette.primary.dark;
     }
     return borderColor;
 }
