@@ -21,6 +21,10 @@ export class IHGraphToFlowProcessor extends Processor<IHGraph, NodesAndEdges> {
 
     process(): void {
         let ihGraph: IHGraph = this.getModel();
+
+        console.debug("XR: IHGraphToFlowProcessor: process: ihGraph:");
+        console.debug(ihGraph.toStringDebugGraph());
+
         if (this.getProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY)) {
             ihGraph = this.getModel().getInducedHierarchy();
         }

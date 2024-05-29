@@ -15,6 +15,10 @@ import { layoutedNodes } from "../layoutedNodes";
 
 async function compile(hierachyMode: boolean, ihGraph: IHGraph): Promise<NodesAndEdges> {
     const context: CompilationContext = iHGraphToFlow(ihGraph);
+
+    console.debug("XR: render.ts: render: context: ");
+    console.debug(context);
+    
     context.startEnvironment.setProperty(IHGraphToFlowProcessor.IHGRAPH_HIERARCHY, hierachyMode);
     await context.compileAsync();
     return context.getResult();
@@ -57,6 +61,10 @@ export function render(setState: StoreApi<State>["setState"], getState: () => St
         });
         state = getState();
         // compile graph
+
+        console.log("XR: render.ts: render: ihGraph: ");
+        console.log(ihGraph.toStringDebugGraph());
+        
         const nodesAndEdges = await compile(state.flow.hierarchyMode, ihGraph);
         // set compiled graph
         setState({

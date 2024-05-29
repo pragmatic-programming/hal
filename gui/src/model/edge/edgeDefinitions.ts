@@ -29,7 +29,7 @@ export const edgeDefinitionPrototype: EdgeDefinition = {
     icon: WarningAmberIcon,
     edgePathStyle: "Bezier",
     immediate: false,
-    priority: 0,
+    priority: 1,
     processor: UnknownProcessor,
     targetNodeTypes: [],
 };

@@ -22,6 +22,10 @@ export function flowToIHGraph(stateFlow: StateFlow): CompilationContext {
 }
 
 export function iHGraphToFlow(ihGraph: IHGraph): CompilationContext {
+
+    console.debug("XR: compilationContexts.ts: iHGraphToFlow: ihGraph:");
+    console.debug(ihGraph.toStringDebugGraph());
+
     return createCompilationContextFromProcessors(
         ihGraph,
         IHGraphToFlowProcessor
