@@ -12,7 +12,7 @@ export class DefaultProcessors {
         const found = processors.find(item => item[0] === processorId);
 
         console.log("Found additional processors: " + processors);
-        console.log("Found" + found)
+        console.log("Found " + found)
 
         if (found !== undefined)
             return found[1];
@@ -24,5 +24,4 @@ export class DefaultProcessors {
                 return retrieveEdgeDefinition(processorId).processor;
         }
     }
-
 }

@@ -25,5 +25,4 @@ export class SequenceProcessor extends CliqueProcessor {
         cliqueNodes[1].cloneAnnotationsTo(sourceNode);
         this.setNewClique(targetGraph);
     }
-
 }
