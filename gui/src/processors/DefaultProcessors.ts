@@ -9,13 +9,15 @@ export class DefaultProcessors {
         console.log("getProcessor...")
 
         const processors : [string, any][] = (window as any).__additionalProcessors;
-        const found = processors.find(item => item[0] === processorId);
+        if (processors !== undefined) {
+            const found = processors.find(item => item[0] === processorId);
 
-        console.log("Found additional processors: " + processors);
-        console.log("Found " + found)
+            console.log("Found additional processors: " + processors);
+            console.log("Found " + found)
 
-        if (found !== undefined)
-            return found[1];
+            if (found !== undefined)
+                return found[1];
+        }   
 
         switch (processorId) {
             case "promptframe":
